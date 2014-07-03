@@ -4,7 +4,7 @@ passport = require 'passport'
 
 params =
 	admin:
-		failureRedirect: '/admin/дщпшт'
+		failureRedirect: '/admin/login'
 		successRedirect: '/admin'
 		session: true
 	catalog:
