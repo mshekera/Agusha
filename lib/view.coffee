@@ -8,7 +8,7 @@ Cache = require './cache'
 exports.render = render = (name, res, data, cacheId)->
 	data = data or {}
 
-	async.parallel
+	async.parallel [
 		(next) -> # cache
 			if not cacheId
 				return next()
@@ -16,7 +16,7 @@ exports.render = render = (name, res, data, cacheId)->
 			Cache.put name, data, cacheId, res.locals, next
 		(next) -> # view
 			res.render name, data
-	, ()->
+	], ()->
 		
 
 exports.error = (err, res)->

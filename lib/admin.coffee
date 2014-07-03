@@ -3,12 +3,9 @@ _ = require 'underscore'
 
 View = require './view'
 
-Stat = require '../model/stat'
-User = require '../model/user'
+Stat = require '../models/stat'
+User = require '../models/user'
 
-metaPage = require '../meta/page'
-
-treeUtil = require '../utils/tree'
 timeUtil = require '../utils/time'
 
 exports.index = (callback)->
@@ -28,18 +25,4 @@ exports.index = (callback)->
 
 
 exports.locals = (req, res, callback)->
-	res.locals.sidebarMenu = treeUtil.makeTreeObject metaPage
-
-	meta = (treeUtil.findObjectInTree 'href', req.originalUrl, metaPage).pop()
-
-	res.locals.meta = meta
-
-	res.locals.breadcrumbs = meta
-
-	if not meta
-		meta = {}
-		# error = new Error 'not find Meta description'
-
-		# return View.error error, res
-
 	callback()

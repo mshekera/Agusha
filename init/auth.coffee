@@ -3,7 +3,7 @@ async = require 'async'
 passport = require 'passport'
 localStrategy = require('passport-local').Strategy
 
-User = require '../model/user'
+User = require '../models/user'
 
 parameters =
 	usernameField: 'username'
