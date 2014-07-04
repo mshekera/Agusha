@@ -48,6 +48,6 @@ exports.init = (callback)->
 	clientAuth = new localStrategy callbackStrategy
 
 	passport.use 'admin', adminAuth
-	passport.use 'catalog', clientAuth
+	passport.use 'client', clientAuth
 
 	callback()
