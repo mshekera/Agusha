@@ -1,27 +1,16 @@
 mongoose = require 'mongoose'
+sprintf = require('sprintf').sprintf
 
-exports.find = (query, fields, modelName, cb) ->
-	unless typeof cb is 'function'
-		cb = modelName
-		modelName = fields
-		fields = null
+noModel = 'Exception in Model library: model with name %s does not exist'
+noMethod = 'Exception in Model library: method with name %s does not exist'
 
-	unless typeof cb is 'function'
-		throw new Error 'No callback provided to `Model` library `find` function'
+module.exports = (modelName, methodName, cb, args...) ->
+	mdl = mongoose.models[modelName]
 
-	mdl = require "../models/#{modelName}"
+	throw new Error sprintf noModel, modelName if mdl is undefined
 
-	if fields
-		mdl.find query, fields, cb
-	else
-		mdl.find query, cb
+	method = mdl[methodName]
 
-exports.findOne = (query, fields, modelName, cb) ->
+	throw new Error sprintf noMethod, methodName if method is undefined
 
-exports.count = (query, modelName, cb) ->
-
-exports.create = (query, modelName, cb) ->
-
-exports.update = (query, modelName, cb) ->
-
-exports.populate = (query, modelName, cb) ->
+	method.apply(mdl, args).exec cb
