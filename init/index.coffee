@@ -8,8 +8,9 @@ Migrate = require './migrate'
 Application = require './application'
 Notifier = require '../lib/notifier'
 AuthStartegies = require './auth'
+ModelPreloader = require './mpload'
 
-appPort = 80
+appPort = 8080
 
 _.mixin _.str.exports()
 
@@ -24,6 +25,10 @@ async.waterfall [
 	(next) ->
 		Logger.log 'info', 'Migrate is initializated'
 
+		ModelPreloader.init next
+	(next) ->
+		Logger.log 'info', 'Models are preloaded'
+
 		Application.init next
 	(next) ->
 		Logger.log 'info', "Application is initializated"
@@ -37,7 +42,9 @@ async.waterfall [
 		Logger.log 'info', 'Notifier is initializated'
 
 		Application.listen appPort, next
-	(next)->
+	(next) ->
 		Logger.log 'info', "Application is binded to #{appPort}"
-], (err)->
+		next()
+
+], (err) ->
 	Logger.error 'Init error: ', err
