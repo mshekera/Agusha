@@ -25,7 +25,7 @@ async.waterfall [
 	(next) ->
 		Logger.log 'info', 'Migrate is initializated'
 
-		ModelPreloader.init next
+		ModelPreloader "#{process.cwd()}/models/", next
 	(next) ->
 		Logger.log 'info', 'Models are preloaded'
 
@@ -44,7 +44,6 @@ async.waterfall [
 		Application.listen appPort, next
 	(next) ->
 		Logger.log 'info', "Application is binded to #{appPort}"
-		next()
 
 ], (err) ->
 	Logger.error 'Init error: ', err

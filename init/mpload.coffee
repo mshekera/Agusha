@@ -1,9 +1,9 @@
-exports.init = (next) ->
-	require '../models/age'
-	require '../models/article'
-	require '../models/client'
-	require '../models/product'
-	require '../models/tour'
-	require '../models/tour_record'
+fs = require 'fs'
 
-	next()
+module.exports = (path, next) ->
+	fs.readdir path, (err, files) ->
+		throw err if (err)
+		for file in files
+			require path + file
+
+		next()

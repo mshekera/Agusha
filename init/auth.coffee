@@ -3,7 +3,7 @@ async = require 'async'
 passport = require 'passport'
 localStrategy = require('passport-local').Strategy
 
-User = require '../models/user'
+User = mongoose.models['user']
 
 parameters =
 	usernameField: 'username'

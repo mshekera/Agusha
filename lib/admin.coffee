@@ -3,8 +3,9 @@ _ = require 'underscore'
 
 View = require './view'
 
-Stat = require '../models/stat'
-User = require '../models/user'
+mongoose = require 'mongoose'
+Stat = mongoose.models['stat']
+User = mongoose.models['user']
 
 timeUtil = require '../utils/time'
 
