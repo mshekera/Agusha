@@ -1,8 +1,8 @@
 mongoose = require 'mongoose'
 crypto = require 'crypto'
 
-cryptoUtil = require '../../utils/crypto'
-validator = require '../../utils/validate'
+cryptoUtil = require '../utils/crypto'
+validator = require '../utils/validate'
 
 # AddressModel = require './ss_address'
 

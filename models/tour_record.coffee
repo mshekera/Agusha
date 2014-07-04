@@ -2,7 +2,7 @@ mongoose = require 'mongoose'
 
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
-Validate = requiere '../utils/validate'
+Validate = require '../utils/validate'
 
 schema = new mongoose.Schema
 	_id:
