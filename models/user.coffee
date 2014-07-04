@@ -60,8 +60,6 @@ UserShema.methods.validPassword = (password) ->
 
 	isValid = if md5pass == @password then true else false
 
-	isValid
-
 UserShema.methods.getUserFlag = ()->
 	roles = [
 		'notactive'

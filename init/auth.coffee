@@ -3,6 +3,7 @@ async = require 'async'
 passport = require 'passport'
 localStrategy = require('passport-local').Strategy
 
+mongoose = require 'mongoose'
 User = mongoose.models['user']
 
 parameters =
@@ -43,10 +44,10 @@ callbackStrategy = (username, password, done)->
 		validation err, user, password, done
 
 exports.init = (callback)->
-	basicAuth = new localStrategy callbackStrategy
-	catalogAuth = new localStrategy callbackStrategy
+	adminAuth = new localStrategy callbackStrategy
+	clientAuth = new localStrategy callbackStrategy
 
-	passport.use 'admin', basicAuth
-	passport.use 'catalog', catalogAuth
+	passport.use 'admin', adminAuth
+	passport.use 'catalog', clientAuth
 
 	callback()
