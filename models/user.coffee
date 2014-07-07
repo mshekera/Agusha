@@ -4,8 +4,6 @@ crypto = require 'crypto'
 cryptoUtil = require '../utils/crypto'
 validator = require '../utils/validate'
 
-# AddressModel = require './ss_address'
-
 ObjectId = mongoose.Schema.Types.ObjectId
 
 UserShemaFields = 
@@ -37,18 +35,12 @@ UserShemaFields =
 	created_at:
 		type: Number
 		default: Date.now
-	gender:
-		type: Number
-		required: true
 	firstName:
 		type: String
-		required: true
+		required: false
 	lastName:
 		type: String
-		required: true
-	address: 
-		type: ObjectId
-		ref: 'Address'
+		required: false
 
 options =
 	collection: 'users'
