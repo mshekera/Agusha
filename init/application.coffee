@@ -35,7 +35,7 @@ abideOption =
 	translation_directory: 'locale'
 	locale_on_url: false
 
-routes = ()->
+routes = () ->
 	@use user_controller.Router
 	@use '/', user_controller.Router
 	@use '/admin', admin_controller.Router
@@ -47,11 +47,10 @@ configure = () ->
 	@use compression
 		threshold: 2048
 	@use gzip.gzip
-		matchType: ///js/image/images/image///
+		matchType: ///js/image/images/image/img///
 	@use '/js', express.static "#{__dirname}/../public/js"
-	@use '/images', express.static "#{__dirname}/../public/images"
+	@use '/img', express.static "#{__dirname}/../public/img"
 	@use '/css', express.static "#{__dirname}/../public/css"
-	@use '/plugins', express.static "#{__dirname}/../public/plugins"
 	@use '/fonts', express.static "#{__dirname}/../public/fonts"
 	@use '/robots.txt', (req, res)->
 		res.set 'Content-Type', 'text/plain'
@@ -77,7 +76,5 @@ exports.init = (callback) ->
 
 	callback null
 
-exports.listen = (port, callback)->
+exports.listen = (port, callback) ->
 	exports.server.listen port, callback
-
-
