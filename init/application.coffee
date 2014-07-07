@@ -5,6 +5,7 @@ async = require 'async'
 passport = require 'passport'
 roles = require 'roles'
 _ = require 'underscore'
+flash = require 'connect-flash'
 
 cookieParser = require 'cookie-parser'
 bodyParser = require 'body-parser'
@@ -40,7 +41,7 @@ routes = ()->
 	@use '/admin', admin_controller.Router
 
 configure = () ->
-	@set 'views', "#{__dirname}/../view"
+	@set 'views', "#{__dirname}/../views"
 	@set 'view engine', 'jade'
 	@set 'view options', jadeOptions
 	@use compression
@@ -50,7 +51,7 @@ configure = () ->
 	@use '/js', express.static "#{__dirname}/../public/js"
 	@use '/images', express.static "#{__dirname}/../public/images"
 	@use '/css', express.static "#{__dirname}/../public/css"
-	@use '/bootstrap', express.static "#{__dirname}/../public/bootstrap"
+	@use '/plugins', express.static "#{__dirname}/../public/plugins"
 	@use '/fonts', express.static "#{__dirname}/../public/fonts"
 	@use '/robots.txt', (req, res)->
 		res.set 'Content-Type', 'text/plain'
@@ -60,10 +61,10 @@ configure = () ->
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams
+	@use flash()
 	@use passport.initialize()
 	@use passport.session()
 	@use '/admin', Auth.isAuth
-	@use '/admin', Admin.locals
 	@use methodOverride()
 	@use View.globals
 
