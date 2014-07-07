@@ -5,9 +5,9 @@ passport = require 'passport'
 params =
 	admin:
 		failureRedirect: '/admin/login'
-		successRedirect: '/admin'
+		successRedirect: '/admin/dashboard'
 		session: true
-	catalog:
+	user:
 		failureRedirect: '/account/signin'
 		successRedirect: '/account'
 		session: true
@@ -15,11 +15,11 @@ params =
 exports.isAuth = (req, res, next)->
 	path = url.parse req.path
 
-	if path.path == '/auth'
+	if path.path == '/login'
 		return next()
 
 	if not req.user or not req.isAuthenticated()
-		return res.redirect '/admin/auth'
+		return res.redirect '/admin/login'
 
 	next()
 

@@ -6,7 +6,7 @@ Logger = require './logger'
 Cache = require './cache'
 
 exports.render = render = (name, res, data, cacheId)->
-	data = data or {}
+	data or= {}
 
 	async.parallel [
 		(next) -> # cache

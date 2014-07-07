@@ -23,7 +23,3 @@ exports.index = (callback)->
 			User.find(query)
 				.exec next
 	, callback
-
-
-exports.locals = (req, res, callback)->
-	callback()
