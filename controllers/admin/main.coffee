@@ -22,4 +22,4 @@ exports.do_login = (req, res) ->
 	Auth.authenticate('admin') req, res
 
 exports.dashboard = (req, res) ->
-	res.send 'Hello!'
+	View.render 'admin/board/index', res
