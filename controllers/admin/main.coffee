@@ -5,10 +5,14 @@ Admin = require '../../lib/admin'
 Auth = require '../../lib/auth'
 
 exports.index = (req, res) ->
-
+	unless req.user
+		res.redirect 'admin/login'
+	else
+		res.redirect 'admin/dashboard'
 
 exports.login = (req, res)->
-	View.render 'admin/auth/login/index', res
+	req.flash 'info', 'BLABLABLA'
+	View.render 'admin/auth/index', res
 
 exports.logout = (req, res)->
 	req.logout()
@@ -16,3 +20,6 @@ exports.logout = (req, res)->
 
 exports.do_login = (req, res) ->
 	Auth.authenticate('admin') req, res
+
+exports.dashboard = (req, res) ->
+	res.send 'Hello!'
