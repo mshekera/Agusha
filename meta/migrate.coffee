@@ -49,7 +49,7 @@ module.exports = [
 		_id: '53b54577f5adc6a9932b1aec'
 		username: 'admin'
 		email: 'admin@admin.com'
-		password: '202cb962ac59075b964b07152d234b70'
+		password: '79e262a81dd19d40ae008f74eb59edce'
 		role: 'admin'
 		status: 1
 	]
