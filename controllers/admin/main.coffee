@@ -1,7 +1,6 @@
 async = require 'async'
 
 View = require '../../lib/view'
-Admin = require '../../lib/admin'
 Auth = require '../../lib/auth'
 
 exports.index = (req, res) ->
@@ -11,7 +10,6 @@ exports.index = (req, res) ->
 		res.redirect 'admin/dashboard'
 
 exports.login = (req, res)->
-	req.flash 'info', 'BLABLABLA'
 	View.render 'admin/auth/index', res
 
 exports.logout = (req, res)->
