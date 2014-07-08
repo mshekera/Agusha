@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	.panel.panel-default
+		.panel-heading
+			if success
+				.panel-title= "Операция выполнена успешно"
+			else
+				.panel-title= "Операция выполнена с ошибкой"
+		.panel-body= message
