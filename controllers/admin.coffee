@@ -4,6 +4,7 @@ View = require '../lib/view'
 
 Main = require './admin/main'
 Products = require './admin/products'
+Ages = require './admin/ages'
 
 Router = express.Router()
 
@@ -24,13 +25,13 @@ Router.get '/product/delete/:id', Products.delete
 Router.post '/product/:id', Products.save
 Router.post '/product', Products.create
 
-Router.get '/ages', Products.index
-Router.get '/age/:id', Products.get
+Router.get '/ages', Ages.index
+Router.get '/age/create', Ages.create
+Router.get '/age/edit/:id', Ages.get
 
-Router.get '/age/delete/:id', Products.delete
+Router.get '/age/delete/:id', Ages.delete
 
-Router.post '/age/:id', Products.save
-Router.post '/age', Products.create
+Router.post '/age', Ages.save
 ########################
 
 exports.Router = Router
