@@ -7,7 +7,7 @@ Logger = require '../../lib/logger'
 exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
-			Client.find next
+			Client.find().sort({date: 'desc'}).exec next
 		(docs) ->
 			View.render 'admin/board/clients/index', res, {clients: docs}
 	], (err) ->

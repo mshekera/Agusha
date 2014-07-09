@@ -14,3 +14,9 @@ exports.endOf = (label, day, format)->
 
 exports.today = (format) ->
 	moment().format format
+
+exports.getDate = (val) ->
+	if not val
+		return val
+	
+	return moment(val).format('DD/MM/YYYY')

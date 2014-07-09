@@ -1,0 +1,84 @@
+textarea {
+    resize: none;
+}
+
+.centered {
+	text-align: center;
+}
+
+.error {
+	color: red;
+}
+
+/* Useful stuff */
+
+.lovely_container {			/* Should have width */
+	display: table;
+	position: relative;
+	margin-top: 100%;
+}
+
+.inline_lovely_container { 		/* Should have width */
+	display: inline-block;
+    line-height: 0;
+    letter-spacing: -1px;
+	position: relative;
+	margin-top: 100%;
+}
+
+.lovely {
+	max-height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	max-width: 100%;
+	margin: auto;
+}
+
+.inline_lovely_container .lovely {
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.lovely_table {
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+.lovely_cell {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	white-space: normal;
+}
+
+.rounded {
+	-moz-border-radius: 999999em;
+	-webkit-border-radius: 999999em;
+	-khtml-border-radius: 999999em;
+	border-radius: 999999em;
+}
+
+.force_height {
+	overflow: auto;
+	position: relative;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.border_boxed {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.pull_right {
+	float: right;
+}

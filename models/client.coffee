@@ -3,12 +3,20 @@ mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
 Validate = require '../utils/validate'
+Time = require '../utils/time'
+
+getType = (val) ->
+	switch val
+		when 0
+			return 'Direct'
+		when 1
+			return 'Friend'
 
 schema = new mongoose.Schema
-	_id:
-		type: ObjectId
 	created_at:
 		type: Date
+		default: Date.now
+		get: Time.getDate
 	login:
 		type: String
 		required: true
@@ -16,9 +24,12 @@ schema = new mongoose.Schema
 		type: String
 		required: true
 		trim: true
-		match: Validate.email
+		unique: true
+		index: true
 	type: # 0 - direct, 1 - friend
 		type: Number
+		default: 0
+		get: getType
 	invited_by:
 		type: ObjectId
 		ref: 'Client'
