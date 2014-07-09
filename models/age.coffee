@@ -14,7 +14,7 @@ schema = new mongoose.Schema
 		required: false
 	level:
 		type: Number
-		required: false
+		required: true
 	active:
 		type: Boolean
 		required: true

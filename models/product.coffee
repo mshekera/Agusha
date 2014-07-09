@@ -26,10 +26,10 @@ schema = new mongoose.Schema
 		required: true
 	age_id:
 		type: ObjectId
-		required: false
+		required: true
 	age_level:
 		type: Number
-		required: false
+		required: true
 ,
 	collection: 'product'
 
