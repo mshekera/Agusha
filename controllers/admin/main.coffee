@@ -16,8 +16,8 @@ exports.logout = (req, res)->
 	req.logout()
 	res.redirect '/admin/login'
 
-exports.do_login = (req, res) ->
-	Auth.authenticate('admin') req, res
+exports.do_login = (req, res, next) ->
+	Auth.authenticate('admin') req, res, next
 
 exports.dashboard = (req, res) ->
 	View.render 'admin/board/index', res

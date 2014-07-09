@@ -4,7 +4,10 @@ passport = require 'passport'
 localStrategy = require('passport-local').Strategy
 
 mongoose = require 'mongoose'
+
 Model = require '../lib/model'
+
+Logger = require '../lib/Logger'
 
 parameters =
 	usernameField: 'username'
@@ -22,7 +25,7 @@ passport.deserializeUser (id, done) ->
 			done null, user
 	], done
 
-callbackToValidation = (err, user) ->
+callbackToValidation = (username, password, done, err, user) ->
 	validation err, user, password, done
 
 validation = (err, user, password, done) ->
@@ -36,10 +39,12 @@ validation = (err, user, password, done) ->
 	done null, user
 
 adminStrategy = (username, password, done) ->
-	Model 'User', 'findOne', callbackToValidation, {username : username}
+	Model 'User', 'findOne', 
+		async.apply(callbackToValidation, arguments...), {username : username}
 
 userStrategy = (username, password, done) ->
-	Model 'Client', 'findOne', callbackToValidation, {username : username}
+	Model 'Client', 'findOne',
+		async.apply(callbackToValidation, arguments...), {username : username}
 
 exports.init = (callback) ->
 	adminAuth = new localStrategy adminStrategy
