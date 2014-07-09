@@ -16,22 +16,27 @@ Router.get '/logout', Main.logout
 Router.get '/dashboard', Main.dashboard
 
 Router.post '/login', Main.do_login
-
+#----------------#
 Router.get '/products', Products.index
 Router.get '/product/:id', Products.get
-
 Router.get '/product/delete/:id', Products.delete
 
 Router.post '/product/:id', Products.save
 Router.post '/product', Products.create
-
+#----------------#
 Router.get '/ages', Ages.index
 Router.get '/age/create', Ages.create
 Router.get '/age/edit/:id', Ages.get
-
 Router.get '/age/delete/:id', Ages.delete
 
 Router.post '/age', Ages.save
+#----------------#
+Router.get '/category', Category.index
+Router.get '/category/create', Category.create
+Router.get '/category/edit/:id', Category.get
+Router.get '/category/delete/:id', Category.delete
+
+Router.post '/category', Ages.save
 ########################
 
 exports.Router = Router
