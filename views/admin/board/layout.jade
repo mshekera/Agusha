@@ -80,6 +80,11 @@ html(lang="ru")
                                         a(href="pages/charts/morris1.html")
                                             i.fa.fa-angle-double-right
                                             span= "Name3"
+                        li(class=(currentHref=='clients'?"active":""))
+                            a(href="clients")
+                                i.fa.fa-th
+                                span= "Клиенты"
+
             aside.right-side
                 block content
 

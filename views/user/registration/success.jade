@@ -1,0 +1,21 @@
+extends ../layout
+
+block append header
+	
+
+block append content
+	div Регистрация прошла успешно. Пригласите еще и Ваших друзей.
+	form#registration_form(action="/registration/invite")
+		input(type="text", name="login", placeholder="Как зовут друга")
+		span.error
+		input(type="email", name="email", placeholder="E-mail друга")
+		span.error
+		input(type="submit", value="Отправить")
+	
+	if err
+		.error
+			| #{err}
+
+block append scripts
+	script(src="/js/plugins/validate/jquery.validate.js")
+	script(src="/js/user/registration/registration.js")
