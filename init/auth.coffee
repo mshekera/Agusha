@@ -7,8 +7,6 @@ mongoose = require 'mongoose'
 
 Model = require '../lib/model'
 
-Logger = require '../lib/Logger'
-
 parameters =
 	usernameField: 'username'
 	passwordField: 'password'
