@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mshekera/Agusha.git"
+    "url": "https://github.com/winnlab/Agusha.git"
   },
   "dependencies": {
     "express": "4.3.1",
