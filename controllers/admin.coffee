@@ -22,8 +22,15 @@ Router.get '/product/:id', Products.get
 Router.get '/product/delete/:id', Products.delete
 
 Router.post '/product/:id', Products.save
-Router.post '/product/create', Products.create
+Router.post '/product', Products.create
 
+Router.get '/ages', Products.index
+Router.get '/age/:id', Products.get
+
+Router.get '/age/delete/:id', Products.delete
+
+Router.post '/age/:id', Products.save
+Router.post '/age', Products.create
 ########################
 
 exports.Router = Router
