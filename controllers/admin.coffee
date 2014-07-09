@@ -5,6 +5,7 @@ View = require '../lib/view'
 Main = require './admin/main'
 Products = require './admin/products'
 Ages = require './admin/ages'
+Category = require './admin/category'
 
 Router = express.Router()
 
@@ -36,7 +37,7 @@ Router.get '/category/create', Category.create
 Router.get '/category/edit/:id', Category.get
 Router.get '/category/delete/:id', Category.delete
 
-Router.post '/category', Ages.save
+Router.post '/category', Category.save
 ########################
 
 exports.Router = Router
