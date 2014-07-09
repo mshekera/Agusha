@@ -28,4 +28,5 @@ node_modules
 #
 views/admin/board/pagesTEMP(will be removed later)
 
-
+# Database connection
+init/database.coffee
