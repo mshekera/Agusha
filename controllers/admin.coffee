@@ -4,6 +4,7 @@ View = require '../lib/view'
 
 Main = require './admin/main'
 Products = require './admin/products'
+Clients = require './admin/clients'
 
 Router = express.Router()
 
@@ -18,6 +19,9 @@ Router.post '/login', Main.do_login
 
 Router.get '/products', Products.index
 Router.get '/product/:id', Products.get
+
+Router.get '/clients', Clients.index
+Router.get '/client/:id', Clients.get
 
 Router.get '/product/delete/:id', Products.delete
 

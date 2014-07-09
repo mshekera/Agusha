@@ -50,6 +50,11 @@ html(lang="ru")
                                 i.fa.fa-th
                                 span= "Продукты"
                                 small.badge.pull-right.bg-green= "новый"
+                        li(class=(currentHref=='clients'?"active":""))
+                            a(href="clients")
+                                i.fa.fa-th
+                                span= "Клиенты"
+                                small.badge.pull-right.bg-green="новый"
 
                         li(class= (currentHref=='test'?"treeview active":"treeview"))
                             a(href="test")

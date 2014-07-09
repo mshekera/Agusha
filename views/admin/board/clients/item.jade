@@ -1,0 +1,47 @@
+extends ../layout
+
+block append header
+	link(rel="stylesheet" href="/css/admin/ace.css")
+
+block append scripts
+	
+
+block content
+	.panel.panel-default
+		.panel-body
+			.tabbable
+				ul.nav.nav-tabs
+					li.active
+						a(href='#home', data-toggle='tab')
+							i.fa.fa-user
+							|  Profile
+				
+				.tab-content
+					#home.tab-pane.active
+						.profile-user-info
+							.profile-info-row
+								.profile-info-name
+									| login
+								.profile-info-value
+									| #{client.login}
+							.profile-info-row
+								.profile-info-name
+									| email
+								.profile-info-value
+									| #{client.email}
+							.profile-info-row
+								.profile-info-name
+									| created_at
+								.profile-info-value
+									| #{client.created_at}
+							.profile-info-row
+								.profile-info-name
+									| type
+								.profile-info-value
+									| #{client.type}
+							- if (client.invited_by)
+								.profile-info-row
+									.profile-info-name
+										| invited_by
+									.profile-info-value
+										| #{client.invited_by}
