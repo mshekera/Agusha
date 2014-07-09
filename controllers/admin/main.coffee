@@ -1,7 +1,6 @@
 async = require 'async'
 
 View = require '../../lib/view'
-Admin = require '../../lib/admin'
 Auth = require '../../lib/auth'
 
 exports.index = (req, res) ->
