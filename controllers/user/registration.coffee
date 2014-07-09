@@ -7,14 +7,17 @@ Mail = require '../../lib/mail'
 
 Client = require '../../models/client'
 
-exports.index = (req, res) ->
+renderView = (req, res, path) ->
 	data = {}
 	
-	if req.session.err
+	if req.session.err?
 		data.err = req.session.err
 		delete req.session.err
 	
-	View.render 'user/registration/registration', res, data
+	View.render path, res, data
+
+exports.index = (req, res) ->
+	renderView req, res, 'user/registration/registration'
 
 exports.register = (req, res) ->
 	async.waterfall [
@@ -60,10 +63,4 @@ exports.invite = (req, res) ->
 		res.redirect '/registration/success'
 
 exports.success = (req, res) ->
-	data = {}
-	
-	if req.session.err
-		data.err = req.session.err
-		delete req.session.err
-	
-	View.render 'user/registration/success', res, data
+	renderView req, res, 'user/registration/success'
