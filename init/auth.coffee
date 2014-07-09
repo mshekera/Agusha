@@ -22,6 +22,9 @@ passport.deserializeUser (id, done) ->
 			done null, user
 	], done
 
+callbackToValidation = (err, user) ->
+	validation err, user, password, done
+
 validation = (err, user, password, done) ->
 	if err
 		return done err
@@ -33,14 +36,10 @@ validation = (err, user, password, done) ->
 	done null, user
 
 adminStrategy = (username, password, done) ->
-	cb = (err, user) ->
-		validation err, user, password, done
-	Model 'User', 'findOne', cb, {username : username}
+	Model 'User', 'findOne', callbackToValidation, {username : username}
 
 userStrategy = (username, password, done) ->
-	cb = (err, user) ->
-		validation err, user, password, done
-	Model 'Client', 'findOne', cb, {username : username}
+	Model 'Client', 'findOne', callbackToValidation, {username : username}
 
 exports.init = (callback) ->
 	adminAuth = new localStrategy adminStrategy
