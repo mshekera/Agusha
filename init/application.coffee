@@ -5,7 +5,7 @@ async = require 'async'
 passport = require 'passport'
 roles = require 'roles'
 _ = require 'underscore'
-flash = require 'connect-flash'
+# flash = require 'connect-flash'
 
 cookieParser = require 'cookie-parser'
 bodyParser = require 'body-parser'
@@ -60,7 +60,6 @@ configure = () ->
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams
-	@use flash()
 	@use passport.initialize()
 	@use passport.session()
 	@use '/admin', Auth.isAuth
