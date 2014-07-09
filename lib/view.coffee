@@ -5,7 +5,7 @@ moment = require 'moment'
 Logger = require './logger'
 Cache = require './cache'
 
-exports.render = render = (name, res, data, cacheId)->
+exports.render = render = (name, res, data, cacheId) ->
 	data or= {}
 
 	async.parallel [
@@ -18,14 +18,16 @@ exports.render = render = (name, res, data, cacheId)->
 			res.render name, data
 	], ()->
 		
+exports.message = message = (success, message, res) ->
+	data = {
+		success
+		message
+	}
 
-exports.error = (err, res)->
-	data =
-		success: false
-		error: err.message
-		code: err.code
+	render 'admin/board/message', res, data
 
-	render 'admin/main/error/index', res, data
+exports.error = (err, res) ->
+	message false, err.message or err, res
 
 exports.clientError = (err, res) ->
 	data =
@@ -33,7 +35,7 @@ exports.clientError = (err, res) ->
 		error: err.message
 		code: err.code
 
-	render 'catalog/main/error/index', res, data
+	render 'user/main/error/index', res, data
 
 
 exports.clientSuccess = (data, res)->
