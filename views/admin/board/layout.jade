@@ -49,26 +49,29 @@ html(lang="ru")
                             a(href="products")
                                 i.fa.fa-th
                                 span= "Продукты"
-                                small.badge.pull-right.bg-green= "новый"
-
-                        li(class= (currentHref=='test'?"treeview active":"treeview"))
-                            a(href="test")
-                                i.fa.fa-bar-chart-o
-                                span= "Тест дерево"
-                                i.fa.fa-angle-left.pull-right
-                            ul.treeview-menu
-                                li
-                                    a(href="pages/charts/morris.html")
-                                        i.fa.fa-angle-double-right
-                                        span= "Name1"
-                                li
-                                    a(href="pages/charts/morris0.html")
-                                        i.fa.fa-angle-double-right
-                                        span= "Name2"
-                                li
-                                    a(href="pages/charts/morris1.html")
-                                        i.fa.fa-angle-double-right
-                                        span= "Name3"
+                        li(class= (currentHref=='ages'?"active":""))
+                            a(href="ages")
+                                i.fa.fa-th
+                                span= "Возраста"
+                        // for future
+                            li(class= (currentHref=='test'?"treeview active":"treeview"))
+                                a(href="test")
+                                    i.fa.fa-bar-chart-o
+                                    span= "Тест дерево"
+                                    i.fa.fa-angle-left.pull-right
+                                ul.treeview-menu
+                                    li
+                                        a(href="pages/charts/morris.html")
+                                            i.fa.fa-angle-double-right
+                                            span= "Name1"
+                                    li
+                                        a(href="pages/charts/morris0.html")
+                                            i.fa.fa-angle-double-right
+                                            span= "Name2"
+                                    li
+                                        a(href="pages/charts/morris1.html")
+                                            i.fa.fa-angle-double-right
+                                            span= "Name3"
             aside.right-side
                 block content
 
