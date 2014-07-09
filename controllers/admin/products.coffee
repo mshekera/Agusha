@@ -9,6 +9,7 @@ exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
 			Model 'Product', 'find', next
+		#TODO populate with entities (categories, certificates, ages)
 		(docs) ->
 			View.render 'admin/board/products/index', res, {products: docs}
 	], (err) ->
@@ -19,6 +20,8 @@ exports.get = (req, res) ->
 	async.waterfall [
 		(next) ->
 			Model 'Product', 'findOne', next, {id}
+		(doc) ->
+			Model 'Product', 'populate', next, doc
 		(doc) ->
 			View.render 'admin/board/products/edit', res, {product: doc}
 	], (err) ->
