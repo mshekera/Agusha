@@ -11,7 +11,6 @@ exports.index = (req, res) ->
 		res.redirect 'admin/dashboard'
 
 exports.login = (req, res)->
-	req.flash 'info', 'BLABLABLA'
 	View.render 'admin/auth/index', res
 
 exports.logout = (req, res)->
