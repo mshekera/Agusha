@@ -57,7 +57,7 @@ configure = () ->
 		res.set 'Content-Type', 'text/plain'
 		res.send "User-agent: *\nDisallow: /"
 
-	@use multer {dest: '../public/img/'}
+	@use multer {dest: './public/img/'}
 
 	@use Cache.requestCache
 	@use bodyParser()
