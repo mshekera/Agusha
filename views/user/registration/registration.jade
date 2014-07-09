@@ -4,13 +4,17 @@ block append header
 	
 
 block append content
-	form(action="/registration/register")
+	form#registration_form(action="/registration/register")
 		input(type="text", name="login", placeholder="Ваше имя и фамилия")
+		span.error
 		input(type="email", name="email", placeholder="Ваш e-mail")
+		span.error
 		input(type="submit", value="Зарегистрироваться")
 	
 	if err
-		| #{err}
+		.error
+			| #{err}
 
 block append scripts
-	
+	script(src="/js/plugins/validate/jquery.validate.js")
+	script(src="/js/user/registration/registration.js")

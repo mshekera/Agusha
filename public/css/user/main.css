@@ -1,5 +1,5 @@
 textarea {
-    resize: none;
+	resize: none;
 }
 
 .centered {
@@ -12,16 +12,16 @@ textarea {
 
 /* Useful stuff */
 
-.lovely_container {			/* Should have width */
+.lovely_container { /* Should have width */
 	display: table;
 	position: relative;
 	margin-top: 100%;
 }
 
-.inline_lovely_container { 		/* Should have width */
+.inline_lovely_container { /* Should have width */
 	display: inline-block;
-    line-height: 0;
-    letter-spacing: -1px;
+	line-height: 0;
+	letter-spacing: -1px;
 	position: relative;
 	margin-top: 100%;
 }
@@ -38,8 +38,8 @@ textarea {
 }
 
 .inline_lovely_container .lovely {
-    line-height: normal;
-    letter-spacing: normal;
+	line-height: normal;
+	letter-spacing: normal;
 }
 
 .lovely_table {
