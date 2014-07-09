@@ -57,6 +57,10 @@ html(lang="ru")
                             a(href="/admin/category")
                                 i.fa.fa-th
                                 span= "Категории"
+                        li(class= (currentHref=='certificate'?"active":""))
+                            a(href="/admin/certificate")
+                                i.fa.fa-th
+                                span= "Сертификаты"
                         // for future
                             li(class= (currentHref=='test'?"treeview active":"treeview"))
                                 a(href="test")
