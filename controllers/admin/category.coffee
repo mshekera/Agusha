@@ -70,13 +70,9 @@ exports.delete = (req, res) ->
 	_id = req.params.id
 	async.waterfall [
 		(next) ->
-			Model 'Category', 'findOne', next, {_id}
-		(doc, next) ->
-			if doc
-				doc.remove() #!!!
-				View.message true, 'Категория успешно удалена!', res
-			else
-				next "Произошла неизвестная ошибка."
+			Model 'Category', 'findOneAndRemove', next, {_id}
+		(next) ->
+			View.message true, 'Категория успешно удалена!', res
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/category/remove: %s #{err.message or err}"
 		msg = "Произошла ошибка при удалении: #{err.message or err}"

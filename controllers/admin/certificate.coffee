@@ -68,14 +68,9 @@ exports.delete = (req, res) ->
 	_id = req.params.id
 	async.waterfall [
 		(next) ->
-			Model 'Certificate', 'remove', next, _id: _id
-		(doc, next) ->
-			if not doc
-				return next "Произошла неизвестная ошибка."
-
-			doc.remove() #!!!
-
-			View.message true, 'Сертификат успешно удален!', res	
+			Model 'Certificate', 'findOneAndRemove', next, {_id}
+		() ->
+			View.message true, 'Сертификат успешно удален!', res
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/certificate/remove: %s #{err.message or err}"
 		msg = "Произошла ошибка при удалении: #{err.message or err}"

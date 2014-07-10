@@ -15,10 +15,10 @@ exports.index = (req, res) ->
 		Logger.log 'info', "Error in controllers/admin/ages/index: %s #{err.message or err}"
 
 exports.get = (req, res) ->
-	id = req.params.id
+	_id = req.params.id
 	async.waterfall [
 		(next) ->
-			Model 'Age', 'findOne', next, _id: id
+			Model 'Age', 'findOne', next, _id: _id
 		(doc, next) ->
 			if doc
 				View.render 'admin/board/ages/edit', res, age: doc
@@ -73,13 +73,9 @@ exports.delete = (req, res) ->
 	_id = req.params.id
 	async.waterfall [
 		(next) ->
-			Model 'Age', 'findOne', next, {_id}
-		(doc, next) ->
-			if doc
-				doc.remove() #!!!
-				View.message true, 'Возраст успешно удален!', res
-			else
-				next "Произошла неизвестная ошибка."
+			Model 'Age', 'findOneAndRemove', next, {_id}
+		() ->
+			View.message true, 'Возраст успешно удален!', res
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/ages/remove: %s #{err.message or err}"
 		msg = "Произошла ошибка при удалении возраста: #{err.message or err}"
