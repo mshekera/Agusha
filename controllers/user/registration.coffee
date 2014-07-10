@@ -7,8 +7,8 @@ Mail = require '../../lib/mail'
 
 Client = require '../../models/client'
 
-renderView = (req, res, path) ->
-	data = {}
+renderView = (req, res, path, data) ->
+	data = data || {}
 	
 	if req.session.err?
 		data.err = req.session.err
@@ -20,18 +20,22 @@ exports.index = (req, res) ->
 	renderView req, res, 'user/registration/registration'
 
 exports.register = (req, res) ->
+	data = {}
+	
 	async.waterfall [
 		(next) ->
 			Client.create req.query, next
 		(client, next) ->
-			data =
+			data.client = client
+			
+			options =
 				subject: "Успешная регистрация!"
 				login: client.login
 				email: client.email
 			
-			Mail.send 'register', data, next
+			Mail.send 'register', options, next
 		() ->
-			res.redirect '/registration/success'
+			res.redirect '/registration/success/' + data.client._id
 	], (err) ->
 		error = err.message or err
 		
@@ -40,6 +44,10 @@ exports.register = (req, res) ->
 		res.redirect '/registration'
 
 exports.invite = (req, res) ->
+	path = '/registration/success'
+	if req.query.invited_by?
+		path += '/' + req.query.invited_by
+	
 	async.waterfall [
 		(next) ->
 			options = req.query
@@ -54,13 +62,18 @@ exports.invite = (req, res) ->
 			
 			Mail.send 'invite', data, next
 		() ->
-			res.redirect '/registration/success'
+			res.redirect path
 	], (err) ->
 		error = err.message or err
 		
 		Logger.log 'info', "Error in controllers/user/registration: %s #{error}"
 		req.session.err = error
-		res.redirect '/registration/success'
+		res.redirect path
 
 exports.success = (req, res) ->
-	renderView req, res, 'user/registration/success'
+	data = {}
+	
+	if req.params.id?
+		data.invited_by = req.params.id
+	
+	renderView req, res, 'user/registration/success', data

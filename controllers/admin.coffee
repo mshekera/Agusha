@@ -22,7 +22,6 @@ Router.post '/login', Main.do_login
 #----------------#
 Router.get '/products', Products.index
 Router.get '/product/:id', Products.get
-
 Router.get '/product/delete/:id', Products.delete
 
 Router.post '/product/:id', Products.save
@@ -50,7 +49,6 @@ Router.get '/certificate/delete/:id', Certificate.delete
 Router.post '/certificate', Certificate.save
 #----------------#
 Router.get '/clients', Clients.index
-Router.get '/client/:id', Clients.get
 ########################
 
 exports.Router = Router
