@@ -9,19 +9,18 @@ exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
 			Model 'Product', 'find', next
-		#TODO populate with entities (categories, certificates, ages)
+		(docs) ->
+			Model 'Product', 'populate', next, docs
 		(docs) ->
 			View.render 'admin/board/products/index', res, {products: docs}
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/products/index: %s #{err.message or err}"
 
 exports.get = (req, res) ->
-	id = req.params.id
+	_id = req.params.id
 	async.waterfall [
 		(next) ->
 			Model 'Product', 'findOne', next, {id}
-		(doc) ->
-			Model 'Product', 'populate', next, doc
 		(doc) ->
 			View.render 'admin/board/products/edit', res, {product: doc}
 	], (err) ->
