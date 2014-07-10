@@ -21,11 +21,11 @@ Router.get '/dashboard', Main.dashboard
 Router.post '/login', Main.do_login
 #----------------#
 Router.get '/products', Products.index
-Router.get '/product/:id', Products.get
+Router.get '/product/create', Products.create
+Router.get '/product/edit/:id', Products.get
 Router.get '/product/delete/:id', Products.delete
 
-Router.post '/product/:id', Products.save
-Router.post '/product', Products.create
+Router.post '/product', Products.save
 #----------------#
 Router.get '/ages', Ages.index
 Router.get '/age/create', Ages.create
