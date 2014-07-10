@@ -28,7 +28,25 @@ exports.get = (req, res) ->
 		Logger.log 'info', "Error in controllers/admin/products/get: %s #{err.message or err}"
 
 exports.create = (req, res) ->
-	View.render 'admin/board/products/edit', res
+	async.parallel
+		categories: (next) ->
+			Model 'Category', 'find', next, active: true
+		ages: (next) ->
+			Model 'Age', 'find', next, active: true
+		certificates: (next)->
+			Model 'Certificate', 'find', next, active: true
+	, (err, results)->
+		if err
+			opts = 
+				success: false
+				message: 'Fail'
+
+			return View.render 'admin/board/message', res, opts
+
+		###
+			DO RENDER SOME VIEW OF CREATE PRODUCT
+		###
+
 
 exports.save = (req, res) ->
 	id = req.params.id or mongoose.Types.ObjectId()
