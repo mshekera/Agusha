@@ -11,20 +11,21 @@ block content
 				a(href="/admin/tour/create")
 					button.btn.btn-primary(type="submit") Создать новую экскурсию
 		.panel-body
-			select#month_sort
-				option(value="0") Выборка по месяцу
-				option(value="1") Январь
-				option(value="2") Февраль
-				option(value="3") Март
-				option(value="4") Апрель
-				option(value="5") Май
-				option(value="6") Июнь
-				option(value="7") Июль
-				option(value="8") Август
-				option(value="9") Сентябрь
-				option(value="10") Октябрь
-				option(value="11") Ноябрь
-				option(value="12") Декабрь
+			.form-group
+				select#month_sort.form-control
+					option(value="0") Выборка по месяцу
+					option(value="1") Январь
+					option(value="2") Февраль
+					option(value="3") Март
+					option(value="4") Апрель
+					option(value="5") Май
+					option(value="6") Июнь
+					option(value="7") Июль
+					option(value="8") Август
+					option(value="9") Сентябрь
+					option(value="10") Октябрь
+					option(value="11") Ноябрь
+					option(value="12") Декабрь
 			
 			table#tour_list.table.table-striped.table-bordered.table-hover
 				thead
