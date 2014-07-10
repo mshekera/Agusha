@@ -26,6 +26,7 @@ schema = new mongoose.Schema
 		trim: true
 		unique: true
 		index: true
+		validate: Validate.email
 	type: # 0 - direct, 1 - friend
 		type: Number
 		default: 0
