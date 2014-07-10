@@ -40,12 +40,12 @@ exports.save = (req, res) ->
 
 	async.waterfall [
 		(next) ->
-			Model 'Certificate', 'update', next, {_id}, data, {upsert: true}
+			Model 'Certificate', 'update', next, _id: _id, data, {upsert: true}
 		(doc, next) ->
-			if doc
-				View.message true, 'Сертификат успешно сохранен!', res
-			else
-				next "Произошла неизвестная ошибка."
+			if not doc
+				return next "Произошла неизвестная ошибка."
+
+			View.message true, 'Сертификат успешно сохранен!', res
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/certificate/save: %s #{err.message or err}"
 		msg = "Произошла ошибка при сохранении: #{err.message or err}"
