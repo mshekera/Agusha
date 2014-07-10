@@ -33,14 +33,27 @@ exports.create = (req, res) ->
 		certificate: {}
 
 exports.save = (req, res) ->
-	_id = req.body.id or mongoose.Types.ObjectId()
+	_id = req.body.id
 
 	data = req.body
 	data.image = req.files?.image?.name
 
 	async.waterfall [
 		(next) ->
-			Model 'Certificate', 'update', next, {_id}, data, {upsert: true}
+			if _id
+				async.waterfall [
+					(next2) ->
+						Model 'Certificate', 'findOne', next2, {_id}
+					(doc) ->
+						for own prop, val of data
+							unless prop is 'id' or val is undefined
+								doc[prop] = val
+
+						doc.save next
+				], (err) ->
+					next err
+			else
+				Model 'Certificate', 'create', next, data
 		(doc, next) ->
 			if doc
 				View.message true, 'Сертификат успешно сохранен!', res

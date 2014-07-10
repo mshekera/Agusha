@@ -36,6 +36,8 @@ exports.save = (req, res) ->
 	_id = req.body.id
 
 	data = req.body
+	delete data._wysihtml5_mode if data._wysihtml5_mode
+
 	data.icon = req.files?.icon?.name or ""
 	data.desc_image = req.files?.desc_image?.name or ""
 
@@ -44,10 +46,10 @@ exports.save = (req, res) ->
 			if _id
 				async.waterfall [
 					(next2) ->
-						Model 'Age', 'findOne', next2, {_id}, data, {upsert: true}
+						Model 'Age', 'findOne', next2, {_id}
 					(doc) ->
 						for own prop, val of data
-							unless prop is 'id'
+							unless prop is 'id' or val is undefined
 								doc[prop] = val
 
 						doc.active = data.active or false
