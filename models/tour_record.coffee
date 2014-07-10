@@ -36,9 +36,11 @@ schema = new mongoose.Schema
 	active:
 		type: Boolean
 		required: true
+		default: false
 	is_read:
 		type: Boolean
 		required: true
+		default: false
 	tour_id:
 		type: ObjectId
 		ref: 'Tour'

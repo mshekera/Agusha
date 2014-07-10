@@ -9,6 +9,7 @@ schema = new mongoose.Schema
 	active:
 		type: Boolean
 		required: true
+		default: false
 ,
 	collection: 'category'
 

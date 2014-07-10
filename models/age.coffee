@@ -15,6 +15,7 @@ schema = new mongoose.Schema
 	active:
 		type: Boolean
 		required: true
+		default: false
 	desc_title:
 		type: String
 		required: false
