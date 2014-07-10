@@ -24,6 +24,7 @@ schema = new mongoose.Schema
 	active:
 		type: Boolean
 		required: true
+		default: false
 	age_id:
 		type: ObjectId
 		required: true
