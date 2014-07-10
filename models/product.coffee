@@ -16,21 +16,35 @@ schema = new mongoose.Schema
 		type: Number
 		required: true
 	composition:
-		type: Array
+		type: String
 		required: false
 	volume:
 		type: Number
-		required: true
+		required: false
 	active:
 		type: Boolean
 		required: true
 		default: false
-	age_id:
+	recommended:
+		type: String
+		required: false
+	age:
 		type: ObjectId
+		ref: "Age"
 		required: true
+	certificate: [
+		type: ObjectId
+		ref: "Certificate"
+		required: false
+	]
+	category: [
+		type: ObjectId
+		ref: "Category"
+		required: false
+	]
 	age_level:
 		type: Number
-		required: true
+		required: false
 ,
 	collection: 'product'
 
