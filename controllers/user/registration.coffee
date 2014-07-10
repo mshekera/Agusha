@@ -48,27 +48,42 @@ exports.invite = (req, res) ->
 	if req.query.invited_by?
 		path += '/' + req.query.invited_by
 	
-	async.waterfall [
-		(next) ->
-			options = req.query
-			options.type = 1
+	async.map req.query.client, (client, callback) ->
+		if client.login and client.email
+			if req.query.invited_by?
+				client.invited_by = req.query.invited_by
+				client.type = 1
 			
-			Client.create req.query, next
-		(client, next) ->
-			data =
-				subject: "Приглашение!"
-				login: client.login
-				email: client.email
-			
-			Mail.send 'invite', data, next
-		() ->
-			res.redirect path
-	], (err) ->
-		error = err.message or err
+			Client.create client, callback
+		else
+			callback null
+	, (err, clients) ->
+		if err
+			inviteErr err, req
+			return res.redirect path
 		
-		Logger.log 'info', "Error in controllers/user/registration: %s #{error}"
-		req.session.err = error
-		res.redirect path
+		async.map clients, sendInviteMail, (err, result) ->
+			if err
+				inviteErr err, req
+				
+			res.redirect path
+
+inviteErr = (err, req) ->
+	error = err.message or err
+	
+	Logger.log 'info', "Error in controllers/user/registration: %s #{error}"
+	req.session.err = error
+
+sendInviteMail = (client, callback) ->
+	if client
+		options =
+			subject: "Успешная регистрация!"
+			login: client.login
+			email: client.email
+		
+		Mail.send 'register', options, callback
+	else
+		callback null
 
 exports.success = (req, res) ->
 	data = {}

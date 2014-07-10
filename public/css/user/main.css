@@ -12,21 +12,23 @@ textarea {
 
 /* Useful stuff */
 
-.lovely_container { /* Should have width */
+.adorable_container { /* Should have width */
 	display: table;
 	position: relative;
-	margin-top: 100%;
 }
 
-.inline_lovely_container { /* Should have width */
+.inline_adorable_container { /* Should have width */
 	display: inline-block;
 	line-height: 0;
 	letter-spacing: -1px;
 	position: relative;
-	margin-top: 100%;
 }
 
 .lovely {
+	margin-top: 100%;
+}
+
+.adorable {
 	max-height: 100%;
 	position: absolute;
 	left: 0;
@@ -37,18 +39,18 @@ textarea {
 	margin: auto;
 }
 
-.inline_lovely_container .lovely {
+.inline_adorable_container .adorable {
 	line-height: normal;
 	letter-spacing: normal;
 }
 
-.lovely_table {
+.adorable_table {
 	display: table;
 	height: 100%;
 	width: 100%;
 }
 
-.lovely_cell {
+.adorable_cell {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;

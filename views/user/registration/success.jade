@@ -5,14 +5,17 @@ block append header
 
 block append content
 	div Регистрация прошла успешно. Пригласите еще и Ваших друзей.
-	form#registration_form(action="/registration/invite")
+	form#invite_form(action="/registration/invite")
 		if invited_by
 			input(type="hidden", name="invited_by", value="#{invited_by}")
 		
-		input(type="text", name="login", placeholder="Как зовут друга")
-		span.error
-		input(type="email", name="email", placeholder="E-mail друга")
-		span.error
+		- for (var i = 0; i < 2; i++)
+			div.invite_item
+				input(type="text", name="client[#{i}][login]", placeholder="Как зовут друга")
+				span.error
+				input(type="email", name="client[#{i}][email]", placeholder="E-mail друга")
+				span.error
+		
 		input(type="submit", value="Отправить")
 	
 	if err
@@ -21,4 +24,4 @@ block append content
 
 block append scripts
 	script(src="/js/plugins/validate/jquery.validate.js")
-	script(src="/js/user/registration/registration.js")
+	script(src="/js/user/registration/invite.js")
