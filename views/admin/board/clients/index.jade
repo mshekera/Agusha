@@ -21,7 +21,9 @@ block content
 							td #{u.email}
 							td #{u.created_at}
 							td #{u.type}
-							td #{u.invited_by}
+							td
+								if u.invited_by
+									| #{u.invited_by.login}
 
 block append scripts
 	script(src="../js/admin/plugins/datatables/jquery.dataTables.js" type="text/javascript")
