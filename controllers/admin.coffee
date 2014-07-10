@@ -21,7 +21,6 @@ Router.get '/products', Products.index
 Router.get '/product/:id', Products.get
 
 Router.get '/clients', Clients.index
-Router.get '/client/:id', Clients.get
 
 Router.get '/product/delete/:id', Products.delete
 
