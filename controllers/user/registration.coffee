@@ -52,6 +52,7 @@ exports.invite = (req, res) ->
 		if client.login and client.email
 			if req.query.invited_by?
 				client.invited_by = req.query.invited_by
+				client.type = 1
 			
 			Client.create client, callback
 		else

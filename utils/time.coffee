@@ -20,3 +20,9 @@ exports.getDate = (val) ->
 		return val
 	
 	return moment(val).format('DD/MM/YYYY')
+
+exports.setDate = (val) ->
+	if not val
+		return val
+	
+	return moment(val, 'DD/MM/YYYY').format('MM/DD/YYYY')

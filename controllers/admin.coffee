@@ -8,6 +8,7 @@ Ages = require './admin/ages'
 Category = require './admin/category'
 Certificate = require './admin/certificate'
 Clients = require './admin/clients'
+Tours = require './admin/tours'
 
 Router = express.Router()
 
@@ -49,6 +50,13 @@ Router.get '/certificate/delete/:id', Certificate.delete
 Router.post '/certificate', Certificate.save
 #----------------#
 Router.get '/clients', Clients.index
+#----------------#
+Router.get '/tours', Tours.index
+Router.get '/tour/create', Tours.create
+Router.get '/tour/edit/:id', Tours.get
+Router.get '/tour/delete/:id', Tours.delete
+
+Router.post '/tour', Tours.save
 ########################
 
 exports.Router = Router
