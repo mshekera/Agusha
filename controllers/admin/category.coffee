@@ -33,13 +33,28 @@ exports.create = (req, res) ->
 		category: {}
 
 exports.save = (req, res) ->
-	_id = req.body.id or mongoose.Types.ObjectId()
+	_id = req.body.id
 
 	data = req.body
 
 	async.waterfall [
 		(next) ->
-			Model 'Category', 'update', next, {_id}, data, {upsert: true}
+			if _id
+				async.waterfall [
+					(next2) ->
+						Model 'Category', 'findOne', next2, {_id}, data, {upsert: true}
+					(doc) ->
+						for own prop, val of data
+							unless prop is 'id'
+								doc[prop] = val
+
+						doc.active = data.active or false
+
+						doc.save next
+				], (err) ->
+					next err
+			else
+				Model 'Category', 'create', next, data
 		(doc, next) ->
 			if doc
 				View.message true, 'Категория успешно сохранена!', res
