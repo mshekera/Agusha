@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mshekera/Agusha.git"
+    "url": "https://github.com/winnlab/Agusha.git"
   },
   "dependencies": {
     "express": "4.3.1",
@@ -41,6 +41,6 @@
     "sorto": "~0.0.2",
     "mongoose-post-find": "0.0.2",
     "sprintf": "0.1.3",
-	"connect-flash": "0.1.1"
+    "connect-flash": "0.1.1"
   }
 }

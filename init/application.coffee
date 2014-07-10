@@ -4,6 +4,7 @@ express = require 'express'
 async = require 'async'
 passport = require 'passport'
 roles = require 'roles'
+crypto = require 'crypto'
 _ = require 'underscore'
 # flash = require 'connect-flash'
 
@@ -55,6 +56,8 @@ configure = () ->
 	@use '/robots.txt', (req, res)->
 		res.set 'Content-Type', 'text/plain'
 		res.send "User-agent: *\nDisallow: /"
+
+	@use multer {dest: './public/img/'}
 
 	@use Cache.requestCache
 	@use bodyParser()

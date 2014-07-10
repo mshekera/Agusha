@@ -8,7 +8,7 @@ block append scripts
     script(src="/js/admin/plugins/datatables/dataTables.bootstrap.js")
     script.
         $(function() {
-            $('#ages').dataTable({
+            $('#dtable').dataTable({
                 "bPaginate": true,
                 "bLengthChange": false,
                 "bFilter": false,
@@ -21,34 +21,30 @@ block append scripts
 block content
     .box
         .box-header
-            h3.box-title= "Список возрастов"
+            h3.box-title= "Список категория"
         .box-header
             .panel-primary
                 .panel-body
-                    a(href="age/create")
-                        button.btn.btn-primary(type="submit")= "Создать новый возраст"
+                    a(href="category/create")
+                        button.btn.btn-primary(type="submit")= "Создать новую категорию"
         .box-body.table-responsive
-            table.table.table-bordered.table-striped#ages
+            table.table.table-bordered.table-striped#dtable
                 thead
                     tr
                         th= "Название"
-                        th= "Уровень"
-                        th= "Активный"
                         th= "Действия"
                 tbody
-                    each item in ages
+                    each item in categories
                         tr
-                            td= item.title
-                            td= item.level
-                            td= (item.active?"Да":"Нет")
+                            td= item.name
                             td
                                 div.col-md-4
-                                    a(href="age/edit/#{item._id}")
+                                    a(href="category/edit/#{item._id}")
                                         button.btn.btn-warning(type="button")
                                             i.glyphicon.glyphicon-edit
                                             span= " Редактировать"
                                 div.col-md-4
-                                    a(href="age/delete/#{item._id}")
+                                    a(href="category/delete/#{item._id}")
                                         button.btn.btn-danger(type="button")
                                             i.glyphicon.glyphicon-remove-circle
                                             span= " Удалить"
