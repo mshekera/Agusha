@@ -33,7 +33,7 @@ exports.create = (req, res) ->
 		age: {}
 
 exports.save = (req, res) ->
-	_id = req.body.id or mongoose.Types.ObjectId()
+	_id = req.body.id
 
 	data = req.body
 	data.icon = req.files?.icon?.name or ""
@@ -41,7 +41,22 @@ exports.save = (req, res) ->
 
 	async.waterfall [
 		(next) ->
-			Model 'Age', 'update', next, {_id}, data, {upsert: true}
+			if _id
+				async.waterfall [
+					(next2) ->
+						Model 'Age', 'findOne', next2, {_id}, data, {upsert: true}
+					(doc) ->
+						for own prop, val of data
+							unless prop is 'id'
+								doc[prop] = val
+
+						doc.active = data.active or false
+
+						doc.save next
+				], (err) ->
+					next err
+			else
+				Model 'Age', 'create', next, data
 		(doc, next) ->
 			if doc
 				View.message true, 'Возраст успешно сохранен!', res

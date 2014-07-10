@@ -13,4 +13,6 @@ module.exports = (modelName, methodName, cb, args...) ->
 
 	throw new Error sprintf noMethod, methodName if method is undefined
 
-	method.apply(mdl, args).exec cb
+	args.push cb
+
+	method.apply mdl, args
