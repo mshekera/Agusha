@@ -11,6 +11,21 @@ block content
 				a(href="/admin/tour/create")
 					button.btn.btn-primary(type="submit") Создать новую экскурсию
 		.panel-body
+			select#month_sort
+				option(value="0") Выборка по месяцу
+				option(value="1") Январь
+				option(value="2") Февраль
+				option(value="3") Март
+				option(value="4") Апрель
+				option(value="5") Май
+				option(value="6") Июнь
+				option(value="7") Июль
+				option(value="8") Август
+				option(value="9") Сентябрь
+				option(value="10") Октябрь
+				option(value="11") Ноябрь
+				option(value="12") Декабрь
+			
 			table#tour_list.table.table-striped.table-bordered.table-hover
 				thead
 					tr
@@ -35,12 +50,37 @@ block content
 block append scripts
 	script(src="/js/admin/plugins/datatables/jquery.dataTables.js")
 	script(src="/js/admin/plugins/datatables/dataTables.bootstrap.js")
+	script(src="/js/plugins/moment/moment.js")
 	script.
-		$('#tour_list').dataTable({
+		var month_sort = $('#month_sort');
+		
+		$.fn.dataTable.ext.search.push(
+			function(settings, data, dataIndex) {
+				var input_month = month_sort.val();
+				
+				if(input_month == 0){
+					return true;
+				}
+				
+				var search_month = moment(data[0], 'DD/MM/YYYY').format('M');
+				
+				if(input_month == search_month) {
+					return true;
+				}
+				
+				return false;
+			}
+		);
+		
+		var table = $('#tour_list').dataTable({
 			'iDisplayLength': 25,
 			'aLengthMenu':[25,50,100],
 			'aoColumns': [
 					{sName: 'date'},
 					{'bSortable':false}
 				]
+		});
+		
+		month_sort.change(function() {
+			table.fnDraw();
 		});
