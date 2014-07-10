@@ -3,9 +3,6 @@ ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
 
 schema = new mongoose.Schema
-	_id:
-		type: ObjectId
-		required: true
 	title:
 		type: String
 		required: true

@@ -5,9 +5,6 @@ Mixed = mongoose.Schema.Types.Mixed
 Validate = require '../utils/validate'
 
 schema = new mongoose.Schema
-	_id:
-		type: ObjectId
-		required: true
 	date:
 		type: Date
 		required: false
