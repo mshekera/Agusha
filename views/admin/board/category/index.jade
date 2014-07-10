@@ -32,11 +32,13 @@ block content
                 thead
                     tr
                         th= "Название"
+                        th= "Активный"
                         th= "Действия"
                 tbody
                     each item in categories
                         tr
                             td= item.name
+                            td= (item.active?"Да":"Нет")
                             td
                                 div.col-md-6
                                     a(href="category/edit/#{item._id}")
