@@ -40,12 +40,17 @@ block content
                             td= item.name
                             td= (item.active?"Да":"Нет")
                             td
-                                div.col-md-6
+                                div.col-md-4
                                     a(href="category/edit/#{item._id}")
                                         button.btn.btn-warning(type="button")
                                             i.glyphicon.glyphicon-edit
                                             span= " Редактировать"
-                                div.col-md-6
+                                div.col-md-4
+                                    a(href="category/position/#{item._id}")
+                                        button.btn.btn-warning(type="button")
+                                            i.glyphicon.glyphicon-edit
+                                            span= " Позиции продуктов"
+                                div.col-md-4
                                     a(href="category/delete/#{item._id}")
                                         button.btn.btn-danger(type="button")
                                             i.glyphicon.glyphicon-remove-circle
