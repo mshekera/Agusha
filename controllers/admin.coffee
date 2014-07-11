@@ -39,8 +39,10 @@ Router.get '/category', Category.index
 Router.get '/category/create', Category.create
 Router.get '/category/edit/:id', Category.get
 Router.get '/category/delete/:id', Category.delete
+Router.get '/category/position/:id', Category.position
 
 Router.post '/category', Category.save
+Router.post '/category/position', Category.savePosition
 #----------------#
 Router.get '/certificate', Certificate.index
 Router.get '/certificate/create', Certificate.create
