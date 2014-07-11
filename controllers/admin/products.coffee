@@ -50,7 +50,7 @@ preloadData = (product, cb) ->
 
 		results.product = product
 
-		findExisting product.category, results.categories 
+		findExisting product.category, results.categories
 		findExisting product.certificate, results.certificates
 
 		if product.age
@@ -150,7 +150,6 @@ exports.save = (req, res) ->
 										c_id: item
 
 								callback = (err) ->
-									console.log 'error', err
 									cb err
 
 								async.each catsToRemove, iterator, callback
