@@ -32,10 +32,10 @@ block append content
 				span.error
 				input(type="text", name="children[#{i}][age]", placeholder="Возраст")
 				span.error
-				input(type="checkbox", name="children[#{i}][with_parent]")
+				input(type="checkbox", name="children[#{i}][withParents]")
 				span.error
 		
-		input(type="submit", value="Отправить")
+		button(type="submit") Отправить
 	
 	if err
 		.error

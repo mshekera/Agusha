@@ -16,5 +16,6 @@ Router.get '/registration/success/:id', Registration.success
 Router.get '/registration/invite', Registration.invite
 
 Router.get '/excursion', Excursion.index
+Router.get '/excursion/add_record', Excursion.add_record
 
 exports.Router = Router

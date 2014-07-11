@@ -34,7 +34,9 @@ block content
 							td #{t.email}
 							td #{t.phone}
 							td #{t.city}
-							td #{t.children}
+							td
+								- each c, j in t.children
+									div #{c.name}, #{c.gender}, #{c.age}, #{c.withParents}
 							td #{t.active}
 							td #{t.is_read}
 
