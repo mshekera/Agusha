@@ -125,7 +125,7 @@ exports.save = (req, res) ->
 				async.waterfall [
 					(next2) ->
 						Model 'ProductPosition', 'remove', next2, p_id: doc._id
-					(next2) ->
+					() ->
 						pps = []
 						for cat in data.category
 							pps.push {
@@ -161,7 +161,9 @@ exports.delete = (req, res) ->
 	_id = req.params.id
 	async.waterfall [
 		(next) ->
-			Model 'Product', 'findOneAndRemove', next, {_id}
+			Model 'ProductPosition', 'remove', next, p_id: _id
+		(affected, results, next) ->
+			Model 'Product', 'remove', next, _id: _id
 		() ->
 			View.message true, 'Продукт успешно удален!', res
 	], (err) ->
