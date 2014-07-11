@@ -5,17 +5,8 @@ Model = require '../../lib/model'
 Logger = require '../../lib/logger'
 Mail = require '../../lib/mail'
 
-renderView = (req, res, path, data) ->
-	data = data || {}
-	
-	if req.session.err?
-		data.err = req.session.err
-		delete req.session.err
-	
-	View.render path, res, data
-
 exports.index = (req, res) ->
-	renderView req, res, 'user/registration/registration'
+	View.renderWithError req, res, 'user/registration/registration'
 
 exports.register = (req, res) ->
 	data = {}
@@ -89,4 +80,4 @@ exports.success = (req, res) ->
 	if req.params.id?
 		data.invited_by = req.params.id
 	
-	renderView req, res, 'user/registration/success', data
+	View.renderWithError req, res, 'user/registration/success', data

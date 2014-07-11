@@ -17,7 +17,16 @@ exports.render = render = (name, res, data, cacheId) ->
 		(next) -> # view
 			res.render name, data
 	], ()->
-		
+
+exports.renderWithError = (req, res, path, data) ->
+	data = data || {}
+	
+	if req.session.err?
+		data.err = req.session.err
+		delete req.session.err
+	
+	render path, res, data
+
 exports.message = message = (success, message, res) ->
 	data = {
 		success
