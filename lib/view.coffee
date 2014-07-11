@@ -18,7 +18,7 @@ exports.render = render = (name, res, data, cacheId) ->
 			res.render name, data
 	], ()->
 
-exports.renderWithError = (req, res, path, data) ->
+exports.renderWithSession = (req, res, path, data) ->
 	data = data || {}
 	
 	if req.session.err?
