@@ -1,0 +1,46 @@
+extends ../layout
+
+block append header
+	
+
+block append content
+	form#registration_form(action="/excursion/add_record")
+		div
+			input(type="text", name="firstname", placeholder="Имя")
+			span.error
+		div
+			input(type="text", name="lastname", placeholder="Фамилия")
+			span.error
+		div
+			input(type="text", name="patronymic", placeholder="Отчество")
+			span.error
+		div
+			input(type="email", name="email", placeholder="E-mail")
+			span.error
+		div
+			input(type="text", name="phone", placeholder="Телефон")
+			span.error
+		//div
+			input(type="text", name="city", placeholder="Город проживания")
+			span.error
+		
+		- for (var i = 0; i < 2; i++)
+			div.child_item
+				input(type="text", name="children[#{i}][name]", placeholder="Имя")
+				span.error
+				input(type="text", name="children[#{i}][gender]", placeholder="Пол")
+				span.error
+				input(type="text", name="children[#{i}][age]", placeholder="Возраст")
+				span.error
+				input(type="checkbox", name="children[#{i}][with_parent]")
+				span.error
+		
+		input(type="submit", value="Отправить")
+	
+	if err
+		.error
+			| #{err}
+
+block append scripts
+	script(src="/js/plugins/validate/jquery.validate.js")
+	script(src="/js/user/excursion/excursion.js")
