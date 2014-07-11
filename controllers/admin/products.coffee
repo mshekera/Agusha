@@ -1,4 +1,5 @@
 async = require 'async'
+_ = require 'underscore'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
@@ -124,19 +125,49 @@ exports.save = (req, res) ->
 			if data.category
 				async.waterfall [
 					(next2) ->
-						Model 'ProductPosition', 'remove', next2, p_id: doc._id
-					() ->
-						pps = []
-						for cat in data.category
-							pps.push {
-								p_id: doc._id
-								c_id: cat
-								position: 0
-							}
+						Model 'ProductPosition', 'find', next2, p_id: doc._id
+					(cats, next2) ->
+						catIdObjs = _.pluck cats, 'c_id'
+						catsOld = _.map catIdObjs, (val) ->
+							val.toString()
 
-						async.each pps, (item, cb) ->
-							Model 'ProductPosition', 'create', cb, item
-						, (err) ->
+						catsToRemove = []
+						catsToAdd = []
+
+						for cat in data.category
+							if catsOld.indexOf(cat) is -1
+								catsToAdd.push cat
+
+						for cat in catsOld
+							if data.category.indexOf(cat) is -1
+								catsToRemove.push cat
+
+						async.parallel [
+							(cb) ->
+								iterator = (item, cb2) ->
+									Model 'ProductPosition', 'remove', cb2, 
+										p_id: doc._id
+										c_id: item
+
+								callback = (err) ->
+									console.log 'error', err
+									cb err
+
+								async.each catsToRemove, iterator, callback
+
+							(cb) ->
+								iterator = (item, cb2) ->
+									Model 'ProductPosition', 'create', cb2, 
+										p_id: doc._id
+										c_id: item
+										position: 0
+
+								callback = (err) ->
+									cb err
+
+								async.each catsToAdd, iterator, callback
+
+						], (err, results) ->
 							next err, doc
 				], (err) ->
 					next err
