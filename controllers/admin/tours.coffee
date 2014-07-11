@@ -1,14 +1,13 @@
 async = require 'async'
 
-Tour = require '../../models/tour'
-
 View = require '../../lib/view'
+Model = require '../../lib/model'
 Logger = require '../../lib/logger'
 
 exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
-			Tour.find next
+			Model 'Tour', 'find', next
 		(docs) ->
 			View.render 'admin/board/tours/index', res, {tours: docs}
 	], (err) ->
@@ -19,7 +18,7 @@ exports.get = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Tour.findById id, next
+			Model 'Tour', 'findById', next, id
 		(doc, next) ->
 			if doc
 				View.render 'admin/board/tours/edit', res, tour: doc
@@ -40,7 +39,7 @@ exports.save = (req, res) ->
 	async.waterfall [
 		(next) ->
 			if _id
-				Tour.findById _id, next
+				Model 'Tour', 'findById', next, _id
 			else
 				next null, null
 		(doc, next) ->
@@ -50,7 +49,7 @@ exports.save = (req, res) ->
 				
 				doc.save next
 			else
-				Tour.create data, next
+				Model 'Tour', 'create', next, data
 		() ->
 			View.message true, 'Экскурсия успешно сохранена!', res
 	], (err) ->
@@ -63,7 +62,7 @@ exports.delete = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Tour.findById _id, next
+			Model 'Tour', 'findById', next, _id
 		(doc, next) ->
 			if doc
 				doc.remove() #!!!
