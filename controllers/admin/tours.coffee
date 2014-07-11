@@ -32,14 +32,14 @@ exports.create = (req, res) ->
 	View.render 'admin/board/tours/edit', res, tour: {}
 
 exports.save = (req, res) ->
-	_id = req.body.id
+	id = req.body.id
 	
 	data = req.body
 	
 	async.waterfall [
 		(next) ->
 			if _id
-				Model 'Tour', 'findById', next, _id
+				Model 'Tour', 'findById', next, id
 			else
 				next null, null
 		(doc, next) ->
@@ -58,11 +58,11 @@ exports.save = (req, res) ->
 		View.message false, msg, res
 
 exports.delete = (req, res) ->
-	_id = req.params.id
+	id = req.params.id
 	
 	async.waterfall [
 		(next) ->
-			Model 'Tour', 'findById', next, _id
+			Model 'Tour', 'findById', next, id
 		(doc, next) ->
 			if doc
 				doc.remove() #!!!

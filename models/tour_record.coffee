@@ -2,31 +2,31 @@ mongoose = require 'mongoose'
 
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
+
 Validate = require '../utils/validate'
+Time = require '../utils/time'
 
 schema = new mongoose.Schema
 	date:
 		type: Date
-		required: false
+		default: Date.now
+		get: Time.getDate
 	firstname:
 		type: Array
-		required: false
+		required: true
 	lastname:
 		type: String
 		required: true
 	patronymic:
 		type: String
-		required: false
 	email:
 		type: String
-		required: false
-		match: Validate.email
+		validate: Validate.email
 	phone:
 		type: String
-		required: false
 	city:
-		type: String
-		required: false
+		type: ObjectId
+		ref: 'City'
 	children: [
 		name: String
 		gender: Boolean
@@ -35,18 +35,14 @@ schema = new mongoose.Schema
 	]
 	active:
 		type: Boolean
-		required: true
 		default: false
 	is_read:
 		type: Boolean
-		required: true
 		default: false
-	tour_id:
+	tour:
 		type: ObjectId
 		ref: 'Tour'
 ,
 	collection: 'tour_record'
-
-
 
 module.exports = mongoose.model 'Tour_record', schema
