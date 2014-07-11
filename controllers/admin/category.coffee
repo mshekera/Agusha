@@ -77,3 +77,54 @@ exports.delete = (req, res) ->
 		Logger.log 'info', "Error in controllers/admin/category/remove: %s #{err.message or err}"
 		msg = "Произошла ошибка при удалении: #{err.message or err}"
 		View.message false, msg, res
+
+exports.position = (req, res) ->
+	c_id = req.params.id
+	async.parallel 
+		category: (next) ->
+			Model 'Category', 'findOne', next, _id: c_id
+		positions: (next) ->
+			async.waterfall [
+				(next2) ->
+					Model 'ProductPosition', 'find', next2, c_id: c_id, '_id c_id p_id position', sort: {position: 1}
+				(docs, next2) ->
+					opts = 'p_id'
+					Model 'ProductPosition', 'populate', next2, docs, opts
+				(docs) ->
+					next null, docs
+			], (err) ->
+				next err
+	, (err, results) ->
+		View.render 'admin/board/category/position', res, results
+
+exports.savePosition = (req, res) ->
+	cId = req.body.c_id
+	pIds = req.body.positions.split ','
+	productPositions = []
+	for val, pos in pIds
+		productPositions.push {
+			c_id: cId
+			p_id: val
+			position: pos
+		}
+
+	iterator = (item, cb) ->
+		where = 
+			c_id: item.c_id
+			p_id: item.p_id
+		what =
+			position: item.position
+		Model 'ProductPosition', 'update', cb, where, what
+
+	callback = (err) ->
+
+		if err
+			success = false
+			msg = "Произошла ошибка при сохранении: #{err.message or err}"
+		else
+			success = true
+			msg = "Позиции успешно сохранены!"
+
+		View.message success, msg, res
+
+	async.each productPositions, iterator, callback
