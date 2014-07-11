@@ -1,11 +1,9 @@
 async = require 'async'
 
 View = require '../../lib/view'
-Auth = require '../../lib/auth'
+Model = require '../../lib/model'
 Logger = require '../../lib/logger'
 Mail = require '../../lib/mail'
-
-Client = require '../../models/client'
 
 renderView = (req, res, path, data) ->
 	data = data || {}
@@ -24,7 +22,7 @@ exports.register = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Client.create req.query, next
+			Model 'Client', 'create', next, req.query
 		(client, next) ->
 			data.client = client
 			
@@ -54,7 +52,7 @@ exports.invite = (req, res) ->
 				client.invited_by = req.query.invited_by
 				client.type = 1
 			
-			Client.create client, callback
+			Model 'Client', 'create', callback, client
 		else
 			callback null
 	, (err, clients) ->
