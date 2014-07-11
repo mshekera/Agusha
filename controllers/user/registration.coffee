@@ -6,7 +6,7 @@ Logger = require '../../lib/logger'
 Mail = require '../../lib/mail'
 
 exports.index = (req, res) ->
-	View.renderWithError req, res, 'user/registration/registration'
+	View.renderWithSession req, res, 'user/registration/registration'
 
 exports.register = (req, res) ->
 	data = {}
@@ -80,4 +80,4 @@ exports.success = (req, res) ->
 	if req.params.id?
 		data.invited_by = req.params.id
 	
-	View.renderWithError req, res, 'user/registration/success', data
+	View.renderWithSession req, res, 'user/registration/success', data

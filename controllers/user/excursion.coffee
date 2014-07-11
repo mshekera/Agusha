@@ -5,4 +5,4 @@ Logger = require '../../lib/logger'
 Model = require '../../lib/model'
 
 exports.index = (req, res) ->
-	View.renderWithError req, res, 'user/excursion/excursion'
+	View.renderWithSession req, res, 'user/excursion/excursion'
