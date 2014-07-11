@@ -32,6 +32,7 @@ block content
                 thead
                     tr
                         th= "Название"
+                        th= "Активен?"
                         th= "Срок хранения"
                         th= "Состав"
                         th= "Объем"
@@ -42,6 +43,7 @@ block content
                     each item in products
                         tr
                             td= item.title
+                            td= (item.active?"Да":"Нет")
                             td= item.storage_life
                             td= item.composition
                             td= item.volume
