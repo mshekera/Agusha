@@ -38,7 +38,7 @@ exports.save = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			if _id
+			if id
 				Model 'Tour', 'findById', next, id
 			else
 				next null, null

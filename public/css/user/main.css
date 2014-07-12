@@ -60,10 +60,10 @@ textarea {
 }
 
 .rounded {
-	-moz-border-radius: 999999em;
-	-webkit-border-radius: 999999em;
-	-khtml-border-radius: 999999em;
-	border-radius: 999999em;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-khtml-border-radius: 50%;
+	border-radius: 50%;
 }
 
 .force_height {
