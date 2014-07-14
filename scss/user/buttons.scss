@@ -1,0 +1,15 @@
+button {
+	@extend .rounded;
+	border: none;
+	padding: 4px 45px;
+}
+
+.middle_button {
+	@extend button;
+	padding: 13px 29px;
+}
+
+.huge_button {
+	@extend button;
+	padding: 24px 31px;
+}

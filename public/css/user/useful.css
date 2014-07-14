@@ -49,7 +49,7 @@ textarea {
   width: 100%;
   white-space: normal; }
 
-.rounded, button, .middle_button, .huge_button {
+.rounded {
   -moz-border-radius: 99999em;
   -webkit-border-radius: 99999em;
   -khtml-border-radius: 99999em;
@@ -69,64 +69,3 @@ textarea {
 
 .pull_right {
   float: right; }
-
-.blue {
-  background-color: #4bc4ee;
-  color: white; }
-
-.darkblue {
-  background-color: #45b4e8;
-  color: white; }
-
-.lightblue {
-  background-color: #61e5f9;
-  color: #105ba6; }
-
-.yellow {
-  background-color: #ffe690;
-  color: #9b7155; }
-
-.red {
-  background-color: #ff9486;
-  color: #9b7155; }
-
-.darkred {
-  background-color: #e6625f;
-  color: white; }
-
-.lightred {
-  background-color: #ffa598;
-  color: white; }
-
-.white {
-  background-color: white; }
-
-.green {
-  background-color: #71db96;
-  color: white; }
-
-.base_font, body {
-  color: #666666; }
-
-.light_font {
-  color: #999999; }
-
-.italic_font {
-  color: #b3b3b3;
-  font-style: italic; }
-
-.darkblue_font {
-  color: #45b4e8; }
-
-button, .middle_button, .huge_button {
-  border: none;
-  padding: 4px 45px; }
-
-.middle_button {
-  padding: 13px 29px; }
-
-.huge_button {
-  padding: 24px 31px; }
-
-body {
-  background-color: #f2eeeb; }
