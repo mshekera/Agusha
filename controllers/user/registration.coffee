@@ -3,7 +3,8 @@ async = require 'async'
 View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
-Mail = require '../../lib/mail'
+
+Client = require '../../lib/mail'
 
 exports.index = (req, res) ->
 	View.renderWithSession req, res, 'user/registration/registration'
@@ -16,13 +17,9 @@ exports.register = (req, res) ->
 			Model 'Client', 'create', next, req.query
 		(client, next) ->
 			data.client = client
+			subject = "Успешная регистрация!"
 			
-			options =
-				subject: "Успешная регистрация!"
-				login: client.login
-				email: client.email
-			
-			Mail.send 'register', options, next
+			Client.sendMail client, 'register', subject, next
 		() ->
 			res.redirect '/registration/success/' + data.client._id
 	], (err) ->
@@ -65,12 +62,9 @@ inviteErr = (err, req) ->
 
 sendInviteMail = (client, callback) ->
 	if client
-		options =
-			subject: "Успешная регистрация!"
-			login: client.login
-			email: client.email
+		subject = "Успешная регистрация по приглашению!"
 		
-		Mail.send 'register', options, callback
+		Client.sendMail client, 'invite', subject, callback
 	else
 		callback null
 
