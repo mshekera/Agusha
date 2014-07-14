@@ -1,13 +1,13 @@
 express = require 'express'
 
-View = require '../lib/view'
-
-Main = require './admin/main'
-Products = require './admin/products'
 Ages = require './admin/ages'
+Articles = require './admin/articles'
 Category = require './admin/category'
 Certificate = require './admin/certificate'
 Clients = require './admin/clients'
+Main = require './admin/main'
+News = require './admin/news'
+Products = require './admin/products'
 Tours = require './admin/tours'
 Tour_records = require './admin/tour_records'
 
@@ -44,6 +44,20 @@ Router.get '/category/position/:id', Category.position
 
 Router.post '/category', Category.save
 Router.post '/category/position', Category.savePosition
+#----------------#
+Router.get '/news', News.index
+Router.get '/news/create', News.create
+Router.get '/news/edit/:id', News.get
+Router.get '/news/delete/:id', News.delete
+
+Router.post '/news', News.save
+#----------------#
+Router.get '/articles', Articles.index
+Router.get '/articles/create', Articles.create
+Router.get '/articles/edit/:id', Articles.get
+Router.get '/articles/delete/:id', Articles.delete
+
+Router.post '/articles', Articles.save
 #----------------#
 Router.get '/certificate', Certificate.index
 Router.get '/certificate/create', Certificate.create
