@@ -15,8 +15,10 @@ exports.render = render = (name, res, data, cacheId) ->
 
 			Cache.put name, data, cacheId, res.locals, next
 		(next) -> # view
-			res.render name, data
-	], ()->
+			res.render name, data, next
+	], (err)->
+		if err
+			Logger.log 'error', 'Error in View.render:', err
 
 exports.renderWithSession = (req, res, path, data) ->
 	data = data || {}
