@@ -1,37 +1,25 @@
 async = require 'async'
 _ = require 'underscore'
+mongoose = require 'mongoose'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
-mongoose = require 'mongoose'
+
+array = require '../../utils/array'
 
 exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
 			Model 'Product', 'find', next
 		(docs, next) ->
-			opts = 
-				path: 'age certificate category'
+			opts = 'age certificate category'
 
 			Model 'Product', 'populate', next, docs, opts
 		(docs) ->
-			View.render 'admin/board/products/index', res, {products: docs}
+			View.render 'admin/board/products/index', res, products: docs
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/products/index: %s #{err.message or err}"
-
-findExisting = (real, all) ->
-	return if real is undefined or real.length is 0
-	realExists = []
-
-	for realItem in real
-		realExists.push realItem
-
-	for allItem in all
-		for existsItem in realExists
-			if existsItem.toString() == allItem._id.toString()
-				allItem.exists = true
-				break
 
 preloadData = (product, cb) ->
 	if typeof product is 'function'
@@ -50,8 +38,8 @@ preloadData = (product, cb) ->
 
 		results.product = product
 
-		findExisting product.category, results.categories
-		findExisting product.certificate, results.certificates
+		array.setPropertyByIntersection product.category, results.categories
+		array.setPropertyByIntersection product.certificate, results.certificates
 
 		if product.age
 			for age in results.ages
