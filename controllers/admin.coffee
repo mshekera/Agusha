@@ -56,6 +56,7 @@ Router.get '/articles', Articles.index
 Router.get '/articles/create', Articles.create
 Router.get '/articles/edit/:id', Articles.get
 Router.get '/articles/delete/:id', Articles.delete
+Router.get '/articles/deleteimg/:id/:img', Articles.deleteImage
 
 Router.post '/articles', Articles.save
 #----------------#
