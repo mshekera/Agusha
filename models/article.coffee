@@ -10,7 +10,7 @@ getArticleType = (type) ->
 		when 1 then msg = "Акции"
 		when 2 then msg = "Кормление"
 		when 3 then msg = "От специалиста"
-		else throw "Incorrect type index in Article model: #{type}"
+		else throw new Error "Incorrect type index in Article model: #{type}"
 
 	return res 
 		id: type
