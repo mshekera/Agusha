@@ -4,6 +4,9 @@ View = require './view'
 Model = require './model'
 Logger = require './logger'
 
+exports.userView = (req, res) ->
+	View.renderWithSession req, res, 'user/tour/tour'
+
 exports.adminView = (req, res) ->
 	async.waterfall [
 		(next) ->
