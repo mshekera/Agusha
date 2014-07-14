@@ -28,7 +28,7 @@ exports.register = (req, res) ->
 	], (err) ->
 		error = err.message or err
 		
-		Logger.log 'info', "Error in controllers/user/registration: %s #{error}"
+		Logger.log 'info', "Error in controllers/user/registration: #{error}"
 		req.session.err = error
 		res.redirect '/registration'
 
@@ -60,7 +60,7 @@ exports.invite = (req, res) ->
 inviteErr = (err, req) ->
 	error = err.message or err
 	
-	Logger.log 'info', "Error in controllers/user/registration: %s #{error}"
+	Logger.log 'info', "Error in controllers/user/registration: #{error}"
 	req.session.err = error
 
 sendInviteMail = (client, callback) ->
