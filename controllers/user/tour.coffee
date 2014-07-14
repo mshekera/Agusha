@@ -13,7 +13,7 @@ exports.index = (req, res) ->
 exports.add_record = (req, res) ->
 	async.waterfall [
 		(next) ->
-			Model 'Tour_record', 'create', next, req.query
+			Model 'Tour_record', 'create', next, req.body
 		(client, next) ->
 			res.redirect '/tour'
 	], (err) ->

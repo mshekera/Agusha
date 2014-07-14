@@ -4,7 +4,7 @@ block append header
 	
 
 block append content
-	form#registration_form(action="/registration/register")
+	form#registration_form(method="POST", action="/registration/register")
 		input(type="text", name="login", placeholder="Ваше имя и фамилия")
 		span.error
 		input(type="email", name="email", placeholder="Ваш e-mail")

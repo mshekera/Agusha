@@ -5,7 +5,7 @@ block append header
 
 block append content
 	div Регистрация прошла успешно. Пригласите еще и Ваших друзей.
-	form#invite_form(action="/registration/invite")
+	form#invite_form(method="POST", action="/registration/invite")
 		if invited_by
 			input(type="hidden", name="invited_by", value="#{invited_by}")
 		

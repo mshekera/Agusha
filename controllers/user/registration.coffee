@@ -4,7 +4,7 @@ View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
 
-Client = require '../../lib/mail'
+Client = require '../../lib/client'
 
 exports.index = (req, res) ->
 	View.renderWithSession req, res, 'user/registration/registration'
@@ -14,7 +14,7 @@ exports.register = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Model 'Client', 'create', next, req.query
+			Model 'Client', 'create', next, req.body
 		(client, next) ->
 			data.client = client
 			subject = "Успешная регистрация!"
@@ -31,13 +31,13 @@ exports.register = (req, res) ->
 
 exports.invite = (req, res) ->
 	path = '/registration/success'
-	if req.query.invited_by?
-		path += '/' + req.query.invited_by
+	if req.body.invited_by?
+		path += '/' + req.body.invited_by
 	
-	async.map req.query.client, (client, callback) ->
+	async.map req.body.client, (client, callback) ->
 		if client.login and client.email
-			if req.query.invited_by?
-				client.invited_by = req.query.invited_by
+			if req.body.invited_by?
+				client.invited_by = req.body.invited_by
 				client.type = 1
 			
 			Model 'Client', 'create', callback, client
