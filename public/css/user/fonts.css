@@ -1,14 +1,14 @@
 @font-face {
   font-family: 'Novito_Nova';
-  src: url("/css/fonts/novitonova-thin.eot");
-  src: url("/css/fonts/novitonova-thin.eot?#iefix") format("embedded-opentype"), url("/css/fonts/novitonova-thin.woff") format("woff"), url("/css/fonts/novitonova-thin.ttf") format("truetype"), url("/css/fonts/novitonova-thin.svg#novitonovathin") format("svg");
-  font-weight: normal;
+  src: url("/css/fonts/novito_nova.eot");
+  src: url("/css/fonts/novito_nova.eot?#iefix") format("embedded-opentype"), url("/css/fonts/novito_nova.woff") format("woff"), url("/css/fonts/novito_nova.ttf") format("truetype"), url("/css/fonts/novito_nova.svg#Novito_Nova") format("svg");
+  font-weight: 400;
   font-style: normal; }
 @font-face {
-  font-family: 'Custom';
-  src: url("/css/fonts/custom.eot");
-  src: url("/css/fonts/custom.eot?#iefix") format("embedded-opentype"), url("/css/fonts/custom.woff") format("woff"), url("/css/fonts/custom.ttf") format("truetype"), url("/css/fonts/custom.svg#customregular") format("svg");
-  font-weight: normal;
+  font-family: 'PT_Sans_Regular';
+  src: url("/css/fonts/pt_sans.eot");
+  src: url("/css/fonts/pt_sans.eot?#iefix") format("embedded-opentype"), url("/css/fonts/pt_sans.woff") format("woff"), url("/css/fonts/pt_sans.ttf") format("truetype"), url("/css/fonts/pt_sans.svg#PT_Sans_Regular") format("svg");
+  font-weight: 400;
   font-style: normal; }
 .novito_nova {
   font-family: "Novito_Nova"; }

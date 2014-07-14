@@ -6,7 +6,7 @@ Syntax error: Undefined variable: "$bg".
 3: 
 4: body {
 5: 	@extend .base_font;
-6: 	font-family: "Custom";
+6: 	font-family: "PT_Sans_Regular";
 7: 	background-color: $bg;
 8: 	@media (max-width: $small_screen) {
 9: 		width: 100%;
@@ -66,4 +66,4 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/vendor/listen/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$bg\".\A         on line 7 of scss/user/base.scss\A \A 2: $hfheight: 80px;\A 3: \A 4: body {\A 5: 	@extend .base_font;\A 6: 	font-family: \"Custom\";\A 7: 	background-color: $bg;\A 8: 	@media (max-width: $small_screen) {\A 9: 		width: 100%;\A 10: 	}\A 11: 	@media (min-width: $small_screen) {\A 12: 		@include horizontal_centered();"; }
+  content: "Syntax error: Undefined variable: \"$bg\".\A         on line 7 of scss/user/base.scss\A \A 2: $hfheight: 80px;\A 3: \A 4: body {\A 5: 	@extend .base_font;\A 6: 	font-family: \"PT_Sans_Regular\";\A 7: 	background-color: $bg;\A 8: 	@media (max-width: $small_screen) {\A 9: 		width: 100%;\A 10: 	}\A 11: 	@media (min-width: $small_screen) {\A 12: 		@include horizontal_centered();"; }
