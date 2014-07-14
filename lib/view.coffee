@@ -16,9 +16,12 @@ exports.render = render = (name, res, data, cacheId) ->
 			Cache.put name, data, cacheId, res.locals, next
 		(next) -> # view
 			res.render name, data, next
-	], (err)->
+	], (err, results)->
 		if err
 			Logger.log 'error', 'Error in View.render:', err
+			res.send '404_OR_500_PAGE_SHOULD_BE_HERE_SOMETIMES_LATER'
+		else
+			res.send results[1]
 
 exports.renderWithSession = (req, res, path, data) ->
 	data = data || {}
