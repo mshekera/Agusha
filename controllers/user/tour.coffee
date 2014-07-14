@@ -1,8 +1,8 @@
 async = require 'async'
 
-View = require './view'
-Model = require './model'
-Logger = require './logger'
+View = require '../../lib/view'
+Model = require '../../lib/model'
+Logger = require '../../lib/logger'
 
 Tour = require '../../lib/tour'
 Tour_record = require '../../lib/tour_record'
