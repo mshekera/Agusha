@@ -62,6 +62,7 @@ Router.get '/tour/delete/:id', Tours.delete
 Router.post '/tour', Tours.save
 #----------------#
 Router.get '/tour_records', Tour_records.index
+Router.get '/tour_record/:id', Tour_records.item
 ########################
 
 exports.Router = Router

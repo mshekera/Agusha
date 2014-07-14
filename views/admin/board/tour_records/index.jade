@@ -26,8 +26,11 @@ block content
 				tbody
 					- each t, key in tour_records
 						tr
-							td #{t.date}
-							td #{t.tour}
+							td
+								a(href="/admin/tour_record/#{t._id}") #{t.date}
+							td
+								- if (t.tour)
+									#{t.tour.date}
 							td #{t.firstname}
 							td #{t.lastname}
 							td #{t.patronymic}
@@ -36,7 +39,12 @@ block content
 							td #{t.city}
 							td
 								- each c, j in t.children
-									div #{c.name}, #{c.gender}, #{c.age}, #{c.withParents}
+									.panel.panel-default
+										.panel-body
+											div имя: #{c.name}
+											div муж: #{c.gender}
+											div возраст: #{c.age}
+											div с родителями: #{c.withParents}
 							td #{t.active}
 							td #{t.is_read}
 
