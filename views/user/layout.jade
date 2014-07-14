@@ -8,12 +8,14 @@ html(lang="ru")
 			link(rel="stylesheet" href="/css/user/main.css")
 	
 	body
-		#header
+		#header.white
+			include header
 		
 		#main_container
 			block content
 		
-		#footer
+		#footer.white
+			include footer
 		
 		block scripts
 			script(src="/js/jquery.min.js")

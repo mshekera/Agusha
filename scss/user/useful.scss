@@ -1,3 +1,12 @@
+@mixin horizontal_centered() {
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+}
+
 textarea {
 	resize: none;
 }
@@ -13,6 +22,7 @@ textarea {
 /* Useful stuff */
 
 .adorable_container { /* Should have width */
+	@include horizontal_centered();
 	display: table;
 	position: relative;
 }
@@ -35,13 +45,8 @@ textarea {
 
 .adorable {
 	max-height: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
 	max-width: 100%;
-	margin: auto;
+	
 }
 
 .adorable_table {

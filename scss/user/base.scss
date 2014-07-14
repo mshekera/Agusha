@@ -1,4 +1,22 @@
+$small_screen: 1280px;
+$hfheight: 80px;
+
 body {
 	@extend .base_font;
 	background-color: $bg;
+	@media (max-width: $small_screen) {
+		width: 100%;
+	}
+	@media (min-width: $small_screen) {
+		@include horizontal_centered();
+		width: 1280px;
+	}
+}
+
+#header {
+	height: $hfheight;
+}
+
+#footer {
+	height: $hfheight;
 }

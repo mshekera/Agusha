@@ -4,15 +4,51 @@ block append header
 	
 
 block content
+	#slider_container.slider.darkblue
+		.slides(u='slides')
+			div
+				img(src='/img/user/banner/banner_1_1.png')
+			div
+				img(src='/img/user/banner/banner_1_1.png')
+		.jssorb12(u='navigator')
+			.prototype(u='prototype')
+		span.jssora21l(u='arrowleft')
+		span.jssora21r(u='arrowright')
+	
 	button.blue.middle_button yo
 	button.yellow yo
 	button.red.huge_button yo
-	#slider_container
-		div(u='slides')
-			div
-				img(u='image', src='/img/user/banner/banner_1_1.png')
-			div
-				img(u='image', src='/img/user/banner/banner_1_1.png')
 
 block append scripts
-	script(src="/js/plugins/slider/jssor.slider.mini.js")
+	script(src="/js/plugins/slider/jssor.slider.min.js")
+	script.
+		var options = {
+			$AutoPlay: true,
+			$SlideDuration: 800, 
+			$BulletNavigatorOptions: {
+				$Class: $JssorBulletNavigator$,
+				$ChanceToShow: 2,
+				$AutoCenter: 1,
+				$SpacingX: 10
+			},
+			$ArrowNavigatorOptions: {
+				$Class: $JssorArrowNavigator$,
+				$ChanceToShow: 2,
+				$AutoCenter: 2
+			}
+		};
+		var jssor_slider = new $JssorSlider$('slider_container', options);
+		
+		function ScaleSlider() {
+			var parentWidth = $('#slider_container').parent().width();
+			if (parentWidth) {
+				jssor_slider.$SetScaleWidth(parentWidth);
+			}
+			else
+				window.setTimeout(ScaleSlider, 30);
+		}
+		
+		ScaleSlider();
+		if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
+			$(window).bind('resize', ScaleSlider);
+		}

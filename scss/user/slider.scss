@@ -1,0 +1,85 @@
+.slider {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	height: 469px;
+}
+
+.slides {
+	cursor: move;
+	position: absolute;
+	overflow: hidden;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 469px;
+}
+
+.jssorb12 {
+	position: absolute;
+	width: 94px;
+	height: 16px;
+}
+
+.prototype {
+	POSITION: absolute;
+	WIDTH: 16px;
+	HEIGHT: 16px;
+}
+
+.jssora21l {
+	width: 55px;
+	height: 55px;
+	top: 123px;
+	left: 8px;
+}
+
+.jssora21r {
+	width: 55px;
+	height: 55px;
+	top: 123px;
+	right: 8px;
+}
+
+/* jssor slider bullet navigator skin 12 css */
+/*
+.jssorb12 div		   (normal)
+.jssorb12 div:hover	 (normal mouseover)
+.jssorb12 .av		   (active)
+.jssorb12 .av:hover	 (active mouseover)
+.jssorb12 .dn		   (mousedown)
+*/
+.jssorb12 div, .jssorb12 div:hover, .jssorb12 .av
+{
+	background: url(../img/b12.png) no-repeat;
+	overflow:hidden;
+	cursor: pointer;
+}
+.jssorb12 div { background-position: -7px -7px; }
+.jssorb12 div:hover, .jssorb12 .av:hover { background-position: -37px -7px; }
+.jssorb12 .av { background-position: -67px -7px; }
+.jssorb12 .dn, .jssorb12 .dn:hover { background-position: -97px -7px; }
+
+/* jssor slider arrow navigator skin 21 css */
+/*
+.jssora21l			  (normal)
+.jssora21r			  (normal)
+.jssora21l:hover		(normal mouseover)
+.jssora21r:hover		(normal mouseover)
+.jssora21ldn			(mousedown)
+.jssora21rdn			(mousedown)
+*/
+.jssora21l, .jssora21r, .jssora21ldn, .jssora21rdn
+{
+	position: absolute;
+	cursor: pointer;
+	display: block;
+	background: url(../img/a21.png) center center no-repeat;
+	overflow: hidden;
+}
+.jssora21l { background-position: -3px -33px; }
+.jssora21r { background-position: -63px -33px; }
+.jssora21l:hover { background-position: -123px -33px; }
+.jssora21r:hover { background-position: -183px -33px; }
+.jssora21ldn { background-position: -243px -33px; }
+.jssora21rdn { background-position: -303px -33px; }
