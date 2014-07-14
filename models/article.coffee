@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+moment = require 'moment'
 
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
@@ -11,7 +12,12 @@ getArticleType = (type) ->
 		when 3 then msg = "От специалиста"
 		else throw "Incorrect type index in Article model: #{type}"
 
-	[type, msg]
+	return res 
+		id: type
+		msg: msg
+
+setUpdateDate = () ->
+	return moment()
 
 schema = new mongoose.Schema
 	type: # 0 - news, 1 - sales, 2 - feeding, 3 -from spec
@@ -21,6 +27,7 @@ schema = new mongoose.Schema
 	date:
 		type: Date
 		required: false
+		set: setUpdateDate
 	desc_image: [
 		type: Array
 		required: false
