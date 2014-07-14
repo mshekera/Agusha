@@ -1,0 +1,76 @@
+extends ../layout
+
+block append header
+    link(href="/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css")
+    style.
+        .img-container {
+            position: relative;
+        }
+        img.img-thumbnail {
+            max-height: 140px;
+            margin: 10px;
+            float: left;
+        }
+        .removeImage {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+block append scripts
+    script(src="/js/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")
+    script.
+        $(function() {
+            $(".textarea").wysihtml5();
+        });
+
+block content
+    section.content
+        .row
+            .col-md-10
+                .box.box-primary
+                    .box-header
+                        .box-title= "Редактирование статьи"
+                    form(role="form" enctype="multipart/form-data" method="post" action="/admin/articles")
+                        .box-body
+                            if article._id
+                                input(type="hidden" name="id" value=article._id)
+                            .form-group
+                                label(for="desc_title")= "Название:"
+                                input.form-control(type="text" name="desc_title" placeholder="Название статьи" value=article.desc_title)
+                            
+                            .form-group
+                                .checkbox
+                                    label
+                                        if article.active == false
+                                            input(type="checkbox" name="active")
+                                        else
+                                            input(type="checkbox" name="active" checked)
+                                        span= " Активен?"
+
+                            .form-group
+                                label(for="desc_shorttext")= "Краткий текст описания:"
+                                textarea.textarea(
+                                    name="desc_shorttext" 
+                                    placeholder="Короткое описание статьи" 
+                                )= article.desc_shorttext
+
+                            .form-group
+                                label(for="desc_text")= "Текст описания:"
+                                textarea.textarea(
+                                    name="desc_text" 
+                                    placeholder="Текст описания статьи" 
+                                )= article.desc_text
+
+                            .form-group
+                                label(for="image")= "Изображения (может быть более одного):"
+                                if article.image
+                                    each img in article.image
+                                        .img-container
+                                            img.img-thumbnail.clearfix(src="/img/#{img}")
+                                            a(href="/admin/articles/deleteimg/#{article._id}/#{img}")
+                                                i.removeImage.glyphicon.glyphicon-remove
+                                input(type="file" name="image" multiple)
+                                
+                        .box-footer
+                            button.btn.btn-primary(type="submit")= "Сохранить изменения"
