@@ -3,6 +3,7 @@ $hfheight: 80px;
 
 body {
 	@extend .base_font;
+	font-family: "Myriad_Pro_Regular";
 	background-color: $bg;
 	@media (max-width: $small_screen) {
 		width: 100%;
