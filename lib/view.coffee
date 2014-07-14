@@ -20,6 +20,11 @@ exports.render = render = (name, res, data, cacheId) ->
 		if err
 			Logger.log 'error', 'Error in View.render:', err
 			res.send '404_OR_500_PAGE_SHOULD_BE_HERE_SOMETIMES_LATER'
+
+			node_env = process.env.NODE_ENV || 'development'
+			if node_env is 'development'
+				console.log err
+				throw err
 		else
 			res.send results[1]
 
