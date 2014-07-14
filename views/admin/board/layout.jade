@@ -58,25 +58,20 @@ html(lang="ru")
 							a(href="/admin/certificate")
 								i.fa.fa-th
 								span= "Сертификаты"
-						// for future
-							li(class= (currentHref=='test'?"treeview active":"treeview"))
-								a(href="test")
-									i.fa.fa-bar-chart-o
-									span= "Тест дерево"
-									i.fa.fa-angle-left.pull-right
-								ul.treeview-menu
-									li
-										a(href="pages/charts/morris.html")
-											i.fa.fa-angle-double-right
-											span= "Name1"
-									li
-										a(href="pages/charts/morris0.html")
-											i.fa.fa-angle-double-right
-											span= "Name2"
-									li
-										a(href="pages/charts/morris1.html")
-											i.fa.fa-angle-double-right
-											span= "Name3"
+						li(class=(currentHref=='news'||currentHref=='articles'?'treeview active':'treeview'))
+							a(href="#")
+								i.fa.fa-th
+								span Текстовые блоки
+								i.fa.fa-angle-left.pull-right
+							ul.treeview-menu
+								li
+									a(href="/admin/news")
+										i.fa.fa-angle-double-right
+										span Новости/акции
+								li
+									a(href="/admin/articles")
+										i.fa.fa-angle-double-right
+										span Статьи
 						li(class=(currentHref=='clients'?'active':''))
 							a(href="/admin/clients")
 								i.fa.fa-th
