@@ -159,6 +159,9 @@ body {
       margin: auto;
       position: absolute;
       width: 1280px; } }
+  @media (max-width: 1016px) {
+    body {
+      width: 1016px; } }
 
 ul, li {
   padding: 0;
@@ -166,10 +169,25 @@ ul, li {
   list-style: none; }
 
 #header {
-  height: 80px; }
+  height: 80px;
+  position: relative; }
 
 #footer {
   height: 80px; }
+
+#logo {
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  height: 156px;
+  width: 170px;
+  z-index: 30; }
+  #logo img {
+    width: 100%;
+    height: 100%; }
 
 .half {
   float: left;
@@ -181,6 +199,18 @@ ul, li {
   .menu .menu_block {
     width: 25%;
     height: 100%; }
+
+.new_items {
+  position: absolute;
+  width: 1.3em;
+  height: 1.3em;
+  right: 6%;
+  top: 16%; }
+
+#contacts .darkblue_font {
+  font-size: 112.5%; }
+#contacts .italic_font {
+  font-size: 62.5%; }
 
 .slider {
   position: relative;

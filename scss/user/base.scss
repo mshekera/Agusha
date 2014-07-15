@@ -1,5 +1,7 @@
 $small_screen: 1280px;
+$min_width: 1016px;
 $hfheight: 80px;
+$line_height: 1.3em;
 
 body {
 	@extend .base_font;
@@ -13,6 +15,9 @@ body {
 		@include horizontal_centered();
 		width: 1280px;
 	}
+	@media (max-width: $min_width) {
+		width: $min_width;
+	}
 }
 
 ul, li {
@@ -23,10 +28,23 @@ ul, li {
 
 #header {
 	height: $hfheight;
+	position: relative;
 }
 
 #footer {
 	height: $hfheight;
+}
+
+#logo {
+	@include horizontal_centered();
+	height: 156px;
+    width: 170px;
+    z-index: 30;
+	
+	img {
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .half {
@@ -41,5 +59,23 @@ ul, li {
 	.menu_block {
 		width: 25%;
 		height: 100%;
+	}
+}
+
+.new_items {
+	position: absolute;
+	width: $line_height;
+	height: $line_height;
+	right: 6%;
+    top: 16%;
+}
+
+#contacts {
+	.darkblue_font {
+		font-size: 112.5%;
+	}
+	
+	.italic_font {
+		font-size: 62.5%;
 	}
 }
