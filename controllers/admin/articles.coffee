@@ -51,7 +51,6 @@ exports.save = (req, res) ->
 					(next2) ->
 						Model 'Article', 'findOne', next2, {_id}
 					(doc) ->
-						console.log data.desc_image
 						for own prop, val of data
 							unless prop is 'id' or val is undefined
 								if prop is 'desc_image'
