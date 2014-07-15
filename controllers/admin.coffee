@@ -28,6 +28,7 @@ Router.get '/product/edit/:id', Products.get
 Router.get '/product/delete/:id', Products.delete
 
 Router.post '/product', Products.save
+Router.post '/product/mainPage', Products.saveMainPage
 #----------------#
 Router.get '/ages', Ages.index
 Router.get '/age/create', Ages.create
