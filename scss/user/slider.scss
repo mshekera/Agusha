@@ -19,12 +19,13 @@
 	position: absolute;
 	width: 94px;
 	height: 16px;
+	bottom: 44px;
 }
 
 .prototype {
 	POSITION: absolute;
-	WIDTH: 16px;
-	HEIGHT: 16px;
+	WIDTH: 12px;
+	HEIGHT: 12px;
 }
 
 .jssora21l {
@@ -49,16 +50,28 @@
 .jssorb12 .av:hover	 (active mouseover)
 .jssorb12 .dn		   (mousedown)
 */
+
 .jssorb12 div, .jssorb12 div:hover, .jssorb12 .av
 {
-	background: url(../img/b12.png) no-repeat;
-	overflow:hidden;
+	
+}
+
+.jssorb12 div {
+	background-color: $white;
 	cursor: pointer;
 }
-.jssorb12 div { background-position: -7px -7px; }
-.jssorb12 div:hover, .jssorb12 .av:hover { background-position: -37px -7px; }
-.jssorb12 .av { background-position: -67px -7px; }
-.jssorb12 .dn, .jssorb12 .dn:hover { background-position: -97px -7px; }
+
+.jssorb12 div:hover, .jssorb12 .av:hover {
+	
+}
+
+.jssorb12 .av {
+	background-color: #a2dbff;
+}
+
+.jssorb12 .dn, .jssorb12 .dn:hover {
+	
+}
 
 /* jssor slider arrow navigator skin 21 css */
 /*
