@@ -12,9 +12,10 @@ getArticleType = (type) ->
 		when 3 then msg = "От специалиста"
 		else throw new Error "Incorrect type index in Article model: #{type}"
 
-	return res 
+	return {
 		id: type
 		msg: msg
+	}
 
 setUpdateDate = () ->
 	return moment()
@@ -29,7 +30,7 @@ schema = new mongoose.Schema
 		required: false
 		set: setUpdateDate
 	desc_image: [
-		type: Array
+		type: String
 		required: false
 	]
 	desc_title:
@@ -48,6 +49,20 @@ schema = new mongoose.Schema
 ,
 	collection: 'article'
 
+schema.static 'findArticles', (cb) ->
+	where = 
+		"$or": [
+			type: 2
+			type: 3
+		]
+	@find where, cb
 
+schema.static 'findNews', (cb) ->
+	where = 
+		"$or": [
+			type: 0
+			type: 1
+		]
+	@find where, cb
 
 module.exports = mongoose.model 'Article', schema
