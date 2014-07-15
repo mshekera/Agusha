@@ -51,6 +51,7 @@ configure = () ->
 		matchType: ///js/image/images/image/img///
 	@use '/js', express.static "#{__dirname}/../public/js"
 	@use '/img', express.static "#{__dirname}/../public/img"
+	@use '/attachable', express.static "#{__dirname}/../public/img/admin/attachable"
 	@use '/css', express.static "#{__dirname}/../public/css"
 	@use '/fonts', express.static "#{__dirname}/../public/fonts"
 	@use '/robots.txt', (req, res)->
