@@ -67,8 +67,8 @@ block content
                             .form-group
                                 label(for="type")= "Тип:"
                                 select.form-control(name="type")
-                                    option(value=2 selected=(article.type.id == 2))= "Кормление"
-                                    option(value=3 selected=(article.type.id == 3))= "От специалиста"
+                                    option(value=2 selected=(article.type && article.type.id == 2))= "Кормление"
+                                    option(value=3 selected=(article.type && article.type.id == 3))= "От специалиста"
                             .form-group
                                 .checkbox
                                     label
