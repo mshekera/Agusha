@@ -177,9 +177,7 @@ ul, li {
 
 #logo {
   left: 0;
-  top: 0;
   right: 0;
-  bottom: 0;
   margin: auto;
   position: absolute;
   height: 156px;
@@ -202,15 +200,24 @@ ul, li {
 
 .new_items {
   position: absolute;
-  width: 1.3em;
+  min-width: 1.3em;
   height: 1.3em;
   right: 6%;
-  top: 16%; }
+  top: 16%;
+  font-size: 87.5%; }
 
 #contacts .darkblue_font {
   font-size: 112.5%; }
 #contacts .italic_font {
   font-size: 62.5%; }
+
+.bottom_wave {
+  position: absolute;
+  bottom: -13px;
+  width: 100%;
+  height: 13px;
+  background-image: url("/img/user/wave_border_bottom.png");
+  z-index: 20; }
 
 .slider {
   position: relative;

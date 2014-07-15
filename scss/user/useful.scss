@@ -1,4 +1,4 @@
-@mixin horizontal_centered() {
+@mixin absolute_centered() {
 	left: 0;
 	top: 0;
 	right: 0;
@@ -22,7 +22,7 @@ textarea {
 /* Useful stuff */
 
 .adorable_container { /* Should have width */
-	@include horizontal_centered();
+	@include absolute_centered();
 	display: table;
 	position: relative;
 }
