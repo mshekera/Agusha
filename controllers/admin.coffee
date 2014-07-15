@@ -10,11 +10,11 @@ News = require './admin/news'
 Products = require './admin/products'
 Tours = require './admin/tours'
 Tour_records = require './admin/tour_records'
+Wysi = require './helper/wysi'
 
 Router = express.Router()
 
 #########################
-
 Router.get '/', Main.index
 Router.get '/login', Main.login
 Router.get '/logout', Main.logout
@@ -79,6 +79,9 @@ Router.post '/tour', Tours.save
 #----------------#
 Router.get '/tour_records', Tour_records.index
 Router.get '/tour_record/:id', Tour_records.item
+#- upload helper for wysihtml5 -#
+Router.get '/getAttached', Wysi.get
+Router.post '/uploadWysi', Wysi.upload
 ########################
 
 exports.Router = Router
