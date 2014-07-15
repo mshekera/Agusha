@@ -49,6 +49,7 @@ Router.get '/news', News.index
 Router.get '/news/create', News.create
 Router.get '/news/edit/:id', News.get
 Router.get '/news/delete/:id', News.delete
+Router.get '/news/deleteimg/:id/:img', News.deleteImage
 
 Router.post '/news', News.save
 #----------------#
