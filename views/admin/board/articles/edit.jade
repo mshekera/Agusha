@@ -5,16 +5,26 @@ block append header
     style.
         .img-container {
             position: relative;
+            height: 140px;
+            width: 200px;
+            float: left;
         }
         img.img-thumbnail {
             max-height: 140px;
             margin: 10px;
-            float: left;
         }
         .removeImage {
             position: absolute;
             right: 10px;
             top: 10px;
+        }
+        .textarea {
+            width: 100%;
+            height: 200px;
+            font-size: 14px;
+            line-height: 18px;
+            border: 1px solid #dddddd;
+            padding: 10px;
         }
 
 block append scripts
@@ -22,6 +32,22 @@ block append scripts
     script.
         $(function() {
             $(".textarea").wysihtml5();
+            $(".t-removeImage").on('click', function(ev){
+                ev.preventDefault();
+
+                self = $(this);
+                $.get(self.attr('href'), function(data){
+                    console.log(data);
+                    if(data === true) {
+                        self.parent().remove();
+                    } else {
+                        var msg = data === false
+                            ? "Произошла ошибка при удалении изображения." 
+                            : data;
+                        alert(msg);
+                    }
+                });
+            });
         });
 
 block content
@@ -38,7 +64,11 @@ block content
                             .form-group
                                 label(for="desc_title")= "Название:"
                                 input.form-control(type="text" name="desc_title" placeholder="Название статьи" value=article.desc_title)
-                            
+                            .form-group
+                                label(for="type")= "Тип:"
+                                select.form-control(name="type")
+                                    option(value=2 selected=(article.type.id == 2))= "Кормление"
+                                    option(value=3 selected=(article.type.id == 3))= "От специалиста"
                             .form-group
                                 .checkbox
                                     label
@@ -63,14 +93,15 @@ block content
                                 )= article.desc_text
 
                             .form-group
-                                label(for="image")= "Изображения (может быть более одного):"
-                                if article.image
-                                    each img in article.image
+                                label(for="desc_image")= "Изображения (может быть более одного):"
+                                input(type="file" name="desc_image" multiple)
+                                if article.desc_image
+                                    each img in article.desc_image
                                         .img-container
                                             img.img-thumbnail.clearfix(src="/img/#{img}")
-                                            a(href="/admin/articles/deleteimg/#{article._id}/#{img}")
+                                            a.t-removeImage(href="/admin/articles/deleteimg/#{article._id}/#{img}")
                                                 i.removeImage.glyphicon.glyphicon-remove
-                                input(type="file" name="image" multiple)
+                                    .clearfix
                                 
                         .box-footer
                             button.btn.btn-primary(type="submit")= "Сохранить изменения"
