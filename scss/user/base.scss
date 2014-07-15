@@ -1,0 +1,94 @@
+$small_screen: 1280px;
+$min_width: 1016px;
+$hfheight: 80px;
+$line_height: 1.3em;
+
+body {
+	@extend .base_font;
+	font-family: "PT_Sans_Regular";
+	font-size: 14px;
+	background-color: $bg;
+	@media (max-width: $small_screen) {
+		width: 100%;
+	}
+	@media (min-width: $small_screen) {
+		@include absolute_centered();
+		width: 1280px;
+	}
+	@media (max-width: $min_width) {
+		width: $min_width;
+	}
+}
+
+ul, li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#header {
+	height: $hfheight;
+	position: relative;
+}
+
+#footer {
+	height: $hfheight;
+}
+
+#logo {
+	left: 0;
+	right: 0;
+	margin: auto;
+	position: absolute;
+	height: 156px;
+    width: 170px;
+    z-index: 30;
+	
+	img {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.half {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.menu {
+	text-align: center;
+	
+	.menu_block {
+		width: 25%;
+		height: 100%;
+	}
+}
+
+.new_items {
+	position: absolute;
+	min-width: $line_height;
+	height: $line_height;
+	right: 6%;
+    top: 16%;
+	font-size: 87.5%;
+}
+
+#contacts {
+	.darkblue_font {
+		font-size: 112.5%;
+	}
+	
+	.italic_font {
+		font-size: 62.5%;
+	}
+}
+
+.bottom_wave {
+	position: absolute;
+	bottom: -13px;
+	width: 100%;
+	height: 13px;
+	background-image: url('/img/user/wave_border_bottom.png');
+	z-index: 20;
+}

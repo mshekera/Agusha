@@ -3,7 +3,22 @@ extends layout
 block append header
 	
 
-block append content
+block content
+	#slider_container.slider.darkblue
+		.slides(u='slides')
+			div
+				img(src='/img/user/banner/banner_1_1.png')
+			div
+				img(src='/img/user/banner/banner_1_1.png')
+		.jssorb12(u='navigator')
+			.prototype(u='prototype')
+		span.jssora21l(u='arrowleft')
+		span.jssora21r(u='arrowright')
 	
+	button.blue.middle_button yo
+	button.yellow.novito_nova Фруктовые соки
+	button.red.huge_button Фруктовые соки
 
 block append scripts
+	script(src="/js/plugins/slider/jssor.slider.min.js")
+	script(src="/js/user/main.js")

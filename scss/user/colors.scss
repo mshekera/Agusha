@@ -1,0 +1,73 @@
+$blue: #4bc4ee;
+$darkblue: #45b4e8;
+$verydarkblue: #105ba6;
+$lightblue: #61e5f9;
+$yellow: #ffe690;
+$brown: #9b7155;
+$red: #ff9486;
+$darkred: #e6625f;
+$lightred: #ffa598;
+$green: #71db96;
+$white: #ffffff;
+$bg: #f2eeeb;
+
+.blue {
+	background-color: $blue;
+	color: $white;
+}
+
+.darkblue {
+	background-color: $darkblue;
+	color: $white;
+}
+
+.lightblue {
+	background-color: $lightblue;
+	color: $verydarkblue;
+}
+
+.yellow {
+	background-color: $yellow;
+	color: $brown;
+}
+
+.red {
+	background-color: $red;
+	color: $brown;
+}
+
+.darkred {
+	background-color: $darkred;
+	color: $white;
+}
+
+.lightred {
+	background-color: $lightred;
+	color: $white;
+}
+
+.white {
+	background-color: $white;
+}
+
+.green {
+	background-color: $green;
+	color: $white;
+}
+
+.base_font {
+	color: #666666;
+}
+
+.light_font {
+	color: #999999;
+}
+
+.italic_font {
+	color: #b3b3b3;
+	font-style: italic;
+}
+
+.darkblue_font {
+	color: $darkblue;
+}

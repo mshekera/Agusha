@@ -13,7 +13,7 @@ exports.index = (req, res) ->
 		(docs) ->
 			View.render 'admin/board/tours/index', res, {tours: docs}
 	], (err) ->
-		Logger.log 'info', "Error in lib/tour/adminView: #{err.message or err}"
+		Logger.log 'info', "Error in controllers/admin/tour/index: #{err.message or err}"
 
 exports.get = (req, res) ->
 	id = req.params.id
@@ -27,7 +27,7 @@ exports.get = (req, res) ->
 			else
 				next "Произошла неизвестная ошибка!"
 	], (err) ->
-		Logger.log 'info', "Error in lib/tour/adminGet: #{err.message or err}"
+		Logger.log 'info', "Error in controllers/admin/tour/get: #{err.message or err}"
 		View.message false, err.message or err, res
 
 exports.create = (req, res) ->
@@ -55,7 +55,7 @@ exports.save = (req, res) ->
 		() ->
 			View.message true, 'Экскурсия успешно сохранена!', res
 	], (err) ->
-		Logger.log 'info', "Error in lib/tour/adminSave: #{err.message or err}"
+		Logger.log 'info', "Error in controllers/admin/tour/save: #{err.message or err}"
 		msg = "Произошла ошибка при сохранении: #{err.message or err}"
 		View.message false, msg, res
 
@@ -72,6 +72,6 @@ exports.delete = (req, res) ->
 			else
 				next "Произошла неизвестная ошибка."
 	], (err) ->
-		Logger.log 'info', "Error in lib/tour/adminDelete: #{err.message or err}"
+		Logger.log 'info', "Error in controllers/admin/tour/delete: #{err.message or err}"
 		msg = "Произошла ошибка при удалении: #{err.message or err}"
 		View.message false, msg, res

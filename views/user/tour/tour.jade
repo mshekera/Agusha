@@ -6,6 +6,11 @@ block append header
 block append content
 	form#registration_form(method="POST", action="/tour/add_record")
 		div
+			select(name="tour")
+				option(value='') Выберите тур
+				- each t, key in tours
+					option(value=t._id) #{t.date}
+		div
 			input(type="text", name="firstname", placeholder="Имя")
 			span.error
 		div

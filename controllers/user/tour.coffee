@@ -8,7 +8,18 @@ Tour = require '../../lib/tour'
 Tour_record = require '../../lib/tour_record'
 
 exports.index = (req, res) ->
-	View.renderWithSession req, res, 'user/tour/tour'
+	async.waterfall [
+		(next) ->
+			Model 'Tour', 'find', next
+		(docs, next) ->
+			data =
+				tours: docs
+			
+			View.renderWithSession req, res, 'user/tour/tour', data
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in lib/tour_record/index: #{error}"
+		res.redirect '/'
 
 exports.add_record = (req, res) ->
 	async.waterfall [
