@@ -145,6 +145,7 @@ button, .middle_button, .huge_button {
 
 body {
   font-family: "PT_Sans_Regular";
+  font-size: 14px;
   background-color: #f2eeeb; }
   @media (max-width: 1280px) {
     body {
@@ -159,11 +160,27 @@ body {
       position: absolute;
       width: 1280px; } }
 
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+
 #header {
   height: 80px; }
 
 #footer {
   height: 80px; }
+
+.half {
+  float: left;
+  width: 50%;
+  height: 100%; }
+
+.menu {
+  text-align: center; }
+  .menu .menu_block {
+    width: 25%;
+    height: 100%; }
 
 .slider {
   position: relative;

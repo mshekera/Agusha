@@ -4,6 +4,7 @@ $hfheight: 80px;
 body {
 	@extend .base_font;
 	font-family: "PT_Sans_Regular";
+	font-size: 14px;
 	background-color: $bg;
 	@media (max-width: $small_screen) {
 		width: 100%;
@@ -14,10 +15,31 @@ body {
 	}
 }
 
+ul, li {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
 #header {
 	height: $hfheight;
 }
 
 #footer {
 	height: $hfheight;
+}
+
+.half {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.menu {
+	text-align: center;
+	
+	.menu_block {
+		width: 25%;
+		height: 100%;
+	}
 }

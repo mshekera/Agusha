@@ -1,21 +1,21 @@
 /*
 Syntax error: Undefined variable: "$bg".
-        on line 7 of scss/user/base.scss
+        on line 8 of scss/user/base.scss
 
-2: $hfheight: 80px;
 3: 
 4: body {
 5: 	@extend .base_font;
 6: 	font-family: "PT_Sans_Regular";
-7: 	background-color: $bg;
-8: 	@media (max-width: $small_screen) {
-9: 		width: 100%;
-10: 	}
-11: 	@media (min-width: $small_screen) {
-12: 		@include horizontal_centered();
+7: 	font-size: 14px;
+8: 	background-color: $bg;
+9: 	@media (max-width: $small_screen) {
+10: 		width: 100%;
+11: 	}
+12: 	@media (min-width: $small_screen) {
+13: 		@include horizontal_centered();
 
 Backtrace:
-scss/user/base.scss:7
+scss/user/base.scss:8
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/variable.rb:49:in `_perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/node.rb:50:in `perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:366:in `visit_prop'
@@ -66,4 +66,4 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/vendor/listen/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$bg\".\A         on line 7 of scss/user/base.scss\A \A 2: $hfheight: 80px;\A 3: \A 4: body {\A 5: 	@extend .base_font;\A 6: 	font-family: \"PT_Sans_Regular\";\A 7: 	background-color: $bg;\A 8: 	@media (max-width: $small_screen) {\A 9: 		width: 100%;\A 10: 	}\A 11: 	@media (min-width: $small_screen) {\A 12: 		@include horizontal_centered();"; }
+  content: "Syntax error: Undefined variable: \"$bg\".\A         on line 8 of scss/user/base.scss\A \A 3: \A 4: body {\A 5: 	@extend .base_font;\A 6: 	font-family: \"PT_Sans_Regular\";\A 7: 	font-size: 14px;\A 8: 	background-color: $bg;\A 9: 	@media (max-width: $small_screen) {\A 10: 		width: 100%;\A 11: 	}\A 12: 	@media (min-width: $small_screen) {\A 13: 		@include horizontal_centered();"; }
