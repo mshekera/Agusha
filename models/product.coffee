@@ -45,6 +45,10 @@ schema = new mongoose.Schema
 	age_level:
 		type: Number
 		required: false
+	main_page:
+		type: Number
+		required: false
+		default: 0
 ,
 	collection: 'product'
 
