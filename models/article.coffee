@@ -52,16 +52,16 @@ schema = new mongoose.Schema
 schema.static 'findArticles', (cb) ->
 	where = 
 		"$or": [
-			type: 2
-			type: 3
+			{type: 2}
+			{type: 3}
 		]
 	@find where, cb
 
 schema.static 'findNews', (cb) ->
 	where = 
 		"$or": [
-			type: 0
-			type: 1
+			{type: 0}
+			{type: 1}
 		]
 	@find where, cb
 
