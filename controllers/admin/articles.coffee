@@ -8,12 +8,7 @@ Logger = require '../../lib/logger'
 exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
-			where = 
-				"$or": [
-					type: 2
-					type: 3
-				]
-			Model 'Article', 'find', next, where
+			Model 'Article', 'findArticles', next
 		(docs) ->
 			View.render 'admin/board/articles/index', res, articles: docs
 	], (err) ->
@@ -35,16 +30,16 @@ exports.get = (req, res) ->
 
 exports.create = (req, res) ->
 	View.render 'admin/board/articles/edit', res,
-		articles: {}
+		article: {}
 
 exports.save = (req, res) ->
 	_id = req.body.id
 
 	data = req.body
-	data.image = []
-	if req.files?.image
-		for img in req.files.image
-			data.image.push = img.name
+	data.desc_image = []
+	if req.files?.desc_image
+		for img in req.files.desc_image
+			data.desc_image.push img.name
 
 	async.waterfall [
 		(next) ->
@@ -53,9 +48,13 @@ exports.save = (req, res) ->
 					(next2) ->
 						Model 'Article', 'findOne', next2, {_id}
 					(doc) ->
+						console.log data.desc_image
 						for own prop, val of data
 							unless prop is 'id' or val is undefined
-								doc[prop] = val
+								if prop is 'desc_image'
+									doc[prop] = doc[prop].concat val
+								else
+									doc[prop] = val
 
 						doc.save next
 				], (err) ->
@@ -66,7 +65,7 @@ exports.save = (req, res) ->
 			if not doc
 				return next "Произошла неизвестная ошибка."
 
-			View.message true, 'Новость успешно сохранена!', res
+			View.message true, 'Статья успешно сохранена!', res
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/articles/save: %s #{err.message or err}"
 		msg = "Произошла ошибка при сохранении: #{err.message or err}"
@@ -91,16 +90,18 @@ exports.deleteImage = (req, res) ->
 		(next) ->
 			Model 'Article', 'findOne', next, {_id}
 		(doc, next) ->
-			images = doc.images
+			images = doc.desc_image
 			idx = images.indexOf img
 			doc.images = images.splice idx, 1
 
 			doc.save next
 		(next) ->
-			fs.unlink "#{_dirname}/public/img/#{img}", next
+			fs.unlink "#{__dirname}/public/img/#{img}", next
 		() ->
-			View.message true, 'Изображение удалено!', res
+			#View.message true, 'Изображение удалено!', res
+			res.send true
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/articles/remove: %s #{err.message or err}"
 		msg = "Произошла ошибка при удалении: #{err.message or err}"
-		View.message false, msg, res
+		#View.message false, msg, res
+		res.send msg
