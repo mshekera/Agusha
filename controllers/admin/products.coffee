@@ -169,11 +169,8 @@ exports.save = (req, res) ->
 
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/products/save: #{err.message or err}", err
-		opts = 
-			success: true
-			message: "Произошла ошибка при сохранении продукта: #{err.message or err}"
-
-		View.render 'admin/board/message', res, opts
+		msg = "Произошла ошибка при сохранении продукта: #{err.message or err}"
+		View.message true, msg, res
 
 exports.delete = (req, res) ->
 	_id = req.params.id
@@ -188,3 +185,36 @@ exports.delete = (req, res) ->
 		Logger.log 'info', "Error in controllers/admin/products/remove: %s #{err.message or err}"
 		msg = "Произошла ошибка при удалении продукта: #{err.message or err}"
 		View.message false, msg, res
+
+exports.saveMainPage = (req, res) ->
+	ids = []
+	for i in [1..3]
+		ids.push {
+			_id: req.body["main#{i}"]
+			pos: i
+		}
+
+	iterator = (item, cb) ->
+		async.waterfall [
+			(next) ->
+				Model 'Product', 'update', next, {}, {main_page: 0}
+			(result, affected, next) ->
+				Model 'Product', 'findOne', next, _id: item._id
+			(doc, next) ->
+				doc.main_page = item.pos
+				doc.save cb
+
+		], (err) ->
+			cb err
+
+	callback = (err) ->
+		if err
+			msg = "Произошла ошибка при сохранении главных продуктов: #{err.message or err}"
+			success = false
+		else
+			msg = "Сохранение прошло успешно!"
+			success = true
+
+		View.message success, msg, res
+
+	async.each ids, iterator, callback
