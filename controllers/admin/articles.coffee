@@ -38,8 +38,11 @@ exports.save = (req, res) ->
 	data = req.body
 	data.desc_image = []
 	if req.files?.desc_image
-		for img in req.files.desc_image
-			data.desc_image.push img.name
+		if req.files.desc_image.name
+			data.desc_image.push req.files.desc_image.name
+		else
+			for img in req.files.desc_image
+				data.desc_image.push img.name
 
 	async.waterfall [
 		(next) ->
@@ -90,13 +93,14 @@ exports.deleteImage = (req, res) ->
 		(next) ->
 			Model 'Article', 'findOne', next, {_id}
 		(doc, next) ->
+			fs.unlink "./public/img/#{img}", (err) ->
+				next err, doc
+		(doc, next) ->
 			images = doc.desc_image
 			idx = images.indexOf img
 			doc.images = images.splice idx, 1
 
 			doc.save next
-		(next) ->
-			fs.unlink "#{__dirname}/public/img/#{img}", next
 		() ->
 			#View.message true, 'Изображение удалено!', res
 			res.send true
