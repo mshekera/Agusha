@@ -1,10 +1,21 @@
-@mixin absolute_centered() {
+@mixin absolute_horizontal_centered {
 	left: 0;
-	top: 0;
 	right: 0;
-	bottom: 0;
 	margin: auto;
 	position: absolute;
+}
+
+@mixin absolute_centered {
+	@include absolute_horizontal_centered();
+	top: 0;
+	bottom: 0;
+}
+
+@mixin border_radius($size) {
+	-moz-border-radius: 99999em;
+	-webkit-border-radius: 99999em;
+	-khtml-border-radius: 99999em;
+	border-radius: 99999em;
 }
 
 textarea {
@@ -22,7 +33,7 @@ textarea {
 /* Useful stuff */
 
 .adorable_container { /* Should have width */
-	@include absolute_centered();
+	@include absolute_centered;
 	display: table;
 	position: relative;
 }
@@ -65,10 +76,7 @@ textarea {
 }
 
 .rounded {
-	-moz-border-radius: 99999em;
-	-webkit-border-radius: 99999em;
-	-khtml-border-radius: 99999em;
-	border-radius: 99999em;
+	@include border_radius(99999em);
 }
 
 .force_height {
