@@ -124,7 +124,8 @@ textarea {
   font-weight: normal;
   font-style: normal; }
 .novito_nova {
-  font-family: "Novito_Nova_Thin"; }
+  font-family: "Novito_Nova_Thin";
+  letter-spacing: 2px; }
 
 .italic_font {
   color: #b3b3b3;
@@ -321,3 +322,29 @@ ul, li {
 
 .jssora21r:hover {
   background-position: -27px 0; }
+
+.live_program {
+  width: 25%;
+  height: 195px;
+  position: absolute;
+  top: 40px;
+  right: 11.7%; }
+  .live_program .photo {
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 17px; }
+    .live_program .photo .triangle {
+      left: 0;
+      right: 0;
+      margin: auto;
+      position: absolute;
+      top: 59px; }
+  .live_program .label {
+    font-size: 32px;
+    position: absolute;
+    width: 100%;
+    bottom: 5px; }

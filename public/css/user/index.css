@@ -1,21 +1,11 @@
 /*
-Syntax error: Undefined variable: "$bg".
-        on line 12 of scss/user/base.scss
-
-7: 
-8: body {
-9: 	@extend .base_font;
-10: 	font-family: "PT_Sans_Regular";
-11: 	font-size: 14px;
-12: 	background-color: $bg;
-13: 	@media (max-width: $small_screen) {
-14: 		width: 100%;
-15: 	}
-16: 	@media (min-width: $small_screen) {
-17: 		@include absolute_horizontal_centered;
+Syntax error: Undefined variable: "$white".
+        on line 56 of scss\user\slider.scss
+        from line 1 of scss/user/index.scss
 
 Backtrace:
-scss/user/base.scss:12
+scss\user\slider.scss:56
+scss/user/index.scss:1
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/variable.rb:49:in `_perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/node.rb:50:in `perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:366:in `visit_prop'
@@ -30,6 +20,19 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perfo
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:389:in `block in visit_rule'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:387:in `visit_rule'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/base.rb:36:in `visit'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:79:in `block in with_base'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:121:in `with_frame'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:79:in `with_base'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:152:in `visit'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:297:in `block (2 levels) in visit_import'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:297:in `map'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:297:in `block in visit_import'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:88:in `block in with_import'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:121:in `with_frame'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:88:in `with_import'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:294:in `visit_import'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/base.rb:36:in `visit'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:79:in `block in with_base'
@@ -66,4 +69,4 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/vendor/listen/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$bg\".\A         on line 12 of scss/user/base.scss\A \A 7: \A 8: body {\A 9: 	@extend .base_font;\A 10: 	font-family: \"PT_Sans_Regular\";\A 11: 	font-size: 14px;\A 12: 	background-color: $bg;\A 13: 	@media (max-width: $small_screen) {\A 14: 		width: 100%;\A 15: 	}\A 16: 	@media (min-width: $small_screen) {\A 17: 		@include absolute_horizontal_centered;"; }
+  content: "Syntax error: Undefined variable: \"$white\".\A         on line 56 of scss\user\slider.scss\A         from line 1 of scss/user/index.scss"; }

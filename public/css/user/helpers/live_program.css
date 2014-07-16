@@ -1,21 +1,21 @@
 /*
-Syntax error: Undefined variable: "$bg".
-        on line 12 of scss/user/base.scss
+Syntax error: Undefined variable: "$content_right".
+        on line 6 of scss/user/helpers/live_program.scss
 
-7: 
-8: body {
-9: 	@extend .base_font;
-10: 	font-family: "PT_Sans_Regular";
-11: 	font-size: 14px;
-12: 	background-color: $bg;
-13: 	@media (max-width: $small_screen) {
-14: 		width: 100%;
-15: 	}
-16: 	@media (min-width: $small_screen) {
-17: 		@include absolute_horizontal_centered;
+1: .live_program {
+2: 	width: 25%;
+3: 	height: 195px;
+4: 	position: absolute;
+5: 	top: 40px;
+6: 	right: $content_right;
+7: 	
+8: 	.photo {
+9: 		@include absolute_horizontal_centered;
+10: 		width: 120px;
+11: 		height: 120px;
 
 Backtrace:
-scss/user/base.scss:12
+scss/user/helpers/live_program.scss:6
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/variable.rb:49:in `_perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/node.rb:50:in `perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:366:in `visit_prop'
@@ -66,4 +66,4 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/vendor/listen/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$bg\".\A         on line 12 of scss/user/base.scss\A \A 7: \A 8: body {\A 9: 	@extend .base_font;\A 10: 	font-family: \"PT_Sans_Regular\";\A 11: 	font-size: 14px;\A 12: 	background-color: $bg;\A 13: 	@media (max-width: $small_screen) {\A 14: 		width: 100%;\A 15: 	}\A 16: 	@media (min-width: $small_screen) {\A 17: 		@include absolute_horizontal_centered;"; }
+  content: "Syntax error: Undefined variable: \"$content_right\".\A         on line 6 of scss/user/helpers/live_program.scss\A \A 1: .live_program {\A 2: 	width: 25%;\A 3: 	height: 195px;\A 4: 	position: absolute;\A 5: 	top: 40px;\A 6: 	right: $content_right;\A 7: 	\A 8: 	.photo {\A 9: 		@include absolute_horizontal_centered;\A 10: 		width: 120px;\A 11: 		height: 120px;"; }

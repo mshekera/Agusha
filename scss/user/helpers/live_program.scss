@@ -1,0 +1,26 @@
+.live_program {
+	width: 25%;
+	height: 195px;
+	position: absolute;
+	top: 40px;
+	right: $content_right;
+	
+	.photo {
+		@include absolute_horizontal_centered;
+		width: 120px;
+		height: 120px;
+		top: 17px;
+		
+		.triangle {
+			@include absolute_horizontal_centered;
+			top: 59px;
+		}
+	}
+	
+	.label {
+		font-size: 32px;
+		position: absolute;
+		width: 100%;
+		bottom: 5px;
+	}
+}
