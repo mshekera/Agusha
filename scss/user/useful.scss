@@ -18,6 +18,12 @@
 	border-radius: 99999em;
 }
 
+@mixin box_shadow($val) {
+	-webkit-box-shadow:	$val;
+	-moz-box-shadow:	$val;
+	box-shadow:			$val;
+}
+
 textarea {
 	resize: none;
 }
