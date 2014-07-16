@@ -77,12 +77,27 @@
 			.count {
 				.number {
 					@include box_shadow(4px 4px 0px 0px rgba(64, 113, 81, 0.3));
+					background: url(/img/user/main/number_bg.png) center no-repeat;
 					display: inline-block;
 					font-size: 517%;
 					line-height: 112.5%;
 					margin: 0 8px;
 					min-width: 50px;
 					position: relative;
+					
+					span:before {
+						background-color: #5CB179;
+						bottom: 0;
+						content: "";
+						display: block;
+						height: 2px;
+						left: 0;
+						margin: auto;
+						position: absolute;
+						right: 0;
+						top: 0;
+						width: 100%;
+					}
 				}
 				
 				.number:after {
