@@ -271,16 +271,12 @@ ul, li {
   HEIGHT: 12px; }
 
 .jssora21l {
-  width: 55px;
-  height: 55px;
   top: 123px;
-  left: 8px; }
+  left: 39px; }
 
 .jssora21r {
-  width: 55px;
-  height: 55px;
   top: 123px;
-  right: 8px; }
+  right: 39px; }
 
 /* jssor slider bullet navigator skin 12 css */
 /*
@@ -303,30 +299,25 @@ ul, li {
 .jssora21r			  (normal)
 .jssora21l:hover		(normal mouseover)
 .jssora21r:hover		(normal mouseover)
-.jssora21ldn			(mousedown)
-.jssora21rdn			(mousedown)
+.dn			(mousedown)
 */
-.jssora21l, .jssora21r, .jssora21ldn, .jssora21rdn {
+.jssora21l, .jssora21r {
+  width: 27px;
+  height: 51px;
   position: absolute;
   cursor: pointer;
   display: block;
-  background: url(../img/a21.png) center center no-repeat;
+  background: url(/img/user/banner/banner_arrows.png) no-repeat;
   overflow: hidden; }
 
 .jssora21l {
-  background-position: -3px -33px; }
+  background-position: 0 -52px; }
 
 .jssora21r {
-  background-position: -63px -33px; }
+  background-position: -27px -52px; }
 
 .jssora21l:hover {
-  background-position: -123px -33px; }
+  background-position: 0 0; }
 
 .jssora21r:hover {
-  background-position: -183px -33px; }
-
-.jssora21ldn {
-  background-position: -243px -33px; }
-
-.jssora21rdn {
-  background-position: -303px -33px; }
+  background-position: -27px 0; }

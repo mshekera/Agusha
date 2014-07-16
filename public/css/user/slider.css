@@ -1,21 +1,21 @@
 /*
 Syntax error: Undefined variable: "$white".
-        on line 60 of scss/user/slider.scss
+        on line 56 of scss/user/slider.scss
 
-55: {
-56: 	
-57: }
-58: 
-59: .jssorb12 div {
-60: 	background-color: $white;
-61: 	cursor: pointer;
-62: }
-63: 
-64: .jssorb12 div:hover, .jssorb12 .av:hover {
-65: 	
+51: {
+52: 	
+53: }
+54: 
+55: .jssorb12 div {
+56: 	background-color: $white;
+57: 	cursor: pointer;
+58: }
+59: 
+60: .jssorb12 div:hover, .jssorb12 .av:hover {
+61: 	
 
 Backtrace:
-scss/user/slider.scss:60
+scss/user/slider.scss:56
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/variable.rb:49:in `_perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/node.rb:50:in `perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:366:in `visit_prop'
@@ -66,4 +66,4 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/vendor/listen/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$white\".\A         on line 60 of scss/user/slider.scss\A \A 55: {\A 56: 	\A 57: }\A 58: \A 59: .jssorb12 div {\A 60: 	background-color: $white;\A 61: 	cursor: pointer;\A 62: }\A 63: \A 64: .jssorb12 div:hover, .jssorb12 .av:hover {\A 65: 	"; }
+  content: "Syntax error: Undefined variable: \"$white\".\A         on line 56 of scss/user/slider.scss\A \A 51: {\A 52: 	\A 53: }\A 54: \A 55: .jssorb12 div {\A 56: 	background-color: $white;\A 57: 	cursor: pointer;\A 58: }\A 59: \A 60: .jssorb12 div:hover, .jssorb12 .av:hover {\A 61: 	"; }
