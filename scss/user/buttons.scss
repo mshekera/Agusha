@@ -1,12 +1,13 @@
 button {
 	@extend .rounded;
 	border: none;
-	padding: 4px 45px;
+	padding: 5px 45px;
 }
 
 .middle_button {
 	@extend button;
-	padding: 13px 29px;
+	padding: 10px 29px;
+	font-size: 112.5%;
 }
 
 .huge_button {

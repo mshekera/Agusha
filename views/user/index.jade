@@ -95,13 +95,63 @@ block content
 			div(u='prototype', class='prototype rounded ')
 		span(u='arrowleft', class='jssora21l ')
 		span(u='arrowright', class='jssora21r ')
-	
+		
 		include ../helpers/user/live_program/live_program
 		include ../helpers/user/join_tour/join_tour
 	
-	button.blue.middle_button yo
-	button.yellow.novito_nova Фруктовые соки
-	button.red.huge_button Фруктовые соки
+	.content
+		.left.border_boxed.white
+			.content_block
+				.adorable_table
+					.adorable_cell
+						.top_label А у нас
+						.label.novito_nova.dark_font
+							| Сегодня
+							br
+							| в меню
+						button.blue Еще
+			
+			.content_block
+				.adorable_table
+					.adorable_cell
+						img.product_img(src="/img/user/main/juice.png")
+						.product_label
+							| Фруктовые
+							br
+							| соки
+			
+			.content_block
+				.adorable_table
+					.adorable_cell
+						img.product_img(src="/img/user/main/yogurt.png")
+						.product_label
+							| Детские
+							br
+							| йогурты
+			
+			.content_block
+				.adorable_table
+					.adorable_cell
+						img.product_img(src="/img/user/main/curd.png")
+						.product_label
+							| Детские
+							br
+							| творожки
+			
+		.right.border_boxed.green.adorable_table
+			.adorable_cell
+				.label.novito_nova
+					| Что малышу
+					br
+					| для счастья надо?
+				
+				.top_label
+					Узнайте через
+					
+				.top_label
+					Дней
+				
+				button.middle_button.yellow Зарегистрироваться
 
 block append scripts
 	script(src="/js/plugins/slider/jssor.slider.min.js")

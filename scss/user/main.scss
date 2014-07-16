@@ -6,3 +6,60 @@
 @import "slider";
 @import "helpers/live_program";
 @import "helpers/join_tour";
+
+#main_container {
+	.content {
+		padding: $content_padding;
+		margin-top: 25px;
+		margin-bottom: 95px;
+		height: 315px;
+		
+		.left {
+			width: 65.8%;
+			float: left;
+			margin-right: 1.5%;
+			height: 100%;
+			padding: 23px 23px 54px 36px;
+			
+			.content_block {
+				float: left;
+				width: 25%;
+				height: 100%;
+				
+				.adorable_cell {
+					vertical-align: bottom;
+				}
+				
+				button {
+					font-size: 125%;
+					margin-top: 15px;
+				}
+				
+				.product_img {
+					padding: 0 0 5px;
+					max-height: 189px;
+					max-width: 100%;
+				}
+				
+				.product_label {
+					padding: 4px 0 0;
+				}
+			}
+		}
+		
+		.right {
+			width: 32.7%;
+			float: left;
+			height: 100%;
+			
+			.label {
+				font-size: 45px;
+				line-height: 45px;
+			}
+			
+			.top_label {
+				font-size: 100%;
+			}
+		}
+	}
+}
