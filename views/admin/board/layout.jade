@@ -42,22 +42,28 @@ html(lang="ru")
 							a(href="dashboard")
 								i.fa.fa-dashboard
 								span= "Главная"
-						li(class= (currentHref=='products'?"active":""))
-							a(href="/admin/products")
+						li(class=(['products', 'ages', 'category', 'certificate'].indexOf(currentHref) > -1?'treeview active':'treeview'))
+							a(href="#")
 								i.fa.fa-th
-								span= "Продукты"
-						li(class= (currentHref=='ages'?"active":""))
-							a(href="/admin/ages")
-								i.fa.fa-th
-								span= "Возраста"
-						li(class= (currentHref=='category'?"active":""))
-							a(href="/admin/category")
-								i.fa.fa-th
-								span= "Категории"
-						li(class= (currentHref=='certificate'?"active":""))
-							a(href="/admin/certificate")
-								i.fa.fa-th
-								span= "Сертификаты"
+								span Блоки продукта
+								i.fa.fa-angle-left.pull-right
+							ul.treeview-menu
+								li(class= (currentHref=='products'?"active":""))
+									a(href="/admin/products")
+										i.fa.fa-th
+										span= "Продукты"
+								li(class= (currentHref=='ages'?"active":""))
+									a(href="/admin/ages")
+										i.fa.fa-th
+										span= "Возраста"
+								li(class= (currentHref=='category'?"active":""))
+									a(href="/admin/category")
+										i.fa.fa-th
+										span= "Категории"
+								li(class= (currentHref=='certificate'?"active":""))
+									a(href="/admin/certificate")
+										i.fa.fa-th
+										span= "Сертификаты"
 						li(class=(currentHref=='news'||currentHref=='articles'?'treeview active':'treeview'))
 							a(href="#")
 								i.fa.fa-th
