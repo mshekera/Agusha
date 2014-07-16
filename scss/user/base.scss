@@ -2,6 +2,7 @@ $small_screen: 1280px;
 $min_width: 1016px;
 $hfheight: 80px;
 $line_height: 1.3em;
+$content_padding: 0 11.7%;
 
 body {
 	@extend .base_font;
@@ -12,7 +13,7 @@ body {
 		width: 100%;
 	}
 	@media (min-width: $small_screen) {
-		@include absolute_centered();
+		@include absolute_horizontal_centered;
 		width: 1280px;
 	}
 	@media (max-width: $min_width) {
@@ -29,17 +30,65 @@ ul, li {
 #header {
 	height: $hfheight;
 	position: relative;
+	
+	.menu {
+		text-align: center;
+		
+		.menu_block {
+			width: 25%;
+			height: 100%;
+		}
+	}
 }
 
 #footer {
 	height: $hfheight;
+	padding: $content_padding;
+	font-size: 75%;
+	
+	.content {
+		width: 100%;
+		height: 100%;
+	}
+	
+	#copyright {
+		float: left;
+		width: 25%;
+		height: 100%;
+		
+		.adorable_cell {
+			text-align: left;
+		}
+	}
+	
+	.menu {
+		text-align: center;
+		float: left;
+		height: 100%;
+		width: 70%;
+		
+		.menu_block {
+			width: 16.6%;
+			height: 100%;
+		}
+	}
+	
+	#marker {
+		float: left;
+		width: 5%;
+		height: 100%;
+		
+		.item {
+			width: 34px;
+			height: 34px;
+			background-color: #f7f7f7;
+			display: inline-block;
+		}
+	}
 }
 
 #logo {
-	left: 0;
-	right: 0;
-	margin: auto;
-	position: absolute;
+	@include absolute_horizontal_centered;
 	height: 156px;
     width: 170px;
     z-index: 30;
@@ -54,15 +103,6 @@ ul, li {
 	float: left;
 	width: 50%;
 	height: 100%;
-}
-
-.menu {
-	text-align: center;
-	
-	.menu_block {
-		width: 25%;
-		height: 100%;
-	}
 }
 
 .new_items {
