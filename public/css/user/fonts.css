@@ -1,17 +1,21 @@
 /*
 Syntax error: Undefined variable: "$darkblue".
-        on line 34 of scss/user/fonts.scss
+        on line 33 of scss/user/fonts.scss
 
-29: 	color: #b3b3b3;
-30: 	font-style: italic;
-31: }
-32: 
-33: .darkblue_font {
-34: 	color: $darkblue;
-35: }
+28: 	color: #b3b3b3;
+29: 	font-style: italic;
+30: }
+31: 
+32: .darkblue_font {
+33: 	color: $darkblue;
+34: }
+35: 
+36: .lightblue_font {
+37: 	color: #9fe9fe;
+38: }
 
 Backtrace:
-scss/user/fonts.scss:34
+scss/user/fonts.scss:33
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/variable.rb:49:in `_perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/node.rb:50:in `perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:366:in `visit_prop'
@@ -62,4 +66,4 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/vendor/listen/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$darkblue\".\A         on line 34 of scss/user/fonts.scss\A \A 29: 	color: #b3b3b3;\A 30: 	font-style: italic;\A 31: }\A 32: \A 33: .darkblue_font {\A 34: 	color: $darkblue;\A 35: }"; }
+  content: "Syntax error: Undefined variable: \"$darkblue\".\A         on line 33 of scss/user/fonts.scss\A \A 28: 	color: #b3b3b3;\A 29: 	font-style: italic;\A 30: }\A 31: \A 32: .darkblue_font {\A 33: 	color: $darkblue;\A 34: }\A 35: \A 36: .lightblue_font {\A 37: 	color: #9fe9fe;\A 38: }"; }
