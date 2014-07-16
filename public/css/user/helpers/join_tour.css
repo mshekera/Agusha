@@ -1,11 +1,21 @@
 /*
-Syntax error: Undefined variable: "$white".
-        on line 56 of scss\user\slider.scss
-        from line 1 of scss/user/index.scss
+Syntax error: Undefined variable: "$content_right".
+        on line 6 of scss/user/helpers/join_tour.scss
+
+1: .join_tour {
+2: 	width: 25%;
+3: 	height: 195px;
+4: 	position: absolute;
+5: 	bottom: 25px;
+6: 	right: $content_right;
+7: 	
+8: 	.photo {
+9: 		@include absolute_horizontal_centered;
+10: 		width: 127px;
+11: 		height: 127px;
 
 Backtrace:
-scss\user\slider.scss:56
-scss/user/index.scss:1
+scss/user/helpers/join_tour.scss:6
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/variable.rb:49:in `_perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/node.rb:50:in `perform'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:366:in `visit_prop'
@@ -20,19 +30,6 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perfo
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:389:in `block in visit_rule'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:387:in `visit_rule'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/base.rb:36:in `visit'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:79:in `block in with_base'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:121:in `with_frame'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:79:in `with_base'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:152:in `visit'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:297:in `block (2 levels) in visit_import'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:297:in `map'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:297:in `block in visit_import'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:88:in `block in with_import'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:121:in `with_frame'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:88:in `with_import'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:294:in `visit_import'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/base.rb:36:in `visit'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:79:in `block in with_base'
@@ -69,4 +66,4 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/vendor/listen/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$white\".\A         on line 56 of scss\user\slider.scss\A         from line 1 of scss/user/index.scss"; }
+  content: "Syntax error: Undefined variable: \"$content_right\".\A         on line 6 of scss/user/helpers/join_tour.scss\A \A 1: .join_tour {\A 2: 	width: 25%;\A 3: 	height: 195px;\A 4: 	position: absolute;\A 5: 	bottom: 25px;\A 6: 	right: $content_right;\A 7: 	\A 8: 	.photo {\A 9: 		@include absolute_horizontal_centered;\A 10: 		width: 127px;\A 11: 		height: 127px;"; }
