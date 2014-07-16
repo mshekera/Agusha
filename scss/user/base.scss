@@ -46,11 +46,13 @@ ul, li {
 
 #footer {
 	height: $hfheight;
-	padding: $content_padding;
+	position: relative;
+	margin-top: 13px;
 	font-size: 75%;
 	
 	.content {
-		width: 100%;
+		@include absolute_horizontal_centered;
+		width: 76.6%;
 		height: 100%;
 	}
 	
@@ -133,5 +135,14 @@ ul, li {
 	width: 100%;
 	height: 13px;
 	background-image: url('/img/user/wave_border_bottom.png');
+	z-index: 20;
+}
+
+.top_wave {
+	position: absolute;
+	top: -13px;
+	width: 100%;
+	height: 13px;
+	background-image: url('/img/user/wave_border_top.png');
 	z-index: 20;
 }
