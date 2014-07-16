@@ -24,6 +24,12 @@
 	box-shadow:			$val;
 }
 
+@mixin lovely {
+	content: "";
+    display: block;
+    margin-top: 100%;
+}
+
 textarea {
 	resize: none;
 }
@@ -44,6 +50,10 @@ textarea {
 	position: relative;
 }
 
+.adorable_container:before {
+    @include lovely;
+}
+
 .inline_adorable_container { /* Should have width */
 	position: relative;
 	display: inline-block;
@@ -56,14 +66,14 @@ textarea {
 	}
 }
 
-.lovely {
-	margin-top: 100%;
+.inline_adorable_container:before {
+    @include lovely;
 }
 
 .adorable {
+	@include absolute_centered;
 	max-height: 100%;
 	max-width: 100%;
-	
 }
 
 .adorable_table {
