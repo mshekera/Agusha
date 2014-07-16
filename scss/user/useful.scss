@@ -30,6 +30,14 @@
     margin-top: 100%;
 }
 
+@mixin linear_gradient($val1, $val2, $val3) {
+	background-image: -o-linear-gradient($val1, $val2, $val3);
+	background-image: -moz-linear-gradient($val1, $val2, $val3);
+	background-image: -webkit-linear-gradient($val1, $val2, $val3);
+	background-image: -ms-linear-gradient($val1, $val2, $val3);
+	background-image: linear-gradient($val1, $val2, $val3);
+}
+
 textarea {
 	resize: none;
 }

@@ -77,7 +77,7 @@
 			.count {
 				.number {
 					@include box_shadow(4px 4px 0px 0px rgba(64, 113, 81, 0.3));
-					background: url(/img/user/main/number_bg.png) center no-repeat;
+					@include linear_gradient(bottom, $lightred 50%, #fd7b6a 50%);
 					display: inline-block;
 					font-size: 517%;
 					line-height: 112.5%;
