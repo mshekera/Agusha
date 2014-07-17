@@ -1,3 +1,15 @@
+var main_container = $('#main_container');
+var slider_container = $('#slider_container');
+
+var define_slider_size = function() {
+	var main_container_width = main_container.width();
+	
+	slider_container.width(main_container_width);
+	slider_container.find('.slides').width(main_container_width);
+}
+
+define_slider_size();
+
 var options = {
 	$AutoPlay: true,
 	$SlideDuration: 800, 
@@ -15,7 +27,8 @@ var options = {
 };
 var jssor_slider = new $JssorSlider$('slider_container', options);
 
-function ScaleSlider() {
+function window_resize() {
+	define_slider_size();
 	var parentWidth = $('#slider_container').parent().width();
 	if (parentWidth) {
 		jssor_slider.$SetScaleWidth(parentWidth);
@@ -24,7 +37,7 @@ function ScaleSlider() {
 		window.setTimeout(ScaleSlider, 30);
 }
 
-ScaleSlider();
+window_resize();
 if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
-	$(window).bind('resize', ScaleSlider);
+	$(window).bind('resize', window_resize);
 }
