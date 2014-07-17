@@ -1,20 +1,19 @@
 @import "useful";
 @import "colors";
 @import "fonts";
-@import "buttons";
+@import "form";
 @import "base";
 @import "slider";
 @import "helpers/live_program";
 @import "helpers/join_tour";
 
 @mixin number_pseudo {
+	@include pseudo;
 	background-color: #1B502D;
 	bottom: 0;
-	content: "";
 	height: 10px;
 	margin: auto;
 	overflow: hidden;
-	position: absolute;
 	top: 0;
 	width: 2px;
 }
@@ -25,8 +24,6 @@
 
 #main_container {
 	.content {
-		padding: $content_padding;
-		margin-top: 25px;
 		margin-bottom: 95px;
 		height: 315px;
 		
@@ -91,14 +88,12 @@
 					position: relative;
 					
 					span:before {
+						@include pseudo;
 						background-color: #5CB179;
 						bottom: 0;
-						content: "";
-						display: block;
 						height: 2px;
 						left: 0;
 						margin: auto;
-						position: absolute;
 						right: 0;
 						top: 0;
 						width: 100%;

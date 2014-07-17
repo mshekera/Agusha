@@ -1,7 +1,7 @@
 extends layout
 
 block append header
-	
+	link(rel="stylesheet" href="/css/user/main.css")
 
 block content
 	#slider_container.slider.darkblue
@@ -84,7 +84,8 @@ block content
 				.top_label
 					| Дней
 				
-				button.middle_button.yellow Зарегистрироваться
+				a(href="/registration")
+					button.middle_button.yellow Зарегистрироваться
 
 block append scripts
 	script(src="/js/plugins/slider/jssor.core.js")

@@ -1,24 +1,28 @@
 /*
-Syntax error: Undefined variable: "$bg".
-        on line 21 of scss/user/base.scss
+Syntax error: Undefined mixin 'border_radius'.
+        on line 19 of scss/user/form.scss, in `border_radius'
+        from line 19 of scss/user/form.scss
 
-16: 
-17: body {
-18: 	@extend .base_font;
-19: 	font-family: "PT_Sans_Regular", sans-serif;
-20: 	font-size: 14px;
-21: 	background-color: $bg;
-22: 	@media (max-width: $small_screen) {
-23: 		width: 100%;
-24: 	}
-25: 	@media (min-width: $small_screen) {
-26: 		@include absolute_horizontal_centered;
+14: 	@extend button;
+15: 	padding: 24px 31px;
+16: }
+17: 
+18: input {
+19: 	@include border_radius(5px);
+20: 	@include border_boxed;
+21: 	border: none;
+22: 	height: 58px;
+23: 	width: 100%;
+24: 	padding: 0 22px;
 
 Backtrace:
-scss/user/base.scss:21
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/variable.rb:49:in `_perform'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/script/tree/node.rb:50:in `perform'
-l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:366:in `visit_prop'
+scss/user/form.scss:19:in `border_radius'
+scss/user/form.scss:19
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:320:in `block in visit_mixin'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:98:in `block in with_mixin'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:121:in `with_frame'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:98:in `with_mixin'
+l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:318:in `visit_mixin'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/base.rb:36:in `visit'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:79:in `block in with_base'
@@ -66,4 +70,4 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/vendor/listen/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$bg\".\A         on line 21 of scss/user/base.scss\A \A 16: \A 17: body {\A 18: 	@extend .base_font;\A 19: 	font-family: \"PT_Sans_Regular\", sans-serif;\A 20: 	font-size: 14px;\A 21: 	background-color: $bg;\A 22: 	@media (max-width: $small_screen) {\A 23: 		width: 100%;\A 24: 	}\A 25: 	@media (min-width: $small_screen) {\A 26: 		@include absolute_horizontal_centered;"; }
+  content: "Syntax error: Undefined mixin 'border_radius'.\A         on line 19 of scss/user/form.scss, in `border_radius'\A         from line 19 of scss/user/form.scss\A \A 14: 	@extend button;\A 15: 	padding: 24px 31px;\A 16: }\A 17: \A 18: input {\A 19: 	@include border_radius(5px);\A 20: 	@include border_boxed;\A 21: 	border: none;\A 22: 	height: 58px;\A 23: 	width: 100%;\A 24: 	padding: 0 22px;"; }

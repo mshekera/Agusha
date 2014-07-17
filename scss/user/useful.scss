@@ -12,16 +12,22 @@
 }
 
 @mixin border_radius($size) {
-	-moz-border-radius: 99999em;
-	-webkit-border-radius: 99999em;
-	-khtml-border-radius: 99999em;
-	border-radius: 99999em;
+	-moz-border-radius: $size;
+	-webkit-border-radius: $size;
+	-khtml-border-radius: $size;
+	border-radius: $size;
 }
 
 @mixin box_shadow($val) {
 	-webkit-box-shadow:	$val;
 	-moz-box-shadow:	$val;
 	box-shadow:			$val;
+}
+
+@mixin inset_box_shadow($val) {
+	-webkit-box-shadow:	$val inset;
+	-moz-box-shadow:	$val inset;
+	box-shadow:			$val inset;
 }
 
 @mixin lovely {
@@ -38,6 +44,17 @@
 	background-image: linear-gradient($val1, $val2, $val3);
 }
 
+@mixin pseudo {
+	position: absolute;
+	content: "";
+}
+
+@mixin border_boxed {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 textarea {
 	resize: none;
 }
@@ -48,6 +65,16 @@ textarea {
 
 .error {
 	color: red;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.half {
+	float: left;
+	width: 50%;
+	height: 100%;
 }
 
 /* Useful stuff */
@@ -88,6 +115,7 @@ textarea {
 	display: table;
 	height: 100%;
 	width: 100%;
+	position: relative;
 }
 
 .adorable_cell {
@@ -113,9 +141,7 @@ textarea {
 }
 
 .border_boxed {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	@include border_boxed;
 }
 
 .pull_right {

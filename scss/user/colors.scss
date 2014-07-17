@@ -8,8 +8,10 @@ $red: #ff9486;
 $darkred: #e6625f;
 $lightred: #ffa598;
 $green: #71db96;
+$darkgreen: #64cb81;
 $white: #ffffff;
 $bg: #f2eeeb;
+$light: #999999;
 
 .blue {
 	background-color: $blue;
@@ -55,14 +57,7 @@ $bg: #f2eeeb;
 	color: $white;
 }
 
-.base_font {
-	color: #666666;
-}
-
-.light_font {
-	color: #999999;
-}
-
-.dark_font {
-	color: #333333;
+.darkgreen {
+	background-color: $darkgreen;
+	color: $white;
 }

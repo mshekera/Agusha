@@ -1,0 +1,31 @@
+button {
+	@extend .rounded;
+	border: none;
+	padding: 5px 45px;
+}
+
+.middle_button {
+	@extend button;
+	padding: 10px 29px;
+	font-size: 112.5%;
+}
+
+.huge_button {
+	@extend button;
+	padding: 24px 31px;
+}
+
+input {
+	@include border_radius(5px);
+	@include border_boxed;
+	border: none;
+	height: 58px;
+	width: 100%;
+	padding: 0 22px;
+	color: $light;
+	text-transform: uppercase;
+}
+
+input:focus {
+	@include inset_box_shadow(0 0 0 3px $yellow);
+}

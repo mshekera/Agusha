@@ -1,20 +1,59 @@
 extends ../layout
 
 block append header
-	
+	link(rel="stylesheet" href="/css/user/registration.css")
 
 block append content
-	form#registration_form(method="POST", action="/registration/register")
-		input(type="text", name="login", placeholder="Ваше имя и фамилия")
-		span.error
-		input(type="email", name="email", placeholder="Ваш e-mail")
-		span.error
-		button(type="submit") Зарегистрироваться
-	
-	if err
-		.error
-			| #{err}
+	.content
+		include ../../helpers/user/breadcrumbs/breadcrumbs
+		
+		.white
+			.topper.green.adorable_table
+				.adorable_cell
+					.label.novito_nova
+						| Здравствуйте, у нас для вас отличные новости!
+					
+					.desc
+						| Совсем скоро на свет появится новый ресурс для самых современных родителей.
+						br
+						| Мы хотим сделать его по-настоящему полезным, а потому
+						br
+						| без ваших рекомендаций нам не обойтись.
+			
+			.pentagon.white_font.border_boxed
+				.pentagon_content.adorable_table
+					.adorable_cell
+						.label.novito_nova Будьте первооткрывателями!
+			
+			.map.centered
+				img(src="/img/user/registration/map.png")
+			
+			.top_label.dark_font.centered Зарегистрируйтесь сейчас
+			.label.novito_nova.centered.green_font
+				| И получите 1000 баллов, которые вы сможете обменять
+				br
+				| на подарки после открытия сайта!
+			
+			form#registration_form.footer.green
+				.inputs
+					.content.border_boxed
+						.half.left
+							.adorable_table
+								.adorable_cell
+									.input
+										input(type="text", name="login", placeholder="Ваше имя и фамилия")
+						
+						.half.right
+							.adorable_table
+								.adorable_cell
+									.input
+										input(type="email", name="email", placeholder="Ваш e-mail")
+				
+				.submit.darkgreen.adorable_table
+					.adorable_cell
+						button.white.darkgreen_font.middle_button.uppercase(type="submit") Зарегистрироваться
 
 block append scripts
+	script(src="/js/plugins/placeholders/placeholders.min.js")
 	script(src="/js/plugins/validate/jquery.validate.js")
 	script(src="/js/user/registration/registration.js")
