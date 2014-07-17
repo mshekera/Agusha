@@ -1,23 +1,23 @@
 /*
 Syntax error: Undefined mixin 'border_radius'.
-        on line 19 of scss/user/form.scss, in `border_radius'
-        from line 19 of scss/user/form.scss
+        on line 18 of scss/user/form.scss, in `border_radius'
+        from line 18 of scss/user/form.scss
 
-14: 	@extend button;
-15: 	padding: 24px 31px;
-16: }
-17: 
-18: input {
-19: 	@include border_radius(5px);
-20: 	@include border_boxed;
-21: 	border: none;
-22: 	height: 58px;
-23: 	width: 100%;
-24: 	padding: 0 22px;
+13: 	@extend button;
+14: 	padding: 24px 31px;
+15: }
+16: 
+17: input {
+18: 	@include border_radius(5px);
+19: 	@include border_boxed;
+20: 	border: none;
+21: 	height: 58px;
+22: 	width: 100%;
+23: 	padding: 0 22px;
 
 Backtrace:
-scss/user/form.scss:19:in `border_radius'
-scss/user/form.scss:19
+scss/user/form.scss:18:in `border_radius'
+scss/user/form.scss:18
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/tree/visitors/perform.rb:320:in `block in visit_mixin'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:98:in `block in with_mixin'
 l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/lib/sass/stack.rb:121:in `with_frame'
@@ -70,4 +70,4 @@ l:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.3.10/vendor/listen/lib/listen/ada
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'border_radius'.\A         on line 19 of scss/user/form.scss, in `border_radius'\A         from line 19 of scss/user/form.scss\A \A 14: 	@extend button;\A 15: 	padding: 24px 31px;\A 16: }\A 17: \A 18: input {\A 19: 	@include border_radius(5px);\A 20: 	@include border_boxed;\A 21: 	border: none;\A 22: 	height: 58px;\A 23: 	width: 100%;\A 24: 	padding: 0 22px;"; }
+  content: "Syntax error: Undefined mixin 'border_radius'.\A         on line 18 of scss/user/form.scss, in `border_radius'\A         from line 18 of scss/user/form.scss\A \A 13: 	@extend button;\A 14: 	padding: 24px 31px;\A 15: }\A 16: \A 17: input {\A 18: 	@include border_radius(5px);\A 19: 	@include border_boxed;\A 20: 	border: none;\A 21: 	height: 58px;\A 22: 	width: 100%;\A 23: 	padding: 0 22px;"; }
