@@ -1,4 +1,4 @@
-@import 'dynamic';
+@import '../dynamic/dynamic';
 
 button {
 	@include border_radius(99999em);
