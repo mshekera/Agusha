@@ -26,3 +26,28 @@ exports.setDate = (val) ->
 		return val
 	
 	return moment(val, 'DD/MM/YYYY').format('MM/DD/YYYY')
+
+exports.declension = (digit, onlyword) ->
+	onlyword = onlyword || true
+	
+	expr = 'день дня дней'
+	
+	digit = digit + ''
+	res = ''
+	expr_list = expr.split(' ')
+	reg = /[^0-9]+/
+	i = digit.replace(reg, '')
+	if onlyword
+		digit = ''
+	if i >= 5 and i <= 20
+		res = digit + ' ' + expr_list[2]
+	else
+		i %= 10
+		if i is 1
+			res = digit + ' ' + expr_list[0]
+		else if i >= 2 and i <= 4
+			res = digit + ' ' + expr_list[1]
+		else
+			res = digit + ' ' + expr_list[2]
+	
+	res.trim()

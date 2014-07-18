@@ -75,15 +75,11 @@ block content
 					| Узнайте через
 				
 				.count
-					.number
-						span 1
-					.number
-						span 2
-					.number
-						span 6
-					
-				.top_label
-					| Дней
+					- each d, key in daysArray
+						.number
+							span #{d}
+				
+				.top_label #{declension}
 				
 				a(href="/registration")
 					button.middle_button.yellow Зарегистрироваться
