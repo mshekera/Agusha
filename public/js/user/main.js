@@ -6,20 +6,12 @@ var define_slider_size = function() {
 	var slider_height = (slider_container.height() | 0) + 1;
 	var slides = slider_container.find('.slides');
 	
-	console.log(main_container_width);
-	console.log(slider_height);
-	
 	slider_container.css({
 		width: main_container_width,
 		height: slider_height
 	});
 	
 	$('.slides').css({
-		width: main_container_width,
-		height: slider_height
-	});
-	
-	$('.slides > div').css({
 		width: main_container_width,
 		height: slider_height
 	});
