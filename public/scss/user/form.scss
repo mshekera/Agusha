@@ -1,5 +1,7 @@
+@import 'dynamic';
+
 button {
-	@extend .rounded;
+	@include border_radius(99999em);
 	border: none;
 	padding: 5px 45px;
 }
@@ -7,6 +9,7 @@ button {
 .middle_button {
 	@extend button;
 	padding: 10px 29px;
+	font-size: 112.5%;
 }
 
 .huge_button {

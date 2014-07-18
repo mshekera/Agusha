@@ -1,0 +1,94 @@
+@import 'dynamic';
+
+textarea {
+	resize: none;
+}
+
+.centered {
+	text-align: center;
+}
+
+.error {
+	color: red;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.half {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+/* Useful stuff */
+
+.adorable_container { /* Should have width */
+	@include absolute_centered;
+	display: table;
+	position: relative;
+	
+	&:before {
+		@include lovely;
+	}
+}
+
+.inline_adorable_container { /* Should have width */
+	position: relative;
+	display: inline-block;
+	line-height: 0;
+	letter-spacing: -1px;
+	
+	.adorable {
+		line-height: normal;
+		letter-spacing: normal;
+	}
+	
+	&:before {
+		@include lovely;
+	}
+}
+
+.adorable {
+	@include absolute_centered;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.adorable_table {
+	display: table;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.adorable_cell {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	white-space: normal;
+}
+
+.rounded {
+	@include border_radius(99999em);
+}
+
+.force_height {
+	overflow: auto;
+	position: relative;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.border_boxed {
+	@include border_boxed;
+}
+
+.pull_right {
+	float: right;
+}

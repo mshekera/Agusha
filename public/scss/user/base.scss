@@ -1,21 +1,8 @@
-@import "../normalize/normalize";
-
-$small_screen: 1280px;
-$min_width: 1016px;
-$hfheight: 80px;
-$line_height: 1.3em;
-$content_right: 11.7%;
-$content_padding: 0 11.7%;
-
-@mixin pentagon_pseudo {
-	@include pseudo;
-	height: 45px;
-	bottom: 0;
-	width: 50%;
-}
+@import '../normalize/normalize';
+@import 'dynamic';
 
 body {
-	@extend .base_font;
+	color: $base;
 	font-family: "PT_Sans_Regular", sans-serif;
 	font-size: 14px;
 	background-color: $bg;
@@ -40,16 +27,18 @@ ul, li {
 #header {
 	height: $hfheight;
 	position: relative;
+	font-size: 112.5%;
 	
 	.menu {
 		text-align: center;
-		
-		.menu_block {
-			width: 25%;
-			height: 100%;
-			position: relative;
-			display: inline-block;
-		}
+	}
+	
+	.menu_block {
+		width: 25%;
+		min-width: 160px;
+		height: 100%;
+		position: relative;
+		display: inline-block;
 	}
 }
 
@@ -64,7 +53,7 @@ ul, li {
 	height: $hfheight;
 	position: relative;
 	margin-top: 13px;
-	font-size: 75%;
+	font-size: 87.5%;
 	
 	.content {
 		@include absolute_horizontal_centered;
@@ -87,13 +76,13 @@ ul, li {
 		float: left;
 		height: 100%;
 		width: 70%;
-		
-		.menu_block {
-			width: 16.6%;
-			height: 100%;
-			position: relative;
-			display: inline-block;
-		}
+	}
+	
+	.menu_block {
+		width: 16.6%;
+		height: 100%;
+		position: relative;
+		display: inline-block;
 	}
 	
 	#marker {
@@ -161,7 +150,7 @@ ul, li {
 
 .top_label {
 	text-transform: uppercase;
-	font-size: 125%;
+	font-size: 143%;
 	padding: 5px;
 }
 
@@ -182,11 +171,11 @@ ul, li {
 		position: relative;
 		height: 100%;
 		z-index: 1;
-		
-		.label {
-			font-size: 55px;
-			line-height: 55px;
-		}
+	}
+	
+	.label {
+		font-size: 55px;
+		line-height: 55px;
 	}
 }
 

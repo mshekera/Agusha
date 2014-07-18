@@ -1,3 +1,5 @@
+@import 'dynamic';
+
 $slider_height: 469px;
 
 .slider {
@@ -15,18 +17,18 @@ $slider_height: 469px;
 		top: 0px;
 		width: 100%;
 		height: $slider_height;
-		
-		.text {
-			@include absolute_centered;
-			width: 25%;
-			height: 100%;
-			
-			.link {
-				padding: 5px;
-				font-size: 112.5%;
-				display: block;
-			}
-		}
+	}
+	
+	.text {
+		@include absolute_centered;
+		width: 25%;
+		height: 100%;
+	}
+	
+	.link {
+		padding: 5px;
+		font-size: 125%;
+		display: block;
 	}
 }
 

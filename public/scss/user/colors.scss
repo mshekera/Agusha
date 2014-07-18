@@ -1,17 +1,4 @@
-$blue: #4bc4ee;
-$darkblue: #45b4e8;
-$verydarkblue: #105ba6;
-$lightblue: #61e5f9;
-$yellow: #ffe690;
-$brown: #9b7155;
-$red: #ff9486;
-$darkred: #e6625f;
-$lightred: #ffa598;
-$green: #71db96;
-$darkgreen: #64cb81;
-$white: #ffffff;
-$bg: #f2eeeb;
-$light: #999999;
+@import 'dynamic';
 
 .blue {
 	background-color: $blue;

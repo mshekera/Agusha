@@ -1,3 +1,5 @@
+@import 'dynamic';
+
 @font-face {
     font-family: 'Novito_Nova_Thin';
     src: url('/css/fonts/Novito_Nova_Thin.eot');
@@ -46,7 +48,7 @@
 }
 
 .base_font {
-	color: #666666;
+	color: $base;
 }
 
 .light_font {
