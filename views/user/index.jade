@@ -4,8 +4,8 @@ block append header
 	link(rel="stylesheet" href="/css/user/main.css")
 
 block content
-	#slider_container.slider.darkblue
-		.slides(u='slides')
+	#slider_container.slider.darkblue.adorable_container
+		.slides.adorable(u='slides')
 			- each g, key in gallery
 				div
 					img(src='/img/user/banner/banner_1_1.png')

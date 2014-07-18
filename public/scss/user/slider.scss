@@ -1,13 +1,11 @@
 @import 'dynamic';
 
-$slider_height: 469px;
-
 .slider {
 	position: relative;
 	top: 0px;
 	left: 0px;
 	width: 100%;
-	height: $slider_height;
+	overflow: hidden !important;
 	
 	.slides {
 		cursor: move;
@@ -16,7 +14,10 @@ $slider_height: 469px;
 		left: 0px;
 		top: 0px;
 		width: 100%;
-		height: $slider_height;
+		
+		img {
+			max-height: 100%;
+		}
 	}
 	
 	.text {
@@ -29,6 +30,10 @@ $slider_height: 469px;
 		padding: 5px;
 		font-size: 125%;
 		display: block;
+	}
+	
+	&:before {
+		margin-top: 36.6%;
 	}
 }
 

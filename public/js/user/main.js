@@ -3,15 +3,32 @@ var slider_container = $('#slider_container');
 
 var define_slider_size = function() {
 	var main_container_width = main_container.width();
+	var slider_height = (slider_container.height() | 0) + 1;
+	var slides = slider_container.find('.slides');
 	
-	slider_container.width(main_container_width);
-	slider_container.find('.slides').width(main_container_width);
+	console.log(main_container_width);
+	console.log(slider_height);
+	
+	slider_container.css({
+		width: main_container_width,
+		height: slider_height
+	});
+	
+	$('.slides').css({
+		width: main_container_width,
+		height: slider_height
+	});
+	
+	$('.slides > div').css({
+		width: main_container_width,
+		height: slider_height
+	});
 }
 
 define_slider_size();
 
 var options = {
-	$AutoPlay: true,
+	//$AutoPlay: true,
 	$SlideDuration: 800, 
 	$BulletNavigatorOptions: {
 		$Class: $JssorBulletNavigator$,
@@ -28,13 +45,9 @@ var options = {
 var jssor_slider = new $JssorSlider$('slider_container', options);
 
 function window_resize() {
-	define_slider_size();
 	var parentWidth = $('#slider_container').parent().width();
-	if (parentWidth) {
-		jssor_slider.$SetScaleWidth(parentWidth);
-	}
-	else
-		window.setTimeout(ScaleSlider, 30);
+	
+	jssor_slider.$SetScaleWidth(parentWidth);
 }
 
 window_resize();
