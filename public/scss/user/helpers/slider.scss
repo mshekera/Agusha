@@ -7,20 +7,6 @@
 	width: 100%;
 	overflow: hidden !important;
 	
-	.slides {
-		cursor: move;
-		position: absolute;
-		overflow: hidden;
-		left: 0px;
-		top: 0px;
-		width: 100%;
-		
-		img {
-			@include image_fix;
-			max-height: 100%;
-		}
-	}
-	
 	.text {
 		@include absolute_centered;
 		width: 25%;
@@ -35,6 +21,20 @@
 	
 	&:before {
 		margin-top: 36.6%;
+	}
+}
+
+.slides {
+	cursor: move;
+	position: absolute;
+	overflow: hidden;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	
+	img {
+		@include image_fix;
+		max-height: 100%;
 	}
 }
 
