@@ -26,6 +26,10 @@
 	box-shadow:			$val;
 }
 
+@mixin image_fix {
+	@include box_shadow(0 0 0 rgba(0, 0, 0, 0));
+}
+
 @mixin inset_box_shadow($val) {
 	-webkit-box-shadow:	$val inset;
 	-moz-box-shadow:	$val inset;

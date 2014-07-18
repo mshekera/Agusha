@@ -103,6 +103,10 @@ ul, li {
 	@include absolute_horizontal_centered;
     width: 12.5%;
     z-index: 30;
+	
+	img {
+		@include image_fix;
+	}
 }
 
 .new_items {

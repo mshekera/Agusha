@@ -16,6 +16,7 @@
 		width: 100%;
 		
 		img {
+			@include image_fix;
 			max-height: 100%;
 		}
 	}
