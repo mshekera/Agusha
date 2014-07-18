@@ -20,7 +20,7 @@ var define_slider_size = function() {
 define_slider_size();
 
 var options = {
-	//$AutoPlay: true,
+	$AutoPlay: true,
 	$SlideDuration: 800, 
 	$BulletNavigatorOptions: {
 		$Class: $JssorBulletNavigator$,
