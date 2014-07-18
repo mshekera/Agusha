@@ -8,7 +8,8 @@ block content
 		.slides.adorable(u='slides')
 			- each g, key in gallery
 				div
-					img(src='/img/user/banner/banner_1_1.png')
+					- var src = '/img/user/banner/' + g.img
+					img(src=src)
 					.text
 						.adorable_table
 							.adorable_cell
