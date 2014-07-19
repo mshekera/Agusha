@@ -183,16 +183,16 @@ ul, li {
 		font-size: 55px;
 		line-height: 55px;
 	}
-}
-
-.pentagon:before {
-	@include pentagon_pseudo;
-	@include linear_gradient(to left bottom, $darkgreen 50%, transparent 50%);
-	left: 0;
-}
-
-.pentagon:after {
-	@include pentagon_pseudo;
-	@include linear_gradient(to right bottom, $darkgreen 50%, transparent 50%);
-	right: 0;
+	
+	&:before {
+		@include pentagon_pseudo;
+		@include linear_gradient(to left bottom, $darkgreen 50%, transparent 50%);
+		left: 0;
+	}
+	
+	&:after {
+		@include pentagon_pseudo;
+		@include linear_gradient(to right bottom, $darkgreen 50%, transparent 50%);
+		right: 0;
+	}
 }

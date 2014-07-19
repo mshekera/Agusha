@@ -20,8 +20,13 @@
 	.map {
 		img {
 			max-width: 100%;
-			margin-bottom: 42px;
+			margin-bottom: 35px;
 		}
+	}
+	
+	.top_label {
+		font-size: 115%;
+		margin-bottom: 5px;
 	}
 	
 	.label.green_font {
@@ -55,5 +60,9 @@
 	
 	.submit {
 		height: 80px;
+		
+		.middle_button {
+			font-size: 100%;
+		}
 	}
 }
