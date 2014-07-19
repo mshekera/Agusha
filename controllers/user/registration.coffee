@@ -6,8 +6,15 @@ Logger = require '../../lib/logger'
 
 Client = require '../../lib/client'
 
+tree = require '../../utils/tree'
+
+breadcrumbs = require '../../meta/breadcrumbs'
+
 exports.index = (req, res) ->
-	View.renderWithSession req, res, 'user/registration/registration'
+	data =
+		breadcrumbs: tree.findWithParents breadcrumbs, 'registration'
+	
+	View.renderWithSession req, res, 'user/registration/registration', data
 
 exports.register = (req, res) ->
 	data = {}
