@@ -1,0 +1,48 @@
+.message.inline_adorable_container
+	.adorable
+		- var topClass = 'message_top adorable_table'
+		
+		if message
+			- topClass += ' green'
+		else
+			- topClass += ' red'
+		
+		div(class=topClass)
+			.adorable_cell
+				- var msg = messageLabel || 'Ошибка'
+				.label.novito_nova.white_font #{msg}
+				
+				- var msg = err || message
+				.top_label.non_uppercase.dark_font #{msg}
+				
+				.top_label.white_font САЙТ ОТКРОЕТСЯ 1.09.2014!
+		
+		- var bottomClass = 'message_bottom adorable_table'
+		
+		if message
+			- bottomClass += ' darkgreen'
+		else
+			- bottomClass += ' darkred'
+		
+		- var darkgreen_font = 'darkgreen_font'
+		- var darkred_font = 'darkred_font'
+		
+		div(class=bottomClass)
+			.adorable_cell
+				- var btnClass = 'middle_button white uppercase bold close'
+				
+				if message
+					- btnClass += ' ' + darkgreen_font
+				else
+					- btnClass += ' ' + darkred_font
+				
+				button(class=btnClass) Закрыть
+		
+		- var btnClass = 'close_button close'
+				
+		if message
+			- btnClass += ' ' + darkgreen_font
+		else
+			- btnClass += ' ' + darkred_font
+		
+		div(class=btnClass) &times;

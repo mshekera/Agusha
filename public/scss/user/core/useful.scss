@@ -16,6 +16,10 @@ textarea {
 	text-transform: uppercase;
 }
 
+.non_uppercase {
+	text-transform: none !important;
+}
+
 .half {
 	float: left;
 	width: 50%;

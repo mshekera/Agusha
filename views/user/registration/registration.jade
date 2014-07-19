@@ -7,6 +7,9 @@ block append content
 	.content
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
+		- if (err || message)
+			include ../../helpers/user/message/message
+		
 		.white
 			.topper.green.adorable_table
 				.adorable_cell
@@ -34,7 +37,7 @@ block append content
 				br
 				| на подарки после открытия сайта!
 			
-			form#registration_form.footer.green
+			form#registration_form.footer.green(method="POST", action="/registration/register")
 				.inputs
 					.content.border_boxed
 						.half.left
@@ -56,4 +59,5 @@ block append content
 block append scripts
 	script(src="/js/plugins/placeholders/placeholders.min.js")
 	script(src="/js/plugins/validate/jquery.validate.js")
+	script(src="/js/plugins/modal/jquery.easyModal.js")
 	script(src="/js/user/registration/registration.js")

@@ -30,7 +30,10 @@ exports.register = (req, res) ->
 		() ->
 			res.redirect '/registration/success/' + data.client._id
 	], (err) ->
-		error = err.message or err
+		if err.code == 11000
+			error = 'Указанный e-mail уже зарегистрирован'
+		else
+			error = err.message or err
 		
 		Logger.log 'info', "Error in controllers/user/registration: #{error}"
 		req.session.err = error

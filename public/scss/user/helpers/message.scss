@@ -1,0 +1,29 @@
+@import '../dynamic/dynamic';
+
+.message {
+	width: 75%;
+	
+	.close_button {
+		position: absolute;
+		right: 20px;
+		top: 15px;
+		font-size: 120%;
+		cursor: pointer;
+	}
+	
+	&:before {
+		margin-top: 45%;
+	}
+}
+
+.message_top {
+	height: 75%;
+	
+	.top_label {
+		font-size: 112.5%;
+	}
+}
+
+.message_bottom {
+	height: 25%;
+}

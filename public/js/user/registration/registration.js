@@ -1,3 +1,9 @@
+$('.message').easyModal({
+	autoOpen: true,
+	overlayOpacity: 0.9,
+	overlayColor: "#ffffff",
+});
+
 $('#registration_form').submit(function(ev) {
 	var form = $(this);
 	registration_validate(form);

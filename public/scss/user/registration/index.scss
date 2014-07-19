@@ -1,5 +1,6 @@
 @import '../dynamic/dynamic';
 @import '../helpers/breadcrumbs';
+@import '../helpers/message';
 
 .content {
 	margin-bottom: 50px;
@@ -24,9 +25,11 @@
 		}
 	}
 	
-	.top_label {
-		font-size: 115%;
-		margin-bottom: 5px;
+	.white {
+		.top_label {
+			font-size: 115%;
+			margin-bottom: 5px;
+		}
 	}
 	
 	.label.green_font {
