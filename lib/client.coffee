@@ -5,10 +5,13 @@ Model = require './model'
 Logger = require './logger'
 Mail = require './mail'
 
-exports.sendMail = (client, template, subject, callback) ->
+exports.sendMail = (data, callback) ->
 	options =
-		subject: subject
-		login: client.login
-		email: client.email
+		subject: data.subject
+		login: data.client.login
+		email: data.client.email
 	
-	Mail.send template, options, callback
+	if data.salt
+		options.salt = data.salt
+	
+	Mail.send data.template, options, callback

@@ -12,6 +12,7 @@ Router.get '/', Main.index
 Router.get '/registration', Registration.index
 Router.get '/registration/success', Registration.success
 Router.get '/registration/success/:id', Registration.success
+Router.get '/registration/activate/:salt', Registration.activate
 
 Router.post '/registration/invite', Registration.invite
 Router.post '/registration/register', Registration.register

@@ -14,6 +14,7 @@ block content
 						th created_at
 						th type
 						th invited_by
+						th active
 				tbody
 					- each u, key in clients
 						tr(data-id='#{u._id}')
@@ -24,6 +25,7 @@ block content
 							td
 								if u.invited_by
 									| #{u.invited_by.login}
+							td #{u.active}
 
 block append scripts
 	script(src="../js/admin/plugins/datatables/jquery.dataTables.js" type="text/javascript")

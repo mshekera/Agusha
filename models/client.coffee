@@ -34,6 +34,9 @@ schema = new mongoose.Schema
 	invited_by:
 		type: ObjectId
 		ref: 'Client'
+	active:
+		type: Boolean
+		default: false
 ,
 	collection: 'client'
 
