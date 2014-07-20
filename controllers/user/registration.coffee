@@ -65,7 +65,10 @@ exports.invite = (req, res) ->
 			res.redirect path
 
 inviteErr = (err, req) ->
-	error = err.message or err
+	if err.code == 11000
+		error = 'Указанный e-mail уже зарегистрирован'
+	else
+		error = err.message or err
 	
 	Logger.log 'info', "Error in controllers/user/registration: #{error}"
 	req.session.err = error
@@ -79,9 +82,14 @@ sendInviteMail = (client, callback) ->
 		callback null
 
 exports.success = (req, res) ->
-	data = {}
+	data =
+		breadcrumbs: tree.findWithParents breadcrumbs, 'registration'
 	
 	if req.params.id?
 		data.invited_by = req.params.id
 	
-	View.renderWithSession req, res, 'user/registration/success', data
+	if not req.session.err
+		data.messageLabel = 'Спасибо за регистрацию!'
+		data.message = 'В ближашее время на ваш e-mail придет письмо<br />с подтверждением.'
+	
+	View.renderWithSession req, res, 'user/registration/success/success', data

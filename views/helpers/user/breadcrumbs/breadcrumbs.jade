@@ -1,8 +1,9 @@
 .breadcrumbs.brown_font
 	a(href='/') Главная
-	- each b, key in breadcrumbs
-		span  / 
-			if b.href
-				a(href=b.href) #{b.title}
-			else
-				| #{b.title}
+	if breadcrumbs
+		- each b, key in breadcrumbs
+			span  / 
+				if b.href
+					a(href=b.href) #{b.title}
+				else
+					| #{b.title}

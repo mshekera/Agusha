@@ -1,3 +1,21 @@
+$('.message').easyModal({
+	autoOpen: true,
+	overlayOpacity: 0.9,
+	overlayColor: "#ffffff",
+});
+
+$('#add_client').on('click', function() {
+	var client_block = $('.client_block');
+	var template = $('#add_client_tmpl').html();
+	var i = client_block.length;
+	
+	var html = _.template(template, {
+		i: i
+	});
+	
+	$('#client_container').append(html);
+});
+
 $('#invite_form').submit(function(ev) {
 	var form = $(this);
 	invite_validate(form);

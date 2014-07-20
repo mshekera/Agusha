@@ -10,10 +10,10 @@
 		div(class=topClass)
 			.adorable_cell
 				- var msg = messageLabel || 'Ошибка'
-				.label.novito_nova.white_font #{msg}
+				.label.novito_nova.white_font !{msg}
 				
 				- var msg = err || message
-				.top_label.non_uppercase.dark_font #{msg}
+				.top_label.non_uppercase.dark_font !{msg}
 				
 				.top_label.white_font САЙТ ОТКРОЕТСЯ 1.09.2014!
 		

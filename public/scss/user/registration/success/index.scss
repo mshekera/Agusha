@@ -1,0 +1,52 @@
+@import '../../dynamic/dynamic';
+@import '../../helpers/breadcrumbs';
+@import '../../helpers/message';
+
+.content {
+	.topper {
+		height: 265px;
+		margin-bottom: 20px;
+		
+		.label {
+			margin-bottom: 15px;
+		}
+	}
+	
+	.top_label {
+		font-size: 112.5%;
+		line-height: 150%;
+	}
+	
+	> .white {
+		margin-bottom: 50px;
+		
+		> .top_label {
+			height: 130px;
+		}
+	}
+	
+	.invite {
+		padding-bottom: 25px;
+	}
+	
+	.inputs .content {
+		padding-top: 50px !important;
+	}
+	
+	.client_block {
+		overflow: hidden;
+	}
+	
+	.more {
+		padding-bottom: 30px;
+		
+		.top_label {
+			padding: 0;
+		}
+	}
+	
+	#add_client {
+		border-bottom: 1px dashed;
+		cursor: pointer;
+	}
+}

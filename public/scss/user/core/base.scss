@@ -196,3 +196,36 @@ ul, li {
 		right: 0;
 	}
 }
+
+.footer {
+	min-height: 238px;
+}
+
+.inputs {
+	min-height: 158px;
+	
+	.content {
+		height: 100%;
+		margin: 0;
+	}
+	
+	.right {
+		.input {
+			margin-left: 40px;
+		}
+	}
+	
+	.left {
+		.input {
+			margin-right: 40px;
+		}
+	}
+}
+
+.submit {
+	height: 80px;
+	
+	.middle_button {
+		font-size: 100%;
+	}
+}

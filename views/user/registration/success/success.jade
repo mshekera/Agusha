@@ -1,0 +1,70 @@
+extends ../../layout
+
+block append header
+	link(rel="stylesheet" href="/css/user/registration/success/success.css")
+
+mixin add_client(i)
+	.client_block(class!='client_block_#{i}', data-key!='#{i}')
+		.half.left
+			.adorable_table
+				.adorable_cell
+					.input
+						input(type="text", name!="client[#{i}][login]", placeholder="Имя и фамилия друга")
+		
+		.half.right
+			.adorable_table
+				.adorable_cell
+					.input
+						input(type="email", name!="client[#{i}][email]", placeholder="E-mail друга")
+
+block append content
+	.content
+		include ../../../helpers/user/breadcrumbs/breadcrumbs
+		
+		- if (err || message)
+			include ../../../helpers/user/message/message
+		
+		.topper.blue.adorable_table
+			.adorable_cell
+				.label.novito_nova
+					| Поздравляем, вы зарегистрированы!
+				
+				.top_label
+					| После открытия сайта вы сможете воспользоваться всеми упомянутыми преимуществами и
+					br
+					| оставить свой отзыв
+		
+		.white
+			.top_label.non_uppercase.adorable_table
+				.adorable_cell
+					| Среди ваших друзей есть молодые родители? Обрадуйте их! Отправьте им приглашение на сайт,
+					br
+					| чтоб и они были в курсе всего самого полезного и интересного. Вместе веселее!
+			
+			.invite.centered
+					img(src="/img/user/registration/invite.png")
+		
+			form#registration_form.footer.green(method="POST", action="/registration/invite")
+				if invited_by
+					input(type="hidden", name="invited_by", value="#{invited_by}")
+				
+				.inputs
+					.content.border_boxed
+						#client_container
+							mixin add_client(0)
+						
+						.more.centered
+							.top_label
+								span#add_client Пригласить еще друзей
+				
+				.submit.darkgreen.adorable_table
+					.adorable_cell
+						button.white.darkgreen_font.middle_button.uppercase.bold(type="submit") Отправить
+
+block append scripts
+	script(src="/js/plugins/underscore/underscore-min.js")
+	script(src="/js/plugins/modal/jquery.easyModal.js")
+	script(src="/js/plugins/validate/jquery.validate.js")
+	script#add_client_tmpl(type='text/template')
+		mixin add_client('<%=i%>')
+	script(src="/js/user/registration/invite.js")
