@@ -53,7 +53,7 @@ var validate_email = function(validation, i) {
 var invite_validate = function(form) {
 	var	validation = {rules: {}, messages: {}},
 		rule,
-		invite_items = $('.invite_item'),
+		invite_items = $('.client_block'),
 		i;
 	
 	for(i = invite_items.length; i--;) {

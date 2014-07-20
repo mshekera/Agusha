@@ -44,7 +44,7 @@ block append content
 			.invite.centered
 					img(src="/img/user/registration/invite.png")
 		
-			form#registration_form.footer.green(method="POST", action="/registration/invite")
+			form#invite_form.footer.green(method="POST", action="/registration/invite")
 				if invited_by
 					input(type="hidden", name="invited_by", value="#{invited_by}")
 				
