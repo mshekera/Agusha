@@ -16,27 +16,30 @@
 .age_filter {
 	height: 120px;
 	text-align: center;
+	display: table;
+	width: 100%;
+	table-layout: fixed;
 }
 
 .age_block {
-	width: 14.2%;
-	display: inline-block;
+	display: table-cell;
 	vertical-align: top;
 	height: 100%;
-	position: relative;
 	cursor: pointer;
 	
 	&:hover {
 		background-color: $el_bg;
 		
-		&:after {
-			@include pseudo;
-			@include absolute_horizontal_centered;
-			bottom: -10px;
-			width: 0;
-			border-left: 10px solid transparent;
-			border-right: 10px solid transparent;
-			border-top: 10px solid $el_bg;
+		.adorable_table {
+			&:after {
+				@include pseudo;
+				@include absolute_horizontal_centered;
+				bottom: -10px;
+				width: 0;
+				border-left: 10px solid transparent;
+				border-right: 10px solid transparent;
+				border-top: 10px solid $el_bg;
+			}
 		}
 	}
 }

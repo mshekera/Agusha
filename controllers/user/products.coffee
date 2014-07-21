@@ -15,10 +15,18 @@ exports.index = (req, res) ->
 	
 	asyncFunctions = Product.addAsyncFunctionsByFilter data, req.params.category, req.params.age
 	
-	asyncFunctions.push (next) ->
-		View.render 'user/products/products', res, data
+	asyncFunctions = asyncFunctions.concat [
+		(next) ->
+			Product.getAgesAndCategories next
+		(results) ->
+			data.ages = results.ages
+			data.categories = results.categories
+			
+			View.render 'user/products/products', res, data
+	]
 	
 	async.waterfall asyncFunctions, (err) ->
+		console.log err
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/products/index: #{error}"
 

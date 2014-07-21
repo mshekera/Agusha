@@ -20,53 +20,20 @@ block append content
 						div
 							span Все продукты
 			
-			.age_block
-				.adorable_table
-					.adorable_cell
-						div
-							img(src="/img/user/products/pacifier.png")
-						div
-							span с 3 мес.
-			
-			.age_block
-				.adorable_table
-					.adorable_cell
-						div
-							img(src="/img/user/products/bottle.png")
-						div
-							span с 4 мес.
-			
-			.age_block
-				.adorable_table
-					.adorable_cell
-						div
-							img(src="/img/user/products/duck.png")
-						div
-							span с 5 мес.
-			
-			.age_block
-				.adorable_table
-					.adorable_cell
-						div
-							img(src="/img/user/products/rattle.png")
-						div
-							span с 6 мес.
-			
-			.age_block
-				.adorable_table
-					.adorable_cell
-						div
-							img(src="/img/user/products/bear.png")
-						div
-							span с 8 мес.
-			
-			.age_block
-				.adorable_table
-					.adorable_cell
-						div
-							img(src="/img/user/products/cubes.png")
-						div
-							span с 3 лет
+			- var images = ['pacifier.png', 'bottle.png', 'duck.png', 'rattle.png', 'bear.png', 'cubes.png']
+			- each a, key in ages
+				.age_block(data-id='#{a._id}')
+					.adorable_table
+						.adorable_cell
+							div
+								- var src = '/img/user/products/' + images[key]
+								img(src=src)
+							div
+								if a.level < 12
+									- var age = 'мес.'
+								else
+									- var age = 'лет'
+								span #{a.title} #{age}
 		
 		.category_filter
 			.category_block
@@ -134,8 +101,12 @@ block append content
 						.half
 							.adorable_table
 								.adorable_cell
-									.top #{p.age.level}
-									.bottom месяцев
+									.top #{p.age.title}
+									if p.age.level < 12
+										- var age = 'мес.'
+									else
+										- var age = 'лет'
+									.bottom #{age}
 			
 block append scripts
 	script(src="/js/user/products/products.js")

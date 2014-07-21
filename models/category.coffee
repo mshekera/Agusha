@@ -9,6 +9,7 @@ schema = new mongoose.Schema
 	url_label:
 		type: String
 		required: true
+		unique: true
 	active:
 		type: Boolean
 		required: true

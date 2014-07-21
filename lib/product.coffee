@@ -7,7 +7,9 @@ Logger = require './logger'
 falseObjectID = '111111111111111111111111'
 
 exports.addAsyncFunctionsByFilter = (data, category, age) ->
-	searchOptions = {}
+	searchOptions =
+		active: true
+	
 	asyncFunctions = []
 	
 	if category
@@ -44,3 +46,15 @@ exports.addAsyncFunctionsByFilter = (data, category, age) ->
 			
 			next()
 	]
+
+exports.getAgesAndCategories = (callback) ->
+	async.parallel {
+		ages: (next) ->
+			options =
+				sort:
+					level: 1
+			
+			Model 'Age', 'find', next, {active: true}, {}, options
+		categories: (next) ->
+			Model 'Category', 'find', next, {active: true}
+	}, callback
