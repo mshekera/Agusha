@@ -15,7 +15,7 @@ exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'products'
 	
-	asyncFunctions = Product.addAsyncFunctionsByFilter [], data, req.params.category, req.params.age
+	asyncFunctions = Product.addAsyncFunctionsByFilter data, req.params.category, req.params.age
 	
 	asyncFunctions.push (next) ->
 		View.render 'user/products/products', res, data
@@ -23,3 +23,16 @@ exports.index = (req, res) ->
 	async.waterfall asyncFunctions, (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/products/index: #{error}"
+
+exports.searchByFilter = (req, res) ->
+	data = {}
+	
+	asyncFunctions = Product.addAsyncFunctionsByFilter data, req.body.category, req.body.age
+	
+	asyncFunctions.push (next) ->
+		View.ajaxResponse res, null, data
+	
+	async.waterfall asyncFunctions, (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in controllers/user/products/searchByFilter: #{error}"
+		View.ajaxResponse res, err

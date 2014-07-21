@@ -4,9 +4,9 @@ View = require './view'
 Model = require './model'
 Logger = require './logger'
 
-
-exports.addAsyncFunctionsByFilter = (asyncFunctions, data, category, age) ->
+exports.addAsyncFunctionsByFilter = (data, category, age) ->
 	searchOptions = {}
+	asyncFunctions = []
 	
 	if category
 		asyncFunctions = asyncFunctions.concat [
@@ -32,7 +32,7 @@ exports.addAsyncFunctionsByFilter = (asyncFunctions, data, category, age) ->
 				next()
 		]
 	
-	asyncFunctions = asyncFunctions.concat [
+	return asyncFunctions = asyncFunctions.concat [
 		(next) ->			
 			Model 'Product', 'find', next, searchOptions
 		(docs, next) ->			

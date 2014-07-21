@@ -87,3 +87,10 @@ exports.globals = (req, res, next)->
 		base_url + path
 	
 	next()
+
+exports.ajaxResponse = (res, err, data) ->
+	data =
+		err: (if err then err else false)
+		data: (if data then data else null)
+	
+	res.send data
