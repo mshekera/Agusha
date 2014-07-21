@@ -101,7 +101,7 @@ block content
                                 if article.desc_image
                                     each img in article.desc_image
                                         .img-container
-                                            img.img-thumbnail.clearfix(src="/img/#{img}")
+                                            img.img-thumbnail.clearfix(src="/img/uploads/#{img}")
                                             a.t-removeImage(href="/admin/articles/deleteimg/#{article._id}/#{img}")
                                                 i.removeImage.glyphicon.glyphicon-remove
                                     .clearfix

@@ -58,7 +58,7 @@ block content
                                 label(for="image")= "Изображение:"
                                 if product.image
                                     div
-                                        img.img-thumbnail(src="/img/#{product.image}")
+                                        img.img-thumbnail(src="/img/uploads/#{product.image}")
                                 input(type="file" name="image")
                             .form-group
                                 label(for="storage_life")= "Срок хранения:"

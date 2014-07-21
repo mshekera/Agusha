@@ -57,9 +57,9 @@ configure = () ->
 	@use '/robots.txt', (req, res)->
 		res.set 'Content-Type', 'text/plain'
 		res.send "User-agent: *\nDisallow: /"
-
-	@use multer {dest: './public/img/'}
-
+	
+	@use multer {dest: './public/img/uploads/'}
+	
 	@use Cache.requestCache
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'

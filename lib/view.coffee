@@ -71,7 +71,7 @@ exports.clientFail = (err, res)->
 		success: false
 		message: err
 
-	res.send data
+	res.send data	
 
 exports.globals = (req, res, next)->
 	res.locals.defLang = 'ru'
@@ -83,5 +83,7 @@ exports.globals = (req, res, next)->
 	
 	res.locals.moment = moment
 	res.locals.base_url = 'http://' + req.headers.host
+	res.locals.url = (path) ->
+		res.locals.base_url + path
 	
 	next()
