@@ -3,7 +3,8 @@ moment = require 'moment'
 _ = require 'underscore'
 
 View = require '../../lib/view'
-Auth = require '../../lib/auth'
+Model = require '../../lib/model'
+Logger = require '../../lib/logger'
 
 time = require '../../utils/time'
 
@@ -19,4 +20,20 @@ exports.index = (req, res) ->
 		daysArray: _.chars diffInDays+''
 		declension: time.declension diffInDays
 	
-	View.render 'user/index', res, data
+	async.waterfall [
+		(next) ->
+			findOptions =
+				main_page:
+					'$ne': 0
+			
+			sortOptions =
+				sort:
+					main_page: 1
+			
+			Model 'Product', 'find', next, findOptions, {}, sortOptions
+		(docs) ->
+			data.mainPageProducts = docs
+			View.render 'user/index', res, data
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in controllers/user/main/index: #{error}"

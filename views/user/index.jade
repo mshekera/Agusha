@@ -37,33 +37,14 @@ block content
 							| в меню
 						button.blue Еще
 			
-			.content_block
-				.adorable_table
-					.adorable_cell
-						img.product_img(src="/img/user/main/juice.png")
-						.product_label
-							| Фруктовые
-							br
-							| соки
-			
-			.content_block
-				.adorable_table
-					.adorable_cell
-						img.product_img(src="/img/user/main/yogurt.png")
-						.product_label
-							| Детские
-							br
-							| йогурты
-			
-			.content_block
-				.adorable_table
-					.adorable_cell
-						img.product_img(src="/img/user/main/curd.png")
-						.product_label
-							| Детские
-							br
-							| творожки
-			
+			- each p, key in mainPageProducts
+				.content_block
+					.adorable_table
+						.adorable_cell
+							- var src = '/img/uploads/' + p.image
+							img.product_img(src=src)
+							.product_label #{p.title}
+		
 		.right.border_boxed.green.adorable_table
 			.adorable_cell
 				.label.novito_nova
