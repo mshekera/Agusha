@@ -76,11 +76,12 @@ exports.clientFail = (err, res)->
 exports.globals = (req, res, next)->
 	res.locals.defLang = 'ru'
 	res.locals.lang = req.lang
-
+	
 	if req.user
 		res.locals.euser = req.user
 		res.locals.user = req.user
-
+	
 	res.locals.moment = moment
-
+	res.locals.base_url = 'http://' + req.headers.host
+	
 	next()
