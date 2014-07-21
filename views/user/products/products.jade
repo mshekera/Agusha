@@ -4,7 +4,7 @@ block append header
 	link(rel="stylesheet" href="/css/user/products/products.css")
 
 block append content
-	.content
+	.content.force_height
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
 		.topper.blue.adorable_table
@@ -67,6 +67,77 @@ block append content
 							img(src="/img/user/products/cubes.png")
 						div
 							span с 3 лет
-
+		
+		.category_filter
+			.category_block
+				.adorable_table
+					.adorable_cell
+						.show.novito_nova Показать:
+			
+			.category_block
+				.adorable_table
+					.adorable_cell
+						span.choose_category.rounded.active Все
+			
+			.category_block
+				.adorable_table
+					.adorable_cell
+						span.choose_category.rounded Соки
+			
+			.category_block
+				.adorable_table
+					.adorable_cell
+						span.choose_category.rounded Творожки
+			
+			.category_block
+				.adorable_table
+					.adorable_cell
+						span.choose_category.rounded Пюре
+			
+			.category_block
+				.adorable_table
+					.adorable_cell
+						span.choose_category.rounded Молочные коктейли
+		
+		.products_articles.white
+			
+		
+		.products_container.force_height
+			.product_block
+				.image.adorable_table
+					.adorable_cell
+						img(src="/img/user/main/juice.png")
+				
+				.title.adorable_table
+					.adorable_cell
+						span Фруктовый сок
+				
+				.desc.adorable_table
+					.adorable_cell
+						span Яблочко позвало в гости заморского друга – банана. Вместе вкуснее!
+				
+				.info.adorable_table
+					.adorable_cell
+						.half.left
+							.adorable_table
+								.adorable_cell
+									.top 200 мл
+									.bottom объем
+							
+						.half.right
+							.adorable_table
+								.adorable_cell
+									.top с 6
+									.bottom месяцев
+			
+			.product_block
+				
+			
+			.product_block
+				
+			
+			.product_block
+				
+		
 block append scripts
 	script(src="/js/user/products/products.js")

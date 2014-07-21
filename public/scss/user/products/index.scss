@@ -22,4 +22,126 @@
 	width: 14.2%;
 	display: inline-block;
 	height: 100%;
+	position: relative;
+	cursor: pointer;
+	
+	&:hover {
+		background-color: $el_bg;
+		
+		&:after {
+			@include pseudo;
+			@include absolute_horizontal_centered;
+			bottom: -10px;
+			width: 0;
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			border-top: 10px solid $el_bg;
+		}
+	}
+}
+
+.category_filter {
+	height: 100px;
+	text-align: center;
+	
+	.show {
+		font-size: 45px;
+		line-height: 45px;
+	}
+}
+
+.category_block {
+	margin: 0 25px;
+	display: inline-block;
+	height: 100%;
+	position: relative;
+}
+
+.choose_category {
+	cursor: pointer;
+	padding: 5px 15px;
+	
+	&.active {
+		@include inset_box_shadow(0 0 0 1px #cccccc);
+	}
+	
+	&:hover {
+		@include inset_box_shadow(0 0 0 0 transparent);
+		background-color: $blue;
+		color: white;
+	}
+}
+
+.products_articles {
+	height: 320px;
+	margin-bottom: 20px;
+}
+
+.products_container {
+	overflow: visible;
+}
+
+.product_block {
+	background-color: $white;
+	height: 465px;
+	float: left;
+	margin: 0 0 1% 2%;
+    width: 22.5%;
+	
+	.image {
+		height: 225px;
+		
+		img {
+			max-height: 90%;
+			max-width: 90%; 
+		}
+	}
+	
+	.title {
+		background-color: $el_bg;
+		height: 80px;
+		
+		span {
+			color: $blue;
+			font-size: 107.2%;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+	}
+	
+	.desc {
+		background-color: $el_bg;
+		height: 80px;
+		
+		span {
+			font-size: 93%;
+		}
+	}
+	
+	.info {
+		background-color: $el_bg;
+		height: 80px;
+		
+		.top {
+			font-size: 112.5%;
+			color: $blue;
+			font-weight: bold;
+		}
+		
+		.bottom {
+			font-size: 93%;
+		}
+		
+		&:before {
+			@include pseudo;
+			@include absolute_centered;
+			height: 48px;
+			width: 1px;
+			background-color: $base;
+		}
+	}
+	
+	&:hover {
+		@include box_shadow(0 0 0 0.5em $blue);
+	}
 }
