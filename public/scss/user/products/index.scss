@@ -27,9 +27,11 @@
 	height: 100%;
 	cursor: pointer;
 	
-	&:hover {
+	&.active, &:hover {
 		background-color: $el_bg;
-		
+	}
+	
+	&.active {
 		.adorable_table {
 			&:after {
 				@include pseudo;

@@ -82,9 +82,12 @@ exports.globals = (req, res, next)->
 		res.locals.user = req.user
 	
 	res.locals.moment = moment
+	
 	res.locals.base_url = base_url = 'http://' + req.headers.host
 	res.locals.url = (path) ->
 		base_url + path
+	
+	res.locals.params = req.params
 	
 	next()
 

@@ -12,7 +12,7 @@ block append content
 				.top_label Cколько лет вашему малышу?
 		
 		.age_filter.white
-			.age_block
+			.age_block(class=(params.age ? '' : 'active'))
 				.adorable_table
 					.adorable_cell
 						div
@@ -22,7 +22,7 @@ block append content
 			
 			- var images = ['pacifier.png', 'bottle.png', 'duck.png', 'rattle.png', 'bear.png', 'cubes.png']
 			- each a, key in ages
-				.age_block(data-id='#{a._id}')
+				.age_block(data-level=a.level, class=(a.level == params.age ? 'active' : ''))
 					.adorable_table
 						.adorable_cell
 							div
@@ -44,27 +44,13 @@ block append content
 			.category_block
 				.adorable_table
 					.adorable_cell
-						span.choose_category.rounded.active Все
+						span.choose_category.rounded(class=(params.category ? '' : 'active')) Все
 			
-			.category_block
-				.adorable_table
-					.adorable_cell
-						span.choose_category.rounded Соки
-			
-			.category_block
-				.adorable_table
-					.adorable_cell
-						span.choose_category.rounded Творожки
-			
-			.category_block
-				.adorable_table
-					.adorable_cell
-						span.choose_category.rounded Пюре
-			
-			.category_block
-				.adorable_table
-					.adorable_cell
-						span.choose_category.rounded Молочные коктейли
+			- each c, key in categories
+				.category_block
+					.adorable_table
+						.adorable_cell
+							span.choose_category.rounded(data-category=c.url_label, class=(c.url_label == params.category ? 'active' : '')) #{c.name}
 		
 		//.products_articles.white
 			.half
