@@ -4,6 +4,8 @@ View = require './view'
 Model = require './model'
 Logger = require './logger'
 
+falseObjectID = '111111111111111111111111'
+
 exports.addAsyncFunctionsByFilter = (data, category, age) ->
 	searchOptions = {}
 	asyncFunctions = []

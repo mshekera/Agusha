@@ -9,8 +9,6 @@ tree = require '../../utils/tree'
 
 breadcrumbs = require '../../meta/breadcrumbs'
 
-falseObjectID = '111111111111111111111111'
-
 exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'products'
