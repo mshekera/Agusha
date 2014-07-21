@@ -42,7 +42,11 @@ block content
 				.content_block
 					.adorable_table
 						.adorable_cell
-							- var src = '/img/uploads/' + p.image
+							if p.image
+								- var src = '/img/uploads/' + p.image
+							else
+								- var src = '/img/no_photo.png'
+							
 							img.product_img(src=src)
 							.product_label #{p.title}
 		

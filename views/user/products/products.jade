@@ -103,41 +103,35 @@ block append content
 			
 		
 		.products_container.force_height
-			.product_block
-				.image.adorable_table
-					.adorable_cell
-						img(src="/img/user/main/juice.png")
-				
-				.title.adorable_table
-					.adorable_cell
-						span Фруктовый сок
-				
-				.desc.adorable_table
-					.adorable_cell
-						span Яблочко позвало в гости заморского друга – банана. Вместе вкуснее!
-				
-				.info.adorable_table
-					.adorable_cell
-						.half.left
+			- each p, key in products
+				.product_block
+					.image
+						if p.image
+							- var src = '/img/uploads/' + p.image
+						else
+							- var src = '/img/no_photo.png'
+						img(src=src)
+					
+					.title.adorable_table
+						.adorable_cell
+							span #{p.title}
+					
+					.desc.adorable_table
+						.adorable_cell
+							span !{p.text}
+					
+					.info
+						.half
 							.adorable_table
 								.adorable_cell
-									.top 200 мл
+									.top #{p.volume}
 									.bottom объем
-							
-						.half.right
+						
+						.half
 							.adorable_table
 								.adorable_cell
-									.top с 6
+									.top #{p.age.level}
 									.bottom месяцев
 			
-			.product_block
-				
-			
-			.product_block
-				
-			
-			.product_block
-				
-		
 block append scripts
 	script(src="/js/user/products/products.js")

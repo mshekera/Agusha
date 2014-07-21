@@ -35,6 +35,7 @@
 	
 	.content_block {
 		display: inline-block;
+		vertical-align: top;
 		width: 25%;
 		height: 100%;
 		
@@ -82,6 +83,7 @@
 		background: url(/img/user/main/number_bg.png) center no-repeat;
 		@include linear_gradient(bottom, $lightred 50%, #fd7b6a 50%);
 		display: inline-block;
+		vertical-align: top;
 		font-size: 590%;
 		line-height: 100%;
 		margin: 0 8px;

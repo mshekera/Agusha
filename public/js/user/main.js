@@ -17,6 +17,12 @@ var define_slider_size = function() {
 	slides.find('> div').css(options);
 }
 
+var window_resize = function() {
+	define_slider_size();
+}
+
+window_resize();
+
 var options = {
 	$AutoPlay: true,
 	$SlideDuration: 800, 
@@ -32,12 +38,6 @@ var options = {
 };
 
 var jssor_slider = new $JssorSlider$('slider_container', options);
-
-var window_resize = function() {
-	define_slider_size();
-}
-
-window_resize();
 
 if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
 	$(window).bind('resize', window_resize);

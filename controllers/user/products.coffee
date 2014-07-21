@@ -15,6 +15,8 @@ exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->			
 			Model 'Product', 'find', next
+		(docs, next) ->			
+			Model 'Product', 'populate', next, docs, 'age category'
 		(docs) ->
 			data.products = docs
 			

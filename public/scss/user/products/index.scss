@@ -21,6 +21,7 @@
 .age_block {
 	width: 14.2%;
 	display: inline-block;
+	vertical-align: top;
 	height: 100%;
 	position: relative;
 	cursor: pointer;
@@ -53,6 +54,7 @@
 .category_block {
 	margin: 0 25px;
 	display: inline-block;
+	vertical-align: top;
 	height: 100%;
 	position: relative;
 }
@@ -87,17 +89,25 @@
 	float: left;
 	margin: 0 0 1% 2%;
     width: 22.5%;
+	position: relative;
+	cursor: pointer;
 	
 	.image {
+		position: absolute;
+		top: 0;
 		height: 225px;
+		width: 100%;
 		
 		img {
-			max-height: 90%;
-			max-width: 90%; 
+			@include absolute_centered;
+			max-height: 60%;
+			max-width: 60%;
 		}
 	}
 	
 	.title {
+		position: absolute;
+		top: 225px;
 		background-color: $el_bg;
 		height: 80px;
 		
@@ -110,6 +120,8 @@
 	}
 	
 	.desc {
+		position: absolute;
+		top: 305px;
 		background-color: $el_bg;
 		height: 80px;
 		
@@ -119,6 +131,9 @@
 	}
 	
 	.info {
+		width: 100%;
+		position: absolute;
+		top: 385px;
 		background-color: $el_bg;
 		height: 80px;
 		
@@ -143,5 +158,24 @@
 	
 	&:hover {
 		@include box_shadow(0 0 0 0.5em $blue);
+		
+		.image {
+			top: 80px;
+			height: 305px;
+			
+			img {
+				max-height: 90%;
+				max-width: 90%;
+			}
+		}
+		
+		.title {
+			top: 0;
+			background-color: $white;
+		}
+		
+		.desc {
+			display: none;
+		}
 	}
 }

@@ -76,6 +76,17 @@ textarea {
 	white-space: normal;
 }
 
+.inline_container {
+	display: inline-block;
+	line-height: 0;
+	letter-spacing: -1px;
+	
+	.inline {
+		line-height: normal;
+		letter-spacing: normal;
+	}
+}
+
 .rounded {
 	@include border_radius(99999em);
 }
