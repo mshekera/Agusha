@@ -1,14 +1,14 @@
 @import '../dynamic/dynamic';
 
 .live_program {
-	width: 25%;
+	width: 26%;
 	position: absolute;
 	top: 40px;
 	right: $content_right;
 	
 	.photo {
 		@include absolute_horizontal_centered;
-		width: 37.5%;
+		width: 30%;
 		top: 17px;
 		
 		.rounded {
@@ -19,19 +19,20 @@
 	
 	.triangle {
 		@include absolute_horizontal_centered;
-		top: 59px;
+		top: 50%;
 	}
 	
 	.label {
-		font-size: 35px;
-		line-height: 35px;
+		font-size: 33px;
+		line-height: 33px;
 		position: absolute;
 		width: 100%;
 		bottom: 5px;
 		letter-spacing: 2px;
+		padding: 5px 0;
 	}
 	
 	&:before {
-		margin-top: 60%;
+		margin-top: 55%;
 	}
 }

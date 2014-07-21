@@ -1,14 +1,14 @@
 @import '../dynamic/dynamic';
 
 .join_tour {
-	width: 25%;
+	width: 26%;
 	position: absolute;
 	bottom: 25px;
 	right: $content_right;
 	
 	.photo {
 		@include absolute_horizontal_centered;
-		width: 40%;
+		width: 33%;
 		top: 12px;
 		
 		.rounded {
@@ -22,11 +22,21 @@
 		width: 100%;
 		height: 83px;
 		bottom: 5px;
-		background: url('/img/user/helpers/join_tour/arrow.png') center no-repeat;
 		font-size: 125%;
+		
+		span {
+			position: relative;
+		}
+	}
+	
+	.arrow_bg {
+		@include absolute_centered;
+		
+		max-height: 100%;
+		max-width: 90%;
 	}
 	
 	&:before {
-		margin-top: 60%;
+		margin-top: 55%;
 	}
 }

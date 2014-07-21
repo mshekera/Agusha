@@ -1,5 +1,11 @@
 @import '../dynamic/dynamic';
 
+#slider_container {
+	> div {
+		@include transform(none !important);
+	}
+}
+
 .slider {
 	position: relative;
 	top: 0px;
@@ -10,6 +16,7 @@
 	.text {
 		@include absolute_centered;
 		width: 25%;
+		min-width: 320px;
 		height: 100%;
 	}
 	
@@ -39,6 +46,7 @@
 }
 
 .jssorb12 {
+	@include absolute_horizontal_centered;
 	position: absolute;
 	width: 94px;
 	height: 16px;
@@ -52,13 +60,17 @@
 }
 
 .jssora21l {
-	top: 123px;
-	left: 39px;
+	bottom: 0;
+    left: 39px;
+    margin: auto;
+    top: 0;
 }
 
 .jssora21r {
-	top: 123px;
 	right: 39px;
+	bottom: 0;
+    margin: auto;
+    top: 0;
 }
 
 /* jssor slider bullet navigator skin 12 css */

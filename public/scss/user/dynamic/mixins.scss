@@ -62,6 +62,14 @@
 	box-sizing: border-box;
 }
 
+@mixin transform($val) {
+	-webkit-transform: $val;
+	-moz-transform: $val;
+	-o-transform: $val;
+	-ms-transform: $val;
+	transform: $val;
+}
+
 /* base */
 
 @mixin pentagon_pseudo {
