@@ -1,0 +1,25 @@
+@import '../dynamic/dynamic';
+@import '../helpers/breadcrumbs';
+
+.content {
+	margin-bottom: 70px;
+}
+
+.topper {
+	height: 80px;
+	
+	.top_label {
+		font-size: 112.5%;
+	}
+}
+
+.age_filter {
+	height: 120px;
+	text-align: center;
+}
+
+.age_block {
+	width: 14.2%;
+	display: inline-block;
+	height: 100%;
+}

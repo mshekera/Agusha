@@ -1,0 +1,72 @@
+extends ../layout
+
+block append header
+	link(rel="stylesheet" href="/css/user/products/products.css")
+
+block append content
+	.content
+		include ../../helpers/user/breadcrumbs/breadcrumbs
+		
+		.topper.blue.adorable_table
+			.adorable_cell
+				.top_label Cколько лет вашему малышу?
+		
+		.age_filter.white
+			.age_block
+				.adorable_table
+					.adorable_cell
+						div
+							img(src="/img/user/products/products.png")
+						div
+							span Все продукты
+			
+			.age_block
+				.adorable_table
+					.adorable_cell
+						div
+							img(src="/img/user/products/pacifier.png")
+						div
+							span с 3 мес.
+			
+			.age_block
+				.adorable_table
+					.adorable_cell
+						div
+							img(src="/img/user/products/bottle.png")
+						div
+							span с 4 мес.
+			
+			.age_block
+				.adorable_table
+					.adorable_cell
+						div
+							img(src="/img/user/products/duck.png")
+						div
+							span с 5 мес.
+			
+			.age_block
+				.adorable_table
+					.adorable_cell
+						div
+							img(src="/img/user/products/rattle.png")
+						div
+							span с 6 мес.
+			
+			.age_block
+				.adorable_table
+					.adorable_cell
+						div
+							img(src="/img/user/products/bear.png")
+						div
+							span с 8 мес.
+			
+			.age_block
+				.adorable_table
+					.adorable_cell
+						div
+							img(src="/img/user/products/cubes.png")
+						div
+							span с 3 лет
+
+block append scripts
+	script(src="/js/user/products/products.js")
