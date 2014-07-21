@@ -12,9 +12,9 @@ breadcrumbs = require '../../meta/breadcrumbs'
 
 exports.index = (req, res) ->
 	data =
-		breadcrumbs: tree.findWithParents breadcrumbs, 'registration'
+		breadcrumbs: tree.findWithParents breadcrumbs, 'signup'
 	
-	View.renderWithSession req, res, 'user/registration/registration', data
+	View.renderWithSession req, res, 'user/signup/signup', data
 
 exports.register = (req, res) ->
 	data = {}
@@ -30,26 +30,26 @@ exports.register = (req, res) ->
 			options.subject = "Успешная регистрация!"
 			options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
 			
-			Client.sendMail options, next
+			Client.sendMail res, options, next
 		(next) ->
 			saltData =
 				salt: data.salt
 			
 			Model 'Salt', 'create', next, saltData
 		(salt) ->
-			res.redirect '/registration/success/' + data.client._id
+			res.redirect '/signup/success/' + data.client._id
 	], (err) ->
 		if err.code == 11000
 			error = 'Указанный e-mail уже зарегистрирован'
 		else
 			error = err.message or err
 		
-		Logger.log 'info', "Error in controllers/user/registration: #{error}"
+		Logger.log 'info', "Error in controllers/user/signup/register: #{error}"
 		req.session.err = error
-		res.redirect '/registration'
+		res.redirect '/signup'
 
 exports.invite = (req, res) ->
-	path = '/registration/success'
+	path = '/signup/success'
 	if req.body.invited_by?
 		path += '/' + req.body.invited_by
 	
@@ -67,7 +67,29 @@ exports.invite = (req, res) ->
 			inviteErr err, req
 			return res.redirect path
 		
-		async.map clients, sendInviteMail, (err, result) ->
+		async.map clients, (client, callback) ->
+			if client
+				data = {}
+				
+				async.waterfall [
+					(next) ->
+						options =
+							template: 'invite'
+							client: client
+							subject: "Успешная регистрация по приглашению!"
+						
+						options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
+						
+						Client.sendMail res, options, next
+					(next) ->
+						saltData =
+							salt: data.salt
+						
+						Model 'Salt', 'create', callback, saltData
+				], callback
+			else
+				callback null
+		, (err, result) ->
 			if err
 				inviteErr err, req
 				
@@ -79,35 +101,12 @@ inviteErr = (err, req) ->
 	else
 		error = err.message or err
 	
-	Logger.log 'info', "Error in controllers/user/registration: #{error}"
+	Logger.log 'info', "Error in controllers/user/signup/invite: #{error}"
 	req.session.err = error
-
-sendInviteMail = (client, callback) ->
-	if client
-		data = {}
-		
-		async.waterfall [
-			(next) ->
-				options =
-					template: 'invite'
-					client: client
-					subject: "Успешная регистрация по приглашению!"
-				
-				options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
-				
-				Client.sendMail options, next
-			(next) ->
-				saltData =
-					salt: data.salt
-				
-				Model 'Salt', 'create', callback, saltData
-		], callback
-	else
-		callback null
 
 exports.success = (req, res) ->
 	data =
-		breadcrumbs: tree.findWithParents breadcrumbs, 'registration'
+		breadcrumbs: tree.findWithParents breadcrumbs, 'signup'
 	
 	if req.params.id?
 		data.invited_by = req.params.id
@@ -116,7 +115,7 @@ exports.success = (req, res) ->
 			data.messageLabel = 'Спасибо за регистрацию!'
 			data.message = 'В ближашее время на ваш e-mail придет письмо<br />с подтверждением.'
 	
-	View.renderWithSession req, res, 'user/registration/success/success', data
+	View.renderWithSession req, res, 'user/signup/success/success', data
 
 exports.activate = (req, res) ->
 	id = new Buffer(req.params.salt, 'base64').toString 'utf8'
@@ -129,9 +128,9 @@ exports.activate = (req, res) ->
 	, (err, results) ->
 		if err
 			error = err.message or err
-			Logger.log 'info', "Error in controllers/user/registration/activate: #{error}"
+			Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
 		else if not results.client
-			Logger.log 'info', "Error in controllers/user/registration/activate: 'There is no such user'"
-			res.redirect '/registration/success/'
+			Logger.log 'info', "Error in controllers/user/signup/activate: 'There is no such user'"
+			res.redirect '/signup/success/'
 		else
-			res.redirect '/registration/success/' + results.client._id
+			res.redirect '/signup/success/' + results.client._id

@@ -1,4 +1,4 @@
 module.exports = [
-	id: 'registration'
+	id: 'signup'
 	title: 'Регистрация'
 ]

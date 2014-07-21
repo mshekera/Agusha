@@ -1,7 +1,7 @@
 extends ../layout
 
 block append header
-	link(rel="stylesheet" href="/css/user/registration/registration.css")
+	link(rel="stylesheet" href="/css/user/signup/signup.css")
 
 block append content
 	.content
@@ -29,7 +29,7 @@ block append content
 						.label.novito_nova Будьте первооткрывателями!
 			
 			.map.centered
-				img(src="/img/user/registration/map.png")
+				img(src="/img/user/signup/map.png")
 			
 			.top_label.dark_font.centered Зарегистрируйтесь сейчас
 			.label.novito_nova.centered.green_font
@@ -37,7 +37,7 @@ block append content
 				br
 				| на подарки после открытия сайта!
 			
-			form#registration_form.footer.green(method="POST", action="/registration/register")
+			form#registration_form.footer.green(method="POST", action="/signup/register")
 				.inputs
 					.content.border_boxed
 						.half.left
@@ -60,4 +60,4 @@ block append scripts
 	script(src="/js/plugins/placeholders/placeholders.min.js")
 	script(src="/js/plugins/modal/jquery.easyModal.js")
 	script(src="/js/plugins/validate/jquery.validate.js")
-	script(src="/js/user/registration/registration.js")
+	script(src="/js/user/signup/signup.js")

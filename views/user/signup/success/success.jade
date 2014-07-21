@@ -1,7 +1,7 @@
 extends ../../layout
 
 block append header
-	link(rel="stylesheet" href="/css/user/registration/success/success.css")
+	link(rel="stylesheet" href="/css/user/signup/success/success.css")
 
 mixin add_client(i)
 	.client_block(class!='client_block_#{i}', data-key!='#{i}')
@@ -42,9 +42,9 @@ block append content
 					| чтоб и они были в курсе всего самого полезного и интересного. Вместе веселее!
 			
 			.invite.centered
-					img(src="/img/user/registration/invite.png")
+					img(src="/img/user/signup/invite.png")
 		
-			form#invite_form.footer.green(method="POST", action="/registration/invite")
+			form#invite_form.footer.green(method="POST", action="/signup/invite")
 				if invited_by
 					input(type="hidden", name="invited_by", value="#{invited_by}")
 				
@@ -68,4 +68,4 @@ block append scripts
 	script(src="/js/plugins/validate/jquery.validate.js")
 	script#add_client_tmpl(type='text/template')
 		mixin add_client('<%=i%>')
-	script(src="/js/user/registration/invite.js")
+	script(src="/js/user/signup/invite.js")

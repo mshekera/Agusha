@@ -2,12 +2,13 @@ h1 Добрый день, #{login}
 
 p
 	| Вы успешно пригласили на 
-	a(href="http://localhost:8080/") Агушу
+	a(href=base_url) Агушу
 	| .
 
 p
+	- var href = base_url + '/signup/activate/' + salt
 	| Используйте
-	a(href!="http://localhost:8080/registration/activate/#{salt}") эту ссылку
+	a(href=href) эту ссылку
 	|  для активации вашего аккаунта
 
 h3 Спасибо за регистрацию!
