@@ -32,12 +32,14 @@ block content
                 thead
                     tr
                         th= "Название"
+                        th= "url_label"
                         th= "Активный"
                         th= "Действия"
                 tbody
                     each item in categories
                         tr
                             td= item.name
+                            td= item.url_label
                             td= (item.active?"Да":"Нет")
                             td
                                 div.col-md-4
