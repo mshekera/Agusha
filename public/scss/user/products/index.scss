@@ -61,7 +61,8 @@
 
 .choose_category {
 	cursor: pointer;
-	padding: 5px 15px;
+    font-size: 112.5%;
+    padding: 5px 15px;
 	
 	&.active {
 		@include inset_box_shadow(0 0 0 1px #cccccc);
@@ -77,6 +78,10 @@
 .products_articles {
 	height: 320px;
 	margin-bottom: 20px;
+	
+	.text {
+		padding: 40px;
+	}
 }
 
 .products_container {
