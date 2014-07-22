@@ -74,13 +74,12 @@ block append content
 						div
 							span Все продукты
 			
-			- var images = ['pacifier.png', 'bottle.png', 'duck.png', 'rattle.png', 'bear.png', 'cubes.png']
 			- each a, key in ages
 				.age_block(data-level=a.level, class=(a.level == params.age ? 'active' : ''))
 					.adorable_table
 						.adorable_cell
 							div
-								- var src = '/img/user/products/' + images[key]
+								- var src = '/img/uploads/' + a.icon
 								img(src=src)
 							div
 								if a.level < 12
@@ -106,22 +105,25 @@ block append content
 						.adorable_cell
 							span.choose_category.rounded(data-category=c.url_label, class=(c.url_label == params.category ? 'active' : '')) #{c.name}
 		
-		//.products_articles.white
-			.half
-				
-			
-			.half.text.border_boxed sddsffdsdsf sdfds fsdf sdf 
+		#products_articles.white
+			- each a, key in ages
+				.products_article(id = 'age_' + a.level, class=(key == 0 ? 'active' : ''))
+					.half
+						if desc_image
+							.article_image
+								img(src='')
+					
+					.half.text.border_boxed !{a.desc_text}
 					
 		
 		#products_container.force_height
 			- each p, key in products
 				mixin product(p)
-			
+
 block append scripts
 	script(src="/js/plugins/can/can.js")
 	script.
 		var products = !{JSON.stringify(products)};
-		var ages = !{JSON.stringify(ages)};
 	script#products-tmpl(type="text/mustache")
 		mixin products_stache()
 	script(src="/js/user/products/products.js")

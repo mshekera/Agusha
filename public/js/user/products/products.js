@@ -13,9 +13,7 @@ var Products_controller = can.Control.extend(
 	},
 	
 	{
-		init: function () {
-			var that = this;
-			
+		init: function () {			
 			this.first_call = true;
 			
 			var ViewModel = can.Map.extend({
@@ -36,8 +34,8 @@ var Products_controller = can.Control.extend(
 								category: this.attr('category')
 							};
 							
-							if(that.first_call) {
-								that.first_call = false;
+							if(this.first_call) {
+								this.first_call = false;
 							} else {
 								currentValue.replace(Product.findAll(options));
 							}
@@ -49,6 +47,13 @@ var Products_controller = can.Control.extend(
 			});
 			
 			this.data = new ViewModel();
+			
+			this.data.delegate('age', 'set', function(ev, value){
+				if(value) {
+					$('#products_articles .products_article').removeClass('active');
+					$('#age_' + value).addClass('active');
+				}
+			});
 			
 			$('#products_container').html(can.view("#products-tmpl", this.data, {
 				ageLevel: function(options) {

@@ -2,10 +2,10 @@
  * CanJS - 2.1.2
  * http://canjs.us/
  * Copyright (c) 2014 Bitovi
- * Tue, 22 Jul 2014 13:21:50 GMT
+ * Tue, 22 Jul 2014 15:25:31 GMT
  * Licensed MIT
- * Includes: can/component/component.js,can/construct/construct.js,can/map/map.js,can/list/list.js,can/compute/compute.js,can/model/model.js,can/view/view.js,can/control/control.js,can/route/route.js,can/control/route/route.js,can/view/mustache/mustache.js,can/list/promise/promise.js,can/view/ejs/ejs.js,can/view/stache/stache.js,can/route/pushstate/pushstate.js,can/map/define/define.js,can/map/sort/sort.js
- * Download from: http://bitbuilder.herokuapp.com/can.custom.js?configuration=jquery&plugins=can%2Fcomponent%2Fcomponent.js&plugins=can%2Fconstruct%2Fconstruct.js&plugins=can%2Fmap%2Fmap.js&plugins=can%2Flist%2Flist.js&plugins=can%2Fcompute%2Fcompute.js&plugins=can%2Fmodel%2Fmodel.js&plugins=can%2Fview%2Fview.js&plugins=can%2Fcontrol%2Fcontrol.js&plugins=can%2Froute%2Froute.js&plugins=can%2Fcontrol%2Froute%2Froute.js&plugins=can%2Fview%2Fmustache%2Fmustache.js&plugins=can%2Flist%2Fpromise%2Fpromise.js&plugins=can%2Fview%2Fejs%2Fejs.js&plugins=can%2Fview%2Fstache%2Fstache.js&plugins=can%2Froute%2Fpushstate%2Fpushstate.js&plugins=can%2Fmap%2Fdefine%2Fdefine.js&plugins=can%2Fmap%2Fsort%2Fsort.js
+ * Includes: can/component/component.js,can/construct/construct.js,can/map/map.js,can/list/list.js,can/compute/compute.js,can/model/model.js,can/view/view.js,can/control/control.js,can/route/route.js,can/control/route/route.js,can/view/mustache/mustache.js,can/list/promise/promise.js,can/view/stache/stache.js,can/route/pushstate/pushstate.js,can/map/delegate/delegate.js,can/map/define/define.js,can/map/sort/sort.js
+ * Download from: http://bitbuilder.herokuapp.com/can.custom.js?configuration=jquery&plugins=can%2Fcomponent%2Fcomponent.js&plugins=can%2Fconstruct%2Fconstruct.js&plugins=can%2Fmap%2Fmap.js&plugins=can%2Flist%2Flist.js&plugins=can%2Fcompute%2Fcompute.js&plugins=can%2Fmodel%2Fmodel.js&plugins=can%2Fview%2Fview.js&plugins=can%2Fcontrol%2Fcontrol.js&plugins=can%2Froute%2Froute.js&plugins=can%2Fcontrol%2Froute%2Froute.js&plugins=can%2Fview%2Fmustache%2Fmustache.js&plugins=can%2Flist%2Fpromise%2Fpromise.js&plugins=can%2Fview%2Fstache%2Fstache.js&plugins=can%2Froute%2Fpushstate%2Fpushstate.js&plugins=can%2Fmap%2Fdelegate%2Fdelegate.js&plugins=can%2Fmap%2Fdefine%2Fdefine.js&plugins=can%2Fmap%2Fsort%2Fsort.js
  */
 (function(undefined) {
 
@@ -9194,192 +9194,8 @@
             });
     })(__m19);
 
-    // ## can/view/ejs/ejs.js
-    var __m35 = (function(can) {
-        // ## Helper methods
-        var extend = can.extend,
-            EJS = function(options) {
-                // Supports calling EJS without the constructor.
-                // This returns a function that renders the template.
-                if (this.constructor !== EJS) {
-                    var ejs = new EJS(options);
-                    return function(data, helpers) {
-                        return ejs.render(data, helpers);
-                    };
-                }
-                // If we get a `function` directly, it probably is coming from
-                // a `steal`-packaged view.
-                if (typeof options === 'function') {
-                    this.template = {
-                        fn: options
-                    };
-                    return;
-                }
-                // Set options on self.
-                extend(this, options);
-                this.template = this.scanner.scan(this.text, this.name);
-            };
-        // Expose EJS via the `can` object.
-        can.EJS = EJS;
-
-        EJS.prototype.
-        // ## Render
-        // Render a view object with data and helpers.
-        render = function(object, extraHelpers) {
-            object = object || {};
-            return this.template.fn.call(object, object, new EJS.Helpers(object, extraHelpers || {}));
-        };
-        extend(EJS.prototype, {
-                // ## Scanner
-                // Singleton scanner instance for parsing templates. See [scanner.js](scanner.html)
-                // for more information.
-                // ### Text
-                // #### Definitions
-                // * `outStart` - Wrapper start text for view function.
-                // * `outEnd` - Wrapper end text for view function.
-                // * `argNames` - Arguments passed into view function.
-                scanner: new can.view.Scanner({
-                        text: {
-                            outStart: 'with(_VIEW) { with (_CONTEXT) {',
-                            outEnd: "}}",
-                            argNames: '_CONTEXT,_VIEW',
-                            context: "this"
-                        },
-                        // ### Tokens
-                        // An ordered token registry for the scanner. Scanner makes evaluations
-                        // based on which tags are considered opening/closing as well as escaped, etc.
-                        tokens: [
-                            ["templateLeft", "<%%"],
-                            ["templateRight", "%>"],
-                            ["returnLeft", "<%=="],
-                            ["escapeLeft", "<%="],
-                            ["commentLeft", "<%#"],
-                            ["left", "<%"],
-                            ["right", "%>"],
-                            ["returnRight", "%>"]
-                        ],
-                        // ### Helpers
-                        helpers: [{
-                                // Regex to see if its a func like `()->`.
-                                name: /\s*\(([\$\w]+)\)\s*->([^\n]*)/,
-                                // Evaluate rocket syntax function with correct context.
-                                fn: function(content) {
-                                    var quickFunc = /\s*\(([\$\w]+)\)\s*->([^\n]*)/,
-                                        parts = content.match(quickFunc);
-
-                                    return "can.proxy(function(__){var " + parts[1] + "=can.$(__);" + parts[2] + "}, this);";
-                                }
-                            }
-                        ],
-                        // ### transform
-                        // Transforms the EJS template to add support for shared blocks.
-                        // Essentially, this breaks up EJS tags into multiple EJS tags
-                        // if they contained unmatched brackets.
-                        // For example, this doesn't work:
-                        // `<% if (1) { %><% if (1) { %> hi <% } } %>`
-                        // ...without isolated EJS blocks:
-                        // `<% if (1) { %><% if (1) { %> hi <% } %><% } %>`
-                        // The result of transforming:
-                        // `<% if (1) { %><% %><% if (1) { %><% %> hi <% } %><% } %>`
-                        transform: function(source) {
-                            return source.replace(/<%([\s\S]+?)%>/gm, function(whole, part) {
-                                var brackets = [],
-                                    foundBracketPair, i;
-                                // Look for brackets (for removing self-contained blocks)
-                                part.replace(/[{}]/gm, function(bracket, offset) {
-                                    brackets.push([
-                                            bracket,
-                                            offset
-                                        ]);
-                                });
-                                // Remove bracket pairs from the list of replacements
-                                do {
-                                    foundBracketPair = false;
-                                    for (i = brackets.length - 2; i >= 0; i--) {
-                                        if (brackets[i][0] === '{' && brackets[i + 1][0] === '}') {
-                                            brackets.splice(i, 2);
-                                            foundBracketPair = true;
-                                            break;
-                                        }
-                                    }
-                                } while (foundBracketPair);
-                                // Unmatched brackets found, inject EJS tags
-                                if (brackets.length >= 2) {
-                                    var result = ['<%'],
-                                        bracket, last = 0;
-                                    for (i = 0; bracket = brackets[i]; i++) {
-                                        result.push(part.substring(last, last = bracket[1]));
-                                        if (bracket[0] === '{' && i < brackets.length - 1 || bracket[0] === '}' && i > 0) {
-                                            result.push(bracket[0] === '{' ? '{ %><% ' : ' %><% }');
-                                        } else {
-                                            result.push(bracket[0]);
-                                        }
-                                        ++last;
-                                    }
-                                    result.push(part.substring(last), '%>');
-                                    return result.join('');
-                                }
-                                // Otherwise return the original
-                                else {
-                                    return '<%' + part + '%>';
-                                }
-                            });
-                        }
-                    })
-            });
-
-        // ## Helpers
-        // In your EJS view you can then call the helper on an element tag:
-        // `<div <%= upperHtml('javascriptmvc') %>></div>`
-        EJS.Helpers = function(data, extras) {
-            this._data = data;
-            this._extras = extras;
-            extend(this, extras);
-        };
-
-        EJS.Helpers.prototype = {
-            // List allows for live binding a can.List easily within a template.
-            list: function(list, cb) {
-                can.each(list, function(item, i) {
-                    cb(item, i, list);
-                });
-            },
-            // `each` iterates through a enumerated source(such as can.List or array)
-            // and sets up live binding when possible.
-            each: function(list, cb) {
-                // Normal arrays don't get live updated
-                if (can.isArray(list)) {
-                    this.list(list, cb);
-                } else {
-                    can.view.lists(list, cb);
-                }
-            }
-        };
-        // Registers options for a `steal` build.
-        can.view.register({
-                suffix: 'ejs',
-                script: function(id, src) {
-                    return 'can.EJS(function(_CONTEXT,_VIEW) { ' + new EJS({
-                            text: src,
-                            name: id
-                        })
-                        .template.out + ' })';
-                },
-                renderer: function(id, text) {
-                    return EJS({
-                            text: text,
-                            name: id
-                        });
-                }
-            });
-        can.ejs.Helpers = EJS.Helpers;
-
-
-        return can;
-    })(__m2, __m10, __m13, __m20, __m23, __m25);
-
     // ## can/view/target/target.js
-    var __m37 = (function(can, elements) {
+    var __m36 = (function(can, elements) {
 
         var processNodes = function(nodes, paths, location) {
             var frag = document.createDocumentFragment();
@@ -9584,7 +9400,7 @@
     })(__m2, __m24);
 
     // ## can/view/stache/utils.js
-    var __m39 = (function() {
+    var __m38 = (function() {
         return {
             // Returns if something looks like an array.  This works for can.List
             isArrayLike: function(obj) {
@@ -9625,7 +9441,7 @@
     })(__m2);
 
     // ## can/view/stache/mustache_helpers.js
-    var __m41 = (function(can, utils, live) {
+    var __m40 = (function(can, utils, live) {
         live = live || can.view.live;
 
         var resolve = function(value) {
@@ -9756,10 +9572,10 @@
             }
         };
 
-    })(__m2, __m39, __m26);
+    })(__m2, __m38, __m26);
 
     // ## can/view/stache/mustache_core.js
-    var __m40 = (function(can, utils, mustacheHelpers, live, elements, Scope, nodeLists) {
+    var __m39 = (function(can, utils, mustacheHelpers, live, elements, Scope, nodeLists) {
 
         live = live || can.view.live;
         elements = elements || can.view.elements;
@@ -10307,10 +10123,10 @@
 
 
         return core;
-    })(__m2, __m39, __m41, __m26, __m24, __m22, __m27);
+    })(__m2, __m38, __m40, __m26, __m24, __m22, __m27);
 
     // ## can/view/stache/html_section.js
-    var __m38 = (function(can, target, utils, mustacheCore) {
+    var __m37 = (function(can, target, utils, mustacheCore) {
 
 
         var decodeHTML = (function() {
@@ -10451,10 +10267,10 @@
 
         return HTMLSectionBuilder;
 
-    })(__m2, __m37, __m39, __m40);
+    })(__m2, __m36, __m38, __m39);
 
     // ## can/view/stache/text_section.js
-    var __m42 = (function(can, live, utils) {
+    var __m41 = (function(can, live, utils) {
         live = live || can.view.live;
 
         var TextSectionBuilder = function() {
@@ -10557,10 +10373,10 @@
             });
 
         return TextSectionBuilder;
-    })(__m2, __m26, __m39);
+    })(__m2, __m26, __m38);
 
     // ## can/view/stache/stache.js
-    var __m36 = (function(can, parser, target, HTMLSectionBuilder, TextSectionBuilder, mustacheCore, mustacheHelpers, viewCallbacks) {
+    var __m35 = (function(can, parser, target, HTMLSectionBuilder, TextSectionBuilder, mustacheCore, mustacheHelpers, viewCallbacks) {
 
         // Make sure that we can also use our modules with Stache as a plugin
         parser = parser || can.view.parser;
@@ -10884,10 +10700,10 @@
         };
 
         return stache;
-    })(__m2, __m28, __m37, __m38, __m42, __m40, __m41, __m9);
+    })(__m2, __m28, __m36, __m37, __m41, __m39, __m40, __m9);
 
     // ## can/route/pushstate/pushstate.js
-    var __m43 = (function(can) {
+    var __m42 = (function(can) {
         "use strict";
 
         // Initialize plugin only if browser supports pushstate.
@@ -11027,6 +10843,196 @@
 
         return can;
     })(__m2, __m31);
+
+    // ## can/map/delegate/delegate.js
+    var __m43 = (function(can) {
+        // ** - 'this' will be the deepest item changed
+        // * - 'this' will be any changes within *, but * will be the 
+        //     this returned
+        // tells if the parts part of a delegate matches the broken up props of the event
+        // gives the prop to use as 'this'
+        // - parts - the attribute name of the delegate split in parts ['foo','*']
+        // - props - the split props of the event that happened ['foo','bar','0']
+        // - returns - the attribute to delegate too ('foo.bar'), or null if not a match 
+        var delegateMatches = function(parts, props) {
+            //check props parts are the same or 
+            var len = parts.length,
+                i = 0,
+                // keeps the matched props we will use
+                matchedProps = [],
+                prop;
+            // if the event matches
+            for (i; i < len; i++) {
+                prop = props[i];
+                // if no more props (but we should be matching them)
+                // return null
+                if (typeof prop !== 'string') {
+                    return null;
+                } else // if we have a "**", match everything
+                if (parts[i] === '**') {
+                    return props.join('.');
+                } else // a match, but we want to delegate to "*"
+                if (parts[i] === '*') {
+                    // only do this if there is nothing after ...
+                    matchedProps.push(prop);
+                } else if (prop === parts[i]) {
+                    matchedProps.push(prop);
+                } else {
+                    return null;
+                }
+            }
+            return matchedProps.join('.');
+        },
+            // gets a change event and tries to figure out which
+            // delegates to call
+            delegateHandler = function(event, prop, how, newVal, oldVal) {
+                // pre-split properties to save some regexp time
+                var props = prop.split('.'),
+                    delegates = (this._observe_delegates || [])
+                        .slice(0),
+                    delegate, attr, matchedAttr, hasMatch, valuesEqual;
+                event.attr = prop;
+                event.lastAttr = props[props.length - 1];
+                // for each delegate
+                for (var i = 0; delegate = delegates[i++];) {
+                    // if there is a batchNum, this means that this
+                    // event is part of a series of events caused by a single 
+                    // attrs call.  We don't want to issue the same event
+                    // multiple times
+                    // setting the batchNum happens later
+                    if (event.batchNum && delegate.batchNum === event.batchNum || delegate.undelegated) {
+                        continue;
+                    }
+                    // reset match and values tests
+                    hasMatch = undefined;
+                    valuesEqual = true;
+                    // yeah, all this under here has to be redone v
+                    // for each attr in a delegate
+                    for (var a = 0; a < delegate.attrs.length; a++) {
+                        attr = delegate.attrs[a];
+                        matchedAttr = delegateMatches(attr.parts, props);
+                        // check if it is a match
+                        if (matchedAttr) {
+                            hasMatch = matchedAttr;
+                        }
+                        // if it has a value, make sure it's the right value
+                        // if it's set, we should probably check that it has a 
+                        // value no matter what
+                        if (attr.value && valuesEqual) {
+                            valuesEqual = attr.value === '' + this.attr(attr.attr);
+                        } else if (valuesEqual && delegate.attrs.length > 1) {
+                            // if there are multiple attributes, each has to at
+                            // least have some value
+                            valuesEqual = this.attr(attr.attr) !== undefined;
+                        }
+                    }
+                    // if there is a match and valuesEqual ... call back
+                    if (hasMatch && valuesEqual) {
+                        // how to get to the changed property from the delegate
+                        var from = prop.replace(hasMatch + '.', '');
+                        // if this event is part of a batch, set it on the delegate
+                        // to only send one event
+                        if (event.batchNum) {
+                            delegate.batchNum = event.batchNum;
+                        }
+                        // if we listen to change, fire those with the same attrs
+                        // TODO: the attrs should probably be using from
+                        if (delegate.event === 'change') {
+                            prop = from;
+                            event.curAttr = hasMatch;
+                            delegate.callback.apply(this.attr(hasMatch), can.makeArray(arguments));
+                        } else if (delegate.event === how) {
+                            // if it's a match, callback with the location of the match
+                            delegate.callback.apply(this.attr(hasMatch), [
+                                    event,
+                                    newVal,
+                                    oldVal,
+                                    from
+                                ]);
+                        } else if (delegate.event === 'set' && how === 'add') {
+                            // if we are listening to set, we should also listen to add
+                            delegate.callback.apply(this.attr(hasMatch), [
+                                    event,
+                                    newVal,
+                                    oldVal,
+                                    from
+                                ]);
+                        }
+                    }
+                }
+            };
+        can.extend(can.Map.prototype, {
+                delegate: function(selector, event, handler) {
+                    selector = can.trim(selector);
+                    var delegates = this._observe_delegates || (this._observe_delegates = []),
+                        attrs = [],
+                        selectorRegex = /([^\s=,]+)(?:=("[^",]*"|'[^',]*'|[^\s"',]*))?(,?)\s*/g,
+                        matches;
+                    // parse each property in the selector
+                    while ((matches = selectorRegex.exec(selector)) !== null) {
+                        // we need to do a little doctoring to make up for the quotes.
+                        if (matches[2] && can.inArray(matches[2].substr(0, 1), [
+                                    '"',
+                                    '\''
+                                ]) >= 0) {
+                            matches[2] = matches[2].substr(1, -1);
+                        }
+                        attrs.push({
+                                // the attribute name
+                                attr: matches[1],
+                                // the attribute name, pre-split for speed
+                                parts: matches[1].split('.'),
+                                // the value associated with this property (if there was one given)
+                                value: matches[2],
+                                // whether this selector combines with the one after it with AND or OR
+                                or: matches[3] === ','
+                            });
+                    }
+                    // delegates has pre-processed info about the event
+                    delegates.push({
+                            // the attrs name for unbinding
+                            selector: selector,
+                            // an object of attribute names and values {type: 'recipe',id: undefined}
+                            // undefined means a value was not defined
+                            attrs: attrs,
+                            callback: handler,
+                            event: event
+                        });
+                    if (delegates.length === 1) {
+                        this.bind('change', delegateHandler);
+                    }
+                    return this;
+                },
+                undelegate: function(selector, event, handler) {
+                    selector = selector && can.trim(selector);
+                    var i = 0,
+                        delegates = this._observe_delegates || [],
+                        delegateOb;
+                    if (selector) {
+                        while (i < delegates.length) {
+                            delegateOb = delegates[i];
+                            if (delegateOb.callback === handler || !handler && delegateOb.selector === selector) {
+                                delegateOb.undelegated = true;
+                                delegates.splice(i, 1);
+                            } else {
+                                i++;
+                            }
+                        }
+                    } else {
+                        // remove all delegates
+                        delegates = [];
+                    }
+                    if (!delegates.length) {
+                        //can.removeData(this, "_observe_delegates");
+                        this.unbind('change', delegateHandler);
+                    }
+                    return this;
+                }
+            });
+        // add helpers for testing .. 
+        can.Map.prototype.delegate.matches = delegateMatches;
+        return can.Map;
+    })(__m2, __m15);
 
     // ## can/map/define/define.js
     var __m44 = (function(can) {

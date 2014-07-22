@@ -836,11 +836,18 @@ ul, li {
     background-color: #4bc4ee;
     color: white; }
 
-.products_articles {
+#products_articles {
   height: 320px;
   margin-bottom: 20px; }
-  .products_articles .text {
+
+.products_article {
+  height: 100%;
+  width: 100%;
+  display: none; }
+  .products_article .text {
     padding: 40px; }
+  .products_article.active {
+    display: block; }
 
 #products_container {
   overflow: visible; }

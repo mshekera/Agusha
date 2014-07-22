@@ -80,12 +80,22 @@
 	}
 }
 
-.products_articles {
+#products_articles {
 	height: 320px;
 	margin-bottom: 20px;
+}
+
+.products_article {
+    height: 100%;
+    width: 100%;
+	display: none;
 	
 	.text {
 		padding: 40px;
+	}
+	
+	&.active {
+		display: block;
 	}
 }
 
