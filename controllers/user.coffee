@@ -26,7 +26,7 @@ Router.get '/products', Products.index
 Router.get '/products/:category', Products.index
 Router.get '/products/:category/:age', Products.index
 
-Router.post '/products/searchByFilter', Products.searchByFilter
+Router.post '/products/findAll', Products.findAll
 
 #
 

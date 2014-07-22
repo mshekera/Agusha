@@ -3,8 +3,62 @@ extends ../layout
 block append header
 	link(rel="stylesheet" href="/css/user/products/products.css")
 
+mixin product(p)
+	.product_block
+		.image
+			if p
+				if p.image
+					- var src = '/img/uploads/' + p.image
+				else
+					- var src = '/img/no_photo.png'
+				img(src=src)
+			else
+				| {{#if image}}
+				img(src="/img/uploads/{{image}}")
+				| {{else}}
+				img(src="/img/no_photo.png")
+				| {{/if}}
+		
+		.title.adorable_table
+			.adorable_cell
+				span=(p ? p.title : '{{title}}')
+		
+		.desc.adorable_table
+			.adorable_cell
+				span!=(p ? p.text : '{{{text}}}')
+		
+		.info
+			.half
+				.adorable_table
+					.adorable_cell
+						.top=(p ? p.volume : '{{volume}}')
+						.bottom объем
+			
+			.half
+				.adorable_table
+					.adorable_cell
+						.top=(p ? p.age.title : '{{age.title}}')
+						if p
+							if p.age.level < 12
+								- var age = 'мес.'
+							else
+								- var age = 'лет'
+							.bottom #{age}
+						else
+							.bottom
+								| {{#ageLevel}}
+								| мес.
+								| {{else}}
+								| лет
+								| {{/ageLevel}}
+
+mixin products_stache()
+	| {{#each products}}
+	mixin product()
+	| {{/each}}
+
 block append content
-	.content.force_height
+	#products.content.force_height
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
 		.topper.blue.adorable_table
@@ -59,40 +113,15 @@ block append content
 			.half.text.border_boxed sddsffdsdsf sdfds fsdf sdf 
 					
 		
-		.products_container.force_height
+		#products_container.force_height
 			- each p, key in products
-				.product_block
-					.image
-						if p.image
-							- var src = '/img/uploads/' + p.image
-						else
-							- var src = '/img/no_photo.png'
-						img(src=src)
-					
-					.title.adorable_table
-						.adorable_cell
-							span #{p.title}
-					
-					.desc.adorable_table
-						.adorable_cell
-							span !{p.text}
-					
-					.info
-						.half
-							.adorable_table
-								.adorable_cell
-									.top #{p.volume}
-									.bottom объем
-						
-						.half
-							.adorable_table
-								.adorable_cell
-									.top #{p.age.title}
-									if p.age.level < 12
-										- var age = 'мес.'
-									else
-										- var age = 'лет'
-									.bottom #{age}
+				mixin product(p)
 			
 block append scripts
+	script(src="/js/plugins/can/can.js")
+	script.
+		var products = !{JSON.stringify(products)};
+		var ages = !{JSON.stringify(ages)};
+	script#products-tmpl(type="text/mustache")
+		mixin products_stache()
 	script(src="/js/user/products/products.js")

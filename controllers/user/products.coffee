@@ -30,7 +30,7 @@ exports.index = (req, res) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/products/index: #{error}"
 
-exports.searchByFilter = (req, res) ->
+exports.findAll = (req, res) ->
 	data = {}
 	
 	asyncFunctions = Product.addAsyncFunctionsByFilter data, req.body.category, req.body.age
