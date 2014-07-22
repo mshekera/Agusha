@@ -84,6 +84,19 @@
   height: 100%;
   width: 100%;
   display: none; }
+  .products_article .half {
+    position: relative; }
+  .products_article .article_image {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    line-height: 0; }
+    .products_article .article_image .adorable_cell {
+      text-align: right; }
+    .products_article .article_image img {
+      max-height: 100%;
+      max-width: 100%; }
   .products_article .text {
     padding: 40px; }
   .products_article.active {

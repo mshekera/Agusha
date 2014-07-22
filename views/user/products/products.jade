@@ -109,12 +109,14 @@ block append content
 			- each a, key in ages
 				.products_article(id = 'age_' + a.level, class=(key == 0 ? 'active' : ''))
 					.half
-						if desc_image
-							.article_image
-								img(src='')
+						| Макет данного блока предоставлен сплошной картинкой, требую исправить несправедливость!
+						if a.desc_image
+							.article_image.adorable_table
+								.adorable_cell
+									- var src = '/img/uploads/' + a.desc_image
+									img(src=src)
 					
 					.half.text.border_boxed !{a.desc_text}
-					
 		
 		#products_container.force_height
 			- each p, key in products
