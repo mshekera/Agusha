@@ -37,9 +37,9 @@ exports.addAsyncFunctionsByFilter = (data, category, age) ->
 		]
 	
 	return asyncFunctions = asyncFunctions.concat [
-		(next) ->			
+		(next) ->
 			Model 'Product', 'find', next, searchOptions
-		(docs, next) ->			
+		(docs, next) ->
 			Model 'Product', 'populate', next, docs, 'age category'
 		(docs, next) ->
 			data.products = docs

@@ -1,0 +1,109 @@
+@import '../dynamic/dynamic';
+@import '../helpers/breadcrumbs';
+
+.content {
+	margin-bottom: 70px;
+}
+
+#product_container {
+	height: 680px;
+}
+
+.product_left {
+	float: left;
+	width: 57%;
+	background-color: $el_bg;
+	padding: 40px 40px 0 40px;
+	height: 100%;
+	position: relative;
+	
+	.label {
+		margin-bottom: 20px;
+		padding: 0;
+	}
+	
+	.text_label {
+		text-transform: uppercase;
+		color: $blue;
+		font-weight: bold;
+	}
+	
+	.text {
+		margin-bottom: 25px;
+	}
+	
+	.certificates_container {
+		bottom: 133px;
+		position: absolute;
+	}
+	
+	.certificate {
+		width: 45px;
+		height: 45px;
+		line-height: 0;
+		margin-right: 25px;
+		
+		img {
+			max-height: 100%;
+			max-width: 100%;
+		}
+	}
+	
+	.left_button {
+		bottom: 0;
+		height: 133px;
+		position: absolute;
+		
+		.adorable_cell {
+			text-align: left;
+		}
+		
+		button {
+			font-size: 100%;
+			font-weight: bold;
+		}
+	}
+}
+
+.product_right {
+	float: left;
+	width: 43%;
+	height: 100%;
+	position: relative;
+	
+	.right_image {
+		height: 500px;
+		position: relative;
+		
+		img {
+			@include absolute_centered;
+			max-height: 90%;
+			max-width: 90%;
+		}
+	}
+	
+	.right_footer {
+		height: 180px;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		
+		.top {
+			font-size: 112.5%;
+			color: $blue;
+			font-weight: bold;
+		}
+		
+		.bottom {
+			font-size: 93%;
+		}
+		
+		&:before {
+			@include pseudo;
+			@include absolute_centered;
+			height: 48px;
+			width: 1px;
+			background-color: $base;
+		}
+	}
+}

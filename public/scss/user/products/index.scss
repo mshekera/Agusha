@@ -128,10 +128,11 @@
 	background-color: $white;
 	height: 465px;
 	float: left;
-	margin: 0 0 1% 2%;
+	margin: 0 0 2% 2%;
     width: 22.5%;
 	position: relative;
 	cursor: pointer;
+	color: $base;
 	
 	.image {
 		position: absolute;

@@ -1,0 +1,97 @@
+/* colors */
+/* base */
+/* useful */
+/* base */
+/* colors */
+/* base */
+/* useful */
+/* base */
+.breadcrumbs {
+  margin-bottom: 14px;
+  font-size: 85%; }
+  .breadcrumbs a {
+    color: #a19084; }
+
+.content {
+  margin-bottom: 70px; }
+
+#product_container {
+  height: 680px; }
+
+.product_left {
+  float: left;
+  width: 57%;
+  background-color: #f7f7f7;
+  padding: 40px 40px 0 40px;
+  height: 100%;
+  position: relative; }
+  .product_left .label {
+    margin-bottom: 20px;
+    padding: 0; }
+  .product_left .text_label {
+    text-transform: uppercase;
+    color: #4bc4ee;
+    font-weight: bold; }
+  .product_left .text {
+    margin-bottom: 25px; }
+  .product_left .certificates_container {
+    bottom: 133px;
+    position: absolute; }
+  .product_left .certificate {
+    width: 45px;
+    height: 45px;
+    line-height: 0;
+    margin-right: 25px; }
+    .product_left .certificate img {
+      max-height: 100%;
+      max-width: 100%; }
+  .product_left .left_button {
+    bottom: 0;
+    height: 133px;
+    position: absolute; }
+    .product_left .left_button .adorable_cell {
+      text-align: left; }
+    .product_left .left_button button {
+      font-size: 100%;
+      font-weight: bold; }
+
+.product_right {
+  float: left;
+  width: 43%;
+  height: 100%;
+  position: relative; }
+  .product_right .right_image {
+    height: 500px;
+    position: relative; }
+    .product_right .right_image img {
+      left: 0;
+      right: 0;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      max-height: 90%;
+      max-width: 90%; }
+  .product_right .right_footer {
+    height: 180px;
+    position: absolute;
+    bottom: 0;
+    width: 100%; }
+    .product_right .right_footer .top {
+      font-size: 112.5%;
+      color: #4bc4ee;
+      font-weight: bold; }
+    .product_right .right_footer .bottom {
+      font-size: 93%; }
+    .product_right .right_footer:before {
+      position: absolute;
+      content: "";
+      left: 0;
+      right: 0;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      height: 48px;
+      width: 1px;
+      background-color: #666666; }

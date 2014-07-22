@@ -4,6 +4,7 @@ View = require '../lib/view'
 Main = require './user/main'
 SignUp = require './user/signup'
 Products = require './user/products'
+Product = require './user/product'
 Tour = require './user/tour'
 
 Router = express.Router()
@@ -27,6 +28,10 @@ Router.get '/products/:category', Products.index
 Router.get '/products/:category/:age', Products.index
 
 Router.post '/products/findAll', Products.findAll
+
+#
+
+Router.get '/product/:id', Product.index
 
 #
 
