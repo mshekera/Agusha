@@ -39,16 +39,17 @@ block content
 							button.blue Еще
 			
 			- each p, key in mainPageProducts
-				.content_block
-					.adorable_table
-						.adorable_cell
-							if p.image
-								- var src = '/img/uploads/' + p.image
-							else
-								- var src = '/img/no_photo.png'
-							
-							img.product_img(src=src)
-							.product_label #{p.title}
+				a(href = '/product/' + p._id)
+					.content_block
+						.adorable_table
+							.adorable_cell
+								if p.image
+									- var src = '/img/uploads/' + p.image
+								else
+									- var src = '/img/no_photo.png'
+								
+								img.product_img(src=src)
+								.product_label #{p.title}
 		
 		.right.border_boxed.green.adorable_table
 			.adorable_cell

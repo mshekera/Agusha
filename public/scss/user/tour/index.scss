@@ -1,0 +1,223 @@
+@import '../dynamic/dynamic';
+@import '../helpers/breadcrumbs';
+
+$pseudo_line_color: #d86a5d;
+
+.content {
+	margin-bottom: 50px;
+}
+
+.why_join_tour {
+	width: 100%;
+	
+	&:before {
+		margin-top: 40%;
+	}
+}
+
+.why_join_left {
+	width: 37.1%;
+	float: left;
+	height: 100%;
+	position: relative;
+	
+	.girl {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+	
+	.title {
+		height: 135px;
+		
+		.label {
+			font-size: 55px;
+			line-height: 55px;
+			color: $darkgreen;
+		}
+	}
+}
+
+.why_join_right {
+	width: 62.9%;
+	float: left;
+	height: 100%;
+	padding: 40px;
+	font-size: 112.5%;
+	font-style: italic;
+	
+	.adorable_cell {
+		text-align: left;
+	}
+}
+
+.program {
+	height: 270px;
+	margin-bottom: 20px;
+	padding: 40px 0;
+	color: $white;
+	
+	.label {
+		font-size: 55px;
+		line-height: 55px;
+		margin-bottom: 10px;
+	}
+	
+	.text {
+		font-size: 107.2%;
+		margin-bottom: 30px;
+	}
+	
+	.timetable {
+		height: 65px;
+		position: relative;
+		
+		&:before {
+			@include pseudo;
+			@include absolute_centered;
+			width: 100%;
+			height: 1px;
+			background-color: $pseudo_line_color;
+		}
+	}
+	
+	.time_block {
+		display: inline-block;
+		width: 16.6%;
+		font-size: 112.5%;
+		font-weight: bold;
+		min-width: 160px;
+		position: relative;
+		height: 100%;
+		
+		.top {
+			margin-bottom: 18px;
+		}
+		
+		&:before {
+			@include pseudo;
+			@include absolute_centered;
+			width: 13px;
+			height: 1px;
+			background-color: $red;
+		}
+		
+		&:after {
+			@include pseudo;
+			@include absolute_centered;
+			@include border_radius(5px);
+			width: 5px;
+			height: 5px;
+			background-color: $pseudo_line_color;
+		}
+	}
+}
+
+.map_container {
+	width: 100%;
+	margin-bottom: 20px;
+	
+	#tour_map {
+		width: 66.7%;
+		float: left;
+		height: 100%;
+	}
+	
+	.map_right {
+		width: 33.3%;
+		float: left;
+		height: 100%;
+		
+		.label {
+			margin-bottom: 10px;
+		}
+		
+		.text {
+			font-size: 112.5%;
+			color: #318b50;
+		}
+		
+		.marker {
+			margin-top: 25px;
+		}
+	}
+	
+	&:before {
+		margin-top: 38%;
+	}
+}
+
+.calendar_container {
+	width: 100%;
+	
+	&:before {
+		margin-top: 33.3%;
+	}
+}
+
+.calendar_inside {
+	display: table;
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	
+	#calendar_block_inside {
+		position: relative;
+		height: 100%;
+		
+		> .step {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: none;
+			
+			&.active {
+				display: block;
+			}
+		}
+	}
+	
+	.calendar_block {
+		display: table-cell;
+		height: 100%;
+	}
+	
+	.steps {
+		background-color: $darkblue;
+		position: relative;
+	}
+	
+	.steps_navigator {
+		position: absolute;
+		bottom: 38px;
+		left: 0;
+		width: 100%;
+		height: 14px;
+	}
+	
+	.step_button {
+		width: 14px;
+		height: 14px;
+		background-color: $white;
+		display: inline-block;
+		margin: 0 6px;
+		cursor: pointer;
+		
+		&.active {
+			@include inset_box_shadow(0 0 0 1px $white);
+			background-color: transparent;
+		}
+	}
+	
+	.closest {
+		background-color: $lightblue;
+	}
+	
+	.calendar {
+		background-color: $el_bg;
+	}
+}

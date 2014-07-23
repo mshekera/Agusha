@@ -13,7 +13,7 @@ var Products_controller = can.Control.extend(
 	},
 	
 	{
-		init: function () {			
+		init: function () {
 			this.first_call = true;
 			
 			var ViewModel = can.Map.extend({
@@ -48,13 +48,6 @@ var Products_controller = can.Control.extend(
 			
 			this.data = new ViewModel();
 			
-			this.data.delegate('age', 'set', function(ev, value){
-				if(value) {
-					$('#products_articles .products_article').removeClass('active');
-					$('#age_' + value).addClass('active');
-				}
-			});
-			
 			$('#products_container').html(can.view("#products-tmpl", this.data, {
 				ageLevel: function(options) {
 					return options.context.age.level < 12 ? options.fn() : options.inverse();
@@ -71,6 +64,11 @@ var Products_controller = can.Control.extend(
 			element.addClass('active');
 			
 			this.data.attr('age', val);
+			
+			if(val) {
+				$('#products_articles .products_article').removeClass('active');
+				$('#age_' + val).addClass('active');
+			}
 		},
 		
 		'.choose_category click': function(el) {

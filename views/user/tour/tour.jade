@@ -1,51 +1,155 @@
 extends ../layout
 
 block append header
-	
+	link(rel="stylesheet" href="/css/user/tour/tour.css")
 
 block append content
-	form#registration_form(method="POST", action="/tour/add_record")
-		div
-			select(name="tour")
-				option(value='') Выберите тур
-				- each t, key in tours
-					option(value=t._id) #{t.date}
-		div
-			input(type="text", name="firstname", placeholder="Имя")
-			span.error
-		div
-			input(type="text", name="lastname", placeholder="Фамилия")
-			span.error
-		div
-			input(type="text", name="patronymic", placeholder="Отчество")
-			span.error
-		div
-			input(type="email", name="email", placeholder="E-mail")
-			span.error
-		div
-			input(type="text", name="phone", placeholder="Телефон")
-			span.error
-		//div
-			input(type="text", name="city", placeholder="Город проживания")
-			span.error
+	#tour.content
+		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
-		- for (var i = 0; i < 2; i++)
-			div.child_item
-				input(type="text", name="children[#{i}][name]", placeholder="Имя")
-				span.error
-				input(type="text", name="children[#{i}][gender]", placeholder="Пол")
-				span.error
-				input(type="text", name="children[#{i}][age]", placeholder="Возраст")
-				span.error
-				input(type="checkbox", name="children[#{i}][withParents]")
-				span.error
+		.why_join_tour.white.adorable_container
+			.adorable
+				.why_join_left
+					img.girl(src="/img/user/tour/girl.jpg")
+					.title.adorable_table
+						.adorable_cell
+							.label.novito_nova А зачем ехать на экскурсию?
+				
+				.why_join_right.adorable_table.border_boxed
+					.adorable_cell
+						| Мы знаем, как для вас важно давать своему малышу только лучшее. 
+						br
+						br
+						| Доверяя ТМ «Агуша», вы можете быть уверены, что выбираете безопасные, полезные и вкусные продукты питания.
+						br
+						br
+						| Запишитесь на бесплатную экскурсию на «Завод Агуша» в г. Вишневое! Вы побываете на высокотехнологичном производстве, попробуете продукцию и сможете задать все интересующие вопросы.
 		
-		button(type="submit") Отправить
-	
-	if err
-		.error
-			| #{err}
+		.program.red.border_boxed.adorable_table
+			.adorable_cell
+				.label.novito_nova Программа экскурсии на «завод Агуша» в г. Вишневое!
+				
+				.text Приезжайте в гости - будет здорово!
+				
+				.timetable
+					.adorable_table
+						.adorable_cell
+							.time_block
+								.adorable_table
+									.adorable_cell
+										.top 10:00
+										.bottom Сбор у метро
+							
+							.time_block
+								.adorable_table
+									.adorable_cell
+										.top 10:30
+										.bottom Экскурсия
+							
+							.time_block
+								.adorable_table
+									.adorable_cell
+										.top 12:00
+										.bottom Фото с коровой
+							
+							.time_block
+								.adorable_table
+									.adorable_cell
+										.top 12:15
+										.bottom Дегустация
+							
+							.time_block
+								.adorable_table
+									.adorable_cell
+										.top 13:00
+										.bottom Трансфер с метро
+		
+		.map_container.adorable_container.green
+			.adorable
+				#tour_map
+					
+				
+				.map_right.adorable_table
+					.adorable_cell
+						.label.novito_nova Найти нас очень просто!
+						.text место сбора
+						.text Киев, м.Академгородок
+						img.marker(src="/img/user/tour/marker.png")
+		
+		.calendar_container.adorable_container
+			.adorable
+				.calendar_inside
+					.calendar_block.steps
+						#calendar_block_inside
+							.step.step_1.adorable_table.active
+								.adorable_cell
+									
+							
+							.step.step_2.adorable_table
+								.adorable_cell						
+									
+							
+							.step.step_2.adorable_table
+								.adorable_cell
+							
+							.steps_navigator.centered
+								.step_button.step_1.rounded.active(data-step="1")
+								.step_button.step_2.rounded(data-step="2")
+								.step_button.step_3.rounded(data-step="3")
+					
+					.calendar_block.closest
+						
+					
+					.calendar_block.calendar
+						
+		
+		form#registration_form(method="POST", action="/tour/add_record")
+			div
+				select(name="tour")
+					option(value='') Выберите тур
+					- each t, key in tours
+						option(value=t._id) #{t.date}
+			div
+				input(type="text", name="firstname", placeholder="Имя")
+				span.error
+			div
+				input(type="text", name="lastname", placeholder="Фамилия")
+				span.error
+			div
+				input(type="text", name="patronymic", placeholder="Отчество")
+				span.error
+			div
+				input(type="email", name="email", placeholder="E-mail")
+				span.error
+			div
+				input(type="text", name="phone", placeholder="Телефон")
+				span.error
+			//div
+				input(type="text", name="city", placeholder="Город проживания")
+				span.error
+			
+			- for (var i = 0; i < 2; i++)
+				div.child_item
+					input(type="text", name="children[#{i}][name]", placeholder="Имя")
+					span.error
+					input(type="text", name="children[#{i}][gender]", placeholder="Пол")
+					span.error
+					input(type="text", name="children[#{i}][age]", placeholder="Возраст")
+					span.error
+					input(type="checkbox", name="children[#{i}][withParents]")
+					span.error
+			
+			button(type="submit") Отправить
+		
+		if err
+			.error
+				| #{err}
 
 block append scripts
+	script(src="/js/plugins/google/googlemaps_api.js")
+	script(src="/js/plugins/google/googlemaps_main.js")
+	script(src="/js/plugins/can/can.js")
+	script(src="/js/plugins/placeholders/placeholders.min.js")
+	script(src="/js/plugins/modal/jquery.easyModal.js")
 	script(src="/js/plugins/validate/jquery.validate.js")
 	script(src="/js/user/tour/tour.js")

@@ -7,13 +7,19 @@ Logger = require '../../lib/logger'
 Tour = require '../../lib/tour'
 Tour_record = require '../../lib/tour_record'
 
+tree = require '../../utils/tree'
+
+breadcrumbs = require '../../meta/breadcrumbs'
+
 exports.index = (req, res) ->
+	data =
+		breadcrumbs: tree.findWithParents breadcrumbs, 'tour'
+	
 	async.waterfall [
 		(next) ->
 			Model 'Tour', 'find', next
 		(docs, next) ->
-			data =
-				tours: docs
+			data.tours = docs
 			
 			View.renderWithSession req, res, 'user/tour/tour', data
 	], (err) ->
