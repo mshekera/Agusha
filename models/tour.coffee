@@ -11,6 +11,7 @@ schema = new mongoose.Schema
 		required: true
 		get: Time.getDate
 		set: Time.setDate
+		index: true
 ,
 	collection: 'tour'
 

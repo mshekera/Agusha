@@ -11,6 +11,7 @@ schema = new mongoose.Schema
 		type: Date
 		default: Date.now
 		get: Time.getDate
+		index: true
 	firstname:
 		type: Array
 		required: true

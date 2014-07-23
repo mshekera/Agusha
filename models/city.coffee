@@ -7,9 +7,11 @@ schema = new mongoose.Schema
 	id:
 		type: Number
 		required: true
+		index: true
 	name:
 		type: String
 		required: true
+		index: true
 ,
 	collection: 'city'
 
