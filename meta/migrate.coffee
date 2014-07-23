@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 
 module.exports = [
-	modelName: 'permission'
+	modelName: 'Permission'
 	data: [
 		_id: 'denied'
 		name: 'access_denied'
@@ -25,7 +25,7 @@ module.exports = [
 		name: 'permissions'
 	]
 ,
-	modelName: 'role'
+	modelName: 'Role'
 	data: [
 		_id: 'admin'
 		name: 'admin'
@@ -44,7 +44,7 @@ module.exports = [
 		permissions: []
 	]
 ,
-	modelName: 'user'
+	modelName: 'User'
 	data: [
 		_id: '53b54577f5adc6a9932b1aec'
 		username: 'admin'

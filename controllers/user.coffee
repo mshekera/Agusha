@@ -6,6 +6,7 @@ SignUp = require './user/signup'
 Products = require './user/products'
 Product = require './user/product'
 Tour = require './user/tour'
+Migrate = require '../init/migrate'
 
 Router = express.Router()
 
@@ -37,5 +38,7 @@ Router.get '/product/:id', Product.index
 
 Router.get '/tour', Tour.index
 Router.post '/tour/add_record', Tour.add_record
+
+#
 
 exports.Router = Router
