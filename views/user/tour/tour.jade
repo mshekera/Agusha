@@ -2,6 +2,7 @@ extends ../layout
 
 block append header
 	link(rel="stylesheet" href="/css/user/tour/tour.css")
+	//link(rel="stylesheet" href="/js/plugins/jquery.ui/jquery-ui.theme.min.css")
 
 block append content
 	#tour.content
@@ -62,7 +63,7 @@ block append content
 								.adorable_table
 									.adorable_cell
 										.top 13:00
-										.bottom Трансфер с метро
+										.bottom Трансфер к метро
 		
 		.map_container.adorable_container.green
 			.adorable
@@ -81,16 +82,22 @@ block append content
 				.calendar_inside
 					.calendar_block.steps
 						#calendar_block_inside
-							.step.step_1.adorable_table.active
-								.adorable_cell
-									
+							.steps_top_label.top_label.centered Всего три простых шага
 							
-							.step.step_2.adorable_table
-								.adorable_cell						
-									
-							
-							.step.step_2.adorable_table
+							.step.step_1.adorable_table.border_boxed.active
 								.adorable_cell
+									.label.novito_nova Шаг 1
+									.text Выберите в календаре удобную для вас и малыша дату
+							
+							.step.step_2.adorable_table.border_boxed
+								.adorable_cell
+									.label.novito_nova Шаг 2
+									.text Заполните форму регистрации на экскурсию
+							
+							.step.step_3.adorable_table.border_boxed
+								.adorable_cell
+									.label.novito_nova Шаг 3
+									.text В день экскурсии в 10 утра приезжайте к ст. м. Академгородок	
 							
 							.steps_navigator.centered
 								.step_button.step_1.rounded.active(data-step="1")
@@ -98,52 +105,81 @@ block append content
 								.step_button.step_3.rounded(data-step="3")
 					
 					.calendar_block.closest
-						
+						#closest_block_inside
+							- each t, key in tours
+								.tour_block.adorable_table.border_boxed(id = 'tour_' + key, data-key=key, class=(key == 0 ? 'active' : ''))
+									.adorable_cell
+										- var date = moment(t.date, 'DD/MM/YYYY')
+										if key == 0
+											.closest_tour_label.novito_nova Ближайшая экскурсия
+										
+										.top_label #{date.calendar().split(' ', 2).join(' ')}
+										.label.novito_nova #{date.format('D')}
+										.top_label #{date.format('LL').split(' ', 3).splice(1, 2).join(' ')}
+							
+							.prev_tour
+								img(src="/img/user/tour/arrow_left.png")
+							
+							.next_tour
+								img(src="/img/user/tour/arrow_right.png")
 					
-					.calendar_block.calendar
-						
+					.calendar_block
+						#calendar.border_boxed
 		
-		form#registration_form(method="POST", action="/tour/add_record")
-			div
-				select(name="tour")
-					option(value='') Выберите тур
-					- each t, key in tours
-						option(value=t._id) #{t.date}
-			div
-				input(type="text", name="firstname", placeholder="Имя")
-				span.error
-			div
-				input(type="text", name="lastname", placeholder="Фамилия")
-				span.error
-			div
-				input(type="text", name="patronymic", placeholder="Отчество")
-				span.error
-			div
-				input(type="email", name="email", placeholder="E-mail")
-				span.error
-			div
-				input(type="text", name="phone", placeholder="Телефон")
-				span.error
-			//div
-				input(type="text", name="city", placeholder="Город проживания")
-				span.error
-			
-			- for (var i = 0; i < 2; i++)
-				div.child_item
-					input(type="text", name="children[#{i}][name]", placeholder="Имя")
-					span.error
-					input(type="text", name="children[#{i}][gender]", placeholder="Пол")
-					span.error
-					input(type="text", name="children[#{i}][age]", placeholder="Возраст")
-					span.error
-					input(type="checkbox", name="children[#{i}][withParents]")
-					span.error
-			
-			button(type="submit") Отправить
+		form#tour_form(method="POST", action="/tour/add_record")
+			.form_topper
+				.content
+					.left
+						.adorable_table
+							.adorable_cell
+								.label.novito_nova Форма регистрации на экскурсию
+					
+					.right
+						.adorable_table
+							.adorable_cell 
+								.top_label #{tours[0].date}
+				
+			.form_inputs
+				.content
+					
+				
 		
-		if err
-			.error
-				| #{err}
+		div
+			select(name="tour")
+				option(value='') Выберите тур
+				- each t, key in tours
+					option(value=t._id) #{t.date}
+		div
+			input(type="text", name="firstname", placeholder="Имя")
+			span.error
+		div
+			input(type="text", name="lastname", placeholder="Фамилия")
+			span.error
+		div
+			input(type="text", name="patronymic", placeholder="Отчество")
+			span.error
+		div
+			input(type="email", name="email", placeholder="E-mail")
+			span.error
+		div
+			input(type="text", name="phone", placeholder="Телефон")
+			span.error
+		//div
+			input(type="text", name="city", placeholder="Город проживания")
+			span.error
+		
+		- for (var i = 0; i < 2; i++)
+			div.child_item
+				input(type="text", name="children[#{i}][name]", placeholder="Имя")
+				span.error
+				input(type="text", name="children[#{i}][gender]", placeholder="Пол")
+				span.error
+				input(type="text", name="children[#{i}][age]", placeholder="Возраст")
+				span.error
+				input(type="checkbox", name="children[#{i}][withParents]")
+				span.error
+		
+		button(type="submit") Отправить
 
 block append scripts
 	script(src="/js/plugins/google/googlemaps_api.js")
@@ -151,5 +187,10 @@ block append scripts
 	script(src="/js/plugins/can/can.js")
 	script(src="/js/plugins/placeholders/placeholders.min.js")
 	script(src="/js/plugins/modal/jquery.easyModal.js")
+	script(src="/js/plugins/jquery.ui/core.js")
+	script(src="/js/plugins/jquery.ui/datepicker.js")
+	script(src="/js/plugins/jquery.ui/jquery.ui.datepicker-ru.js")
 	script(src="/js/plugins/validate/jquery.validate.js")
+	script.
+		var tours = !{JSON.stringify(tours)};
 	script(src="/js/user/tour/tour.js")

@@ -17,7 +17,15 @@ exports.index = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Model 'Tour', 'find', next
+			findOptions =
+				date:
+					$gt: new Date()
+			
+			sortOptions =
+				sort:
+					date: 1
+			
+			Model 'Tour', 'find', next, findOptions, {}, sortOptions
 		(docs, next) ->
 			data.tours = docs
 			

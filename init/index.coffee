@@ -1,6 +1,7 @@
 async = require 'async'
 _ = require 'underscore'
 _.str = require 'underscore.string'
+moment = require 'moment'
 
 Database = require './database'
 Logger = require '../lib/logger'
@@ -13,6 +14,8 @@ ModelPreloader = require './mpload'
 appPort = 8080
 
 _.mixin _.str.exports()
+
+moment.lang 'ru'
 
 async.waterfall [
 	(next) ->

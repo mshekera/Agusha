@@ -1,0 +1,106 @@
+@import '../dynamic/dynamic';
+
+$td_heigt: 28px;
+
+@mixin calendar_arrow {
+	bottom: 0;
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	height: 16px;
+	z-index: 1;
+	color: #cccccc;
+	font-size: 112.5%;
+}
+
+.ui-datepicker {
+    height: 100%;
+    width: 100%;
+}
+
+.ui-datepicker-calendar {
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+	text-align: center;
+	
+	thead {
+		color: #fd7b6a;
+	}
+	
+	td, th {
+		display: table-cell;
+		position: relative;
+		vertical-align: middle;
+		
+		span, a {
+			@include border_radius($td_heigt);
+			display: inline-block;
+			height: $td_heigt;
+			width: $td_heigt;
+			line-height: $td_heigt;
+		}
+		
+		&:before {
+			@include lovely;
+			margin-top: 29.4%;
+		}
+	}
+	
+	a.ui-state-active {
+		@include inset_box_shadow(0 0 0 2px $lightblue);
+		background-color: transparent;
+		color: #4d4d4d;
+	}
+}
+
+.ui-datepicker-header {
+	@include absolute_centered;
+	display: table;
+	position: relative;
+	width: 100%;
+	
+	.ui-datepicker-title {
+		@include absolute_centered;
+		max-height: 100%;
+		max-width: 100%;
+		text-align: center;
+		height: 16px;
+		font-size: 112.5%;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	
+	&:before {
+		@include lovely;
+		margin-top: 13.7%;
+	}
+}
+
+.ui-datepicker-prev  {
+	@include calendar_arrow;
+	margin: auto 0 auto 5%;
+	left: 0;
+}
+
+.ui-datepicker-next  {
+	@include calendar_arrow;
+    margin: auto 5% auto 0;
+	right: 0;
+}
+
+.ui-state-disabled {
+	.ui-state-default {
+		color: #d2d2d2;
+	}
+}
+
+.ui-state-default {
+	color: #4d4d4d;
+	text-decoration: none;
+}
+
+.has_event {
+	background-color: $lightblue;
+	color: $white;
+}
