@@ -37,7 +37,7 @@
     "connect-gzip": "0.1.5",
     "mongoose-tree": "https://github.com/Rastopyr/mongoose-tree/tarball/master",
     "roles": "https://github.com/Rastopyr/node-roles/tarball/master",
-    "socket.io": "1.0.1",
+    "socket.io": "1.0.6",
     "sorto": "~0.0.2",
     "mongoose-post-find": "0.0.2",
     "sprintf": "0.1.3",
