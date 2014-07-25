@@ -341,8 +341,69 @@ $closest_color: #0d5c92;
 		}
 	}
 	
-	.form_inputs {
-		padding: 40px 80px;
-		background-color: $white;
+	input {
+		background-color: #f2f2f2;
+		
+		&:focus {
+			@include inset_box_shadow(0 0 0 3px $darkgreen);
+			background-color: $white;
+		}
+	}
+	
+	.right {
+		.input {
+			margin-left: 40px;
+		}
+	}
+	
+	.left {
+		.input {
+			margin-right: 40px;
+		}
 	}
 }
+
+.form_inputs {
+	padding: 40px 0 10px;
+	background-color: $white;
+	margin-bottom: 1px;
+}
+
+.children_inputs {
+	padding: 40px 0 10px;
+	background-color: $white;
+	
+	.child_block {
+		overflow: hidden;
+	}
+	
+	.more {
+		padding-bottom: 30px;
+		
+		.top_label {
+			font-size: 100%;
+			padding: 0;
+		}
+	}
+	
+	#add_child {
+		border-bottom: 1px dashed;
+		cursor: pointer;
+	}
+}
+
+.want_signup {
+	height: 68px;
+	background-color: #fd7b6a;
+	color: #c0574b;
+	font-style: italic;
+}
+
+.send_tour {
+	height: 117px;
+	background-color: $red;
+	
+	button {
+		color: $red;
+	}
+} 

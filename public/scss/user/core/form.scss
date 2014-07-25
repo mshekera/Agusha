@@ -27,8 +27,8 @@ input {
 	color: $light;
 	text-transform: uppercase;
 	margin: 0 0 30px;
-}
-
-input:focus {
-	@include inset_box_shadow(0 0 0 3px $yellow);
+	
+	&:focus {
+		@include inset_box_shadow(0 0 0 3px $yellow);
+	}
 }

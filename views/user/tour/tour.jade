@@ -2,7 +2,20 @@ extends ../layout
 
 block append header
 	link(rel="stylesheet" href="/css/user/tour/tour.css")
-	//link(rel="stylesheet" href="/js/plugins/jquery.ui/jquery-ui.theme.min.css")
+
+mixin add_child(i)
+	.client_block(class!='child_block_#{i}', data-key!='#{i}')
+		.half.left
+			.adorable_table
+				.adorable_cell
+					.input
+						input(type="text", name!="children[#{i}][name]", placeholder="Имя")
+		
+		.half.right
+			.adorable_table
+				.adorable_cell
+					.input
+						input(type="email", name!="children[#{i}][age]", placeholder="Возраст")
 
 block append content
 	#tour.content
@@ -139,11 +152,61 @@ block append content
 							.adorable_cell 
 								.top_label #{tours[0].date}
 				
-			.form_inputs
+			.form_inputs.force_height
 				.content
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name!="firstname", placeholder="Имя")
 					
-				
-		
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="email", name!="email", placeholder="E-mail")
+					
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name!="lastname", placeholder="Фамилия")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name!="phone", placeholder="+3 8(...) ... - .. - ..")
+					
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name!="patronymic", placeholder="Отчество")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name!="city", placeholder="Город проживания")
+			
+			.children_inputs.force_height
+				.content
+					#children_container
+						mixin add_child(0)
+					
+					.more.centered
+						.top_label
+							span#add_child У меня есть еще детки
+			
+			.want_signup.adorable_table
+				.adorable_cell
+					| Да, я хочу зарегистрироваться на сайте «Агуша».
+			
+			.send_tour.adorable_table
+				.adorable_cell
+					button.white.middle_button.uppercase.bold(type="submit") Отправить
+			
 		div
 			select(name="tour")
 				option(value='') Выберите тур
@@ -191,6 +254,8 @@ block append scripts
 	script(src="/js/plugins/jquery.ui/datepicker.js")
 	script(src="/js/plugins/jquery.ui/datepicker-ru.js")
 	script(src="/js/plugins/validate/jquery.validate.js")
+	script#add_child_tmpl(type='text/mustache')
+		mixin add_child('{{i}}')
 	script.
 		var tours = !{JSON.stringify(tours)};
 	script(src="/js/user/tour/tour.js")

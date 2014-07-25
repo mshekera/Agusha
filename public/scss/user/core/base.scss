@@ -55,6 +55,9 @@ ul, li {
 	
 	.content {
 		padding: $content_padding;
+	}
+	
+	&> .content {
 		margin-top: 25px;
 	}
 }
