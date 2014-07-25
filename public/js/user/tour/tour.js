@@ -182,7 +182,7 @@ var Tour_controller = can.Control.extend(
 				formatNoMatches: 'За вашим запросом ничего не найдено',
 				formatInputTooShort: function (input, min) {
 					var n = min - input.length;
-					return "Пожалуйста, введите еще " + n + " символ" + (n == 1 ? "" : "а");
+					return 'Пожалуйста, введите еще ' + n + ' символ' + (n == 1 ? '' : 'а') + ' города';
 				}
 			}
 		},
@@ -246,7 +246,6 @@ var Tour_controller = can.Control.extend(
 		'#tour_form submit': function(el, ev) {
 			var form = $(el);
 			this.tour_validate(form);
-			console.log(form.serialize());
 			
 			if(form.valid() == true) {
 				return true;
