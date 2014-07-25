@@ -79,31 +79,48 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		init_calendar: function() {
-			var that = this;
+			var that = this,
+				calendar = $('#calendar'),
+				current_date = new Date();
 			
-			var	current_date = new Date();
-			
-			$('#calendar').datepicker({
+			calendar.datepicker({
 				defaultDate: current_date,
 				hideIfNoPrevNext: true,
 				minDate: current_date,
 				maxDate: new Date(current_date.valueOf() + 1000 * 3600 * 24 * 364),
 				beforeShowDay: function(date) {
-					var	current_date = moment(date).format('DD/MM/YYYY'),
+					var	calendar_date = moment(date).format('DD/MM/YYYY'),
 						i;
 					
 					for(i = that.tours.length; i--;) {
 						var tour = that.tours[i],
 							tour_date = moment(tour.date).format('DD/MM/YYYY');
 						
-						if(current_date == tour_date) {
+						if(calendar_date == tour_date) {
 							return [true, 'has_event', ''];
 						}
 					}
 					
 					return [true];
+				},
+				onSelect: function(dateText) {
+					var i;
+					
+					for(i = that.tours.length; i--;) {
+						var tour = that.tours[i],
+							tour_date = moment(tour.date).format('DD/MM/YYYY');
+						
+						if(dateText == tour_date) {
+							that.data.attr('current_tour', tour._id);
+							
+							that.tour_key = i;
+							that.change_tour();
+							return;
+						}
+					}
 				}
 			});
+			calendar.datepicker('setDate', moment(this.tours[0].date).format('DD/MM/YYYY'));
 		},
 		
 		init_inputmask: function() {
