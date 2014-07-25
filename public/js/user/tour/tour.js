@@ -138,7 +138,7 @@ var Tour_controller = can.Control.extend(
 					}
 				}
 			});
-			calendar.datepicker('setDate', moment(this.tours[0].date).format('DD/MM/YYYY'));
+			calendar.datepicker('setDate', this.tours[0].formattedDate);
 		},
 		
 		init_inputmask: function() {
@@ -215,10 +215,12 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		change_tour: function() {
-			this.data.attr('current_tour', this.tours[this.tour_key]);
+			var	tour = this.tours[this.tour_key],
+				closest_block_inside = $('#closest_block_inside');
 			
-			var closest_block_inside = $('#closest_block_inside');
+			this.data.attr('current_tour', tour);
 			
+			$('#calendar').datepicker('setDate', tour.formattedDate);
 			closest_block_inside.find('.tour_block').removeClass('active');
 			$('#tour_' + this.tour_key).addClass('active');
 		},
