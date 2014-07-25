@@ -122,6 +122,16 @@ var Tour_controller = can.Control.extend(
 			
 			closest_block_inside.find('.tour_block').removeClass('active');
 			$('#tour_' + this.tour_key).addClass('active');
+		},
+		
+		'#add_child click': function(el) {
+			var child_block = $('.child_block'),
+				i = child_block.length,
+				data = {
+					i: i
+				};
+			
+			$('#children_container').append(can.view("#add_child_tmpl", data));
 		}
 	}
 );
