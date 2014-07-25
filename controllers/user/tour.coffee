@@ -1,4 +1,5 @@
 async = require 'async'
+_ = require 'underscore'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
@@ -38,7 +39,25 @@ exports.index = (req, res) ->
 exports.add_record = (req, res) ->
 	async.waterfall [
 		(next) ->
-			Model 'Tour_record', 'create', next, req.body
+			fields = [
+				'firstname'
+				'lastname'
+				'patronymic'
+				'tour'
+				'email'
+				'phone'
+				'city'
+				'children'
+			]
+			
+			data = _.pick req.body, fields
+			
+			childrenLength = data.children.length
+			while childrenLength--
+				child = data.children[childrenLength]
+				child.age = parseInt child.age
+			
+			Model 'Tour_record', 'create', next, data
 		(client, next) ->
 			res.redirect '/tour'
 	], (err) ->

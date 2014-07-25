@@ -241,6 +241,100 @@ var Tour_controller = can.Control.extend(
 			
 			$('#children_container').append(can.view("#add_child_tmpl", data));
 			this.age_inputmask();
+		},
+		
+		'#tour_form submit': function(el, ev) {
+			var form = $(el);
+			this.tour_validate(form);
+			console.log(form.serialize());
+			
+			if(form.valid() == true) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		
+		tour_validate: function(form) {
+			var	validation = {rules: {}, messages: {}},
+				rule,
+				child_items = $('.child_block'),
+				i;
+			
+			rule = 'firstname';
+			validation.rules[rule] = {
+				required: true,
+				minlength: 3,
+				maxlength: 64
+			};
+			
+			rule = 'email';
+			validation.rules[rule] = {
+				required: true,
+				minlength: 8,
+				maxlength: 64,
+				email: true
+			};
+			
+			rule = 'lastname';
+			validation.rules[rule] = {
+				required: true,
+				minlength: 3,
+				maxlength: 64
+			};
+			
+			rule = 'patronymic';
+			validation.rules[rule] = {
+				required: true,
+				minlength: 3,
+				maxlength: 64
+			};
+			
+			rule = 'phone';
+			validation.rules[rule] = {
+				required: true,
+				minlength: 3,
+				maxlength: 64
+			};
+			
+			rule = 'city';
+			validation.rules[rule] = {
+				required: true
+			};
+			
+			for(i = child_items.length; i--;) {
+				this.validate_child_name(validation, i);
+			}
+			
+			for(i = child_items.length; i--;) {
+				this.validate_child_age(validation, i);
+			}
+			
+			validation.ignore = [];
+			
+			form.validate(validation);
+		},
+		
+		validate_child_name: function(validation, i) {
+			rule = 'children[' + i + '][name]';
+			validation.rules[rule] = {
+				minlength: 3,
+				maxlength: 64,
+				required: function(element){
+					return $("input[name='children[" + i + "][age]']").val() != '___ месяцев';
+				}
+			};
+		},
+		
+		validate_child_age: function(validation, i) {
+			rule = 'children[' + i + '][age]';
+			validation.rules[rule] = {
+				minlength: 3,
+				maxlength: 64,
+				required: function(element){
+					return $("input[name='children[" + i + "][name]']").val().length > 0;
+				}
+			};
 		}
 	}
 );
