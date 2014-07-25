@@ -232,7 +232,11 @@ block append content
 			
 			.want_signup.adorable_table
 				.adorable_cell
-					| Да, я хочу зарегистрироваться на сайте «Агуша».
+					.checkbox
+						input(name!="signup", type="checkbox", checked="checked")
+						label
+							img.border_boxed(src="/img/user/tour/checkbox.png")
+					.text  Да, я хочу зарегистрироваться на сайте «Агуша».
 			
 			.send_tour.adorable_table
 				.adorable_cell

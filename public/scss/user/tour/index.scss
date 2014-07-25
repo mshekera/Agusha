@@ -4,6 +4,7 @@
 @import '../helpers/select2';
 @import '../helpers/buttonswitch';
 @import '../helpers/radioswitch';
+@import '../helpers/checkbox';
 
 $pseudo_line_color: #d86a5d;
 $closest_color: #0d5c92;
@@ -472,6 +473,26 @@ $closest_color: #0d5c92;
 	background-color: #fd7b6a;
 	color: #c0574b;
 	font-style: italic;
+	
+	.checkbox {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		vertical-align: middle;
+		
+		input {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+		}
+	}
+	
+	.text {
+		display: inline-block;
+		line-height: 30px;
+		vertical-align: middle;
+		margin-left: 14px;
+	}
 }
 
 .send_tour {
