@@ -79,13 +79,30 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		init_calendar: function() {
+			var that = this;
+			
 			var	current_date = new Date();
 			
 			$('#calendar').datepicker({
 				defaultDate: current_date,
 				hideIfNoPrevNext: true,
 				minDate: current_date,
-				maxDate: new Date(current_date.valueOf() + 1000 * 3600 * 24 * 364)
+				maxDate: new Date(current_date.valueOf() + 1000 * 3600 * 24 * 364),
+				beforeShowDay: function(date) {
+					var	current_date = moment(date).format('DD/MM/YYYY'),
+						i;
+					
+					for(i = that.tours.length; i--;) {
+						var tour = that.tours[i],
+							tour_date = moment(tour.date).format('DD/MM/YYYY');
+						
+						if(current_date == tour_date) {
+							return [true, 'has_event', ''];
+						}
+					}
+					
+					return [true];
+				}
 			});
 		},
 		
@@ -126,6 +143,7 @@ var Tour_controller = can.Control.extend(
 				},
 				placeholder: 'Город проживания',
 				formatSearching: 'Поиск...',
+				formatNoMatches: 'За вашим запросом ничего не найдено',
 				formatInputTooShort: function (input, min) {
 					var n = min - input.length;
 					return "Пожалуйста, введите еще " + n + " символ" + (n == 1 ? "" : "а");

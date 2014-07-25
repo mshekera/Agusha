@@ -101,6 +101,8 @@ $td_heigt: 28px;
 }
 
 .has_event {
-	background-color: $lightblue;
-	color: $white;
+	td, a {
+		background-color: $lightblue;
+		color: $white;
+	}
 }
