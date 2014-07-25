@@ -6,6 +6,7 @@ Model = require '../../lib/model'
 Logger = require '../../lib/logger'
 
 Tour = require '../../lib/tour'
+Client = require '../../lib/client'
 Tour_record = require '../../lib/tour_record'
 
 tree = require '../../utils/tree'
@@ -37,30 +38,35 @@ exports.index = (req, res) ->
 		res.redirect '/'
 
 exports.add_record = (req, res) ->
-	async.waterfall [
+	fields = [
+		'firstname'
+		'lastname'
+		'patronymic'
+		'tour'
+		'email'
+		'phone'
+		'city'
+		'children'
+	]
+	
+	data = _.pick req.body, fields
+	
+	childrenLength = data.children.length
+	while childrenLength--
+		child = data.children[childrenLength]
+		child.age = parseInt child.age
+			
+	asyncFunctions = [
 		(next) ->
-			fields = [
-				'firstname'
-				'lastname'
-				'patronymic'
-				'tour'
-				'email'
-				'phone'
-				'city'
-				'children'
-			]
-			
-			data = _.pick req.body, fields
-			
-			childrenLength = data.children.length
-			while childrenLength--
-				child = data.children[childrenLength]
-				child.age = parseInt child.age
-			
 			Model 'Tour_record', 'create', next, data
 		(client, next) ->
 			res.redirect '/tour'
-	], (err) ->
+	]
+	
+	if req.body.signup
+		asyncFunctions = asyncFunctions.concat Client.addAsyncFunctionsForSignUp data
+	
+	async.waterfall asyncFunctions, (err) ->
 		error = err.message or err
 		
 		Logger.log 'info', "Error in lib/tour_record/addRecord: #{error}"

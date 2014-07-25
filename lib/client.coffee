@@ -5,7 +5,7 @@ Model = require './model'
 Logger = require './logger'
 Mail = require './mail'
 
-exports.sendMail = (res, data, callback) ->
+exports.sendMail = sendMail = (res, data, callback) ->
 	options =
 		subject: data.subject
 		login: data.client.login
@@ -16,3 +16,25 @@ exports.sendMail = (res, data, callback) ->
 		options.salt = data.salt
 	
 	Mail.send data.template, options, callback
+
+exports.addAsyncFunctionsForSignUp = (data) ->
+	info = {}
+	
+	return asyncFunctions = [
+		(next) ->
+			Model 'Client', 'create', next, data
+		(client, next) ->
+			options = {}
+			
+			options.template = 'register'
+			options.client = client
+			options.subject = "Успешная регистрация!"
+			options.salt = info.salt = new Buffer(client._id.toString()).toString 'base64'
+			
+			sendMail res, options, next
+		(next) ->
+			saltData =
+				salt: info.salt
+			
+			Model 'Salt', 'create', next, saltData
+	]

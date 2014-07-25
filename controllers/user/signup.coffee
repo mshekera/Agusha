@@ -19,26 +19,14 @@ exports.index = (req, res) ->
 exports.register = (req, res) ->
 	data = {}
 	
-	async.waterfall [
-		(next) ->
-			Model 'Client', 'create', next, req.body
-		(client, next) ->
-			options = {}
-			
-			options.template = 'register'
-			options.client = data.client = client
-			options.subject = "Успешная регистрация!"
-			options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
-			
-			Client.sendMail res, options, next
-		(next) ->
-			saltData =
-				salt: data.salt
-			
-			Model 'Salt', 'create', next, saltData
+	asyncFunctions = Client.addAsyncFunctionsForSignUp req.body
+	
+	asyncFunctions = asyncFunctions.concat [
 		(salt) ->
 			res.redirect '/signup/success/' + data.client._id
-	], (err) ->
+	]
+	
+	async.waterfall asyncFunctions, (err) ->
 		if err.code == 11000
 			error = 'Указанный e-mail уже зарегистрирован'
 		else
