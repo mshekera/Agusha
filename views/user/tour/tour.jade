@@ -1,6 +1,7 @@
 extends ../layout
 
 block append header
+	link(rel="stylesheet" href="/js/plugins/select2/select2.css")
 	link(rel="stylesheet" href="/css/user/tour/tour.css")
 
 mixin add_child(i)
@@ -158,37 +159,37 @@ block append content
 						.adorable_table
 							.adorable_cell
 								.input
-									input(type="text", name!="firstname", placeholder="Имя")
+									input(type="text", name="firstname", placeholder="Имя")
 					
 					.half.right
 						.adorable_table
 							.adorable_cell
 								.input
-									input(type="email", name!="email", placeholder="E-mail")
+									input(type="email", name="email", placeholder="E-mail")
 					
 					.half.left
 						.adorable_table
 							.adorable_cell
 								.input
-									input(type="text", name!="lastname", placeholder="Фамилия")
+									input(type="text", name="lastname", placeholder="Фамилия")
 					
 					.half.right
 						.adorable_table
 							.adorable_cell
 								.input
-									input#tour_phone(type="text", name!="phone", placeholder="+3 8(___) ___ - __ - __")
+									input#tour_phone(type="text", name="phone", placeholder="+3 8(___) ___ - __ - __")
 					
 					.half.left
 						.adorable_table
 							.adorable_cell
 								.input
-									input(type="text", name!="patronymic", placeholder="Отчество")
+									input(type="text", name="patronymic", placeholder="Отчество")
 					
 					.half.right
 						.adorable_table
 							.adorable_cell
 								.input
-									input(type="text", name!="city", placeholder="Город проживания")
+									input#city_select2(type="text", name="city", placeholder="Город проживания")
 			
 			.children_inputs.force_height
 				.content
@@ -255,6 +256,7 @@ block append scripts
 	script(src="/js/plugins/jquery.ui/datepicker-ru.js")
 	script(src="/js/plugins/validate/jquery.validate.js")
 	script(src="/js/plugins/inputmask/jquery.inputmask.js")
+	script(src="/js/plugins/select2/select2.js")
 	script#add_child_tmpl(type='text/mustache')
 		mixin add_child('{{i}}')
 	script.

@@ -8,6 +8,8 @@ Product = require './user/product'
 Tour = require './user/tour'
 Migrate = require '../init/migrate'
 
+City = require '../lib/city'
+
 Router = express.Router()
 
 Router.get '/', Main.index
@@ -38,6 +40,10 @@ Router.get '/product/:id', Product.index
 
 Router.get '/tour', Tour.index
 Router.post '/tour/add_record', Tour.add_record
+
+#
+
+Router.post '/city_autocomplete', City.autocomplete
 
 #
 

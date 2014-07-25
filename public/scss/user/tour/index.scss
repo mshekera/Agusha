@@ -1,6 +1,7 @@
 @import '../dynamic/dynamic';
 @import '../helpers/breadcrumbs';
 @import '../helpers/datepicker';
+@import '../helpers/select2';
 
 $pseudo_line_color: #d86a5d;
 $closest_color: #0d5c92;
@@ -353,13 +354,13 @@ $closest_color: #0d5c92;
 	
 	.right {
 		.input {
-			margin-left: 40px;
+			margin-left: 65px;
 		}
 	}
 	
 	.left {
 		.input {
-			margin-right: 40px;
+			margin-right: 65px;
 		}
 	}
 }

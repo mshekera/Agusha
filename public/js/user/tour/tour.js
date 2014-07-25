@@ -33,6 +33,7 @@ var Tour_controller = can.Control.extend(
 			this.init_map();
 			this.init_calendar();
 			this.init_inputmask();
+			this.init_select2();
 		},
 		
 		init_map: function() {
@@ -99,6 +100,37 @@ var Tour_controller = can.Control.extend(
 		
 		age_inputmask: function() {
 			$('.child_age').inputmask('999 месяцев');
+		},
+		
+		init_select2: function() {
+			var options = this.select2_options();
+			$('#city_select2').select2(options);
+		},
+		
+		select2_options: function() {
+			return {
+				width: '100%',
+				minimumInputLength: 3,
+				ajax: {
+					url: '/city_autocomplete',
+					type: 'post',
+					dataType: 'json',
+					data: function (term, page) {
+						return {
+							term: term
+						};
+					},
+					results: function (data, page) {
+						return {results: data};
+					}
+				},
+				placeholder: 'Город проживания',
+				formatSearching: 'Поиск...',
+				formatInputTooShort: function (input, min) {
+					var n = min - input.length;
+					return "Пожалуйста, введите еще " + n + " символ" + (n == 1 ? "" : "а");
+				}
+			}
 		},
 		
 		'.step_button click': function(el) {
