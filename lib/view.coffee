@@ -34,6 +34,11 @@ exports.renderWithSession = (req, res, path, data) ->
 	if req.session.err?
 		data.err = req.session.err
 		delete req.session.err
+	else if req.session.message?
+		data.messageLabel = req.session.messageLabel || null
+		data.message = req.session.message
+		delete req.session.messageLabel
+		delete req.session.message
 	
 	render path, res, data
 

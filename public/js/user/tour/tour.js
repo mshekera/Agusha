@@ -1,3 +1,9 @@
+$('.message').easyModal({
+	autoOpen: true,
+	overlayOpacity: 0.9,
+	overlayColor: "#ffffff",
+});
+
 moment.lang('ru');
 
 var base_url = window.location.protocol + '//' + window.location.host;

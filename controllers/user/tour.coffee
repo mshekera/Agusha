@@ -60,6 +60,9 @@ exports.add_record = (req, res) ->
 		(next) ->
 			Model 'Tour_record', 'create', next, data
 		(client, next) ->
+			req.session.message = 'В ближайшее время на ваш e-mail<br />придет письмо с подробными инструкциями.'
+			req.session.messageLabel = 'Поздравляем, вы записаны на экскурсию!'
+			
 			res.redirect '/tour'
 	]
 	

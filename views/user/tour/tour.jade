@@ -46,6 +46,9 @@ block append content
 	#tour.content
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
+		- if (err || message)
+			include ../../helpers/user/tour_message/tour_message
+		
 		.why_join_tour.white.adorable_container
 			.adorable
 				.why_join_left
