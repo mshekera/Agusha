@@ -16,7 +16,13 @@ mixin add_child(i)
 			.adorable_table
 				.adorable_cell
 					.input
-						input.child_age(type="email", name!="children[#{i}][age]", placeholder="___ месяцев")
+						input.child_age.border_boxed(type="email", name!="children[#{i}][age]", placeholder="___ месяцев")
+						.would_go.adorable_table
+							.adorable_cell
+								.switch
+									input.would_go_checkbox(name="children[#{i}][withParents]", type="checkbox", checked="checked")
+									label
+										i.border_boxed
 
 mixin form_topper_date(date, mustache)
 	.adorable_table
@@ -160,6 +166,7 @@ block append content
 			
 			.form_inputs.force_height
 				.content
+					.topper Все поля в форме обязательны для заполнения!
 					.half.left
 						.adorable_table
 							.adorable_cell
@@ -198,6 +205,13 @@ block append content
 			
 			.children_inputs.force_height
 				.content
+					.children_topper
+						.child_name_label.border_boxed Как зовут вашего малыша?
+						.child_gender_label Пол
+						.child_right_label.border_boxed
+							.half Возраст малыша
+							.half Поедет с вами?
+					
 					#children_container
 						mixin add_child(0)
 					
@@ -212,43 +226,25 @@ block append content
 			.send_tour.adorable_table
 				.adorable_cell
 					button.white.middle_button.uppercase.bold(type="submit") Отправить
+		
+		.tour_reviews.white
+			.top
+				.avatar
+					img(src="/img/user/tour/avatar.jpg")
+					.signature.adorable_table
+						.adorable_cell
+							.position Мама Саши
+							.name Инна Васильева
+				
+				.text.adorable_table.border_boxed
+					.adorable_cell
+						| Очень понравилось! И судя по рассказам и увиденному - делаю вывод, что Агуша (йогурт и творожок) на сегодняшний день для деток самое лучшее!!! Даже лучше чем домашнее, так как там все стерильно и качество молока проверено.
+						br
+						br
+						a(href='https://vk.com/inno4ka9393', target='blank') https://vk.com/inno4ka9393
 			
-		div
-			select(name="tour")
-				option(value='') Выберите тур
-				- each t, key in tours
-					option(value=t._id) #{t.date}
-		div
-			input(type="text", name="firstname", placeholder="Имя")
-			span.error
-		div
-			input(type="text", name="lastname", placeholder="Фамилия")
-			span.error
-		div
-			input(type="text", name="patronymic", placeholder="Отчество")
-			span.error
-		div
-			input(type="email", name="email", placeholder="E-mail")
-			span.error
-		div
-			input(type="text", name="phone", placeholder="Телефон")
-			span.error
-		//div
-			input(type="text", name="city", placeholder="Город проживания")
-			span.error
-		
-		- for (var i = 0; i < 2; i++)
-			div.child_item
-				input(type="text", name="children[#{i}][name]", placeholder="Имя")
-				span.error
-				input(type="text", name="children[#{i}][gender]", placeholder="Пол")
-				span.error
-				input(type="text", name="children[#{i}][age]", placeholder="Возраст")
-				span.error
-				input(type="checkbox", name="children[#{i}][withParents]")
-				span.error
-		
-		button(type="submit") Отправить
+			.bottom
+				
 
 block append scripts
 	script(src="/js/plugins/google/googlemaps_api.js")

@@ -54,6 +54,7 @@ var Tour_controller = can.Control.extend(
 			this.init_calendar();
 			this.init_inputmask();
 			this.init_select2();
+			this.init_screwbuttons();
 		},
 		
 		init_map: function() {
@@ -184,6 +185,12 @@ var Tour_controller = can.Control.extend(
 					return "Пожалуйста, введите еще " + n + " символ" + (n == 1 ? "" : "а");
 				}
 			}
+		},
+		
+		init_screwbuttons: function() {
+			// this.element.find('.would_go_checkbox').screwDefaultButtons({
+				// image: base_url + 'images/screwbuttons/checkbox.png'
+			// });
 		},
 		
 		'.step_button click': function(el) {

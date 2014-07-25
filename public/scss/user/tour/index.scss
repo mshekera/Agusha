@@ -2,6 +2,7 @@
 @import '../helpers/breadcrumbs';
 @import '../helpers/datepicker';
 @import '../helpers/select2';
+@import '../helpers/buttonswitch';
 
 $pseudo_line_color: #d86a5d;
 $closest_color: #0d5c92;
@@ -17,10 +18,7 @@ $closest_color: #0d5c92;
 }
 
 #tour {
-	
-	&> .content {
-		margin-bottom: 50px;
-	}
+	margin-bottom: 50px;
 }
 
 .why_join_tour {
@@ -312,6 +310,8 @@ $closest_color: #0d5c92;
 }
 
 #tour_form {
+	margin-bottom: 20px;
+	
 	.form_topper {
 		height: 94px;
 		margin-bottom: 1px;
@@ -369,11 +369,48 @@ $closest_color: #0d5c92;
 	padding: 40px 0 10px;
 	background-color: $white;
 	margin-bottom: 1px;
+	
+	.topper {
+		margin-bottom: 30px;
+		color: #fd7b6a;
+		font-style: italic;
+	}
 }
 
 .children_inputs {
 	padding: 40px 0 10px;
 	background-color: $white;
+	
+	.children_topper {
+		margin-bottom: 30px;
+		font-style: italic;
+		font-size: 85.7%;
+		color: #a6a6a6;
+		position: relative;
+		text-align: center;
+		height: 12px;
+	}
+	
+	.child_name_label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 50%;
+		padding-right: 65px;
+	}
+	
+	.child_gender_label {
+		@include absolute_horizontal_centered;
+		width: 130px;
+	}
+	
+	.child_right_label {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		padding-left: 65px;
+		width: 50%;
+	}
 	
 	.child_block {
 		overflow: hidden;
@@ -381,6 +418,14 @@ $closest_color: #0d5c92;
 	
 	.child_age {
 		text-transform: lowercase;
+		width: 50%;
+		float: left;
+	}
+	
+	.would_go {
+		width: 50%;
+		float: left;
+		height: 58px;
 	}
 	
 	.more {
@@ -412,4 +457,63 @@ $closest_color: #0d5c92;
 	button {
 		color: $red;
 	}
-} 
+}
+
+.tour_reviews {
+	height: 330px;
+	
+	.top {
+		height: 270px;
+	}
+	
+	.avatar {
+		width: 25%;
+		float: left;
+		height: 100%;
+		position: relative;
+		
+		.signature {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 105px;
+		}
+		
+		.position {
+			font-size: 85.7%;
+		}
+		
+		.name {
+			font-size: 128.6%;
+		}
+		
+		img {
+			@include absolute_centered;
+			@include border_radius(120px);
+			width: 120px;
+			height: 120px;
+		}
+	}
+	
+	.text {
+		width: 75%;
+		float: left;
+		height: 100%;
+		padding: 0 33px;
+		color: #4d4d4d;
+		
+		.adorable_cell {
+			text-align: left;
+		}
+		
+		a {
+			text-decoration: none;
+			font-style: italic;
+			color: #0d5c92;
+		}
+	}
+	
+	.bottom {
+		height: 60px;
+	}
+}
