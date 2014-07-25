@@ -343,6 +343,7 @@ $closest_color: #0d5c92;
 	
 	input {
 		background-color: #f2f2f2;
+		box-shadow: none;
 		
 		&:focus {
 			@include inset_box_shadow(0 0 0 3px $darkgreen);
@@ -375,6 +376,10 @@ $closest_color: #0d5c92;
 	
 	.child_block {
 		overflow: hidden;
+	}
+	
+	.child_age {
+		text-transform: lowercase;
 	}
 	
 	.more {

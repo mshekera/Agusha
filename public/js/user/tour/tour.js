@@ -32,6 +32,7 @@ var Tour_controller = can.Control.extend(
 		init_plugins: function() {
 			this.init_map();
 			this.init_calendar();
+			this.init_inputmask();
 		},
 		
 		init_map: function() {
@@ -87,6 +88,19 @@ var Tour_controller = can.Control.extend(
 			});
 		},
 		
+		init_inputmask: function() {
+			this.phone_inputmask();
+			this.age_inputmask();
+		},
+		
+		phone_inputmask: function() {
+			$('#tour_phone').inputmask('+3 8(999) 999 - 99 - 99');
+		},
+		
+		age_inputmask: function() {
+			$('.child_age').inputmask('999 месяцев');
+		},
+		
 		'.step_button click': function(el) {
 			var element = $(el),
 				val = element.data('step'),
@@ -132,6 +146,7 @@ var Tour_controller = can.Control.extend(
 				};
 			
 			$('#children_container').append(can.view("#add_child_tmpl", data));
+			this.age_inputmask();
 		}
 	}
 );

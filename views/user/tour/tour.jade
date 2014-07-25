@@ -15,7 +15,7 @@ mixin add_child(i)
 			.adorable_table
 				.adorable_cell
 					.input
-						input(type="email", name!="children[#{i}][age]", placeholder="Возраст")
+						input.child_age(type="email", name!="children[#{i}][age]", placeholder="___ месяцев")
 
 block append content
 	#tour.content
@@ -176,7 +176,7 @@ block append content
 						.adorable_table
 							.adorable_cell
 								.input
-									input(type="text", name!="phone", placeholder="+3 8(...) ... - .. - ..")
+									input#tour_phone(type="text", name!="phone", placeholder="+3 8(___) ___ - __ - __")
 					
 					.half.left
 						.adorable_table
@@ -254,6 +254,7 @@ block append scripts
 	script(src="/js/plugins/jquery.ui/datepicker.js")
 	script(src="/js/plugins/jquery.ui/datepicker-ru.js")
 	script(src="/js/plugins/validate/jquery.validate.js")
+	script(src="/js/plugins/inputmask/jquery.inputmask.js")
 	script#add_child_tmpl(type='text/mustache')
 		mixin add_child('{{i}}')
 	script.
