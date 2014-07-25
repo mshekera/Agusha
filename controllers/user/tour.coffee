@@ -46,16 +46,19 @@ exports.add_record = (req, res) ->
 		'email'
 		'phone'
 		'city'
-		'children'
 	]
 	
 	data = _.pick req.body, fields
+	data.children = []
 	
-	childrenLength = data.children.length
+	childrenLength = req.body.children.length
 	while childrenLength--
-		child = data.children[childrenLength]
+		child = req.body.children[childrenLength]
+		if !child.name.length || (child.age == '___ месяцев' || !child.age.length)
+			continue
 		child.age = parseInt child.age
-			
+		data.children.push child
+	
 	asyncFunctions = [
 		(next) ->
 			Model 'Tour_record', 'create', next, data
