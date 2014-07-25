@@ -3,6 +3,7 @@
 @import '../helpers/datepicker';
 @import '../helpers/select2';
 @import '../helpers/buttonswitch';
+@import '../helpers/radioswitch';
 
 $pseudo_line_color: #d86a5d;
 $closest_color: #0d5c92;
@@ -414,6 +415,29 @@ $closest_color: #0d5c92;
 	
 	.child_block {
 		overflow: hidden;
+		
+		.half {
+			position: relative;
+		}
+		
+		.gender_radio {
+			position: absolute;
+			width: 38px;
+			height: 58px;
+			top: 0;
+		}
+		
+		.left {
+			.gender_radio {
+				right: 0;
+			}
+		}
+		
+		.right {
+			.gender_radio {
+				left: 0;
+			}
+		}
 	}
 	
 	.child_age {

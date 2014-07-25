@@ -11,6 +11,12 @@ mixin add_child(i)
 				.adorable_cell
 					.input
 						input(type="text", name!="children[#{i}][name]", placeholder="Имя")
+			
+			.gender_radio.radioswitch
+				input(type="radio", name!="children[#{i}][gender]", checked="checked")
+				label
+					img.border_boxed(src="/img/user/tour/boy.png")
+				
 		
 		.half.right
 			.adorable_table
@@ -20,9 +26,14 @@ mixin add_child(i)
 						.would_go.adorable_table
 							.adorable_cell
 								.switch
-									input.would_go_checkbox(name="children[#{i}][withParents]", type="checkbox", checked="checked")
+									input.would_go_checkbox(name!="children[#{i}][withParents]", type="checkbox", checked="checked")
 									label
 										i.border_boxed
+			
+			.gender_radio.radioswitch
+				input(type="radio", name!="children[#{i}][gender]")
+				label
+					img.border_boxed(src="/img/user/tour/girl.png")
 
 mixin form_topper_date(date, mustache)
 	.adorable_table
