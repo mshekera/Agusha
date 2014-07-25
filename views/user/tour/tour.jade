@@ -18,6 +18,13 @@ mixin add_child(i)
 					.input
 						input.child_age(type="email", name!="children[#{i}][age]", placeholder="___ месяцев")
 
+mixin form_topper_date(date, mustache)
+	.adorable_table
+		.adorable_cell
+			.top_label #{date}
+			- if (mustache)
+				input(type="hidden", name="tour", value="{{current_tour._id}}")
+
 block append content
 	#tour.content
 		include ../../helpers/user/breadcrumbs/breadcrumbs
@@ -148,11 +155,9 @@ block append content
 							.adorable_cell
 								.label.novito_nova Форма регистрации на экскурсию
 					
-					.right
-						.adorable_table
-							.adorable_cell 
-								.top_label #{tours[0].date}
-				
+					#form_topper_date.right
+						mixin form_topper_date(tours[0].date)
+			
 			.form_inputs.force_height
 				.content
 					.half.left
@@ -256,9 +261,10 @@ block append scripts
 	script(src="/js/plugins/validate/jquery.validate.js")
 	script(src="/js/plugins/inputmask/jquery.inputmask.js")
 	script(src="/js/plugins/placeholders/placeholders.min.js")
-	script(src="/js/plugins/moment/moment.js")
-	script(src="/js/plugins/underscore/underscore-min.js")
+	script(src="/js/plugins/moment/moment-with-langs.js")
 	script(src="/js/plugins/select2/select2.js")
+	script#topper_date_tmpl(type='text/mustache')
+		mixin form_topper_date('{{current_tour.topperDate}}', true)
 	script#add_child_tmpl(type='text/mustache')
 		mixin add_child('{{i}}')
 	script.

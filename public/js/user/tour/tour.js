@@ -1,3 +1,5 @@
+moment.lang('ru');
+
 var base_url = window.location.protocol + '//' + window.location.host;
 
 var Tour_controller = can.Control.extend(
@@ -15,6 +17,8 @@ var Tour_controller = can.Control.extend(
 			
 			this.tour_key = 0;
 			this.tours = tours;
+
+			this.preformat_tours();
 			
 			var ViewModel = can.Map.extend({
 				define: {
@@ -26,7 +30,23 @@ var Tour_controller = can.Control.extend(
 			
 			this.data = new ViewModel();
 			
+			$('#form_topper_date').html(can.view("#topper_date_tmpl", this.data));
+			
 			this.init_plugins();
+		},
+		
+		preformat_tours: function() {
+			var i;
+			
+			for(i = this.tours.length; i--;) {
+				var	tour = this.tours[i],
+					date = moment(tour.date),
+					two_words = date.calendar().split(' ', 2).join(' '),
+					string_date = date.format('LL').split(' ', 3).join(' ');
+				
+				tour.formattedDate = date.format('DD/MM/YYYY');
+				tour.topperDate = two_words + ' ' + string_date;
+			}
 		},
 		
 		init_plugins: function() {
@@ -93,10 +113,9 @@ var Tour_controller = can.Control.extend(
 						i;
 					
 					for(i = that.tours.length; i--;) {
-						var tour = that.tours[i],
-							tour_date = moment(tour.date).format('DD/MM/YYYY');
+						var tour = that.tours[i];
 						
-						if(calendar_date == tour_date) {
+						if(calendar_date == tour.formattedDate) {
 							return [true, 'has_event', ''];
 						}
 					}
@@ -107,10 +126,9 @@ var Tour_controller = can.Control.extend(
 					var i;
 					
 					for(i = that.tours.length; i--;) {
-						var tour = that.tours[i],
-							tour_date = moment(tour.date).format('DD/MM/YYYY');
+						var tour = that.tours[i];
 						
-						if(dateText == tour_date) {
+						if(dateText == tour.formattedDate) {
 							that.data.attr('current_tour', tour._id);
 							
 							that.tour_key = i;
