@@ -60,7 +60,7 @@ var Tour_controller = can.Control.extend(
 			this.init_calendar();
 			this.init_inputmask();
 			this.init_select2();
-			this.init_screwbuttons();
+			this.init_slider();
 		},
 		
 		init_map: function() {
@@ -193,10 +193,14 @@ var Tour_controller = can.Control.extend(
 			}
 		},
 		
-		init_screwbuttons: function() {
-			// this.element.find('.would_go_checkbox').screwDefaultButtons({
-				// image: base_url + 'images/screwbuttons/checkbox.png'
-			// });
+		init_slider: function() {
+			$('#tour_gallery').slick({
+				slidesToShow: 3,
+				slidesToScroll: 1,
+				//autoplay: true,
+				//dots: true,
+				draggable: false
+			});
 		},
 		
 		'.step_button click': function(el) {

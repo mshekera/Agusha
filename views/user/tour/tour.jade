@@ -263,6 +263,18 @@ block append content
 			
 			.bottom
 				
+		
+		.tour_gallery_container.adorable_container
+			.adorable
+				#tour_gallery
+					- for (var i = 5; i--;)
+						div
+							img(src="/img/user/tour/photo.jpg")
+		
+		.tour_footer.darkblue.adorable_table
+			.adorable_cell
+				.label.novito_nova Остались вопросы?
+				.text Звоните на горячую линию 0 800 307 302
 
 block append scripts
 	script(src="/js/plugins/google/googlemaps_api.js")
@@ -277,6 +289,7 @@ block append scripts
 	script(src="/js/plugins/placeholders/placeholders.min.js")
 	script(src="/js/plugins/moment/moment-with-langs.js")
 	script(src="/js/plugins/select2/select2.js")
+	script(src="/js/plugins/slick/slick.min.js")
 	script#topper_date_tmpl(type='text/mustache')
 		mixin form_topper_date('{{current_tour.topperDate}}', true)
 	script#add_child_tmpl(type='text/mustache')

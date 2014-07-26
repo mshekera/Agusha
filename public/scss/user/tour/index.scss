@@ -6,6 +6,7 @@
 @import '../helpers/radioswitch';
 @import '../helpers/checkbox';
 @import '../helpers/message';
+@import '../helpers/slick';
 
 $pseudo_line_color: #d86a5d;
 $closest_color: #0d5c92;
@@ -561,5 +562,33 @@ $closest_color: #0d5c92;
 	
 	.bottom {
 		height: 60px;
+	}
+}
+
+.tour_gallery_container {
+	width: 100%;
+	
+	&:before {
+		margin-top: 27.6%;
+	}
+}
+
+#tour_gallery {
+    height: 100%;
+    width: 100%;
+	background-color: #f5f5f5;
+	
+	img {
+		height: 100%;
+		width: 100%;
+	}
+}
+
+.tour_footer {
+	height: 150px;
+	
+	.text {
+		font-style: italic;
+		color: #0d5c92;
 	}
 }
