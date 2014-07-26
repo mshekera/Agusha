@@ -1,14 +1,16 @@
 express = require 'express'
 
 View = require '../lib/view'
+City = require '../lib/city'
+
+Migrate = require '../init/migrate'
+
 Main = require './user/main'
 SignUp = require './user/signup'
 Products = require './user/products'
 Product = require './user/product'
 Tour = require './user/tour'
-Migrate = require '../init/migrate'
-
-City = require '../lib/city'
+Food = require './user/food'
 
 Router = express.Router()
 
@@ -40,6 +42,10 @@ Router.get '/product/:id', Product.index
 
 Router.get '/tour', Tour.index
 Router.post '/tour/add_record', Tour.add_record
+
+#
+
+Router.get '/food', Food.index
 
 #
 

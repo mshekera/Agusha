@@ -14,4 +14,7 @@ module.exports = [
 	id: 'tour'
 	title: 'Экскурсия'
 	parent_id: 'production'
+,
+	id: 'food'
+	title: 'О детском питании'
 ]
