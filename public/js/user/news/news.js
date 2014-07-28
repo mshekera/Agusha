@@ -30,7 +30,7 @@ $(function() {
 						},
 						
 						articles: {
-							value: new can.Observe.List(articles),
+							value: new can.List(articles),
 							get: function(currentValue) {
 								var force = this.attr('force');
 								
@@ -54,20 +54,18 @@ $(function() {
 				
 				this.init_plugins();
 				
-				// $('#articles_container').list({
-					// tag: 'li',
-					// view: can.view('#articles_tmpl'),
-					// list: this.data.attr('articles')
-				// });
-				
 				var view = can.view("#articles_tmpl", this.data);
 				
-				var container = $('#articles_container');
-				
-				container.html(view);
+				$('#articles_container').html(view);
 			},
 			
 			init_plugins: function() {
+				var container = $('#articles_container');
+				
+				
+			},
+			
+			init_masonry: function() {
 				
 			},
 			
