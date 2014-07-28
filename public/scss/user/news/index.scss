@@ -120,6 +120,12 @@
 					content: '-';
 				}
 			}
+			
+			.expand_text {
+				&:before {
+					content: 'Свернуть';
+				}
+			}
 		}
 	}
 	
@@ -165,6 +171,12 @@
 			vertical-align: middle;
 			width: 100%;
 			color: $white;
+		}
+	}
+	
+	.expand_text {
+		&:before {
+			content: 'Развернуть';
 		}
 	}
 	
