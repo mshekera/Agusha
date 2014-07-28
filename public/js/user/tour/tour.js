@@ -145,7 +145,10 @@ var Tour_controller = can.Control.extend(
 					}
 				}
 			});
-			calendar.datepicker('setDate', this.tours[0].formattedDate);
+			
+			if(typeof(this.tours[0]) != 'undefined' && this.tours[0]) {
+				calendar.datepicker('setDate', this.tours[0].formattedDate);
+			}
 		},
 		
 		init_inputmask: function() {

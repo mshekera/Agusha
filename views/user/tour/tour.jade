@@ -176,7 +176,8 @@ block append content
 								.label.novito_nova Форма регистрации на экскурсию
 					
 					#form_topper_date.right
-						mixin form_topper_date(tours[0].date)
+						if tours[0]
+							mixin form_topper_date(tours[0].date)
 			
 			.form_inputs.force_height
 				.content
