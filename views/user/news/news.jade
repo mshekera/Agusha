@@ -3,11 +3,49 @@ extends ../layout
 block append header
 	link(rel="stylesheet" href="/css/user/news/news.css")
 
+mixin article(p)
+	a(href = '/article/' + (p ? p._id : '{{_id}}'))
+		.article_block
+			| dfdf
+
+mixin articles_stache()
+	| {{#each articles}}
+	mixin article()
+	| {{/each}}
+
 block append content
 	#news.content
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
+		.type_filter
+			.type_block
+				.adorable_table
+					.adorable_cell
+						.show.novito_nova Показать:
+			
+			.type_block
+				.adorable_table
+					.adorable_cell
+						span.choose_type.rounded(class=(params.type ? '' : 'active')) Все
+			
+			.type_block
+				.adorable_table
+					.adorable_cell
+						span.choose_type.rounded(data-type='0', class=(params.category == 0 ? 'active' : '')) Новости
+			
+			.type_block
+				.adorable_table
+					.adorable_cell
+						span.choose_type.rounded(data-type='1', class=(params.category == 1 ? 'active' : '')) Акции
 		
+		#articles_container
+			- each p, key in articles
+				mixin article(p)
 
 block append scripts
-	
+	script(src="/js/plugins/can/can.js")
+	script.
+		var articles = !{JSON.stringify(articles)};
+	script#articles_tmpl(type="text/mustache")
+		mixin articles_stache()
+	script(src="/js/user/news/news.js")

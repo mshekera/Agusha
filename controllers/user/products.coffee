@@ -40,5 +40,5 @@ exports.findAll = (req, res) ->
 	
 	async.waterfall asyncFunctions, (err) ->
 		error = err.message or err
-		Logger.log 'info', "Error in controllers/user/products/searchByFilter: #{error}"
+		Logger.log 'info', "Error in controllers/user/products/findAll: #{error}"
 		View.ajaxResponse res, err

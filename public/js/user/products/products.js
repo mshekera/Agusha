@@ -14,6 +14,8 @@ var Products_controller = can.Control.extend(
 	
 	{
 		init: function () {
+			var that = this;
+			
 			this.first_call = true;
 			
 			var ViewModel = can.Map.extend({
@@ -34,8 +36,8 @@ var Products_controller = can.Control.extend(
 								category: this.attr('category')
 							};
 							
-							if(this.first_call) {
-								this.first_call = false;
+							if(that.first_call) {
+								that.first_call = false;
 							} else {
 								currentValue.replace(Product.findAll(options));
 							}
@@ -48,7 +50,7 @@ var Products_controller = can.Control.extend(
 			
 			this.data = new ViewModel();
 			
-			$('#products_container').html(can.view("#products-tmpl", this.data, {
+			$('#products_container').html(can.view("#products_tmpl", this.data, {
 				ageLevel: function(options) {
 					return options.context.age.level < 12 ? options.fn() : options.inverse();
 				}

@@ -16,7 +16,7 @@ exports.index = (req, res) ->
 		(next) ->
 			Model 'Article', 'findNews', next, true
 		(docs, next) ->
-			data.news = docs
+			data.articles = docs
 			
 			View.render 'user/news/news', res, data
 	], (err) ->

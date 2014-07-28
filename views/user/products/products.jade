@@ -127,6 +127,6 @@ block append scripts
 	script(src="/js/plugins/can/can.js")
 	script.
 		var products = !{JSON.stringify(products)};
-	script#products-tmpl(type="text/mustache")
+	script#products_tmpl(type="text/mustache")
 		mixin products_stache()
 	script(src="/js/user/products/products.js")

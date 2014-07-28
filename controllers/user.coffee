@@ -2,6 +2,7 @@ express = require 'express'
 
 View = require '../lib/view'
 City = require '../lib/city'
+Article = require '../lib/article'
 
 Migrate = require '../init/migrate'
 
@@ -51,6 +52,10 @@ Router.get '/food', Food.index
 #
 
 Router.get '/news', News.index
+
+#
+
+Router.post '/articles/findAll', Article.findAll
 
 #
 

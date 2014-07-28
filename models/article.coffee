@@ -4,6 +4,8 @@ moment = require 'moment'
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
 
+Time = require '../utils/time'
+
 getArticleType = (type) ->
 	switch type
 		when 0 then msg = "Новости"
@@ -29,6 +31,7 @@ schema = new mongoose.Schema
 		type: Date
 		set: setUpdateDate
 		default: Date.now
+		get: Time.getDate
 	desc_image: [
 		type: String
 	]
