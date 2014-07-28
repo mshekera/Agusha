@@ -58,7 +58,7 @@ $(function() {
 				
 				var container = $('#articles_container');
 				
-				container.html(view).trigger('contentchanged');
+				container.html(view);
 			},
 			
 			init_plugins: function() {
