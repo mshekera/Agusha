@@ -70,7 +70,7 @@ block append content
 			.age_block(class=(params.age ? '' : 'active'))
 				.adorable_table
 					.adorable_cell
-						div
+						div.image_container
 							img(src="/img/user/products/products.png")
 						div
 							span Все продукты
@@ -79,7 +79,7 @@ block append content
 				.age_block(data-level=a.level, class=(a.level == params.age ? 'active' : ''))
 					.adorable_table
 						.adorable_cell
-							div
+							div.image_container
 								- var src = '/img/uploads/' + a.icon
 								img(src=src)
 							div
