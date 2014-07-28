@@ -53,7 +53,11 @@ var News_controller = can.Control.extend(
 			
 			this.data = new ViewModel();
 			
-			$('#articles_container').html(can.view("#articles_tmpl", this.data));
+			$('#articles_container').html(can.view("#articles_tmpl", this.data, {
+				isAction: function(options) {
+					return options.context.type + 0 == 1 ? options.fn() : options.inverse();
+				}
+			}));
 		},
 		
 		'.choose_type click': function(el) {
@@ -69,6 +73,13 @@ var News_controller = can.Control.extend(
 		
 		'.refresh_articles click': function() {
 			this.data.attr('force', {});
+		},
+		
+		'.expand > div click': function(el) {
+			var	elem = $(el),
+				text = elem.closest('.text');
+			
+			text.toggleClass('active');
 		}
 	}
 );

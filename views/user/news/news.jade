@@ -24,8 +24,33 @@ mixin article(a)
 				.adorable_table
 					.adorable_cell !
 		
+		if a
+			- if (a.type == 1)
+				if a.desc_image.length
+					img.image(src = '/img/uploads/' + a.desc_image[0])
+		else
+			| {{#if type}}
+			| {{#if desc_image.length}}
+			img.image(src="/img/uploads/{{desc_image.0}}")
+			| {{/if}}
+			| {{/if}}
+		
 		.text
 			.desc_shorttext!=(a ? a.desc_shorttext : '{{{desc_shorttext}}}')
+			if a
+				- if (a.type == 0)
+					.desc_text!=(a ? a.desc_text : '{{{desc_text}}}')
+					.expand.uppercase
+						.expand_button.rounded
+						div Развернуть
+			else
+				| {{#if type}}
+				| {{else}}
+				.desc_text {{{desc_text}}}
+				.expand.uppercase
+					.expand_button.rounded
+					div Развернуть
+				| {{/if}}
 		
 		.article_footer.centered
 			.share_text.border_boxed
