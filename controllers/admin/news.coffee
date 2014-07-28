@@ -8,7 +8,7 @@ Logger = require '../../lib/logger'
 exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
-			Model 'Article', 'findNews', next
+			Model 'Article', 'findNews', next, false
 		(docs) ->
 			View.render 'admin/board/news/index', res, news: docs
 	], (err) ->

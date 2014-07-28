@@ -34,7 +34,7 @@ exports.index = (req, res) ->
 			View.renderWithSession req, res, 'user/tour/tour', data
 	], (err) ->
 		error = err.message or err
-		Logger.log 'info', "Error in lib/tour_record/index: #{error}"
+		Logger.log 'info', "Error in controllers/user/tour/index: #{error}"
 		res.redirect '/'
 
 exports.add_record = (req, res) ->
@@ -75,6 +75,6 @@ exports.add_record = (req, res) ->
 	async.waterfall asyncFunctions, (err) ->
 		error = err.message or err
 		
-		Logger.log 'info', "Error in lib/tour_record/addRecord: #{error}"
+		Logger.log 'info', "Error in controllers/user/tour/add_record: #{error}"
 		req.session.err = error
 		res.redirect '/tour'

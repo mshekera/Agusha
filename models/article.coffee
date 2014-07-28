@@ -27,21 +27,18 @@ schema = new mongoose.Schema
 		get: getArticleType
 	date:
 		type: Date
-		required: false
 		set: setUpdateDate
+		default: Date.now
 	desc_image: [
 		type: String
-		required: false
 	]
 	desc_title:
 		type: String
 		required: true
 	desc_shorttext:
 		type: String
-		required: false
 	desc_text:
 		type: String
-		required: false
 	active:
 		type: Boolean
 		required: true
@@ -57,12 +54,20 @@ schema.static 'findArticles', (cb) ->
 		]
 	@find where, cb
 
-schema.static 'findNews', (cb) ->
-	where = 
-		"$or": [
+schema.static 'findNews', (active, cb) ->
+	findOptions =
+		$or: [
 			{type: 0}
 			{type: 1}
 		]
-	@find where, cb
+	
+	if active == true
+		findOptions.active = active
+	
+	sortOptions =
+		sort:
+			date: -1
+	
+	@find findOptions, {}, sortOptions, cb
 
 module.exports = mongoose.model 'Article', schema

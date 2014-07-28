@@ -17,4 +17,7 @@ module.exports = [
 ,
 	id: 'food'
 	title: 'О детском питании'
+,
+	id: 'news'
+	title: 'Что новенького'
 ]

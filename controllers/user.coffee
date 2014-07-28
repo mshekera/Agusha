@@ -11,6 +11,7 @@ Products = require './user/products'
 Product = require './user/product'
 Tour = require './user/tour'
 Food = require './user/food'
+News = require './user/news'
 
 Router = express.Router()
 
@@ -46,6 +47,10 @@ Router.post '/tour/add_record', Tour.add_record
 #
 
 Router.get '/food', Food.index
+
+#
+
+Router.get '/news', News.index
 
 #
 
