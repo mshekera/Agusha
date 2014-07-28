@@ -3,10 +3,49 @@ extends ../layout
 block append header
 	link(rel="stylesheet" href="/css/user/news/news.css")
 
-mixin article(p)
-	a(href = '/article/' + (p ? p._id : '{{_id}}'))
-		.article_block
-			| dfdf
+mixin article(a)
+	.article_block.white
+		.article_header(class=(a ? 'type_' + a.type : 'type_{{type}}'))
+			.article_date.inline_adorable_container
+				.adorable
+					.adorable_table
+						.adorable_cell
+							div=(a ? a.month : '{{month}}')
+							.day=(a ? a.day : '{{day}}')
+							div=(a ? a.year : '{{year}}')
+			
+			.article_title.inline_adorable_container
+				.adorable
+					.adorable_table
+						.adorable_cell
+							.label.novito_nova=(a ? a.desc_title : '{{desc_title}}')
+			
+			.warning.rounded.darkred
+				.adorable_table
+					.adorable_cell !
+		
+		.text
+			.desc_shorttext!=(a ? a.desc_shorttext : '{{{desc_shorttext}}}')
+		
+		.article_footer.centered
+			.share_text.border_boxed
+				span Поделиться
+			
+			.share_buttons
+				.share_button
+					img(src="/img/user/social/vk.png")
+				
+				.share_button
+					img(src="/img/user/social/odnoklasniki.png")
+				
+				.share_button
+					img(src="/img/user/social/google.png")
+				
+				.share_button
+					img(src="/img/user/social/facebook.png")
+				
+				.share_button
+					img(src="/img/user/social/twitter.png")
 
 mixin articles_stache()
 	| {{#each articles}}
@@ -38,12 +77,17 @@ block append content
 					.adorable_cell
 						span.choose_type.rounded(data-type='1', class=(params.category == 1 ? 'active' : '')) Акции
 		
-		#articles_container
-			- each p, key in articles
-				mixin article(p)
+		#articles_container.force_height
+			- each a, key in articles
+				mixin article(a)
+		
+		.refresh_articles.adorable_table.rounded
+			.adorable_cell
+				img(src="/img/user/news/refresh.png")
 
 block append scripts
 	script(src="/js/plugins/can/can.js")
+	script(src="/js/plugins/moment/moment-with-langs.js")
 	script.
 		var articles = !{JSON.stringify(articles)};
 	script#articles_tmpl(type="text/mustache")

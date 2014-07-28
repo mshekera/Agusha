@@ -1,8 +1,22 @@
 async = require 'async'
+moment = require 'moment'
 
 View = require './view'
 Model = require './model'
 Logger = require './logger'
+
+exports.preformatDate = preformatDate = (docs) ->
+	docsLength = docs.length
+	while docsLength--
+		doc = docs[docsLength]
+		
+		date = moment doc.date
+		
+		doc.month = date.format 'MMM'
+		doc.day = date.format 'DD'
+		doc.year = date.format 'YYYY'
+	
+	return docs
 
 exports.findAll = (req, res) ->
 	type = req.body.type
@@ -12,7 +26,7 @@ exports.findAll = (req, res) ->
 	searchOptions =
 		active: true
 	
-	if type
+	if type? && type != ''
 		searchOptions.type = type
 	else
 		searchOptions.$or = [
@@ -21,6 +35,7 @@ exports.findAll = (req, res) ->
 		]
 	
 	sortOptions =
+		lean: true
 		sort:
 			date: -1
 	
@@ -28,6 +43,8 @@ exports.findAll = (req, res) ->
 		(next) ->
 			Model 'Article', 'find', next, searchOptions, {}, sortOptions
 		(docs) ->
+			docs = preformatDate docs
+			
 			data.articles = docs
 			
 			View.ajaxResponse res, null, data

@@ -1,6 +1,10 @@
 @import '../dynamic/dynamic';
 @import '../helpers/breadcrumbs';
 
+#news {
+	margin-bottom: 57px;
+}
+
 .type_filter {
 	height: 116px;
 	text-align: center;
@@ -34,4 +38,127 @@
 		background-color: $darkgreen;
 		color: white;
 	}
+}
+
+.article_block {
+	float: left;
+	width: 49%;
+	margin-bottom: 2%;
+	
+	.article_header {
+		width: 100%;
+		position: relative;
+		
+		.label {
+			font-size: 35px;
+			line-height: 35px;
+			padding: 0 15px;
+			margin-top: 7px;
+			color: $dark;
+		}
+		
+		.warning {
+			width: 18px;
+			height: 18px;
+			position: absolute;
+			left: 22.9%;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			margin-left: -9px;
+		}
+		
+		&.type_0 {
+			background: $yellow;
+			
+			.article_date {
+				background: $darkyellow;
+			}
+		}
+		
+		&.type_1 {
+			background: $green;
+			
+			.article_date {
+				background: $darkgreen;
+			}
+		}
+	}
+	
+	.article_date {
+		width: 22.9%;
+		color: $white;
+		
+		.day {
+			font-size: 250%;
+		}
+	}
+	
+	.article_title {
+		width: 77.1%;
+		
+		&:before {
+			margin-top: 29.7%;
+		}
+	}
+	
+	.text {
+		padding: 30px;
+		color: #4d4d4d;
+	}
+	
+	.article_footer {
+		padding: 0 30px;
+	}
+	
+	.share_text {
+		position: relative;
+		
+		span {
+			background: $white;
+			position: relative;
+			padding: 0 13px;
+			color: #cccccc;
+		}
+		
+		&:before {
+			@include pseudo;
+			@include absolute_centered;
+			height: 1px;
+			width: 90%;
+			background: #cccccc;
+		}
+	}
+	
+	.share_buttons {
+		margin: 25px 0;
+	}
+	
+	.share_button {
+		width: 30px;
+		height: 30px;
+		margin: 0 5px;
+		display: inline-block;
+		vertical-align: top;
+		
+		img {
+			width: 100%;
+			height: 100%;
+			opacity: 0.5;
+		}
+	}
+	
+	&:nth-child(2n+1) {
+		margin-right: 2%;
+	}
+}
+
+.refresh_articles {
+	width: 50px;
+	height: 50px;
+	clear: both;
+	margin: 17px auto 0;
+	background: $darkblue;
+	cursor: pointer;
+	line-height: 0;
 }

@@ -3,6 +3,7 @@ async = require 'async'
 View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
+Article = require '../../lib/article'
 
 tree = require '../../utils/tree'
 
@@ -16,6 +17,8 @@ exports.index = (req, res) ->
 		(next) ->
 			Model 'Article', 'findNews', next, true
 		(docs, next) ->
+			docs = Article.preformatDate docs
+			
 			data.articles = docs
 			
 			View.render 'user/news/news', res, data

@@ -23,7 +23,7 @@ setUpdateDate = () ->
 	return moment()
 
 schema = new mongoose.Schema
-	type: # 0 - news, 1 - sales, 2 - feeding, 3 -from spec
+	type: # 0 - news, 1 - sales, 2 - feeding, 3 - from spec
 		type: Number
 		required: true
 		get: getArticleType
@@ -68,6 +68,7 @@ schema.static 'findNews', (active, cb) ->
 		findOptions.active = active
 	
 	sortOptions =
+		lean: true
 		sort:
 			date: -1
 	

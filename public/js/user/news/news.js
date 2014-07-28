@@ -1,3 +1,5 @@
+moment.lang('ru');
+
 Article = can.Model.extend({
 	findAll: 'POST /articles/findAll',
 	parseModels: function(data) {
@@ -24,9 +26,15 @@ var News_controller = can.Control.extend(
 						value: null
 					},
 					
+					force: {
+						value: null
+					},
+					
 					articles: {
 						value: new can.List(articles),
 						get: function(currentValue) {
+							var force = this.attr('force');
+							
 							var options = {
 								type: this.attr('type'),
 							};
@@ -57,6 +65,10 @@ var News_controller = can.Control.extend(
 			element.addClass('active');
 			
 			this.data.attr('type', val);
+		},
+		
+		'.refresh_articles click': function() {
+			this.data.attr('force', {});
 		}
 	}
 );
