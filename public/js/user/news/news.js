@@ -30,7 +30,7 @@ $(function() {
 						},
 						
 						articles: {
-							value: new can.List(articles),
+							value: new can.Observe.List(articles),
 							get: function(currentValue) {
 								var force = this.attr('force');
 								
@@ -53,6 +53,12 @@ $(function() {
 				this.data = new ViewModel();
 				
 				this.init_plugins();
+				
+				// $('#articles_container').list({
+					// tag: 'li',
+					// view: can.view('#articles_tmpl'),
+					// list: this.data.attr('articles')
+				// });
 				
 				var view = can.view("#articles_tmpl", this.data);
 				
