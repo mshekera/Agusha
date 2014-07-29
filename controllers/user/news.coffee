@@ -17,7 +17,7 @@ exports.index = (req, res) ->
 		(next) ->
 			Model 'Article', 'findNews', next, true
 		(docs, next) ->
-			docs = Article.preformatDate docs
+			docs = Article.preformatForUser docs
 			
 			data.articles = docs
 			

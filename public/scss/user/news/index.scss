@@ -40,10 +40,20 @@
 	}
 }
 
-.article_block {
+.articles_left {
 	float: left;
 	width: 49%;
-	margin-bottom: 2%;
+	margin-right: 2%;
+}
+
+.articles_right {
+	float: left;
+	width: 49%;
+}
+
+.article_block {
+	width: 100%;
+	margin-bottom: 4%;
 	
 	.article_header {
 		width: 100%;

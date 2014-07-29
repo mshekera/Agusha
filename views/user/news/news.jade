@@ -4,7 +4,7 @@ block append header
 	link(rel="stylesheet" href="/css/user/news/news.css")
 
 mixin article(a)
-	.article_block.white
+	.article_block.white.force_height
 		.article_header(class=(a ? 'type_' + a.type : 'type_{{type}}'))
 			.article_date.inline_adorable_container
 				.adorable
@@ -72,10 +72,15 @@ mixin article(a)
 					img(src="/img/user/social/twitter.png")
 
 mixin articles_stache()
-	| {{#each articles}}
-	mixin article()
-	| {{/each}}
+	.articles_left
+		| {{#each articles.left}}
+		mixin article()
+		| {{/each}}
 	
+	.articles_right
+		| {{#each articles.right}}
+		mixin article()
+		| {{/each}}
 
 block append content
 	#news.content
@@ -102,9 +107,14 @@ block append content
 					.adorable_cell
 						span.choose_type.rounded(data-type='1', class=(params.category == 1 ? 'active' : '')) Акции
 		
-		#articles_container.force_height
-			- each a, key in articles
-				mixin article(a)
+		#articles_container
+			.articles_left
+				- each a, key in articles.left
+					mixin article(a)
+			
+			.articles_right
+				- each a, key in articles.right
+					mixin article(a)
 		
 		.refresh_articles.adorable_table.rounded
 			.adorable_cell

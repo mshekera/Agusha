@@ -1,8 +1,16 @@
 $(function() {
 	Article = can.Model.extend({
-		findAll: 'POST /articles/findAll',
-		parseModels: function(data) {
-			return data.data.articles;
+		findAll : function(data){
+			return $.ajax({
+				async: false,
+				data: data,
+				url: '/articles/findAll',
+				type: 'POST',
+				dataType: 'json'
+			})
+		},
+		parseModel: function(data) {
+			return data;
 		}
 	}, {});
 
@@ -30,9 +38,10 @@ $(function() {
 						},
 						
 						articles: {
-							value: new can.List(articles),
-							get: function(currentValue) {
+							value: new can.Map(articles),
+							get: function(currentValue, callback) {
 								var force = this.attr('force');
+								var self = this;
 								
 								var options = {
 									type: this.attr('type'),
@@ -40,8 +49,11 @@ $(function() {
 								
 								if(that.first_call) {
 									that.first_call = false;
+									return currentValue;
 								} else {
-									currentValue.replace(Article.findAll(options));
+									Article.findAll(options).done(function(data) {
+										currentValue = data[0];
+									});
 								}
 								
 								return currentValue;
@@ -52,21 +64,9 @@ $(function() {
 				
 				this.data = new ViewModel();
 				
-				this.init_plugins();
-				
 				var view = can.view("#articles_tmpl", this.data);
 				
 				$('#articles_container').html(view);
-			},
-			
-			init_plugins: function() {
-				var container = $('#articles_container');
-				
-				
-			},
-			
-			init_masonry: function() {
-				
 			},
 			
 			'.choose_type click': function(el) {

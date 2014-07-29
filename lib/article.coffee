@@ -5,18 +5,29 @@ View = require './view'
 Model = require './model'
 Logger = require './logger'
 
-exports.preformatDate = preformatDate = (docs) ->
-	docsLength = docs.length
-	while docsLength--
-		doc = docs[docsLength]
+exports.preformatForUser = preformatForUser = (docs) ->
+	result =
+		left: []
+		right: []
+	
+	i = 0
+	while i < docs.length
+		doc = docs[i]
 		
 		date = moment doc.date
 		
 		doc.month = date.format 'MMM'
 		doc.day = date.format 'DD'
 		doc.year = date.format 'YYYY'
+		
+		if i % 2 == 0
+			result.left.push doc
+		else
+			result.right.push doc
+		
+		i++
 	
-	return docs
+	return result
 
 exports.findAll = (req, res) ->
 	type = req.body.type
@@ -43,7 +54,7 @@ exports.findAll = (req, res) ->
 		(next) ->
 			Model 'Article', 'find', next, searchOptions, {}, sortOptions
 		(docs) ->
-			docs = preformatDate docs
+			docs = preformatForUser docs
 			
 			data.articles = docs
 			
