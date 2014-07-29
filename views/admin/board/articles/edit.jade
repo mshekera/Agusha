@@ -64,9 +64,15 @@ block content
                         .box-body
                             if article._id
                                 input(type="hidden" name="id" value=article._id)
-                            .form-group
+							.form-group
                                 label(for="desc_title")= "Название:"
                                 input.form-control(type="text" name="desc_title" placeholder="Название статьи" value=article.desc_title)
+							.form-group
+                                label(for="button_label")= "Текст кнопки:"
+                                input.form-control(type="text" name="button_label" placeholder="Текст кнопки" value=article.button_label)
+                            .form-group
+                                label(for="big_title")= "Заголовок внутри статьи:"
+                                input.form-control(type="text" name="big_title" placeholder="Заголовок внутри статьи" value=article.big_title)
                             .form-group
                                 label(for="type")= "Тип:"
                                 select.form-control(name="type")

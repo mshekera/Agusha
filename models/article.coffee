@@ -38,6 +38,10 @@ schema = new mongoose.Schema
 	desc_title:
 		type: String
 		required: true
+	button_label:
+		type: String
+	big_title:
+		type: String
 	desc_shorttext:
 		type: String
 	desc_text:
