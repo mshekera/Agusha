@@ -27,69 +27,31 @@ block append content
 								button.middle_button.white Статьи от специалиста
 			
 			.food_block.inline_adorable_container
-				.adorable
-					.food_block_bg
-						img(src="/img/user/food/feeding_up.jpg")
-					.plate.border_boxed
-						.adorable_table
-							.adorable_cell
-								.label.novito_nova
-									| Cхема введения
-									br
-									| прикорма
-								button.middle_button.blue Еда: что, сколько и когда
+				a(href="/feeding_up")
+					.adorable
+						.food_block_bg
+							img(src="/img/user/food/feeding_up.jpg")
+						.plate.border_boxed
+							.adorable_table
+								.adorable_cell
+									.label.novito_nova
+										| Cхема введения
+										br
+										| прикорма
+									button.middle_button.blue Еда: что, сколько и когда
 			
-			.food_block.inline_adorable_container
-				.adorable
-					.food_block_bg
-						img(src="/img/user/food/home_or_purchase.jpg")
-					.plate.border_boxed
-						.adorable_table
-							.adorable_cell
-								.label.novito_nova
-									| Домашнее или
-									br
-									| покупное?
-								button.middle_button.blue Правда и мифы
-			
-			.food_block.inline_adorable_container
-				.adorable
-					.food_block_bg
-						img(src="/img/user/food/fruit.jpg")
-					.plate.border_boxed
-						.adorable_table
-							.adorable_cell
-								.label.novito_nova
-									| Фрукты
-									br
-									| в рационе
-								button.middle_button.blue Как извлечь только пользу?
-			
-			.food_block.inline_adorable_container
-				.adorable
-					.food_block_bg
-						img(src="/img/user/food/outdoors.jpg")
-					.plate.border_boxed
-						.adorable_table
-							.adorable_cell
-								.label.novito_nova
-									| Питание
-									br
-									| вне дома
-								button.middle_button.blue Проверенные советы
-			
-			.food_block.inline_adorable_container
-				.adorable
-					.food_block_bg
-						img(src="/img/user/food/diet.jpg")
-					.plate.border_boxed
-						.adorable_table
-							.adorable_cell
-								.label.novito_nova
-									| Правильный
-									br
-									| режим питания
-								button.middle_button.blue Вовремя = вдвойне полезно
+			- each a, key in articles
+				.food_block.inline_adorable_container
+					a(href = '/article/' + a._id)
+						.adorable
+							if a.desc_image.length
+								.food_block_bg
+									img(src = '/img/uploads/' + a.desc_image[0])
+							.plate.border_boxed
+								.adorable_table
+									.adorable_cell
+										.label.novito_nova !{a.desc_title}
+										button.middle_button.blue #{a.button_label}
 
 block append scripts
 	

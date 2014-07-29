@@ -2,7 +2,7 @@ express = require 'express'
 
 View = require '../lib/view'
 City = require '../lib/city'
-Article = require '../lib/article'
+ArticleLib = require '../lib/article'
 
 Migrate = require '../init/migrate'
 
@@ -14,6 +14,7 @@ Tour = require './user/tour'
 Food = require './user/food'
 News = require './user/news'
 Feeding_up = require './user/feeding_up'
+Article = require './user/article'
 
 Router = express.Router()
 
@@ -60,7 +61,9 @@ Router.get '/feeding_up', Feeding_up.index
 
 #
 
-Router.post '/articles/findAll', Article.findAll
+Router.get '/article/:id', Article.index
+
+Router.post '/articles/findAll', ArticleLib.findAll
 
 #
 
