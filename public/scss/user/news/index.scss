@@ -104,6 +104,10 @@
 	
 	.image {
 		width: 100%;
+		
+		&:before {
+			margin-top: 79.2%;
+		}
 	}
 	
 	.text {

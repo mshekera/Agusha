@@ -25,14 +25,13 @@ mixin article(a)
 					.adorable_cell !
 		
 		if a
-			- if (a.type == 1)
-				if a.desc_image.length
-					img.image(src = '/img/uploads/' + a.desc_image[0])
+			if a.desc_image.length
+				.image.adorable_container
+					img.adorable(src = '/img/uploads/' + a.desc_image[0])
 		else
-			| {{#if type}}
 			| {{#if desc_image.length}}
-			img.image(src="/img/uploads/{{desc_image.0}}")
-			| {{/if}}
+			.image.adorable_container
+				img.adorable(src="/img/uploads/{{desc_image.0}}")
 			| {{/if}}
 		
 		.text
@@ -76,6 +75,7 @@ mixin articles_stache()
 	| {{#each articles}}
 	mixin article()
 	| {{/each}}
+	
 
 block append content
 	#news.content
