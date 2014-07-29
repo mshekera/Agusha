@@ -87,6 +87,9 @@ exports.globals = (req, res, next)->
 	
 	res.locals.params = req.params
 	
+	res.locals.strip_tags = (str) ->
+		str.replace /<\/?[^>]+>/g, ' '
+	
 	next()
 
 exports.ajaxResponse = (res, err, data) ->

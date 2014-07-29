@@ -4,6 +4,6 @@
 		- each b, key in breadcrumbs
 			span  / 
 				if b.href
-					a(href=b.href) #{b.title}
+					a(href=b.href) #{strip_tags(b.title)}
 				else
-					| #{b.title}
+					| #{strip_tags(b.title)}
