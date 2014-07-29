@@ -28,6 +28,11 @@ ul, li {
 	position: relative;
 	font-size: 112.5%;
 	
+	a {
+		text-decoration: none;
+		color: $base;
+	}
+	
 	.menu {
 		text-align: center;
 	}
@@ -67,6 +72,11 @@ ul, li {
 	position: relative;
 	margin-top: 13px;
 	font-size: 87.5%;
+	
+	a {
+		text-decoration: none;
+		color: $base;
+	}
 	
 	#copyright {
 		float: left;
