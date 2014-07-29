@@ -40,6 +40,8 @@ routes = () ->
 	@use user_controller.Router
 	@use '/', user_controller.Router
 	@use '/admin', admin_controller.Router
+	@use (err, req, res, next) ->
+		res.send 500, 'Something broke!'
 
 configure = () ->
 	@set 'views', "#{__dirname}/../views"
