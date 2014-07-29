@@ -334,7 +334,7 @@ var Tour_controller = can.Control.extend(
 				maxlength: 64,
 				required: function(element){
 					var	val = $("input[name='children[" + i + "][age]']").val();
-					return (val.length > 0 && val != '___ месяцев');
+					return (val.length > 0 && val != '__ месяцев');
 				}
 			};
 		},

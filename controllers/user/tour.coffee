@@ -54,7 +54,7 @@ exports.add_record = (req, res) ->
 	childrenLength = req.body.children.length
 	while childrenLength--
 		child = req.body.children[childrenLength]
-		if !child.name.length || (child.age == '___ месяцев' || !child.age.length)
+		if !child.name.length || (child.age == '__ месяцев' || !child.age.length)
 			continue
 		child.age = parseInt child.age
 		data.children.push child
