@@ -4,10 +4,83 @@ block append header
 	link(rel="stylesheet" href="/css/user/article/article.css")
 
 block append content
-	.content.force_height
+	.article_container.content(id = 'article_' + article._id)
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
+		.article_topper.darkblue
+			a(href="/feeding_up")
+				.article_topper_block.adorable_table
+					.adorable_cell
+						.label.novito_nova Основы прикорма
+			
+			- each a, key in articles
+				a(href = '/article/' + a._id)
+					.article_topper_block.adorable_table(class=(article._id + '' == a._id + '' ? 'active' : ''))
+						.adorable_cell
+							.label.novito_nova #{strip_tags(a.desc_title)}
 		
+		.article_content.force_height
+			.article_left
+				.article_big_title.green.adorable_table
+					.adorable_cell
+						.label.novito_nova #{article.big_title}
+				
+				.article_text.white
+					| !{article.desc_shorttext}
+					| !{article.desc_text}
+				
+				.article_footer.centered.force_height
+					.share_text.border_boxed
+						span Поделиться
+					
+					.share_buttons
+						.share_button
+							img(src="/img/user/social/vk.png")
+						
+						.share_button
+							img(src="/img/user/social/odnoklasniki.png")
+						
+						.share_button
+							img(src="/img/user/social/google.png")
+						
+						.share_button
+							img(src="/img/user/social/facebook.png")
+						
+						.share_button
+							img(src="/img/user/social/twitter.png")
+			
+			.article_right.did_you_know
+				.dyk_topper.adorable_table
+					.adorable_cell
+						.label.novito_nova Знаете ли<br>вы, что...?
+					
+					.dyk_question.rounded.darkred
+						.adorable_table
+							.adorable_cell ?
+					
+				.dyk_container
+					.dyk_block.dyk_1.white.active
+						.dyk_image
+							img(src="/img/user/did_you_know/dyk_1.jpg")
+						.dyk_text Мы обогащаем йогурт олигофруктозой – пребиотиком, который является природной средой развития собственной микрофлоры пищеварительного тракта малыша и способствует нормализации пищеварения.
+					
+					.dyk_block.dyk_2.white
+						.dyk_image
+							img(src="/img/user/did_you_know/dyk_2.jpg")
+						.dyk_text Гордость «завода Агуша» - бактофуга, которая очищает молоко на уровне спор и бактерий.
+					
+					.dyk_block.dyk_3.white
+						.dyk_image
+							img(src="/img/user/did_you_know/dyk_3.jpg")
+						.dyk_text «Завод Агуша» - единственное в Украине производство, на котором специально создана галерея, через окна которой посетители могут наблюдать за всеми процессами.
+					
+					.dyk_navigator.centered
+						.dyk_button.dyk_1.rounded.active(data-dyk="1")
+						.dyk_button.dyk_2.rounded(data-dyk="2")
+						.dyk_button.dyk_3.rounded(data-dyk="3")
 
 block append scripts
-	
+	script(src="/js/plugins/can/can.js")
+	script.
+		var article = !{JSON.stringify(article)};
+	script(src="/js/user/article/article.js")

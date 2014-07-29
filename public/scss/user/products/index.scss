@@ -26,9 +26,12 @@
 	vertical-align: top;
 	height: 100%;
 	cursor: pointer;
+	background: $white;
+	color: $base;
 	
 	&.active, &:hover {
 		background-color: $el_bg;
+		color: $darkblue;
 	}
 	
 	.image_container {

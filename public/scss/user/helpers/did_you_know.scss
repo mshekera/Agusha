@@ -1,0 +1,67 @@
+@import '../dynamic/dynamic';
+
+.did_you_know {
+	width: 100%;
+}
+
+.dyk_topper {
+	height: 180px;
+	color: $white;
+	background: #ea6d6a;
+}
+
+.dyk_question {
+	@include absolute_horizontal_centered;
+	bottom: -35px;
+	width: 70px;
+	height: 70px;
+	font-size: 23px;
+	z-index: 1;
+}
+
+.dyk_container {
+	position: relative;
+}
+
+.dyk_block {
+	display: none;
+	
+	&.active {
+		display: block;
+	}
+}
+
+.dyk_image {
+	height: 150px;
+	
+	img {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.dyk_text {
+	padding: 25px 25px 60px;
+}
+
+.dyk_navigator {
+	position: absolute;
+	bottom: 25px;
+	left: 0;
+	width: 100%;
+	height: 14px;
+}
+
+.dyk_button {
+	width: 10px;
+	height: 10px;
+	background-color: $darkred;
+	display: inline-block;
+	margin: 0 6px;
+	cursor: pointer;
+	
+	&.active {
+		@include inset_box_shadow(0 0 0 1px $darkred);
+		background-color: transparent;
+	}
+}

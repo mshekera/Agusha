@@ -15,9 +15,15 @@ exports.index = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Model 'Article', 'findById', next, req.params.id
-		(doc) ->
-			data.article = doc
+			async.parallel
+				article: (next2) ->
+					Model 'Article', 'findById', next2, req.params.id
+				articles: (next2) ->
+					Model 'Article', 'find', next2, type: 2, 'desc_title'
+			, next
+		(results) ->
+			data.article = results.article
+			data.articles = results.articles
 			
 			data.breadcrumbs.push
 				parent_id: 'food'
