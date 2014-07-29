@@ -18,6 +18,10 @@ module.exports = [
 	id: 'food'
 	title: 'О детском питании'
 ,
+	id: 'feeding_up'
+	title: 'Основы прикорма'
+	parent_id: 'food'
+,
 	id: 'news'
 	title: 'Что новенького'
 ]
