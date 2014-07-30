@@ -100,6 +100,106 @@
 #products_articles {
 	height: 320px;
 	margin-bottom: 20px;
+	position: relative;
+	display: none;
+	
+	.minimize {
+		color: #4d4d4d;
+		font-size: 87.2%;
+		position: absolute;
+		bottom: 40px;
+		left: 40px;
+		padding: 0;
+		
+		span {
+			cursor: pointer;
+		}
+	}
+	
+	.minimize_button {
+		width: 16px;
+		height: 16px;
+		display: inline-block;
+		vertical-align: top;
+		background: #fd7b6a;
+		margin-right: 10px;
+		position: relative;
+		
+		&:before {
+			@include absolute_centered;
+			content: '\D7';
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+			color: $white;
+			font-size: 13px;
+		}
+	}
+	
+	.minimize_title {
+		&:before {
+			content: 'Скрыть';
+		}
+	}
+	
+	&.active {
+		display: block;
+	}
+	
+	&.minimized {
+		height: auto;
+    	overflow: hidden;
+	
+		.left {
+			width: 100%;
+		}
+		
+		.right {
+			display: none;
+		}
+		
+		.article_image {
+			@include background_cover;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 42%;
+		}
+		
+		.desc_subtitle {
+			float: left;
+			margin-right: 35px;
+		}
+		
+		.desc_title {
+			float: left;
+			padding: 0 0 30px;
+		}
+		
+		.minimize {
+			right: 40px;
+			margin: auto;
+			top: 0;
+			bottom: 0;
+			left: auto;
+			height: 16px;
+		}
+		
+		.minimize_button {
+			&:before {
+				content: '+';
+				font-family: verdana;
+				font-size: 11px;
+			}
+		}
+		
+		.minimize_title {
+			&:before {
+				content: 'Показать';
+			}
+		}
+	}
 }
 
 .products_article {
@@ -111,25 +211,29 @@
 		position: relative;
 	}
 	
+	.text {
+		padding: 40px;
+		height: 100%;
+	}
+	
+	.desc_subtitle {
+		color: #fd7b6a;
+		font-style: italic;
+		margin-bottom: 15px;
+		width: 150px;
+	}
+	
+	.desc_title {
+		color: $dark;
+		padding: 0;
+	}
+	
 	.article_image {
+		@include background_cover;
 		height: 100%;
 		position: absolute;
 		top: 0;
 		width: 100%;
-		line-height: 0;
-		
-		.adorable_cell {
-			text-align: right;
-		}
-		
-		img {
-			max-height: 100%;
-			max-width: 100%;
-		}
-	}
-	
-	.text {
-		padding: 40px;
 	}
 	
 	&.active {

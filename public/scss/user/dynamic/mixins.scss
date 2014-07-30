@@ -70,6 +70,13 @@
 	transform: $val;
 }
 
+@mixin background_cover {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	-moz-background-size: cover;
+}
+
 /* base */
 
 @mixin pentagon_pseudo {
