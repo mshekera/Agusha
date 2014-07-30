@@ -109,15 +109,16 @@ block append content
 		#products_articles.white
 			- each a, key in ages
 				.products_article(id = 'age_' + a.level, class=(key == 0 ? 'active' : ''))
-					.half
-						| Макет данного блока предоставлен сплошной картинкой, требую исправить несправедливость!
-						if a.desc_image
-							.article_image.adorable_table
-								.adorable_cell
-									- var src = '/img/uploads/' + a.desc_image
-									img(src=src)
+					.half.left(style = a.desc_image ? 'background-image: url(/img/uploads/' + a.desc_image + ')' : '')
+						.text.border_boxed
+							.desc_subtitle #{a.desc_subtitle}
+							.desc_title.label.novito_nova #{a.desc_title}
+							.minimize.top_label
+								span.minimize_button.rounded
+								span Свернуть
 					
-					.half.text.border_boxed !{a.desc_text}
+					.half
+						.text.border_boxed !{a.desc_text}
 		
 		#products_container.force_height
 			- each p, key in products
