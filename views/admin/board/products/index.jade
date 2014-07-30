@@ -63,8 +63,6 @@ block content
                         th= "Название"
                         th= "Активен?"
                         th= "Срок хранения"
-                        th= "Условия хранения"
-                        th= "Состав"
                         th= "Объем"
                         th= "Возраст"
                         th= "Категории"
@@ -75,20 +73,18 @@ block content
                             td= item.title
                             td= (item.active?"Да":"Нет")
                             td= item.storage_life
-                            td= item.storage_conditions
-                            td= item.composition
-                            td= item.volume
+                            td= item.volume.formatted
                             td= item.age.title
                             td
                                 each cat in item.category
                                     | #{cat.name}
                             td
-                                div.col-md-6
+                                .dt-button
                                     a(href="product/edit/#{item._id}")
                                         button.btn.btn-warning(type="button")
                                             i.glyphicon.glyphicon-edit
                                             span= " Редактировать"
-                                div.col-md-6
+                                .dt-button
                                     a(href="product/delete/#{item._id}")
                                         button.btn.btn-danger(type="button")
                                             i.glyphicon.glyphicon-remove-circle

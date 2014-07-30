@@ -32,6 +32,8 @@ schema = new mongoose.Schema
 		set: setUpdateDate
 		default: Date.now
 		get: Time.getDate
+	image:
+		type: String
 	desc_image: [
 		type: String
 	]

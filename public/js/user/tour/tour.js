@@ -161,7 +161,7 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		age_inputmask: function() {
-			$('.child_age').inputmask('999 месяцев');
+			$('.child_age').inputmask('99 месяцев');
 		},
 		
 		init_select2: function() {

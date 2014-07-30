@@ -2,6 +2,19 @@ mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
 
+getProductVolume = (volume) ->
+	if parseInt(volume) < 1000
+		return {
+			original: volume
+			formatted: "#{volume} мл"
+		}
+
+	newVolume = Math.round(volume / 100) / 10
+	return {
+		original: volume
+		formatted: "#{newVolume} л"
+	}
+
 schema = new mongoose.Schema 
 	title:
 		type: String
@@ -19,6 +32,7 @@ schema = new mongoose.Schema
 		type: String
 	volume:
 		type: Number
+		get: getProductVolume
 	active:
 		type: Boolean
 		required: true

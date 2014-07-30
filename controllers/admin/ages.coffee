@@ -38,8 +38,8 @@ exports.save = (req, res) ->
 	data = req.body
 	delete data._wysihtml5_mode if data._wysihtml5_mode
 
-	data.icon = req.files?.icon?.name or ""
-	data.desc_image = req.files?.desc_image?.name or ""
+	data.icon = req.files?.icon?.name or undefined
+	data.desc_image = req.files?.desc_image?.name or undefined
 
 	async.waterfall [
 		(next) ->
