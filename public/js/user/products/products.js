@@ -67,7 +67,7 @@ var Products_controller = can.Control.extend(
 			
 			this.data.attr('age', val);
 			
-			if(val != null) {
+			if(typeof(val) != 'undefined' && val != null) {
 				$('#products_articles .products_article').removeClass('active');
 				$('#age_' + val).addClass('active');
 			}
