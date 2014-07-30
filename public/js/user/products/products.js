@@ -76,7 +76,8 @@ var Products_controller = can.Control.extend(
 		'.age_block click': function(el) {
 			var element = $(el),
 				val = element.data('level'),
-				age_blocks = this.element.find('.age_block');
+				age_blocks = this.element.find('.age_block'),
+				products_articles = $('#products_articles');
 			
 			age_blocks.removeClass('active');
 			element.addClass('active');
@@ -84,8 +85,11 @@ var Products_controller = can.Control.extend(
 			this.data.attr('age', val);
 			
 			if(typeof(val) != 'undefined' && val != null) {
-				$('#products_articles .products_article').removeClass('active');
+				products_articles.addClass('active');
+				products_articles.find('.products_article').removeClass('active');
 				$('#age_' + val).addClass('active');
+			} else {
+				products_articles.removeClass('active');
 			}
 		},
 		

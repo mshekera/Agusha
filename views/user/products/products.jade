@@ -106,7 +106,7 @@ block append content
 						.adorable_cell
 							span.choose_category.rounded(data-category=c.url_label, class=(c.url_label == params.category ? 'active' : '')) #{c.name}
 		
-		#products_articles.white
+		#products_articles.white(class=(params.category ? 'active' : ''))
 			- each a, key in ages
 				.products_article(id = 'age_' + a.level, class=(key == 0 ? 'active' : ''))
 					.half.left

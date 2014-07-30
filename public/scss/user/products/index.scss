@@ -101,6 +101,7 @@
 	height: 320px;
 	margin-bottom: 20px;
 	position: relative;
+	display: none;
 	
 	.minimize {
 		color: #4d4d4d;
@@ -139,6 +140,10 @@
 		&:before {
 			content: 'Скрыть';
 		}
+	}
+	
+	&.active {
+		display: block;
 	}
 	
 	&.minimized {
