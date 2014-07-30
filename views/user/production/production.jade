@@ -1,0 +1,56 @@
+extends ../layout
+
+block append header
+	link(rel="stylesheet" href="/css/user/production/production.css")
+
+block append content
+	#production.content
+		include ../../helpers/user/breadcrumbs/breadcrumbs
+		
+		.production_topper.green
+			.top
+				.adorable_table
+					.adorable_cell
+						.top_text
+							| Мы гордимся нашим «Заводом Агуша» и абсолютно уверены в качестве
+							br
+							| выпускаемой продукции.
+						.label.novito_nova Запишитесь на бесплатную экскурсию
+						.bottom_text Узнайте больше о полезных, вкусных и действительно детских продуктах «Агуша»!
+					
+			
+			.bottom.darkgreen
+				.adorable_table
+					.adorable_cell
+						a(href="/tour")
+							button.middle_button Хочу на экскурсию
+		
+		.production_container.white
+			.production_arrows
+				.half.left
+					.adorable_table
+						.adorable_cell <
+				
+				.half.right
+					.adorable_table
+						.adorable_cell >
+			
+			.production_block.production_1.active
+				.production_bg
+					img(src="/img/user/production/production_bg_1.jpg")
+			
+			.production_block.production_2
+				.production_bg
+					img(src="/img/user/production/production_bg_2.jpg")
+			
+			.production_block.production_3
+				.production_bg
+					img(src="/img/user/production/production_bg_3.jpg")
+			
+			.production_block.production_4
+				.production_bg
+					img(src="/img/user/production/production_bg_4.jpg")
+
+block append scripts
+	script(src="/js/plugins/can/can.js")
+	script(src="/js/user/production/production.js")
