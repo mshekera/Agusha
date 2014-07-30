@@ -11,7 +11,7 @@ checkMigration = (migrate, callback) ->
 	, callback
 
 addCity = (data, callback) ->
-	Model 'City', 'findOneAndUpdate', callback, data, data, upsert: true
+	Model 'City', 'update', callback, data, data, upsert: true
 
 exports.init = (callback) ->
 	async.each metaMigrate, checkMigration, callback

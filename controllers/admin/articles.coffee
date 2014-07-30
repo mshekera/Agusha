@@ -36,6 +36,7 @@ exports.save = (req, res) ->
 	_id = req.body.id
 
 	data = req.body
+	data.image = req.files?.image?.name or undefined
 	data.desc_image = []
 	if req.files?.desc_image
 		if req.files.desc_image.name
