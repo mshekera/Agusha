@@ -32,3 +32,25 @@ input {
 		@include inset_box_shadow(0 0 0 3px $yellow);
 	}
 }
+
+select {
+	@include border_radius(5px);
+	@include border_boxed;
+	height: 38px;
+	border: none;
+	line-height: 38px;
+	font-size: 14px;
+	padding: 10px 20px;
+	color: $base;
+	width: 225px;
+	position: relative;
+	
+	&:after {
+		@include pseudo;
+		height: 38px;
+		width: 60px;
+		background: $white;
+		right: 0;
+		top: 0;
+	}
+}
