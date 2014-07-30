@@ -134,6 +134,67 @@
 			font-size: 13px;
 		}
 	}
+	
+	.minimize_title {
+		&:before {
+			content: 'Скрыть';
+		}
+	}
+	
+	&.minimized {
+		height: auto;
+    	overflow: hidden;
+	
+		.left {
+			width: 100%;
+		}
+		
+		.right {
+			display: none;
+		}
+		
+		.article_image {
+			@include background_cover;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 42%;
+		}
+		
+		.desc_subtitle {
+			float: left;
+			margin-right: 35px;
+		}
+		
+		.desc_title {
+			float: left;
+			padding: 0 0 30px;
+		}
+		
+		.minimize {
+			right: 40px;
+			margin: auto;
+			top: 0;
+			bottom: 0;
+			left: auto;
+			height: 16px;
+		}
+		
+		.minimize_button {
+			&:before {
+				content: '+';
+				font-family: verdana;
+				font-size: 11px;
+			}
+		}
+		
+		.minimize_title {
+			&:before {
+				content: 'Показать';
+			}
+		}
+	}
 }
 
 .products_article {
@@ -145,10 +206,6 @@
 		position: relative;
 	}
 	
-	.left {
-		@include background_cover;
-	}
-	
 	.text {
 		padding: 40px;
 		height: 100%;
@@ -158,6 +215,7 @@
 		color: #fd7b6a;
 		font-style: italic;
 		margin-bottom: 15px;
+		width: 150px;
 	}
 	
 	.desc_title {
@@ -166,20 +224,11 @@
 	}
 	
 	.article_image {
+		@include background_cover;
 		height: 100%;
 		position: absolute;
 		top: 0;
 		width: 100%;
-		line-height: 0;
-		
-		.adorable_cell {
-			text-align: right;
-		}
-		
-		img {
-			max-height: 100%;
-			max-width: 100%;
-		}
 	}
 	
 	&.active {

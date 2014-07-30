@@ -1,3 +1,19 @@
+function isLocalStorageAvailable() {
+    try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+        return false;
+    }
+}
+
+if(isLocalStorageAvailable()) {
+	var minimized = localStorage['minimized_articles'];
+	
+	if(minimized === 'true') {
+		$('#products_articles').addClass('minimized');
+	}
+}
+
 Product = can.Model.extend({
 	findAll: 'POST /products/findAll',
 	parseModels: function(data) {
@@ -82,6 +98,17 @@ var Products_controller = can.Control.extend(
 			element.addClass('active');
 			
 			this.data.attr('category', val);
+		},
+		
+		'.minimize span click': function() {
+			var	products_articles = $('#products_articles'),
+				classname = 'minimized';
+			
+			products_articles.toggleClass(classname);
+			
+			if(isLocalStorageAvailable()) {
+				localStorage['minimized_articles'] = products_articles.hasClass(classname);
+			}
 		}
 	}
 );
