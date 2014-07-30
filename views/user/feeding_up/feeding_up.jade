@@ -52,72 +52,87 @@ block append content
 				.top_text Без проблем и с удовольствием!
 				.label.novito_nova Как и когда переводить вашего Ням Нямыча<br>с пищи детской на пищу взрослую
 		
-		.feeding_up_table
-			.table_topper.darkblue
-				.label.novito_nova.half.left
-					.adorable_table
-						.adorable_cell Таблица введения прикорма
+		#feeding_up_table
+			.feeding_up_table
+				.table_topper.darkblue
+					.label.novito_nova.half.left
+						.adorable_table
+							.adorable_cell Таблица введения прикорма
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								span Тип вскармливания
+								select#feeding_up_select
+									option(value='natural') Естетственное
+									option(value='unnatural') Неестетственное
 				
-				.half.right
-					.adorable_table
-						.adorable_cell
-							span Тип вскармливания
-							select#feeding_up_select
-								option(value='natural') Естетственное
-								option(value='unnatural') Неестетственное
-			
-			mixin thead(true)
-			
-			.tbody
-				- each f, k in feeding_up
-					.tblock(id = 'table_' + k, class=(k == 'natural' ? 'active' : ''))
-						- each item, j in f
-							.tr
-								.td_left.border_boxed
-									.half.left
-										.adorable_table
-											.adorable_cell
-												img.image.rounded(src=item.image)
+				mixin thead(true)
+				
+				.tbody
+					- each f, k in feeding_up
+						.tblock(id = 'table_' + k, class=(k == 'natural' ? 'active' : ''))
+							- each item, j in f
+								.tr
+									.td_left.border_boxed
+										.half.left
+											.adorable_table
+												.adorable_cell
+													img.image.rounded(src=item.image)
+										
+										.half.right
+											.adorable_table
+												.adorable_cell !{item.product}
 									
-									.half.right
-										.adorable_table
-											.adorable_cell !{item.product}
-								
-								.td_right
-									.td_right_content
-										.td.term
-											.adorable_table
-												.adorable_cell !{item.term}
-										
-										.td.hoverable.6m(data-month=6)
-											.adorable_table
-												.adorable_cell !{item['6m']}
-										
-										.td.hoverable.7m(data-month=7)
-											.adorable_table
-												.adorable_cell !{item['7m']}
-										
-										.td.hoverable.8m(data-month=8)
-											.adorable_table
-												.adorable_cell !{item['8m']}
-										
-										.td.hoverable.9m(data-month=9)
-											.adorable_table
-												.adorable_cell !{item['9m']}
-										
-										.td.hoverable.10m(data-month=10)
-											.adorable_table
-												.adorable_cell !{item['10m']}
-										
-										.td.hoverable.11m(data-month=11)
-											.adorable_table
-												.adorable_cell !{item['11m']}
-										
-										.td.hoverable.12m(data-month=12)
-											.adorable_table
-												.adorable_cell !{item['12m']}
+									.td_right
+										.td_right_content
+											.td.term
+												.adorable_table
+													.adorable_cell !{item.term}
+											
+											.td.hoverable.6m(data-month=6)
+												.adorable_table
+													.adorable_cell !{item['6m']}
+											
+											.td.hoverable.7m(data-month=7)
+												.adorable_table
+													.adorable_cell !{item['7m']}
+											
+											.td.hoverable.8m(data-month=8)
+												.adorable_table
+													.adorable_cell !{item['8m']}
+											
+											.td.hoverable.9m(data-month=9)
+												.adorable_table
+													.adorable_cell !{item['9m']}
+											
+											.td.hoverable.10m(data-month=10)
+												.adorable_table
+													.adorable_cell !{item['10m']}
+											
+											.td.hoverable.11m(data-month=11)
+												.adorable_table
+													.adorable_cell !{item['11m']}
+											
+											.td.hoverable.12m(data-month=12)
+												.adorable_table
+													.adorable_cell !{item['12m']}
+				
+				mixin thead(false)
+		
+		.feeding_up_order.adorable_table
+			.adorable_cell Согласно Приказа МОЗ Украины №149 от 20.03.2008 «Про утверждение клинического протокола медицинского ухода за здоровым ребенком  в возрасте до 3 лет»
+		
+		.feeding_up_notice.white
+			.warning.rounded
+				.adorable_table
+					.adorable_cell !
 			
-			mixin thead(false)
+			.text
+				.adorable_table
+					.adorable_cell Последовательность и количество продуктов выбирается для каждого малыша индивидуально и зависит от состояния здоровья и физического развития. Перед составлением точной схемы прикорма проконсультируйтесь с врачом.
+			
+			button.middle_button.blue.uppercase.bold.print Распечатать
 
 block append scripts
 	script(src="/js/plugins/can/can.js")

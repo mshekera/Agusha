@@ -33,8 +33,23 @@ var Feeding_up_controller = can.Control.extend(
 			
 			tblock.removeClass(classname);
 			table.addClass(classname);
+		},
+		
+		'.print click': function() {
+			this.print('feeding_up_table');
+		},
+		
+		print: function(id) {
+			var printContents = document.getElementById(id).innerHTML;
+			var originalContents = document.body.innerHTML;
+			
+			document.body.innerHTML = printContents;
+			
+			window.print();
+			
+			document.body.innerHTML = originalContents;
 		}
 	}
 );
 
-new Feeding_up_controller('#feeding_up');
+new Feeding_up_controller('body');

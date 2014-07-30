@@ -188,3 +188,47 @@
 		height: 80px;
 	}
 }
+
+.feeding_up_order {
+	height: 38px;
+	font-size: 85.7%;
+	font-style: italic;
+	color: #a19084;
+}
+
+.feeding_up_notice {
+	padding: 35px 55px;
+	position: relative;
+	
+	.warning {
+		width: 58px;
+		height: 58px;
+		background: #fbc1ba;
+		display: inline-block;
+		vertical-align: top;
+		margin-right: 48px;
+		color: $white;
+		font-size: 33px;
+	}
+	
+	.text {
+		display: inline-block;
+		font-size: 85.7%;
+		height: 58px;
+		width: 60%;
+		font-style: italic;
+		
+		.adorable_cell {
+			text-align: left;
+		}
+	}
+	
+	button {
+		bottom: 0;
+		margin: auto;
+		position: absolute;
+		right: 55px;
+		top: 0;
+		height: 40px;
+	}
+}
