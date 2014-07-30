@@ -33,24 +33,44 @@ input {
 	}
 }
 
-select {
-	@include border_radius(5px);
-	@include border_boxed;
-	height: 38px;
-	border: none;
-	line-height: 38px;
-	font-size: 14px;
-	padding: 10px 20px;
-	color: $base;
-	width: 225px;
-	position: relative;
+.select {
+	display: inline-block;
+    position: relative;
 	
-	&:after {
-		@include pseudo;
+	select {
+		@include border_radius(5px);
+		@include border_boxed;
+		height: 38px;
+		border: none;
+		line-height: 38px;
+		font-size: 14px;
+		padding: 10px 20px;
+		color: $base;
+		width: 225px;
+		position: relative;
+		
+		&:after {
+			@include pseudo;
+			height: 38px;
+			width: 60px;
+			background: $white;
+			right: 0;
+			top: 0;
+		}
+	}
+
+	select ~ label {
+		@include border_radius(5px);
+		position: absolute;
+		right: 0;
+		top: 0;
 		height: 38px;
 		width: 60px;
 		background: $white;
-		right: 0;
-		top: 0;
+	}
+
+	select ~ label img {
+		@include absolute_centered;
+		display: block;
 	}
 }
