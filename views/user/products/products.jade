@@ -113,12 +113,13 @@ block append content
 						.text.border_boxed
 							.desc_subtitle #{a.desc_subtitle}
 							.desc_title.label.novito_nova #{a.desc_title}
-							.minimize.top_label
-								span.minimize_button.rounded
-								span Свернуть
 					
 					.half
 						.text.border_boxed !{a.desc_text}
+			
+			.minimize.top_label
+				span.minimize_button.rounded
+				span Свернуть
 		
 		#products_container.force_height
 			- each p, key in products
