@@ -137,6 +137,22 @@
 			}
 		}
 		
+		.tr {
+			&:nth-child(2n) {
+				.td_left {
+					background: #d8f0fb;
+				}
+				
+				.term {
+					background: #e8fbfb;
+				}
+				
+				.td.hoverable {
+					background: #fbfbfb;
+				}
+			}
+		}
+		
 		.td_left {
 			background: #dbf4ff;
 			color: #2d95c4;
