@@ -74,7 +74,7 @@ exports.save = (req, res) ->
 	data = req.body
 	delete data._wysihtml5_mode if data._wysihtml5_mode
 
-	data.image = req.files?.image?.name or ""
+	data.image = req.files?.image?.name or undefined
 
 	if data['certificate[]']
 		data.certificate = data['certificate[]']
