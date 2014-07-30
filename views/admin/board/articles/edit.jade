@@ -102,6 +102,13 @@ block content
 								)= article.desc_text
 
 							.form-group
+								label(for="image")= "Изображение:"
+								if article.image
+									div
+										img.img-thumbnail(src="/img/uploads/#{article.image}")
+								input(type="file" name="image")
+
+							.form-group
 								label(for="desc_image")= "Изображения (может быть более одного):"
 								input(type="file" name="desc_image" multiple)
 								if article.desc_image
