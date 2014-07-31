@@ -70,7 +70,7 @@ exports.add_record = (req, res) ->
 	]
 	
 	if req.body.signup
-		asyncFunctions = asyncFunctions.concat Client.addAsyncFunctionsForSignUp data
+		asyncFunctions = asyncFunctions.concat Client.addAsyncFunctionsForSignUp res, {}, data
 	
 	async.waterfall asyncFunctions, (err) ->
 		error = err.message or err
