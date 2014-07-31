@@ -35,11 +35,11 @@ ul, li {
 	
 	.menu {
 		&.left {
-			text-align: right;
+			text-align: center;
 		}
 		
 		&.right {
-			text-align: left;
+			text-align: center;
 		}
 	}
 	
@@ -56,7 +56,7 @@ ul, li {
 	}
 	
 	.after_logo {
-		margin-left: 70px;
+		margin-left: 60px;
 	}
 }
 

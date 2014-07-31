@@ -92,3 +92,36 @@
 		}
 	}
 }
+
+.production_navigator {
+	height: 95px;
+	position: relative;
+	
+	&:before {
+		@include pseudo;
+		@include absolute_centered;
+		height: 1px;
+		width: 80%;
+		background: $lightblue;
+		z-index: 5;
+	}
+}
+
+.production_button {
+	text-transform: uppercase;
+	margin: 0 9px;
+	font-size: 100%;
+	padding: 10px 18px;
+	color: $white;
+	background: $darkblue;
+	@include inset_box_shadow(0 0 0 1px $lightblue);
+	font-weight: bold;
+	z-index: 10;
+	position: relative;
+	
+	&.active, &:hover {
+		@include box_shadow(none);
+		background: $white;
+		color: $darkblue;
+	}
+}
