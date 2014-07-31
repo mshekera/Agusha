@@ -105,17 +105,18 @@ block append content
 					
 					.articles_right_container
 						- each a, key in articles
-							a(href = '/specialist/' + a._id)
-								.article_block.adorable_container
-									.adorable
-										.adorable_table
-											- if (a.desc_image.length)
-												.article_bg
-													img(src = '/img/uploads/' + a.desc_image[0])
-											.adorable_cell
-												div
-													.plate.green.border_boxed
-														.label.novito_nova #{strip_tags(a.big_title)}
+							- if (a._id + '' != article._id + '')
+								a(href = '/specialist/' + a._id)
+									.article_block.adorable_container
+										.adorable
+											.adorable_table
+												- if (a.desc_image.length)
+													.article_bg
+														img(src = '/img/uploads/' + a.desc_image[0])
+												.adorable_cell
+													div
+														.plate.green.border_boxed
+															.label.novito_nova #{strip_tags(a.big_title)}
 
 block append scripts
 	script(src="/js/plugins/can/can.js")
