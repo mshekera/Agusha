@@ -52,7 +52,7 @@
 		color: $white;
 		
 		.td {
-			&.hoverable.active {
+			&.hoverable.active, &.hoverable.chosen {
 				.adorable_table {
 					&:before {
 						background-image: linear-gradient(to left bottom, #67e3f6 50%, rgba(0, 0, 0, 0) 50%);
@@ -78,7 +78,7 @@
 		
 		&.tfooter {
 			.td {
-				&.hoverable.active {
+				&.hoverable.active, &.hoverable.chosen {
 					.adorable_table {
 						&:before {
 							background-image: linear-gradient(to left top, #67e3f6 50%, rgba(0, 0, 0, 0) 50%);
@@ -192,16 +192,27 @@
 			background: #ecffff;
 		}
 		
-		.td {
+		.td {			
 			&.hoverable.active {
 				border-right: 2px solid #67e3f6;
 				border-left: 2px solid #67e3f6;
+			}
+			
+			&.hoverable.chosen {
+				border-right: 3px solid #67e3f6;
+				border-left: 3px solid #67e3f6;
 			}
 		}
 	}
 	
 	.tr {
 		height: 80px;
+	}
+	
+	.td {
+		&.hoverable {
+			cursor: pointer;
+		}
 	}
 }
 

@@ -10,8 +10,14 @@ var Feeding_up_controller = can.Control.extend(
 			
 		},
 		
-		'.td.hoverable mouseleave': function(el, ev) {
+		'.td.hoverable click': function(el, ev) {
+			var	elem = $(el),
+				month = elem.data('month'),
+				hoverable = this.element.find('.td.hoverable'),
+				classname = 'chosen';
 			
+			hoverable.removeClass(classname);
+			hoverable.filter('.' + month + 'm').addClass(classname);
 		},
 		
 		'.td.hoverable mouseenter': function(el, ev) {
