@@ -125,3 +125,201 @@
 		color: $darkblue;
 	}
 }
+
+.production_circle {
+	height: 34px;
+	width: 34px;
+	position: absolute;
+	background: $darkblue;
+	cursor: pointer;
+	color: $white;
+	z-index: 10;
+	
+	&.opened {
+		top: 218px;
+		left: 111px;
+	}
+	
+	&.tech {
+		top: 218px;
+		right: 130px;
+	}
+	
+	&.baby {
+		top: 249px;
+		left: 51px;
+	}
+	
+	&.vitamins {
+		top: 402px;
+		right: 142px;
+	}
+	
+	&.suppliers {
+		top: 298px;
+		left: 57px;
+	}
+	
+	&.milk {
+		top: 344px;
+		left: 537px;
+	}
+	
+	&.fruits {
+		top: 176px;
+		right: 43px;
+	}
+	
+	&.norm {
+		top: 363px;
+		left: 123px;
+	}
+	
+	&.check {
+		top: 194px;
+		right: 453px;
+	}
+	
+	&.safe {
+		top: 249px;
+		right: 87px;
+	}
+	
+	&:before {
+		@include pseudo;
+		@include absolute_centered;
+		content: '+';
+		text-align: center;
+		line-height: 34px;
+		font-family: Arial;
+		font-size: 24px;
+	}
+	
+	&:hover {
+		background: $red;
+		
+		&:before {
+			content: '\D7';
+			font-family: Arial;
+		}
+	}
+	
+	&:hover  ~ .production_content {
+		background: $darkblue;
+		color: $white;
+		
+		.text {
+			display: block;
+		}
+		
+		&.opened {
+			height: 299px;
+		}
+		
+		&.tech {
+			height: 393px;
+		}
+	}
+}
+
+.production_content {
+	@include border_radius(5px);
+	position: absolute;
+	padding: 30px;
+	color: $darkblue;
+	
+	.label {
+		font-size: 45px;
+		line-height: 45px;
+		padding: 0;
+		margin-bottom: 25px;
+	}
+	
+	.text {
+		line-height: 20px;
+		display: none;
+	}
+	
+	&.left {
+		.adorable_cell {
+			text-align: left;
+		}
+	}
+	
+	&.right {
+		.adorable_cell {
+			text-align: right;
+		}
+	}
+	
+	&.opened {
+		width: 262px;
+		height: 200px;
+		top: 175px;
+		left: 128px;
+	}
+	
+	&.tech {
+		width: 255px;
+		height: 195px;
+		top: 176px;
+		right: 147px;
+	}
+	
+	&.baby {
+		width: 262px;
+		height: 200px;
+		top: 204px;
+		left: 68px;
+	}
+	
+	&.vitamins {
+		width: 255px;
+		height: 195px;
+		top: 360px;
+		right: 159px;
+	}
+	
+	&.suppliers {
+		width: 262px;
+		height: 200px;
+		top: 255px;
+		left: 74px;
+	}
+	
+	&.milk {
+		width: 262px;
+		height: 200px;
+		top: 301px;
+		left: 554px;
+	}
+	
+	&.fruits {
+		width: 255px;
+		height: 195px;
+		top: 134px;
+		right: 60px;
+	}
+	
+	&.norm {
+		width: 262px;
+		height: 200px;
+		top: 320px;
+		left: 140px;
+		letter-spacing: 1px;
+	}
+	
+	&.check {
+		width: 255px;
+		height: 195px;
+		top: 118px;
+		right: 470px;
+	}
+	
+	&.safe {
+		width: 255px;
+		height: 195px;
+		top: 206px;
+		right: 104px;
+	}
+}

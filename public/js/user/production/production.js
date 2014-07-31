@@ -22,6 +22,14 @@ var Production_controller = can.Control.extend(
 			this.production_button.filter('.production_' + this.production).addClass(classname);
 		},
 		
+		'.production_button click': function(el) {
+			var	elem = $(el);
+			
+			this.production = elem.data('production');
+			
+			this.show_production();
+		},
+		
 
 		'.production_arrows .left click': function() {
 			if(this.production == 1) {
