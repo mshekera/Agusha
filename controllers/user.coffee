@@ -15,6 +15,7 @@ Food = require './user/food'
 News = require './user/news'
 Feeding_up = require './user/feeding_up'
 Article = require './user/article'
+Production = require './user/production'
 
 Router = express.Router()
 
@@ -58,6 +59,10 @@ Router.get '/news', News.index
 #
 
 Router.get '/feeding_up', Feeding_up.index
+
+#
+
+Router.get '/production', Production.index
 
 #
 
