@@ -65,7 +65,13 @@ var Tour_controller = can.Control.extend(
 		
 		init_map: function() {
 			var	that = this,
-				directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true}),
+				renderOptions = {
+					suppressMarkers: true,
+					polylineOptions: {
+						strokeColor: "#64cb81"
+					}
+				}
+				directionsDisplay = new google.maps.DirectionsRenderer(renderOptions),
 				directionsService = new google.maps.DirectionsService();
 			
 			var	options = {
