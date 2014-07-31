@@ -10,6 +10,7 @@ opts =
 	database: 'Agusha'
 	primary: null
 
+
 connString = 'mongodb://'+opts.user+":"+opts.pass+"@"+opts.host+":"+opts.port+"/"+opts.database+"?auto_reconnect=true"
 
 mongoose.connect connString
