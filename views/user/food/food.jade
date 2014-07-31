@@ -3,6 +3,19 @@ extends ../layout
 block append header
 	link(rel="stylesheet" href="/css/user/food/food.css")
 
+mixin doc()
+	.adorable
+		.adorable_table
+			.adorable_cell
+				.doc_block
+					.avatar.rounded 
+						img.rounded(src="/img/user/food/doc.jpg")
+					.label.novito_nova 
+						| Главное о детском
+						br
+						| питании
+					button.middle_button.white Статьи от специалиста
+
 block append content
 	#food.content
 		include ../../helpers/user/breadcrumbs/breadcrumbs
@@ -14,17 +27,11 @@ block append content
 		
 		.food_container
 			.food_block.inline_adorable_container
-				.adorable
-					.adorable_table
-						.adorable_cell
-							.doc_block
-								.avatar.rounded 
-									img.rounded(src="/img/user/food/doc.jpg")
-								.label.novito_nova 
-									| Главное о детском
-									br
-									| питании
-								button.middle_button.white Статьи от специалиста
+				if specialist
+					a(href = '/specialist/' + specialist._id)
+						mixin doc()
+				else
+					mixin doc()
 			
 			.food_block.inline_adorable_container
 				a(href="/feeding_up")
