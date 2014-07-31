@@ -1,0 +1,35 @@
+extends ../layout
+
+block append header
+	link(rel="stylesheet" href="/css/user/contacts/contacts.css")
+
+block append content
+	#contacts.content
+		include ../../helpers/user/breadcrumbs/breadcrumbs
+		
+		.contacts_container
+			.left.border_boxed
+				.label.novito_nova Мы будем рады видеть вас на «заводе Агуша»!
+				.contact_label Адрес:
+				.contact_text
+					.address
+						| г. Вишневое, 
+						br
+						| ул. Промышленная, 7
+				.contact_label E-mail:
+				.contact_text
+					.mail contact@agusha.com.ua
+				.contact_label Горячая линия:
+				.contact_text
+					.phone 0 800 307 302
+					.phone_notice Звонок по Украине бесплатный
+				a(href="/tour")
+					button.middle_button Узнать про экскурсию
+			
+			.right#contacts_map
+
+block append scripts
+	script(src="/js/plugins/google/googlemaps_api.js")
+	script(src="/js/plugins/google/googlemaps_main.js")
+	script(src="/js/plugins/can/can.js")
+	script(src="/js/user/contacts/contacts.js")

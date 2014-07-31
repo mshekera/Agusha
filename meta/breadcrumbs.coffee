@@ -24,4 +24,7 @@ module.exports = [
 ,
 	id: 'news'
 	title: 'Что новенького'
+,
+	id: 'contacts'
+	title: 'Контакты'
 ]
