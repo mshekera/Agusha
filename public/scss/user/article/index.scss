@@ -165,6 +165,12 @@
 		
 		.adorable_cell {
 			padding: 10px;
+			
+			&> div {
+				height: 100%;
+				width: 100%;
+				position: relative;
+			}
 		}
 		
 		.plate {
@@ -172,7 +178,12 @@
 			width: 100%;
 			bottom: 0;
 			left: 0;
-			background: $green;
+			padding: 20px;
+		}
+		
+		.label {
+			font-size: 35px;
+			line-height: 35px;
 		}
 	}
 }
