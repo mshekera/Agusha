@@ -19,7 +19,7 @@ var Tour_controller = can.Control.extend(
 		init: function () {
 			this.mapLatLng = new google.maps.LatLng(50.4300000, 30.389388);
 			this.akademLatLng = new google.maps.LatLng(50.4648609, 30.3553083);
-			this.vishnevoeLatLng = new google.maps.LatLng(50.3948087, 30.3699517);
+			this.vishnevoeLatLng = new google.maps.LatLng(50.3856838, 30.3471481);
 			
 			this.tour_key = 0;
 			this.tours = tours;
@@ -64,7 +64,8 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		init_map: function() {
-			var	directionsDisplay = new google.maps.DirectionsRenderer(),
+			var	that = this,
+				directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true}),
 				directionsService = new google.maps.DirectionsService();
 			
 			var	options = {
@@ -82,9 +83,11 @@ var Tour_controller = can.Control.extend(
 				travelMode: google.maps.TravelMode.DRIVING
 			};
 			
-			directionsService.route(request, function(result, status) {
+			directionsService.route(request, function(response, status) {
 				if (status == google.maps.DirectionsStatus.OK) {
-					directionsDisplay.setDirections(result);
+					directionsDisplay.setDirections(response);
+				} else {
+					that.draw_route();
 				}
 			});
 			
@@ -103,6 +106,22 @@ var Tour_controller = can.Control.extend(
 				map: this.map,
 				icon: base_url + '/img/user/tour/agusha_marker.png'
 			});
+		},
+		
+		draw_route: function() {
+			var polylineCoords = [
+				this.akademLatLng,
+				this.vishnevoeLatLng
+			];
+			
+			var polyline = new google.maps.Polyline({
+				path: polylineCoords,
+				strokeColor: "#64cb81",
+				strokeOpacity: 1.0,
+				strokeWeight: 6
+			});
+			
+			polyline.setMap(this.map);
 		},
 		
 		init_calendar: function() {
