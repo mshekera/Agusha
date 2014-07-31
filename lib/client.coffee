@@ -17,13 +17,15 @@ exports.sendMail = sendMail = (res, data, callback) ->
 	
 	Mail.send data.template, options, callback
 
-exports.addAsyncFunctionsForSignUp = (res, data) ->
+exports.addAsyncFunctionsForSignUp = (res, data, post) ->
 	info = {}
 	
 	return asyncFunctions = [
 		(next) ->
-			Model 'Client', 'create', next, data
+			Model 'Client', 'create', next, post
 		(client, next) ->
+			data.client = client
+			
 			options = {}
 			
 			options.template = 'register'

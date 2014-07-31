@@ -19,7 +19,7 @@ exports.index = (req, res) ->
 exports.register = (req, res) ->
 	data = {}
 	
-	asyncFunctions = Client.addAsyncFunctionsForSignUp res, req.body
+	asyncFunctions = Client.addAsyncFunctionsForSignUp res, data, req.body
 	
 	asyncFunctions = asyncFunctions.concat [
 		(salt) ->
