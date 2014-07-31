@@ -64,6 +64,9 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		init_map: function() {
+			var	directionsDisplay = new google.maps.DirectionsRenderer(),
+				directionsService = new google.maps.DirectionsService();
+			
 			var	options = {
 					center: this.mapLatLng,
 					zoom: 12
@@ -71,8 +74,21 @@ var Tour_controller = can.Control.extend(
 			
 			this.map = new google.maps.Map(document.getElementById('tour_map'), options);
 			
+			directionsDisplay.setMap(this.map);
+			
+			var request = {
+				origin: this.akademLatLng,
+				destination: this.vishnevoeLatLng,
+				travelMode: google.maps.TravelMode.DRIVING
+			};
+			
+			directionsService.route(request, function(result, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(result);
+				}
+			});
+			
 			this.draw_markers();
-			this.draw_route();
 		},
 		
 		draw_markers: function() {
@@ -87,22 +103,6 @@ var Tour_controller = can.Control.extend(
 				map: this.map,
 				icon: base_url + '/img/user/tour/agusha_marker.png'
 			});
-		},
-		
-		draw_route: function() {
-			var polylineCoords = [
-				this.akademLatLng,
-				this.vishnevoeLatLng
-			];
-			
-			var polyline = new google.maps.Polyline({
-				path: polylineCoords,
-				strokeColor: "#64cb81",
-				strokeOpacity: 1.0,
-				strokeWeight: 6
-			});
-			
-			polyline.setMap(this.map);
 		},
 		
 		init_calendar: function() {
