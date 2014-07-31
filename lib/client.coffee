@@ -17,7 +17,7 @@ exports.sendMail = sendMail = (res, data, callback) ->
 	
 	Mail.send data.template, options, callback
 
-exports.addAsyncFunctionsForSignUp = (data) ->
+exports.addAsyncFunctionsForSignUp = (res, data) ->
 	info = {}
 	
 	return asyncFunctions = [

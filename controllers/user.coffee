@@ -72,6 +72,7 @@ Router.get '/contacts', Contacts.index
 #
 
 Router.get '/article/:id', Article.index
+Router.get '/specialist/:id', Article.specialist
 
 Router.post '/articles/findAll', ArticleLib.findAll
 
