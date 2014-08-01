@@ -59,12 +59,18 @@ ul, li {
 }
 
 #before_main {
-	@include full_width_layout;
+	width: 100%;
+	height: 469px;
+    text-align: center;
 	background: $darkblue;
+	position: relative;
+	overflow: hidden;
 	
 	.layout_inside {
-		@include layout_inside;
+		width: 1280px;
 		text-align: left;
+		display: inline-block;
+		vertical-align: top;
 	}
 }
 
