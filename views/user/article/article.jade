@@ -7,19 +7,6 @@ block append content
 	.article_container.content(id = 'article_' + article._id)
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
-		- if (article.type.id == 2)
-			.article_topper.darkblue
-				a(href="/feeding_up")
-					.article_topper_block.adorable_table
-						.adorable_cell
-							.label.novito_nova Основы прикорма
-				
-				- each a, key in articles
-					a(href = '/article/' + a._id)
-						.article_topper_block.adorable_table(class=(article._id + '' == a._id + '' ? 'active' : ''))
-							.adorable_cell
-								.label.novito_nova #{strip_tags(a.desc_title)}
-		
 		.article_content.force_height
 			.article_left
 				.article_big_title.green.adorable_table
