@@ -20,7 +20,7 @@ block append content
 	#food.content
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
-		.food_topper.adorable_table.blue.border_boxed
+		.food_topper.adorable_table.darkblue.border_boxed
 			.adorable_cell
 				.label.novito_nova Чем кормить, чтобы не навредить
 				.text У вас появился малыш! Естественно, вы хотите, чтобы он рос здоровым и счастливым. А ведь на рост и гармоничное развитие во многом влияет то, чем вы его кормите. Каким должно быть сбалансированное питание, чем отличается домашнее от покупного, сколько и когда должен кушать ребенок… Давайте разберемся!
@@ -45,7 +45,7 @@ block append content
 										| Cхема введения
 										br
 										| прикорма
-									button.middle_button.blue Еда: что, сколько и когда
+									button.middle_button.darkblue Еда: что, сколько и когда
 			
 			- each a, key in articles
 				.food_block.inline_adorable_container
@@ -58,7 +58,7 @@ block append content
 								.adorable_table
 									.adorable_cell
 										.label.novito_nova !{a.desc_title}
-										button.middle_button.blue #{a.button_label}
+										button.middle_button.darkblue #{a.button_label}
 
 block append scripts
 	
