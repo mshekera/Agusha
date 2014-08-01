@@ -32,8 +32,9 @@ mixin product(p)
 				.half
 					.adorable_table
 						.adorable_cell
-							.top=(p ? p.volume : '{{volume}}')
-							.bottom объем
+							.top=(p ? '{{volume.volume}} {{volume.postfix}}' : '{{volume.volume}} {{volume.postfix}}')
+							.bottom= '{{volume.type}}'
+							//- .div= "{{log volume}}"
 				
 				.half
 					.adorable_table

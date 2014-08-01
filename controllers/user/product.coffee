@@ -15,10 +15,16 @@ exports.index = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Model 'Product', 'findById', next, req.params.id
-		(doc, next) ->
-			Model 'Product', 'populate', next, doc, 'age certificate'
+			product = Model 'Product', 'findById', null, req.params.id
+
+			product.populate('age certificate').exec next
 		(doc) ->
+			volume = doc.getFormattedVolume()
+
+			doc = doc.toObject()
+
+			doc.volume = volume
+
 			data.product = doc
 			
 			data.breadcrumbs.push

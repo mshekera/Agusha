@@ -55,8 +55,12 @@ schema.methods.getFormattedVolume = () ->
 	
 
 	switch @volumeType
-		when 1 then postfix = 'г' and type = 'вес'
-		else postfix = 'л' and type = 'объем'
+		when 1
+			postfix = 'г' 
+			type = 'вес'
+		else 
+			postfix = 'л' 
+			type = 'объем'
 
 	if parseInt(volume) < 1000
 		postfix = "м#{postfix}"
