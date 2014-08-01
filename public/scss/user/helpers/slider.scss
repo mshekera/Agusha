@@ -18,6 +18,11 @@
 	width: 100%;
 	overflow: hidden !important;
 	
+	.label {
+		font-size: 70px;
+		line-height: 70px;
+	}
+	
 	.text {
 		@include absolute_centered;
 		width: 25%;

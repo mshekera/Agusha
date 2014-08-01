@@ -1,14 +1,15 @@
 @import '../dynamic/dynamic';
 
 .live_program {
-	width: 26%;
+	width: 320px;
+	height: 195px;
 	position: absolute;
 	top: 40px;
-	right: $content_right;
+	right: 150px;
 	
 	.photo {
 		@include absolute_horizontal_centered;
-		width: 30%;
+		width: 120px;
 		top: 17px;
 		
 		.rounded {
@@ -23,12 +24,12 @@
 	}
 	
 	.label {
-		font-size: 33px;
-		line-height: 33px;
+		font-size: 41px;
+		line-height: 41px;
 		position: absolute;
 		width: 100%;
 		bottom: 5px;
-		letter-spacing: 2px;
+		letter-spacing: 1px;
 		padding: 5px 0;
 	}
 	

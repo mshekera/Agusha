@@ -12,6 +12,8 @@
 	
 	.label {
 		margin-bottom: 10px;
+		font-size: 63px;
+		line-height: 63px;
 	}
 	
 	.text {
@@ -24,7 +26,7 @@
 }
 
 .food_block {
-	background-color: $blue;
+	background-color: $darkblue;
 	margin-bottom: 1.1%;
 	width: 32.6%;
 	color: $white;
@@ -82,8 +84,9 @@
 	}
 	
 	.label {
-		font-size: 45px;
-		line-height: 45px;
+		font-size: 40px;
+		line-height: 40px;
+		padding: 15px 0 10px;
 	}
 	
 	&:nth-child(3n+1) {
