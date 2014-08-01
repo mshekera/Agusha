@@ -128,6 +128,10 @@
 		margin-right: 10px;
 		position: relative;
 		
+		&:hover {
+			background: $red;
+		}
+		
 		&:before {
 			@include absolute_centered;
 			content: '\D7';
