@@ -30,8 +30,11 @@
 	color: $base;
 	
 	&.active, &:hover {
-		background-color: $el_bg;
 		color: $darkblue;
+	}
+	
+	&.active {
+		background-color: $el_bg;
 	}
 	
 	.image_container {
