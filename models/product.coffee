@@ -51,11 +51,10 @@ schema = new mongoose.Schema
 
 schema.methods.getFormattedVolume = () ->
 	volume = @volume
-	postfix = ''
 
 	switch @volumeType
-		when 0 then postfix = 'л'
 		when 1 then postfix = 'г'
+		else postfix = 'л'
 
 	if parseInt(volume) < 1000
 		return "#{volume} м#{postfix}"
