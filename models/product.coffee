@@ -52,14 +52,20 @@ schema = new mongoose.Schema
 schema.methods.getFormattedVolume = () ->
 	volume = @volume
 
+	
+
 	switch @volumeType
-		when 1 then postfix = 'г'
-		else postfix = 'л'
+		when 1 then postfix = 'г' and type = 'вес'
+		else postfix = 'л' and type = 'объем'
 
 	if parseInt(volume) < 1000
-		return "#{volume} м#{postfix}"
+		postfix = "м#{postfix}"
 
 	newVolume = Math.round(volume / 100) / 10
-	"#{newVolume} #{postfix}"
+
+	obj =
+		volume: volume
+		postfix: postfix
+		type: type
 
 module.exports = mongoose.model 'Product', schema
