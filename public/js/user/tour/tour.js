@@ -263,6 +263,10 @@ var Tour_controller = can.Control.extend(
 			var	tour = this.tours[this.tour_key],
 				closest_block_inside = $('#closest_block_inside');
 			
+			if(!tour) {
+				return;
+			}
+			
 			this.data.attr('current_tour', tour);
 			
 			$('#calendar').datepicker('setDate', tour.formattedDate);

@@ -12,10 +12,10 @@ mixin add_child(i)
 					.input
 						input(type="text", name!="children[#{i}][name]", placeholder="Имя")
 			
-			.gender_radio.radioswitch
+			.gender_radio.radioswitch.boy
 				input(type="radio", name!="children[#{i}][gender]", checked="checked")
 				label
-					img.border_boxed(src="/img/user/tour/boy.png")
+					.img
 				
 		
 		.half.right
@@ -30,10 +30,10 @@ mixin add_child(i)
 									label
 										i.border_boxed
 			
-			.gender_radio.radioswitch
+			.gender_radio.radioswitch.girl
 				input(type="radio", name!="children[#{i}][gender]")
 				label
-					img.border_boxed(src="/img/user/tour/girl.png")
+					.img
 
 mixin form_topper_date(date, mustache)
 	.adorable_table
