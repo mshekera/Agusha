@@ -1,17 +1,27 @@
 @import '../dynamic/dynamic';
 
 #slider_container {
+	width: 1280px;
+	height: 469px;
+	
 	> div {
 		@include transform(none !important);
 	}
 }
 
 .slider {
+	width: 1280px;
+	height: 469px;
 	position: relative;
 	top: 0px;
 	left: 0px;
 	width: 100%;
 	overflow: hidden !important;
+	
+	.label {
+		font-size: 70px;
+		line-height: 70px;
+	}
 	
 	.text {
 		@include absolute_centered;
@@ -28,6 +38,8 @@
 }
 
 .slides {
+	width: 1280px;
+	height: 469px;
 	cursor: move;
 	position: absolute;
 	overflow: hidden;
@@ -70,13 +82,7 @@
 }
 
 .jssora21l, .jssora21r {
-		display: none;
-	}
-
-@media (min-width: 1000px) {
-	.jssora21l, .jssora21r {
-		display: block;
-	}
+	display: block;
 }
 
 /* jssor slider bullet navigator skin 12 css */

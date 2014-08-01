@@ -1,30 +1,34 @@
-var before_main = $('#before_main .layout_inside');
-var slider_container = $('#slider_container');
-
-var define_slider_size = function() {
-	var width = before_main.width();
-	var height = (width * 0.366) | 0;
-	var slides = slider_container.find('.slides');
-	var options = {
-		width: width,
-		height: height
-	};
-	
-	slider_container.css(options);
-	slider_container.find('> div').css(options);
-	slider_container.find('.slider').css(options);
-	slides.css(options);
-	slides.find('> div').css(options);
-}
+var	before_main = $('#before_main'),
+	slider_container = $('#slider_container'),
+	slides = slider_container.find('.slides');
 
 var window_resize = function() {
-	define_slider_size();
+	var	before_main_width = $('#before_main').width(),
+		offset = ((1280 - before_main_width) / 2) | 0,
+		left;
+	
+	if(offset > 0) {
+		left = -offset;
+	} else {
+		left = 0;
+	}
+	
+	slider_container.css({
+		left: left
+	});
 }
 
 window_resize();
 
 var options = {
-	$AutoPlay: true,
+	width: 1280,
+	height: 469
+};
+
+slides.css(options);
+
+var options = {
+	// $AutoPlay: true,
 	$SlideDuration: 800, 
 	$BulletNavigatorOptions: {
 		$Class: $JssorBulletNavigator$,
