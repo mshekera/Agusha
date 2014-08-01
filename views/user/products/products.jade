@@ -85,7 +85,7 @@ block append content
 							div
 								if a.level < 12
 									- var age = 'мес.'
-									span #{a.title} age
+									span #{a.title} #{age}
 								else
 									span c #{Math.floor(a.level/12)} лет
 
