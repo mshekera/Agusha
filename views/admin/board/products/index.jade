@@ -69,11 +69,12 @@ block content
                         th= "Действия"
                 tbody
                     each item in products
+                        - var volume = item.getFormattedVolume()
                         tr
                             td= item.title
                             td= (item.active?"Да":"Нет")
                             td= item.storage_life
-                            td= item.getFormattedVolume()
+                            td #{volume.volume} #{volume.postfix}
                             td= item.age.title
                             td
                                 each cat in item.category
