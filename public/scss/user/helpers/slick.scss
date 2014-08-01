@@ -149,6 +149,15 @@ $opacity-not-active: .22;
 		}
 	}
 	
+	&:active {
+		outline: none;
+		background: #3d9ccc;
+		color: $white;
+		&:before {
+			opacity: $opacity-on-hover;
+		}
+	}
+	
 	&.slick-disabled:before {
 		opacity: $opacity-not-active;
 	}
