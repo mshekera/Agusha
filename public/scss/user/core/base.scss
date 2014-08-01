@@ -100,8 +100,11 @@ ul, li {
 	font-size: 87.5%;
 	
 	.layout_inside {
-		@include layout_inside;
+		display: inline-block;
 		height: 100%;
+		width: 980px;
+		position: relative;
+		vertical-align: top;
 	}
 	
 	a {
@@ -113,7 +116,6 @@ ul, li {
 		float: left;
 		height: 100%;
 		width: auto;
-		margin-left: 30px;
 		
 		.adorable_cell {
 			text-align: left;
@@ -145,7 +147,6 @@ ul, li {
 		float: right;
 		width: 5%;
 		height: 100%;
-		margin-right: 30px;
 		
 		.item {
 			width: 34px;
