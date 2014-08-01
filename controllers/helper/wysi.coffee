@@ -28,7 +28,7 @@ exports.upload = (req, res) ->
 	console.log image
 	async.waterfall [
 		(next) ->
-			fs.rename "./public/img/#{image}", "./public/img/admin/attachable/#{image}", next
+			fs.rename "./public/img/uploads/#{image}", "./public/img/admin/attachable/#{image}", next
 		() ->
 			result =
 				file: "/img/admin/attachable/#{image}"
