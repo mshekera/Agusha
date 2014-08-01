@@ -121,8 +121,8 @@
 	}
 	
 	.minimize_button {
-		width: 16px;
-		height: 16px;
+		width: 17px;
+		height: 17px;
 		display: inline-block;
 		vertical-align: top;
 		background: #fd7b6a;
@@ -141,6 +141,7 @@
 			vertical-align: middle;
 			color: $white;
 			font-size: 13px;
+			line-height: 17px;
 		}
 	}
 	

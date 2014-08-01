@@ -107,6 +107,14 @@
 	}
 }
 
+.production_title {
+	@include absolute_horizontal_centered;
+	text-align: center;
+	top: 45px;
+	color: $darkblue;
+	letter-spacing: 3px;
+}
+
 .production_button {
 	text-transform: uppercase;
 	margin: 0 9px;
@@ -123,6 +131,7 @@
 		@include box_shadow(none);
 		background: $white;
 		color: $darkblue;
+		opacity: 1;
 	}
 }
 
@@ -146,7 +155,7 @@
 	}
 	
 	&.baby {
-		top: 235px;
+		top: 248px;
 		left: 51px;
 	}
 	
@@ -171,7 +180,7 @@
 	}
 	
 	&.norm {
-		top: 363px;
+		top: 374px;
 		left: 123px;
 	}
 	
@@ -229,8 +238,8 @@
 	color: $darkblue;
 	
 	.label {
-		font-size: 45px;
-		line-height: 45px;
+		font-size: 40px;
+		line-height: 40px;
 		padding: 0;
 		margin-bottom: 25px;
 	}
@@ -255,56 +264,56 @@
 	&.opened {
 		width: 262px;
 		height: 200px;
-		top: 175px;
+		top: 172px;
 		left: 128px;
 	}
 	
 	&.tech {
 		width: 255px;
 		height: 195px;
-		top: 176px;
+		top: 173px;
 		right: 147px;
 	}
 	
 	&.baby {
 		width: 267px;
 		height: 200px;
-		top: 190px;
+		top: 201px;
 		left: 68px;
 	}
 	
 	&.vitamins {
 		width: 255px;
 		height: 195px;
-		top: 360px;
+		top: 357px;
 		right: 159px;
 	}
 	
 	&.suppliers {
 		width: 262px;
 		height: 200px;
-		top: 255px;
+		top: 252px;
 		left: 74px;
 	}
 	
 	&.milk {
 		width: 262px;
 		height: 200px;
-		top: 301px;
+		top: 298px;
 		left: 554px;
 	}
 	
 	&.fruits {
 		width: 255px;
 		height: 195px;
-		top: 134px;
+		top: 131px;
 		right: 60px;
 	}
 	
 	&.norm {
 		width: 262px;
 		height: 200px;
-		top: 320px;
+		top: 327px;
 		left: 140px;
 		letter-spacing: 1px;
 	}
@@ -312,14 +321,14 @@
 	&.check {
 		width: 255px;
 		height: 195px;
-		top: 118px;
+		top: 125px;
 		right: 470px;
 	}
 	
 	&.safe {
 		width: 255px;
 		height: 195px;
-		top: 206px;
+		top: 205px;
 		right: 104px;
 	}
 }

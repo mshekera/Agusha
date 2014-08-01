@@ -12,7 +12,7 @@
 	
 	.top_text {
 		font-size: 112.5%;
-		margin-bottom: 20px;
+		margin-bottom: 15px;
 	}
 	
 	.label {
@@ -26,8 +26,8 @@
 		padding: 0 25px 0 50px;
 		
 		.left {
-			line-height: 40px;
-			font-size: 40px;
+			line-height: 38px;
+			font-size: 38px;
 			padding: 0;
 			
 			.adorable_cell {
@@ -129,6 +129,8 @@
 	}
 	
 	.tbody {
+		font-size: 92.6%;
+		
 		.tblock {
 			display: none;
 			
@@ -160,7 +162,7 @@
 			font-size: 92.9%;
 			
 			.left {
-				width: 40%;
+				width: 50%;
 				
 				.adorable_table {
 					line-height: 0;
@@ -168,7 +170,7 @@
 			}
 			
 			.right {
-				width: 60%;
+				width: 50%;
 			}
 			
 			.adorable_cell {

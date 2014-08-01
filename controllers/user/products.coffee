@@ -1,4 +1,5 @@
 async = require 'async'
+_ = require 'underscore'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
@@ -21,6 +22,11 @@ exports.index = (req, res) ->
 		(results) ->
 			data.ages = results.ages
 			data.categories = results.categories
+
+			_.each data.products, (item, key, list)->
+				volume = item.getFormattedVolume()
+				list[key] = item.toObject()
+				list[key].volume = volume
 			
 			View.render 'user/products/products', res, data
 	]
@@ -36,6 +42,11 @@ exports.findAll = (req, res) ->
 	asyncFunctions = Product.addAsyncFunctionsByFilter data, req.body.category, req.body.age
 	
 	asyncFunctions.push (next) ->
+		_.each data.products, (item, key, list)->
+			volume = item.getFormattedVolume()
+			list[key] = item.toObject()
+			list[key].volume = volume
+
 		View.ajaxResponse res, null, data
 	
 	async.waterfall asyncFunctions, (err) ->
