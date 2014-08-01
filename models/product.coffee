@@ -2,19 +2,6 @@ mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
 
-getProductVolume = (volume) ->
-	if parseInt(volume) < 1000
-		return {
-			original: volume
-			formatted: "#{volume} мл"
-		}
-
-	newVolume = Math.round(volume / 100) / 10
-	return {
-		original: volume
-		formatted: "#{newVolume} л"
-	}
-
 schema = new mongoose.Schema 
 	title:
 		type: String
@@ -32,7 +19,10 @@ schema = new mongoose.Schema
 		type: String
 	volume:
 		type: Number
-		get: getProductVolume
+	volumeType:
+		type: Number
+		required: true
+		default: 0
 	active:
 		type: Boolean
 		required: true
@@ -58,5 +48,19 @@ schema = new mongoose.Schema
 		default: 0
 ,
 	collection: 'product'
+
+schema.methods.getFormattedVolume = () ->
+	volume = @volume
+	postfix = ''
+
+	switch @volumeType
+		when 0 then postfix = 'л'
+		when 1 then postfix = 'г'
+
+	if parseInt(volume) < 1000
+		return "#{volume} м#{postfix}"
+
+	newVolume = Math.round(volume / 100) / 10
+	"#{newVolume} #{postfix}"
 
 module.exports = mongoose.model 'Product', schema
