@@ -29,13 +29,29 @@
 			z-index: 1;
 			display: inline-block;
 		}
+		
+		&:hover {
+			.arrow_hover {
+				display: block;
+			}
+		}
+		
+		&:active {
+			.arrow_active {
+				display: block;
+			}
+		}
 	}
 	
 	.arrow_bg {
 		@include absolute_centered;
-		
 		max-height: 100%;
 		max-width: 90%;
+		display: none;
+	}
+	
+	.arrow_normal {
+		display: block;
 	}
 	
 	&:before {
