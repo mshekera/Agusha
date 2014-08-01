@@ -36,7 +36,7 @@
 		cursor: pointer;
 		
 		&:hover {
-			&~ label{
+			&~ label {
 				.img {
 					background-position: -30px 0 !important;
 				}
@@ -44,7 +44,7 @@
 		}
 		
 		&:checked {
-			&~ label{
+			&~ label {
 				.img {
 					background-position: 0 0;
 				}
