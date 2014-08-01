@@ -37,9 +37,9 @@ block append content
 					.half
 						.adorable_table
 							.adorable_cell
-								- var volume = product.getFormattedVolume()
-								.top #{volume.volume} #{volume.prefix}
-								.bottom #{volume.type}
+								//- - var volume = product.getFormattedVolume()
+								.top #{product.volume.volume} #{product.volume.postfix}
+								.bottom #{product.volume.type}
 					
 					.half
 						.adorable_table
