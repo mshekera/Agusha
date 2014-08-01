@@ -28,7 +28,7 @@ var options = {
 slides.css(options);
 
 var options = {
-	$AutoPlay: true,
+	// $AutoPlay: true,
 	$SlideDuration: 800, 
 	$BulletNavigatorOptions: {
 		$Class: $JssorBulletNavigator$,

@@ -1,14 +1,15 @@
 @import '../dynamic/dynamic';
 
 .live_program {
-	width: 26%;
+	width: 320px;
+	height: 195px;
 	position: absolute;
 	top: 40px;
-	right: $content_right;
+	right: 150px;
 	
 	.photo {
 		@include absolute_horizontal_centered;
-		width: 30%;
+		width: 120px;
 		top: 17px;
 		
 		.rounded {

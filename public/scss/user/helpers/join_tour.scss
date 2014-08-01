@@ -1,14 +1,15 @@
 @import '../dynamic/dynamic';
 
 .join_tour {
-	width: 26%;
+	width: 320px;
+	height: 195px;
 	position: absolute;
 	bottom: 25px;
-	right: $content_right;
+	right: 150px;
 	
 	.photo {
 		@include absolute_horizontal_centered;
-		width: 33%;
+		width: 127px;
 		top: 12px;
 		
 		.rounded {
@@ -52,9 +53,5 @@
 	
 	.arrow_normal {
 		display: block;
-	}
-	
-	&:before {
-		margin-top: 55%;
 	}
 }
