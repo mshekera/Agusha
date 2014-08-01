@@ -9,6 +9,9 @@ schema = new mongoose.Schema
 	icon:
 		type: String
 		required: false
+	hoverImage:
+		type: String
+		required: false
 	level:
 		type: Number
 		required: true

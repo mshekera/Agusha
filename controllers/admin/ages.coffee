@@ -39,6 +39,7 @@ exports.save = (req, res) ->
 	delete data._wysihtml5_mode if data._wysihtml5_mode
 
 	data.icon = req.files?.icon?.name or undefined
+	data.hoverImage = req.files?.hoverImage?.name or undefined
 	data.desc_image = req.files?.desc_image?.name or undefined
 
 	async.waterfall [

@@ -85,10 +85,10 @@ block append content
 							div
 								if a.level < 12
 									- var age = 'мес.'
+									span #{a.title} age
 								else
-									- var age = 'лет'
-								span #{a.title} #{age}
-		
+									span c #{Math.floor(a.level/12)} лет
+
 		.category_filter
 			.category_block
 				.adorable_table
@@ -113,7 +113,7 @@ block append content
 						.article_image(style = a.desc_image ? 'background-image: url(/img/uploads/' + a.desc_image + ')' : '')
 						.text.border_boxed
 							.desc_subtitle #{a.desc_subtitle}
-							.desc_title.label.novito_nova #{a.desc_title}
+							.desc_title.label.novito_nova !{a.desc_title}
 					
 					.half.right
 						.text.border_boxed !{a.desc_text}

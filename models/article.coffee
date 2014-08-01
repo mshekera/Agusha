@@ -34,6 +34,8 @@ schema = new mongoose.Schema
 		get: Time.getDate
 	image:
 		type: String
+	innerImage:
+		type: String
 	desc_image: [
 		type: String
 	]
@@ -51,7 +53,7 @@ schema = new mongoose.Schema
 	active:
 		type: Boolean
 		required: true
-		default: false
+		default: true
 ,
 	collection: 'article'
 
