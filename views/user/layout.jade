@@ -6,14 +6,14 @@ html(lang="ru")
 			title= "Агуша"
 	
 	body
-		#header.white
-			include header
+		include header
+		
+		block before_main
 		
 		#main_container
 			block content
 		
-		#footer.white
-			include footer
+		include footer
 		
 		block scripts
 			script(src="/js/jquery.min.js")

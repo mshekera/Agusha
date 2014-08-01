@@ -85,3 +85,17 @@
 	bottom: 0;
 	width: 50%;
 }
+
+@mixin full_width_layout {
+	text-align: center;
+	min-width: 1000px;
+}
+
+@mixin layout_inside {
+	width: 100%;
+	min-width: 1000px;
+	max-width: 1280px;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+}

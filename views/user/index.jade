@@ -3,28 +3,31 @@ extends layout
 block append header
 	link(rel="stylesheet" href="/css/user/main.css")
 
+block before_main
+	#before_main
+		.layout_inside
+			#slider_container.slider.darkblue.adorable_container
+				.slides.adorable(u='slides')
+					- each g, key in gallery
+						div
+							- var src = '/img/user/banner/' + g.img
+							img(src=src)
+							.text
+								.adorable_table
+									.adorable_cell
+										.top_label !{g.top_label}
+										.label.novito_nova !{g.label}
+										a.link.lightblue_font(href=g.link.href) !{g.link.title}
+				
+				.jssorb12(u='navigator')
+					div(u='prototype', class='prototype rounded ')
+				span(u='arrowleft', class='jssora21l ')
+				span(u='arrowright', class='jssora21r ')
+				
+				include ../helpers/user/live_program/live_program
+				include ../helpers/user/join_tour/join_tour
+
 block content
-	#slider_container.slider.darkblue.adorable_container
-		.slides.adorable(u='slides')
-			- each g, key in gallery
-				div
-					- var src = '/img/user/banner/' + g.img
-					img(src=src)
-					.text
-						.adorable_table
-							.adorable_cell
-								.top_label !{g.top_label}
-								.label.novito_nova !{g.label}
-								a.link.lightblue_font(href=g.link.href) !{g.link.title}
-		
-		.jssorb12(u='navigator')
-			div(u='prototype', class='prototype rounded ')
-		span(u='arrowleft', class='jssora21l ')
-		span(u='arrowright', class='jssora21r ')
-		
-		include ../helpers/user/live_program/live_program
-		include ../helpers/user/join_tour/join_tour
-	
 	.content
 		.left.border_boxed.white
 			.content_block

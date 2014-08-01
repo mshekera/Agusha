@@ -1,8 +1,8 @@
-var main_container = $('#main_container');
+var before_main = $('#before_main .layout_inside');
 var slider_container = $('#slider_container');
 
 var define_slider_size = function() {
-	var width = main_container.width();
+	var width = before_main.width();
 	var height = (width * 0.366) | 0;
 	var slides = slider_container.find('.slides');
 	var options = {
