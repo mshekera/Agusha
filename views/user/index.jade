@@ -6,8 +6,8 @@ block append header
 block before_main
 	#before_main
 		.layout_inside
-			#slider_container.slider.darkblue.adorable_container
-				.slides.adorable(u='slides')
+			#slider_container.slider.darkblue
+				.slides(u='slides')
 					- each g, key in gallery
 						div
 							- var src = '/img/user/banner/' + g.img
