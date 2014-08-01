@@ -64,6 +64,7 @@ input {
 		color: $base;
 		width: 225px;
 		position: relative;
+		color: $dark;
 		
 		&:after {
 			@include pseudo;

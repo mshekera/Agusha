@@ -2,7 +2,7 @@ module.exports =
 	natural: [
 		product: 'Соки'
 		image: '/img/user/feeding_up/juices.jpg'
-		term: '6,5 - 7<br>месяц'
+		term: 'c 6<br>месяцев'
 		'6m': '30-50<br>мл'
 		'7m': '50-70<br>мл'
 		'8m': '50-70<br>мл'
