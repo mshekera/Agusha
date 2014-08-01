@@ -42,19 +42,33 @@ ul, li {
 	}
 	
 	.menu_block {
-		padding: 5px 12px;
+		padding: 5px 6px;
 		height: 100%;
 		position: relative;
 		display: inline-block;
 		vertical-align: top;
+		
+		span {
+			@include border_radius(100px);
+			padding: 10px 15px;
+			
+			&:hover, &.active {
+				background: $el_bg;
+				color: $darkblue;
+			}
+		}
+	}
+	
+	#contacts {
+		padding: 0 15px;
 	}
 	
 	.before_logo {
-		margin-right: 60px;
+		margin-right: 12px;
 	}
 	
 	.after_logo {
-		margin-left: 60px;
+		margin-left: 12px;
 	}
 }
 
