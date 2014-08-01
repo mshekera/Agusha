@@ -74,7 +74,7 @@ block content
                                 label(for="volume")= "Объем:"
                                 input.form-control(type="text" name="volume" placeholder="Объем продукта:" value=product.volume)
                             .form-group
-                                lable(for="volumeType")= "Единица измерения объема:"
+                                label(for="volumeType")= "Единица измерения объема:"
                                 select.form-control(name="volumeType")
                                     option(value="0" selected=product.volumeType == 0)= "Литры"
                                     option(value="1" selected=product.volumeType == 1)= "Граммы"
