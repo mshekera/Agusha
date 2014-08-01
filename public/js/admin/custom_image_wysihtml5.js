@@ -156,6 +156,6 @@ $(function() {
 
   $('.tip').tooltip();
   $('textarea').each(function() {
-    $(this).wysihtml5($.extend(wysiwygOptions, {html:true, color:true, stylesheets:[]}));
+    $(this).wysihtml5($.extend(wysiwygOptions, {html:true, color:true, 'text-align': true, stylesheets:[]}));
   });
 });
