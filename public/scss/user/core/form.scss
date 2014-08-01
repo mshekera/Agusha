@@ -4,6 +4,22 @@ button {
 	@include border_radius(99999em);
 	border: none;
 	padding: 5px 45px;
+	
+	&:hover {
+		opacity: 0.8;
+	}
+	
+	&.darkblue {
+		&:active {
+			color: rgba(255, 255, 255, 0.5);
+		}
+	}
+	
+	&.yellow {
+		&:active {
+			color: rgba(155, 113, 85, 0.5);
+		}
+	}
 }
 
 .middle_button {
