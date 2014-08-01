@@ -144,17 +144,32 @@ ul, li {
 		.item {
 			width: 34px;
 			height: 34px;
-			background-color: #f7f7f7;
+			background: #f7f7f7;
 			display: inline-block;
 			vertical-align: top;
+			
+			&:hover {
+				.marker_hover {
+					display: block;
+				}
+			}
+			
+			&:active {
+				background: #e5e5e5;
+				
+				.marker_hover {
+					display: block;
+				}
+			}
 		}
 		
-		.adorable_table {
-			line-height: 0;
+		.marker_image {
+			@include absolute_centered;
+			display: none;
 		}
 		
-		&> .adorable_cell {
-			padding: 0 0 5px;
+		.marker_normal {
+			display: block;
 		}
 	}
 }
