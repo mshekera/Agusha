@@ -72,7 +72,12 @@ block content
                                     input.form-control(data-role="tagsinput" name="composition" placeholder="Введите название продукта и нажмите Enter" value=product.composition)
                             .form-group
                                 label(for="volume")= "Объем:"
-                                input.form-control(type="text" name="volume" placeholder="Объем продукта:" value="#{(product and product.volume) ? product.volume.original : ''}")
+                                input.form-control(type="text" name="volume" placeholder="Объем продукта:" value=product.volume)
+                            .form-group
+                                label(for="volumeType")= "Единица измерения объема:"
+                                select.form-control(name="volumeType")
+                                    option(value="0" selected=product.volumeType == 0)= "Литры"
+                                    option(value="1" selected=product.volumeType == 1)= "Граммы"
                             .form-group
                                 label(for="recommended")= "Рекомендации:"
                                 input.form-control(type="text" name="recommended" placeholder="Рекомендации к использованию продукта" value=product.recommended)

@@ -73,7 +73,7 @@ block content
                             td= item.title
                             td= (item.active?"Да":"Нет")
                             td= item.storage_life
-                            td= item.volume.formatted
+                            td= item.getFormattedVolume()
                             td= item.age.title
                             td
                                 each cat in item.category
