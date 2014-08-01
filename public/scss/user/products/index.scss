@@ -86,11 +86,11 @@
     font-size: 112.5%;
     padding: 5px 15px;
 	
-	&.active {
+	&:hover {
 		@include inset_box_shadow(0 0 0 1px #cccccc);
 	}
 	
-	&:hover {
+	&.active {
 		@include inset_box_shadow(0 0 0 0 transparent);
 		background-color: $blue;
 		color: white;
