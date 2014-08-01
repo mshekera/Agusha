@@ -109,6 +109,13 @@ block content
 								input(type="file" name="image")
 
 							.form-group
+								label(for="innerImage")= "Внутреннее изображение:"
+								if article.innerImage
+									div
+										img.img-thumbnail(src="/img/uploads/#{article.innerImage}")
+								input(type="file" name="innerImage")
+
+							.form-group
 								label(for="desc_image")= "Изображения (может быть более одного):"
 								input(type="file" name="desc_image" multiple)
 								if article.desc_image
