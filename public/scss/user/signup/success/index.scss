@@ -9,6 +9,8 @@
 		
 		.label {
 			margin-bottom: 15px;
+			font-size: 65px;
+			line-height: 65px;
 		}
 	}
 	
@@ -26,11 +28,17 @@
 	}
 	
 	.invite {
-		padding-bottom: 25px;
+		padding-bottom: 50px;
 	}
 	
-	.inputs .content {
-		padding-top: 50px !important;
+	.inputs { 
+		.content {
+			padding-top: 50px !important;
+		}
+		
+		.top_label {
+			font-size: 100%;
+		}
 	}
 	
 	.client_block {
