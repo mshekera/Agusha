@@ -25,8 +25,8 @@ exports.get = (req, res) ->
 exports.upload = (req, res) ->
 	image = req.files['file'].name
 
-	if req.files['attachment[file]']
-		return res.json req.files['attachment[file]']
+	if req.files['file']
+		return res.json req.files['file']
 
 	res.status 500
 	res.send false
