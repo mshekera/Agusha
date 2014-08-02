@@ -32,6 +32,10 @@ block append header
 block append scripts
 	script(src="/js/plugins/underscore/underscore-min.js")
 	script(src="/js/froala/froala_editor.min.js")
+	script(src="/js/froala/plugins/fonts/font_size.min.js")
+	script(src="/js/froala/plugins/fonts/font_family.min.js")
+	script(src="/js/froala/plugins/colors.min.js")
+	script(src="/js/froala/plugins/block_styles.min.js")
 	
 	script.
 		(function($) {
@@ -46,8 +50,11 @@ block append scripts
 					'alert',
 					'clear',
 					'insertHTML',
+					'sep',
+					'formatBlock',
 					'fontSize',
 					'color',
+					'sep',
 					'strikeThrough',
 					'align',
 					'createLink',
