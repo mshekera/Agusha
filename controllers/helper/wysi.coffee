@@ -23,19 +23,13 @@ exports.get = (req, res) ->
 
 
 exports.upload = (req, res) ->
-	image = req.files.file.name
 	console.log req.files
-	console.log image
-	async.waterfall [
-		(next) ->
-			fs.rename "./public/img/uploads/#{image}", "./public/img/admin/attachable/#{image}", next
-		() ->
-			result =
-				file: "/img/admin/attachable/#{image}"
-				caption: ""
-				status: 1
+	image = req.files['file'].name
 
-			res.send JSON.stringify result
-	], (err) ->
-			Logger.log 'error', "Error in wysi upload: #{err.message or err}"
-			res.send '{}'
+	if req.files['attachment[file]']
+		return res.json req.files['attachment[file]']
+
+	error = "Error in wysi upload: #{err.message or err}"
+	Logger.log 'error', error
+	res.status 500
+	res.json new Error error 
