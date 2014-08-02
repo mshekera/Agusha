@@ -11,20 +11,20 @@ breadcrumbs = require '../../meta/breadcrumbs'
 
 exports.index = (req, res) ->
 	data =
-		breadcrumbs: tree.findWithParents breadcrumbs, 'product'
+		breadcrumbs: tree.findWithParents breadcrumbs, 'products'
 	
 	async.waterfall [
 		(next) ->
 			product = Model 'Product', 'findById', null, req.params.id
-
+			
 			product.populate('age certificate').exec next
 		(doc) ->
 			volume = doc.getFormattedVolume()
-
+			
 			doc = doc.toObject()
-
+			
 			doc.volume = volume
-
+			
 			data.product = doc
 			
 			data.breadcrumbs.push
@@ -35,4 +35,3 @@ exports.index = (req, res) ->
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/product/index: #{error}"
-	
