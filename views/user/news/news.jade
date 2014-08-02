@@ -26,12 +26,10 @@ mixin article(a)
 		
 		if a
 			if a.desc_image.length
-				.image.adorable_container
-					img.adorable(src = '/img/uploads/' + a.desc_image[0])
+				img.image(src = '/img/uploads/' + a.desc_image[0])
 		else
 			| {{#if desc_image.length}}
-			.image.adorable_container
-				img.adorable(src="/img/uploads/{{desc_image.0}}")
+			img.image(src="/img/uploads/{{desc_image.0}}")
 			| {{/if}}
 		
 		.text

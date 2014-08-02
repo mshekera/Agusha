@@ -11,8 +11,8 @@
 	color: #333333;
 	
 	.show {
-		font-size: 45px;
-		line-height: 45px;
+		font-size: 40px;
+		line-height: 40px;
 	}
 }
 
@@ -101,6 +101,7 @@
 		
 		.day {
 			font-size: 250%;
+			font-weight: bold;
 		}
 	}
 	
@@ -210,6 +211,7 @@
 			position: relative;
 			padding: 0 13px;
 			color: #cccccc;
+			font-size: 85.7%;
 		}
 		
 		&:before {
