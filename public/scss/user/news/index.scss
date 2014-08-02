@@ -60,9 +60,9 @@
 		position: relative;
 		
 		.label {
-			font-size: 35px;
-			line-height: 35px;
-			padding: 0 15px;
+			font-size: 33px;
+			line-height: 33px;
+			padding: 0 37px;
 			margin-top: 7px;
 			color: $dark;
 		}
@@ -106,6 +106,10 @@
 	
 	.article_title {
 		width: 77.1%;
+		
+		.adorable_cell {
+			text-align: left;
+		}
 		
 		&:before {
 			margin-top: 29.8%;
