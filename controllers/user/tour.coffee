@@ -66,15 +66,20 @@ exports.add_record = (req, res) ->
 			req.session.message = 'В ближайшее время на ваш e-mail<br />придет письмо с подробными инструкциями.'
 			req.session.messageLabel = 'Поздравляем, вы записаны на экскурсию!'
 			
-			res.redirect '/tour'
+			next()
 	]
 	
 	if req.body.signup
-		asyncFunctions = asyncFunctions.concat Client.addAsyncFunctionsForSignUp res, {}, data
+		signUpData =
+			login: data.firstname + ' ' + data.lastname
+			email: data.email
+		
+		asyncFunctions = asyncFunctions.concat Client.addAsyncFunctionsForSignUp res, {}, signUpData
+	
+	asyncFunctions.push (next) ->
+		res.redirect '/tour'
 	
 	async.waterfall asyncFunctions, (err) ->
-		error = err.message or err
-		
-		Logger.log 'info', "Error in controllers/user/tour/add_record: #{error}"
-		req.session.err = error
+		Logger.log 'info', "Error in controllers/user/tour/add_record: #{err}"
+		req.session.err = err
 		res.redirect '/tour'
