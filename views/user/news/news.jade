@@ -37,15 +37,18 @@ mixin article(a)
 		.text
 			.desc_shorttext!=(a ? a.desc_shorttext : '{{{desc_shorttext}}}')
 			if a
-				.desc_text!=(a ? a.desc_text : '{{{desc_text}}}')
-				.expand.uppercase
-					.expand_button.rounded
-					div Развернуть
+				if a.desc_text
+					.desc_text!=(a ? a.desc_text : '{{{desc_text}}}')
+					.expand.uppercase
+						.expand_button.rounded
+						div Развернуть
 			else
+				| {{#if desc_text}}
 				.desc_text {{{desc_text}}}
 				.expand.uppercase
 					.expand_button.rounded
 					.expand_text
+				| {{/if}}
 		
 		.article_footer.centered
 			.share_text.border_boxed
