@@ -51,8 +51,8 @@ $closest_color: #0d5c92;
 		height: 135px;
 		
 		.label {
-			font-size: 55px;
-			line-height: 55px;
+			font-size: 53px;
+			line-height: 53px;
 			color: $darkgreen;
 		}
 	}
@@ -78,8 +78,8 @@ $closest_color: #0d5c92;
 	color: $white;
 	
 	.label {
-		font-size: 55px;
-		line-height: 55px;
+		font-size: 53px;
+		line-height: 53px;
 		margin-bottom: 10px;
 	}
 	
@@ -108,7 +108,7 @@ $closest_color: #0d5c92;
 		font-weight: bold;
 		min-width: 160px;
 		position: relative;
-		height: 100%;
+		height: 65px;
 		
 		.top {
 			margin-bottom: 18px;
@@ -150,11 +150,17 @@ $closest_color: #0d5c92;
 		
 		.label {
 			margin-bottom: 10px;
+			padding: 0 45px;
 		}
 		
 		.text {
 			font-size: 112.5%;
 			color: #318b50;
+			
+			&.place {
+				font-size: 85.7%;
+				margin-bottom: 5px;
+			}
 		}
 		
 		.marker {
@@ -163,7 +169,7 @@ $closest_color: #0d5c92;
 	}
 	
 	&:before {
-		margin-top: 38%;
+		margin-top: 33.3%;
 	}
 }
 
@@ -270,10 +276,10 @@ $closest_color: #0d5c92;
 		padding: 30px;
 		
 		.closest_tour_label {
-			font-size: 35px;
-			line-height: 35px;
+			font-size: 33px;
+			line-height: 33px;
 			color: $closest_color;
-			margin-bottom: 15px;
+			margin-bottom: 10px;
 		}
 		
 		.top_label {
@@ -284,8 +290,8 @@ $closest_color: #0d5c92;
 		}
 		
 		.label {
-			font-size: 160px;
-			line-height: 160px;
+			font-size: 150px;
+			line-height: 150px;
 			padding: 0;
 			margin-bottom: -20px;
 		}
@@ -331,8 +337,8 @@ $closest_color: #0d5c92;
 		}
 		
 		.label {
-			font-size: 45px;
-			line-height: 45px;
+			font-size: 40px;
+			line-height: 40px;
 			color: $darkgreen;
 		}
 		
@@ -378,6 +384,18 @@ $closest_color: #0d5c92;
 		margin-bottom: 30px;
 		color: #fd7b6a;
 		font-style: italic;
+	}
+	
+	.left {
+		clear: both;
+	}
+	
+	label {
+		&.error {
+			color: red;
+			position: relative;
+			top: -25px;
+		}
 	}
 }
 
@@ -494,6 +512,7 @@ $closest_color: #0d5c92;
 		line-height: 30px;
 		vertical-align: middle;
 		margin-left: 14px;
+		font-size: 112.5%;
 	}
 }
 
@@ -523,7 +542,7 @@ $closest_color: #0d5c92;
 			position: absolute;
 			bottom: 0;
 			width: 100%;
-			height: 105px;
+			height: 90px;
 		}
 		
 		.position {

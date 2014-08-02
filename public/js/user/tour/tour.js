@@ -68,7 +68,8 @@ var Tour_controller = can.Control.extend(
 				renderOptions = {
 					suppressMarkers: true,
 					polylineOptions: {
-						strokeColor: "#64cb81"
+						strokeColor: "#64cb81",
+						strokeWeight: 7
 					}
 				}
 				directionsDisplay = new google.maps.DirectionsRenderer(renderOptions),
@@ -123,8 +124,7 @@ var Tour_controller = can.Control.extend(
 			var polyline = new google.maps.Polyline({
 				path: polylineCoords,
 				strokeColor: "#64cb81",
-				strokeOpacity: 1.0,
-				strokeWeight: 6
+				strokeWeight: 7
 			});
 			
 			polyline.setMap(this.map);
