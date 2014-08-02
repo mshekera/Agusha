@@ -24,6 +24,7 @@ exports.get = (req, res) ->
 
 exports.upload = (req, res) ->
 	image = req.files['file'].name
+	req.files['file'].link = "/img/uploads/#{req.files['file'].name}"
 
 	if req.files['file']
 		return res.json req.files['file']
