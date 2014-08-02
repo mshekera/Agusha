@@ -385,6 +385,18 @@ $closest_color: #0d5c92;
 		color: #fd7b6a;
 		font-style: italic;
 	}
+	
+	.left {
+		clear: both;
+	}
+	
+	label {
+		&.error {
+			color: red;
+			position: relative;
+			top: -25px;
+		}
+	}
 }
 
 .children_inputs {
