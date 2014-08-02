@@ -1,11 +1,13 @@
 var	before_main = $('#before_main'),
 	slider_container = $('#slider_container'),
-	slides = slider_container.find('.slides');
+	slides = slider_container.find('.slides'),
+	menu_blocks = $('#header .dropdown');
 
 var window_resize = function() {
 	var	before_main_width = $('#before_main').width(),
 		offset = ((1280 - before_main_width) / 2) | 0,
-		left;
+		left,
+		i;
 	
 	if(offset > 0) {
 		left = -offset;
@@ -16,6 +18,17 @@ var window_resize = function() {
 	slider_container.css({
 		left: left
 	});
+	console.log(menu_blocks.length);
+	for(i = menu_blocks.length; i--;) {
+		var menu_block = $(menu_blocks[i]),
+			span = menu_block.find('span'),
+			span_width = span.width(),
+			dropdown = menu_block.find('.dropdown'),
+			dropdown_width = dropdown.width();
+		
+		var offset = ((dropdown_width - span_width) / 2) | 0;
+		console.log(offset);
+	}
 }
 
 window_resize();

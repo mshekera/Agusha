@@ -18,6 +18,9 @@ block append content
 							if article.image
 								img(src = '/img/uploads/' + article.image)
 				
+				if article.innerImage
+					img.inner_image(src = '/img/uploads/' + article.innerImage)
+				
 				.article_text.white
 					| !{article.desc_shorttext}
 					| !{article.desc_text}

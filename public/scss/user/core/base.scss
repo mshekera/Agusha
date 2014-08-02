@@ -1,5 +1,6 @@
 @import '../../normalize/normalize';
 @import '../dynamic/dynamic';
+@import '../helpers/dropdown';
 
 body {
 	color: $base;
@@ -19,7 +20,6 @@ ul, li {
 	@include full_width_layout;
 	height: $hfheight;
 	position: relative;
-	font-size: 112.5%;
 	
 	.layout_inside {
 		@include layout_inside;
@@ -51,10 +51,69 @@ ul, li {
 		span {
 			@include border_radius(100px);
 			padding: 8px 15px;
+			font-size: 112.5%;
 			
 			&:hover, &.active {
 				background: $el_bg;
 				color: $darkblue;
+			}
+		}
+		
+		.dropdown {
+			font-size: 100%;
+			width: 230px;
+			background: $el_bg;
+		}
+		
+		.dropdown_item {
+			height: 50px;
+			position: relative;
+			
+			a {
+				display: block;
+				height: 100%;
+			}
+			
+			&:first-child {
+				&:before {
+					@include pseudo;
+					@include absolute_horizontal_centered;
+					top: -10px;
+					width: 0;
+					border-left: 10px solid transparent;
+					border-right: 10px solid transparent;
+					border-bottom: 10px solid $el_bg;
+				}
+				
+				&:hover {
+					&:before {
+						border-bottom: 10px solid $darkblue;
+					}
+				}
+				
+				&:active {
+					&:before {
+						border-bottom: 10px solid #3d9ccc;
+					}
+				}
+			}
+			
+			&:not(:last-child) {
+				border-bottom: 1px solid #e5e5e5;
+			}
+			
+			&:hover {
+				a {
+					background: $darkblue;
+					color: $white;
+				}
+			}
+			
+			&:active {
+				a {
+					background: #3d9ccc;
+					color: $white;
+				}
 			}
 		}
 	}

@@ -4,6 +4,7 @@ moment = require 'moment'
 
 Logger = require './logger'
 Cache = require './cache'
+Model = require './model'
 
 exports.render = render = (name, res, data, cacheId) ->
 	data or= {}
@@ -71,26 +72,36 @@ exports.clientFail = (err, res)->
 
 	res.send data	
 
-exports.globals = (req, res, next)->
-	res.locals.defLang = 'ru'
-	res.locals.lang = req.lang
-	
-	if req.user
-		res.locals.euser = req.user
-		res.locals.user = req.user
-	
-	res.locals.moment = moment
-	
-	res.locals.base_url = base_url = 'http://' + req.headers.host
-	res.locals.url = (path) ->
-		base_url + path
-	
-	res.locals.params = req.params
-	
-	res.locals.strip_tags = (str) ->
-		str.replace /<\/?[^>]+>/g, ' '
-	
-	next()
+exports.globals = (req, res, callback)->
+	async.waterfall [
+		(next) ->
+			Model 'Article', 'find', next, type: 2, 'desc_title'
+		(docs) ->
+			res.locals.topper_menu =
+				food: docs
+			
+			res.locals.defLang = 'ru'
+			res.locals.lang = req.lang
+			
+			if req.user
+				res.locals.euser = req.user
+				res.locals.user = req.user
+			
+			res.locals.moment = moment
+			
+			res.locals.base_url = base_url = 'http://' + req.headers.host
+			res.locals.url = (path) ->
+				base_url + path
+			
+			res.locals.params = req.params
+			
+			res.locals.strip_tags = (str) ->
+				str.replace /<\/?[^>]+>/g, ' '
+			
+			callback()
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in lib/view/globals: #{error}"
 
 exports.ajaxResponse = (res, err, data) ->
 	data =
