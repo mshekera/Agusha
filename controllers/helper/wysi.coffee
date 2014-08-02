@@ -23,13 +23,10 @@ exports.get = (req, res) ->
 
 
 exports.upload = (req, res) ->
-	console.log req.files
 	image = req.files['file'].name
 
 	if req.files['attachment[file]']
 		return res.json req.files['attachment[file]']
 
-	error = "Error in wysi upload: #{err.message or err}"
-	Logger.log 'error', error
 	res.status 500
-	res.json new Error error 
+	res.send false
