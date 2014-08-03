@@ -1,0 +1,51 @@
+extends ../layout
+
+block append header
+	link(rel="stylesheet" href="/css/user/video/video.css")
+
+block append content
+	#video.content
+		include ../../helpers/user/breadcrumbs/breadcrumbs
+		
+		.white
+			.pentagon
+				.adorable_table
+					.adorable_cell
+						.label.novito_nova Репортаж с места событий
+			
+			.video_container.video_inside
+				.video_block
+					object(frameborder="0", width="100%", height="100%", data="http://youtube.com/embed/uygKYwqfzKM", wmode="transparent", allowscriptaccess="always", allowfullscreen="true")
+			
+			.video_social.video_inside
+				.adorable_table
+					.adorable_cell
+						.share_buttons
+							.share_button
+								img(src="/img/user/social/vk.png")
+							
+							.share_button
+								img(src="/img/user/social/odnoklasniki.png")
+							
+							.share_button
+								img(src="/img/user/social/google.png")
+							
+							.share_button
+								img(src="/img/user/social/facebook.png")
+							
+							.share_button
+								img(src="/img/user/social/twitter.png")
+						
+						.channel_link
+							span.text Смотрите наш канал на youtube
+							img(src="/img/user/video/youtube.png")
+				
+				img.channel_arrow(src="/img/user/video/arrow.png")
+			
+			.more_videos.video_inside.force_height
+				.small_video_block
+				.small_video_block
+				.small_video_block
+
+block append scripts
+	

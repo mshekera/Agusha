@@ -32,4 +32,9 @@ module.exports = [
 	id: 'contacts'
 	title: 'Контакты'
 	href: '/contacts'
+,
+	id: 'video'
+	title: 'Видео'
+	href: '/video'
+	parent_id: 'production'
 ]
