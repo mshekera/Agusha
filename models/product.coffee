@@ -12,7 +12,6 @@ schema = new mongoose.Schema
 		type: String
 	storage_life:
 		type: Number
-		required: true
 	storage_conditions:
 		type: String
 	composition:
