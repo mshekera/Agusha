@@ -1,44 +1,9 @@
 @import '../dynamic/dynamic';
 @import '../helpers/breadcrumbs';
+@import '../helpers/join_tour_full';
 
 #production {
 	margin-bottom: 50px;
-}
-
-.production_topper {
-	height: 320px;
-	
-	.top {
-		height: 240px;
-	}
-	
-	.top_text {
-		font-size: 112.5%;
-		font-style: italic;
-		margin-bottom: 25px;
-	}
-	
-	.label {
-		padding: 0;
-		margin-bottom: 15px;
-		letter-spacing: 3px;
-	}
-	
-	.bottom_text {
-		font-size: 112.5%;
-	}
-	
-	.bottom {
-		height: 80px;
-	}
-	
-	button {
-		font-size: 112.5%;
-		text-transform: uppercase;
-		background: $white;
-		color: $darkgreen;
-		font-weight: bold;
-	}
 }
 
 .production_container {

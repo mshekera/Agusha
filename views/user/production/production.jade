@@ -6,24 +6,7 @@ block append header
 block append content
 	#production.content
 		include ../../helpers/user/breadcrumbs/breadcrumbs
-		
-		.production_topper.green
-			.top
-				.adorable_table
-					.adorable_cell
-						.top_text
-							| Мы гордимся нашим «Заводом Агуша» и абсолютно уверены в качестве
-							br
-							| выпускаемой продукции.
-						.label.novito_nova Запишитесь на бесплатную экскурсию
-						.bottom_text Узнайте больше о полезных, вкусных и действительно детских продуктах «Агуша»!
-					
-			
-			.bottom.darkgreen
-				.adorable_table
-					.adorable_cell
-						a(href="/tour")
-							button.middle_button Хочу на экскурсию
+		include ../../helpers/user/join_tour_full/join_tour_full
 		
 		.production_container.white
 			.production_arrows
