@@ -8,6 +8,7 @@ var Video_controller = can.Control.extend(
 	{
 		init: function () {
 			this.classname = 'active';
+			this.video_container = this.element.find('.video_container');
 			this.video_selectors = this.element.find('.video_selector');
 			this.video_blocks = this.video_selectors.filter('.video_block');
 			this.video = this.video_blocks.filter('.active').data('id');
@@ -41,6 +42,13 @@ var Video_controller = can.Control.extend(
 		},
 		
 		change_video: function() {
+			this.video_blocks = this.video_selectors.filter('.video_block');
+			var	player_to_stop = this.video_blocks.filter('.active');
+			
+			player_to_stop.clone().appendTo(this.video_container);
+			player_to_stop.remove();
+			
+			this.video_selectors = this.element.find('.video_selector');
 			this.video_selectors.removeClass(this.classname);
 			this.video_selectors.filter('.' + this.video).addClass(this.classname);
 		},
