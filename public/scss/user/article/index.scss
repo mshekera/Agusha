@@ -188,15 +188,16 @@
 		width: 100%;
 		margin-bottom: 10px;
 		background: $white;
+		position: relative;
 		
 		.adorable_cell {
 			padding: 10px;
-			
-			&> div {
-				height: 100%;
-				width: 100%;
-				position: relative;
-			}
+		}
+		
+		.plate_container {
+			height: 100%;
+			width: 100%;
+			position: relative;
 		}
 		
 		.plate {
@@ -205,11 +206,40 @@
 			bottom: 0;
 			left: 0;
 			padding: 20px;
+			z-index: 1;
+			height: 130px;
 		}
 		
 		.label {
 			font-size: 33px;
 			line-height: 33px;
+		}
+		
+		&:hover {
+			.plate {
+				background: #86e4a7;
+				color: $dark;
+			}
+		}
+		
+		&:active {
+			.plate {
+				background: $darkgreen;
+				color: $dark;
+			}
+		}
+	}
+	
+	.article_bg {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		
+		img {
+			width: 100%;
+			height: 100%;
 		}
 	}
 }

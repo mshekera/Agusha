@@ -105,9 +105,10 @@ block append content
 													.article_bg
 														img(src = '/img/uploads/' + a.desc_image[0])
 												.adorable_cell
-													div
-														.plate.green.border_boxed
-															.label.novito_nova #{strip_tags(a.big_title)}
+													.plate_container
+														.plate.green.border_boxed.adorable_table
+															.adorable_cell
+																.label.novito_nova #{strip_tags(a.big_title)}
 
 block append scripts
 	script(src="/js/plugins/can/can.js")
