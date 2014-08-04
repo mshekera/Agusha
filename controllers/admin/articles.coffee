@@ -94,7 +94,7 @@ exports.deleteImage = (req, res) ->
 		(next) ->
 			Model 'Article', 'findOne', next, {_id}
 		(doc, next) ->
-			fs.unlink "./public/img/#{img}", (err) ->
+			fs.unlink "./public/uploads/img/#{img}", (err) ->
 				next err, doc
 		(doc, next) ->
 			images = doc.desc_image
@@ -103,10 +103,8 @@ exports.deleteImage = (req, res) ->
 
 			doc.save next
 		() ->
-			#View.message true, 'Изображение удалено!', res
 			res.send true
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/articles/remove: %s #{err.message or err}"
 		msg = "Произошла ошибка при удалении: #{err.message or err}"
-		#View.message false, msg, res
 		res.send msg
