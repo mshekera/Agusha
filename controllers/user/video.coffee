@@ -3,6 +3,7 @@ async = require 'async'
 View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
+Youtube = require '../../lib/youtube'
 
 tree = require '../../utils/tree'
 
@@ -12,4 +13,13 @@ exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'video'
 	
-	View.render 'user/video/video', res, data
+	async.waterfall [
+		(next) ->
+			Youtube.getChannelVideos 'agushaukraine', next
+		(videos) ->
+			data.videos = videos
+			
+			View.render 'user/video/video', res, data
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in controllers/user/video/index: #{error}"

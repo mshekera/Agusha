@@ -32,7 +32,6 @@ exports.index = (req, res) ->
 	]
 	
 	async.waterfall asyncFunctions, (err) ->
-		console.log err
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/products/index: #{error}"
 

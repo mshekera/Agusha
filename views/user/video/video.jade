@@ -11,11 +11,12 @@ block append content
 			.pentagon
 				.adorable_table
 					.adorable_cell
-						.label.novito_nova Репортаж с места событий
+						.title_container
+							.label.novito_nova.active(class=videos[0].id) #{videos[0].title}
 			
 			.video_container.video_inside
-				.video_block
-					object(frameborder="0", width="100%", height="100%", data="http://youtube.com/embed/uygKYwqfzKM", wmode="transparent", allowscriptaccess="always", allowfullscreen="true")
+				.video_block.active(class=videos[0].id)
+					object(frameborder="0", width="100%", height="100%", data="http://youtube.com/embed/" + videos[0].id, wmode="transparent", allowscriptaccess="always", allowfullscreen="true")
 			
 			.video_social.video_inside
 				.adorable_table
@@ -44,9 +45,8 @@ block append content
 				img.channel_arrow(src="/img/user/video/arrow.png")
 			
 			.more_videos.video_inside.force_height
-				.small_video_block
-				.small_video_block
-				.small_video_block
+				- each a, key in videos
+					.small_video_block
 		
 		include ../../helpers/user/join_tour_full/join_tour_full
 
