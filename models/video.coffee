@@ -10,6 +10,9 @@ schema = new mongoose.Schema
 	title:
 		type: String
 		required: true
+	published:
+		type: Date
+		required: true
 ,
 	collection: 'video'
 

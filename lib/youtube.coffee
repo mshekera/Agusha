@@ -24,6 +24,7 @@ exports.getChannelVideos = (name, callback) ->
 				item =
 					id: video.id.$t.split('/').slice(-1)[0]
 					title: video.title.$t
+					published: video.published.$t
 				
 				result.push item
 			
