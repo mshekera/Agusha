@@ -94,7 +94,7 @@ exports.deleteImage = (req, res) ->
 		(next) ->
 			Model 'Article', 'findOne', next, {_id}
 		(doc, next) ->
-			fs.unlink "./public/uploads/img/#{img}", (err) ->
+			fs.unlink "../../public/uploads/img/#{img}", (err) ->
 				next err, doc
 		(doc, next) ->
 			images = doc.desc_image
