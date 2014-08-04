@@ -71,7 +71,8 @@ block append content
 				.adorable_table
 					.adorable_cell
 						div.image_container
-							img(src="/img/user/products/products.png")
+							img.norm(src="/img/user/products/products.png")
+							img.hover(src="/img/user/products/products_hover.png")
 						div
 							span Все продукты
 			
@@ -81,7 +82,9 @@ block append content
 						.adorable_cell
 							div.image_container
 								- var src = '/img/uploads/' + a.icon
-								img(src=src)
+								img.norm(src=src)
+								- var src = '/img/uploads/' + a.hoverImage
+								img.hover(src=src)
 							div
 								if a.level < 12
 									- var age = 'мес.'
