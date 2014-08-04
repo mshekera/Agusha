@@ -44,11 +44,16 @@ block append content
 				
 				img.channel_arrow(src="/img/user/video/arrow.png")
 			
-			.more_videos.video_inside.force_height
-				- each a, key in videos
-					.small_video_block
+			.more_videos.video_inside
+				#video_gallery
+					- each v, key in videos
+						.small_video_block
+							.small_video_content.border_boxed
+								img.image(src = 'http://i.ytimg.com/vi/' + v.id + '/0.jpg')
 		
 		include ../../helpers/user/join_tour_full/join_tour_full
 
 block append scripts
-	
+	script(src="/js/plugins/can/can.js")
+	script(src="/js/plugins/slick/slick.min.js")
+	script(src="/js/user/video/video.js")

@@ -3,17 +3,20 @@ _ = require 'underscore'
 request = require 'request'
 
 Logger = require './logger'
+Model = require './model'
 
 exports.getChannelVideos = (name, callback) ->
+	result = []
+	
 	async.waterfall [
 		(next) ->
 			requestString = 'http://gdata.youtube.com/feeds/api/users/' + name + '/uploads?alt=json'
 			
 			request requestString, next
-		(response, body) ->
+		(response, body, next) ->
 			json = JSON.parse body
 			videos = json.feed.entry
-			result = []
+			
 			
 			videosLength = videos.length
 			while videosLength--
@@ -24,6 +27,8 @@ exports.getChannelVideos = (name, callback) ->
 				
 				result.push item
 			
+			Model 'Video', 'create', next, result
+		() ->
 			callback null, result
 	], (err) ->
 		error = err.message or err

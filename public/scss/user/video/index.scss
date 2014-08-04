@@ -1,6 +1,7 @@
 @import '../dynamic/dynamic';
 @import '../helpers/breadcrumbs';
 @import '../helpers/join_tour_full';
+@import '../helpers/slick';
 
 #video {
 	margin-bottom: 50px;
@@ -36,6 +37,7 @@
 	
 	.white {
 		margin-bottom: 20px;
+		overflow: hidden;
 	}
 	
 	.share_buttons {
@@ -111,20 +113,24 @@
 }
 
 .more_videos {
-	
+	height: 272px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+#video_gallery {
+	width: 875px;
 }
 
 .small_video_block {
 	width: 272px;
 	height: 272px;
-	float: left;
-	margin-bottom: 20px;
 	
-	&:nth-child(3n+1) {
-		margin-right: 19px;
+	.image {
+		width: 100%;
 	}
-	
-	&:nth-child(3n+2) {
-		margin-right: 20px;
-	}
+}
+
+.small_video_content {
+	padding: 0 20px 0 0;
 }

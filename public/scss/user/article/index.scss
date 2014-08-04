@@ -58,8 +58,8 @@
 	}
 }
 
-.article_content {
-	margin-top: 20px;
+.article_content.force_height {
+	overflow: hidden;
 }
 
 .article_left {
