@@ -1,13 +1,14 @@
 extends ../layout
 
 block append header
-    link(href="/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css")
+    link(href="/css/froala/font-awesome.min.css" rel="stylesheet" type="text/css")
+    link(href="/css/froala/froala_editor.min.css" rel="stylesheet" type="text/css")
     link(href="/js/admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" type="text/css")
     style.
         img.img-thumbnail {
             max-height: 140px;
         }
-        .textarea {
+        .textarea, .froala-element {
             width: 100%;
             height: 200px;
             font-size: 14px;
