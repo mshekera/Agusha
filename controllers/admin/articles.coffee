@@ -1,5 +1,8 @@
+
 async = require 'async'
 fs = require 'fs'
+
+path = require 'path'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
