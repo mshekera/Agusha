@@ -135,27 +135,16 @@
 	}
 	
 	.minimize_button {
-		width: 17px;
-		height: 17px;
+		background: url('/img/user/products/minimize_buttons.png');
+		background-position: -16px 0;
+		width: 16px;
+		height: 16px;
+		margin-right: 10px;
 		display: inline-block;
 		vertical-align: top;
-		background: #fd7b6a;
-		margin-right: 10px;
-		position: relative;
 		
 		&:hover {
-			background: $red;
-		}
-		
-		&:before {
-			@include absolute_centered;
-			content: '\D7';
-			display: table-cell;
-			text-align: center;
-			vertical-align: middle;
-			color: $white;
-			font-size: 13px;
-			line-height: 17px;
+			background-position: -16px -16px;
 		}
 	}
 	
@@ -220,10 +209,10 @@
 		}
 		
 		.minimize_button {
-			&:before {
-				content: '+';
-				font-family: verdana;
-				font-size: 11px;
+			background-position: 0 0;
+			
+			&:hover {
+				background-position: 0 -16px;
 			}
 		}
 		
