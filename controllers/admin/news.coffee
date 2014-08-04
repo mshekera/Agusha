@@ -1,5 +1,8 @@
+
 async = require 'async'
 fs = require 'fs'
+
+path = require 'path'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
@@ -93,7 +96,8 @@ exports.deleteImage = (req, res) ->
 		(next) ->
 			Model 'Article', 'findOne', next, {_id}
 		(doc, next) ->
-			fs.unlink "./public/uploads/img/#{img}", (err) ->
+			imgPath = path.join "#{__dirname}", "/public/uploads/img/#{img}"
+			fs.unlink imgPath, (err) ->
 				next err, doc
 		(doc, next) ->
 			images = doc.desc_image
