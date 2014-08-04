@@ -97,7 +97,7 @@ exports.deleteImage = (req, res) ->
 		(next) ->
 			Model 'Article', 'findOne', next, {_id}
 		(doc, next) ->
-			imgPath = path.join "#{__dirname}", "/public/img/uploads/#{img}"
+			imgPath = path.join "#{__dirname}", "../../public/img/uploads/#{img}"
 
 			fs.unlink imgPath, (err) ->
 				next err, doc
