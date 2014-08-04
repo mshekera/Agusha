@@ -306,13 +306,13 @@ var Tour_controller = can.Control.extend(
 			rule = 'firstname';
 			validation.rules[rule] = {
 				required: true,
-				minlength: 3,
-				maxlength: 64
+				minlength: 'Минимальное количество символов - 3',
+				maxlength: 'Минимальное количество символов - 64'
 			};
 			validation.messages[rule] = {
 				required: required_message,
-				minlength: 3,
-				maxlength: 64
+				minlength: 'Минимальное количество символов - 3',
+				maxlength: 'Минимальное количество символов - 64'
 			};
 			
 			rule = 'email';
@@ -322,12 +322,23 @@ var Tour_controller = can.Control.extend(
 				maxlength: 64,
 				email: true
 			};
+			validation.messages[rule] = {
+				required: required_message,
+				minlength: 'Минимальное количество символов - 3',
+				maxlength: 'Минимальное количество символов - 64',
+				email: 'Пожалуйста, введите e-mail'
+			};
 			
 			rule = 'lastname';
 			validation.rules[rule] = {
 				required: true,
-				minlength: 3,
-				maxlength: 64
+				minlength: 'Минимальное количество символов - 3',
+				maxlength: 'Минимальное количество символов - 64'
+			};
+			validation.messages[rule] = {
+				required: required_message,
+				minlength: 'Минимальное количество символов - 3',
+				maxlength: 'Минимальное количество символов - 64'
 			};
 			
 			rule = 'patronymic';
@@ -336,17 +347,26 @@ var Tour_controller = can.Control.extend(
 				minlength: 3,
 				maxlength: 64
 			};
+			validation.messages[rule] = {
+				required: required_message,
+				minlength: 'Минимальное количество символов - 3',
+				maxlength: 'Минимальное количество символов - 64'
+			};
 			
 			rule = 'phone';
 			validation.rules[rule] = {
-				required: true,
-				minlength: 3,
-				maxlength: 64
+				required: true
+			};
+			validation.messages[rule] = {
+				required: required_message
 			};
 			
 			rule = 'city';
 			validation.rules[rule] = {
 				required: true
+			};
+			validation.messages[rule] = {
+				required: required_message
 			};
 			
 			for(i = child_items.length; i--;) {
@@ -363,6 +383,8 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		validate_child_name: function(validation, i) {
+			var required_message = 'Это обязательное поле';
+			
 			rule = 'children[' + i + '][name]';
 			validation.rules[rule] = {
 				minlength: 3,
@@ -372,9 +394,16 @@ var Tour_controller = can.Control.extend(
 					return (val.length > 0 && val != '__ месяцев');
 				}
 			};
+			validation.messages[rule] = {
+				required: required_message,
+				minlength: 'Минимальное количество символов - 3',
+				maxlength: 'Минимальное количество символов - 64'
+			};
 		},
 		
 		validate_child_age: function(validation, i) {
+			var required_message = 'Это обязательное поле';
+			
 			rule = 'children[' + i + '][age]';
 			validation.rules[rule] = {
 				minlength: 3,
@@ -382,6 +411,11 @@ var Tour_controller = can.Control.extend(
 				required: function(element){
 					return $("input[name='children[" + i + "][name]']").val().length > 0;
 				}
+			};
+			validation.messages[rule] = {
+				required: required_message,
+				minlength: 'Минимальное количество символов - 3',
+				maxlength: 'Минимальное количество символов - 64'
 			};
 		}
 	}
