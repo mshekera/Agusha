@@ -4,6 +4,7 @@ button {
 	@include border_radius(99999em);
 	border: none;
 	padding: 4px 45px;
+	outline-style: none;
 	
 	&:hover {
 		opacity: 0.8;
