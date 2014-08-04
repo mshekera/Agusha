@@ -184,6 +184,16 @@
 		.desc_title {
 			float: left;
 			padding: 0 0 30px;
+			width: auto;
+			line-height: 63px;
+			
+			.small {
+				display: inline-block;
+				line-height: 27px;
+				height: 63px;
+				vertical-align: top;
+				width: 130px;
+			}
 		}
 		
 		.minimize {
@@ -238,6 +248,16 @@
 	.desc_title {
 		color: $dark;
 		padding: 0;
+		width: 300px;
+		line-height: 55px;
+		letter-spacing: 1px;
+		
+		.small {
+			font-size: 30px;
+			line-height: 30px;
+			display: block;
+			letter-spacing: 0;
+		}
 	}
 	
 	.article_image {
