@@ -17,16 +17,47 @@ block append header
         }
 
 block append scripts
-    script(src="/js/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")
-    script(src="/js/admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js")
+    script(src="/js/plugins/underscore/underscore-min.js")
+    script(src="/js/froala/froala_editor.min.js")
+    script(src="/js/froala/plugins/fonts/font_size.min.js")
+    script(src="/js/froala/plugins/fonts/font_family.min.js")
+    script(src="/js/froala/plugins/colors.min.js")
+    script(src="/js/froala/plugins/block_styles.min.js")
+    
     script.
-        $(function() {
-            $(".textarea").wysihtml5();
-            $('#age-select').on('change', function() {
-                var value = $(this).find('option:selected').data('level');
-                $('#age-level').val(value);
-            });
-        });
+        (function($) {
+            var options = {
+                inlineMode: false,
+                buttons: [
+                    'undo',
+                    'redo' ,
+                    'bold',
+                    'italic',
+                    'sep',
+                    'alert',
+                    'clear',
+                    'insertHTML',
+                    'sep',
+                    'formatBlock',
+                    'fontSize',
+                    'color',
+                    'sep',
+                    'strikeThrough',
+                    'align',
+                    'createLink',
+                    'insertImage'
+                ],
+                imageUploadParam: 'file',
+                imageUploadURL: '/admin/uploadWysi',
+                imageButtons: ["linkImage", "replaceImage", "removeImage"],
+                imageLink: true,
+                imageUploadParams: {
+                    _id: '123'
+                }
+            };
+
+            $('.textarea').editable(options)
+        })($);
 
 block content
     section.content
