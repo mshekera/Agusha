@@ -20,7 +20,7 @@ var Video_controller = can.Control.extend(
 		},
 		
 		init_slider: function() {
-			$('#video_gallery').slick({
+			this.slider = $('#video_gallery').slick({
 				slidesToShow: 3,
 				slidesToScroll: 1,
 				//autoplay: true,
@@ -46,6 +46,14 @@ var Video_controller = can.Control.extend(
 			
 			this.video_titles.removeClass(this.classname);
 			this.video_titles.filter('.' + this.video).addClass(this.classname);
+		},
+		
+		'.arrow_left click': function() {
+			this.slider.slickPrev();
+		},
+		
+		'.arrow_right click': function() {
+			this.slider.slickNext();
 		}
 	}
 );

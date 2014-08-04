@@ -126,10 +126,53 @@
 	position: relative;
 }
 
-.more_videos {
+.more_videos_container {
 	height: 272px;
+	position: relative;
+	
+	.arrow_left, .arrow_right {
+		@include absolute_centered;
+		position: absolute;
+		background: url('/img/user/video/slick_arrows.png');
+		cursor: pointer;
+		width: 9px;
+		height: 13px;
+	}
+	
+	.arrow_left {
+		left: 24px;
+		right: auto;
+		background-position: 0 -13px;
+		
+		&:hover {
+			background-position: -9px -13px;
+		}
+		
+		&:active {
+			background-position: 0 -13px;
+		}
+	}
+	
+	.arrow_right {
+		right: 24px;
+		left: auto;
+		background-position: 0 0;
+		
+		&:hover {
+			background-position: -9px 0;
+		}
+		
+		&:active {
+			background-position: 0 0;
+		}
+	}
+}
+
+.more_videos {
+	height: 100%;
 	margin-bottom: 20px;
 	overflow: hidden;
+	position: relative;
 }
 
 #video_gallery {

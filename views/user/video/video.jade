@@ -38,22 +38,26 @@ block append content
 						
 						.channel_link
 							span.text Смотрите наш канал на youtube
-							a(href="http://youtube.com")
+							a(href="http://youtube.com/agushaukraine", target="_blank")
 								.youtube_img
 				
 				img.channel_arrow(src="/img/user/video/arrow.png")
 			
-			.more_videos.video_inside
-				#video_gallery
-					- each v, key in videos
-						.small_video_block
-							.small_video_content.border_boxed
-								.small_video_clicker(data-id=v.id)
-									.image(style="background: url('http://i.ytimg.com/vi/" + v.id + "/mqdefault.jpg') center;")
-									.text.adorable_table.border_boxed
-										.adorable_cell
-											.title #{v.title}
-											.date date
+			.more_videos_container
+				.more_videos.video_inside
+					#video_gallery
+						- each v, key in videos
+							.small_video_block
+								.small_video_content.border_boxed
+									.small_video_clicker(data-id=v.id)
+										.image(style="background: url('http://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg') center center / 320px 240px;")
+										.text.adorable_table.border_boxed
+											.adorable_cell
+												.title #{v.title}
+												.date date
+				
+				.arrow_left
+				.arrow_right
 		
 		include ../../helpers/user/join_tour_full/join_tour_full
 
