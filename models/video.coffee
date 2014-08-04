@@ -2,6 +2,8 @@ mongoose = require 'mongoose'
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
 
+Time = require '../utils/time'
+
 schema = new mongoose.Schema 
 	id:
 		type: String
@@ -13,6 +15,7 @@ schema = new mongoose.Schema
 	published:
 		type: Date
 		required: true
+		get: Time.getDate
 ,
 	collection: 'video'
 

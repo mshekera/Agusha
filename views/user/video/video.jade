@@ -14,8 +14,9 @@ block append content
 			
 			.video_container.video_inside
 				- each v, key in videos
-					.video_block.video_selector(class = v.id + (key == 0 ? ' active' : ''), data-id=v.id)
-						object(frameborder="0", width="100%", height="100%", data="http://youtube.com/embed/" + v.id, wmode="transparent", allowscriptaccess="always", allowfullscreen="true")
+					- if (key == 0)
+						.video_block.video_selector(class = v.id + (key == 0 ? ' active' : ''))
+							object(frameborder="0", width="100%", height="100%", data="http://youtube.com/embed/" + v.id, wmode="transparent", allowscriptaccess="always", allowfullscreen="true")
 			
 			.video_social.video_inside
 				.adorable_table
@@ -56,7 +57,8 @@ block append content
 										.text.adorable_table.border_boxed
 											.adorable_cell
 												.title #{v.title}
-												.date date
+												- var date = moment(v.published, 'DD/MM/YYYY')
+												.date #{date.format('ll')}
 				
 				.arrow_left
 				.arrow_right

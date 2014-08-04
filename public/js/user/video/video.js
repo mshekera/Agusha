@@ -42,6 +42,8 @@ var Video_controller = can.Control.extend(
 		},
 		
 		change_video: function() {
+			this.check_video();
+			
 			this.video_blocks = this.video_selectors.filter('.video_block');
 			var	player_to_stop = this.video_blocks.filter('.active');
 			
@@ -51,6 +53,27 @@ var Video_controller = can.Control.extend(
 			this.video_selectors = this.element.find('.video_selector');
 			this.video_selectors.removeClass(this.classname);
 			this.video_selectors.filter('.' + this.video).addClass(this.classname);
+		},
+		
+		check_video: function() {
+			var block = this.video_container.find('.' + this.video);
+			if(!block.length) {
+				var new_block = $('<div/>', {
+						'class': 'video_block video_selector ' + this.video
+					}),
+					player = $('<object/>', {
+						width: '100%',
+						height: '100%',
+						allowfullscreen: 'true',
+						allowscriptaccess: 'always',
+						wmode: 'transparent',
+						frameborder: 0
+					});
+				
+				new_block.appendTo(this.video_container);
+				player.appendTo(new_block);
+				player.attr('data', 'http://youtube.com/embed/' + this.video)
+			}
 		},
 		
 		'.arrow_left click': function() {

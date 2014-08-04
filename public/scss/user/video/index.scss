@@ -129,6 +129,7 @@
 .more_videos_container {
 	height: 272px;
 	position: relative;
+	margin-bottom: 20px;
 	
 	.arrow_left, .arrow_right {
 		@include absolute_centered;
@@ -170,7 +171,6 @@
 
 .more_videos {
 	height: 100%;
-	margin-bottom: 20px;
 	overflow: hidden;
 	position: relative;
 }
