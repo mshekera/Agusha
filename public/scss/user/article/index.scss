@@ -195,7 +195,7 @@
 		background: $white;
 		position: relative;
 		
-		.adorable_cell {
+		&> .adorable > .adorable_table > .adorable_cell {
 			padding: 10px;
 		}
 		
@@ -218,6 +218,7 @@
 		.label {
 			font-size: 33px;
 			line-height: 33px;
+			padding: 0;
 		}
 		
 		&:hover {

@@ -300,11 +300,17 @@ var Tour_controller = can.Control.extend(
 			var	validation = {rules: {}, messages: {}},
 				rule,
 				child_items = $('.child_block'),
-				i;
+				i,
+				required_message = 'Это обязательное поле';
 			
 			rule = 'firstname';
 			validation.rules[rule] = {
 				required: true,
+				minlength: 3,
+				maxlength: 64
+			};
+			validation.messages[rule] = {
+				required: required_message,
 				minlength: 3,
 				maxlength: 64
 			};
