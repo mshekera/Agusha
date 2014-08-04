@@ -50,6 +50,10 @@
 		
 		&~ button {
 			color: $blue;
+			
+			&:active {
+				color: rgba(62, 180, 234, 0.5);
+			}
 		}
 	}
 	

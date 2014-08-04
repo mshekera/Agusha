@@ -522,6 +522,10 @@ $closest_color: #0d5c92;
 	
 	button {
 		color: $red;
+		
+		&:active {
+			color: rgba(255, 148, 134, 0.5);
+		}
 	}
 }
 

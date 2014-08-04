@@ -35,5 +35,9 @@
 		background: $white;
 		color: $darkgreen;
 		font-weight: bold;
+		
+		&:active {
+			color: rgba(100, 203, 129, 0.5);
+		}
 	}
 }
