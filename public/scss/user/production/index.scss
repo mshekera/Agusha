@@ -45,14 +45,35 @@
 	z-index: 1;
 	
 	.half {
-		background: $el_bg;
+		background: $el_bg url("/img/user/button_arrows.png") no-repeat;
 		color: #cccccc;
 		font-size: 20px;
 		font-weight: bold;
 		cursor: pointer;
 		
+		&.left {
+			background-position: -50px -50px;
+			
+			&:hover, &:active {
+				background-position: 0 0;
+			}
+		}
+		
+		&.right {
+			background-position: -50px 0;
+			
+			&:hover, &:active {
+				background-position: 0 -50px;
+			}
+		}
+		
 		&:hover {
-			background: $darkblue;
+			background-color: $darkblue;
+			color: $white;
+		}
+		
+		&:active {
+			background-color: #3d9ccc;
 			color: $white;
 		}
 	}

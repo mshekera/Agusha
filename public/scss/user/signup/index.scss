@@ -61,6 +61,10 @@
 		
 		.middle_button {
 			font-size: 100%;
+			
+			&:active {
+				color: rgba(100, 203, 129, 0.5);
+			}
 		}
 	}
 }

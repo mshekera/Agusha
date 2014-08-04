@@ -58,3 +58,11 @@
 		cursor: pointer;
 	}
 }
+
+#invite_form {
+	button {
+		&:active {
+			color: rgba(100, 203, 129, 0.5);
+		}
+	}
+}
