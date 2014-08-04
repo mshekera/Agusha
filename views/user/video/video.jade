@@ -9,14 +9,13 @@ block append content
 		
 		.white
 			.pentagon
-				.adorable_table
-					.adorable_cell
-						.title_container
-							.label.novito_nova.active(class=videos[0].id) #{videos[0].title}
+				- each v, key in videos
+					.video_title.label.novito_nova(class = v.id + (key == 0 ? ' active' : '')) #{v.title}
 			
 			.video_container.video_inside
-				.video_block.active(class=videos[0].id)
-					object(frameborder="0", width="100%", height="100%", data="http://youtube.com/embed/" + videos[0].id, wmode="transparent", allowscriptaccess="always", allowfullscreen="true")
+				- each v, key in videos
+					.video_block(class = v.id + (key == 0 ? ' active' : ''), data-id=v.id)
+						object(frameborder="0", width="100%", height="100%", data="http://youtube.com/embed/" + v.id, wmode="transparent", allowscriptaccess="always", allowfullscreen="true")
 			
 			.video_social.video_inside
 				.adorable_table
@@ -49,7 +48,12 @@ block append content
 					- each v, key in videos
 						.small_video_block
 							.small_video_content.border_boxed
-								img.image(src = 'http://i.ytimg.com/vi/' + v.id + '/0.jpg')
+								.small_video_clicker(data-id=v.id)
+									.image(style="background: url('http://i.ytimg.com/vi/" + v.id + "/mqdefault.jpg') center;")
+									.text.adorable_table.border_boxed
+										.adorable_cell
+											.title #{v.title}
+											.date date
 		
 		include ../../helpers/user/join_tour_full/join_tour_full
 

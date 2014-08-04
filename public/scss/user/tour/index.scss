@@ -652,6 +652,14 @@ $closest_color: #0d5c92;
 		height: 100%;
 		width: 100%;
 	}
+	
+	.slick-slide {
+		opacity: $opacity-not-active;
+	}
+	
+	:not(.slick-active) + .slick-active + .slick-active {
+		opacity: 1;
+	}
 }
 
 .tour_footer {
