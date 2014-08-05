@@ -13,7 +13,11 @@
 		height: 469px;
 		
 		&> div {
-			left: 1280px;
+			background: $darkblue;
+			
+			&:first-child {
+				z-index: 1;
+			}
 		}
 	}
 }
