@@ -14,7 +14,7 @@ exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'signup'
 	
-	View.renderWithSession req, res, 'user/signup/signup', data
+	View.renderWithSession req, res, 'user/signup/signup', data, req.path
 
 exports.register = (req, res) ->
 	data = {}
@@ -103,7 +103,7 @@ exports.success = (req, res) ->
 			data.messageLabel = 'Спасибо за регистрацию!'
 			data.message = 'В ближашее время на ваш e-mail придет письмо<br />с подтверждением.'
 	
-	View.renderWithSession req, res, 'user/signup/success/success', data
+	View.renderWithSession req, res, 'user/signup/success/success', data, req.path
 
 exports.activate = (req, res) ->
 	id = new Buffer(req.params.salt, 'base64').toString 'utf8'

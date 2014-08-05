@@ -62,7 +62,7 @@ configure = () ->
 	
 	@use multer {dest: './public/img/uploads/'}
 	
-	# @use Cache.requestCache
+	@use Cache.requestCache
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams

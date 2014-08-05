@@ -10,4 +10,4 @@ data =
 	feeding_up: feeding_up
 
 exports.index = (req, res) ->
-	View.render 'user/feeding_up/feeding_up', res, data
+	View.render 'user/feeding_up/feeding_up', res, data, req.path

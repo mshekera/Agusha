@@ -9,4 +9,4 @@ data =
 	breadcrumbs: tree.findWithParents breadcrumbs, 'production'
 
 exports.index = (req, res) ->
-	View.render 'user/production/production', res, data
+	View.render 'user/production/production', res, data, req.path
