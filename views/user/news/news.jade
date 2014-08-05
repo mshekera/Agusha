@@ -4,8 +4,8 @@ block append header
 	link(rel="stylesheet" href="/css/user/news/news.css")
 
 mixin article(a)
-	.article_block.white.force_height
-		.article_header(class=(a ? 'type_' + a.type : 'type_{{type}}'))
+	.article_block.white.force_height(class = (a ? 'type_' + a.type : 'type_{{type}}'))
+		.article_header(class = (a ? 'type_' + a.type : 'type_{{type}}'))
 			.article_date.inline_adorable_container
 				.adorable
 					.adorable_table
@@ -26,10 +26,14 @@ mixin article(a)
 		
 		if a
 			if a.desc_image.length
-				img.image(src = '/img/uploads/' + a.desc_image[0])
+				.desc_images
+					img.image(src = '/img/uploads/' + a.desc_image[0])
 		else
 			| {{#if desc_image.length}}
-			img.image(src="/img/uploads/{{desc_image.0}}")
+			.desc_images
+				| {{#each desc_image}}
+				img.image(src="/img/uploads/{{.}}")
+				| {{/each}}
 			| {{/if}}
 		
 		.text
