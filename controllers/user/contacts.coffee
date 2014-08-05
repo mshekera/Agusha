@@ -12,4 +12,4 @@ exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'contacts'
 	
-	View.render 'user/contacts/contacts', res, data
+	View.render 'user/contacts/contacts', res, data, req.path

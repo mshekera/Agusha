@@ -33,7 +33,7 @@ exports.index = (req, res) ->
 			Model 'Product', 'find', next, findOptions, {}, sortOptions
 		(docs) ->
 			data.mainPageProducts = docs
-			View.render 'user/index', res, data
+			View.render 'user/index', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/main/index: #{error}"

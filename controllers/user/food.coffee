@@ -24,7 +24,7 @@ exports.index = (req, res) ->
 			data.articles = results.articles
 			data.specialist = results.specialist
 			
-			View.render 'user/food/food', res, data
+			View.render 'user/food/food', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/food/index: #{error}"

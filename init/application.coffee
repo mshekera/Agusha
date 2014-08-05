@@ -42,7 +42,6 @@ routes = () ->
 	@use '/', user_controller.Router
 	@use '/admin', admin_controller.Router
 	@use (err, req, res, next) ->
-		console.log err.message || err
 		res.send 500, 'Something broke!'
 
 configure = () ->

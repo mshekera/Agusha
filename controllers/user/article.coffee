@@ -29,7 +29,7 @@ exports.index = (req, res) ->
 				parent_id: 'food'
 				title: data.article.desc_title
 			
-			View.render 'user/article/article', res, data
+			View.render 'user/article/article', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/article/index: #{error}"
@@ -54,7 +54,7 @@ exports.specialist = (req, res) ->
 				parent_id: 'food'
 				title: data.article.desc_title
 			
-			View.render 'user/article/article', res, data
+			View.render 'user/article/article', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/article/specialist: #{error}"

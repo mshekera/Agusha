@@ -21,7 +21,7 @@ exports.index = (req, res) ->
 			
 			data.articles = docs
 			
-			View.render 'user/news/news', res, data
+			View.render 'user/news/news', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/news/index: #{error}"

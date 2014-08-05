@@ -20,7 +20,7 @@ exports.index = (req, res) ->
 		(videos) ->
 			data.videos = videos
 			
-			View.render 'user/video/video', res, data
+			View.render 'user/video/video', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/video/index: #{error}"
