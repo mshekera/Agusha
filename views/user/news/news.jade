@@ -4,7 +4,7 @@ block append header
 	link(rel="stylesheet" href="/css/user/news/news.css")
 
 mixin article(a)
-	.article_block.white.force_height(class = (a ? 'type_' + a.type : 'type_{{type}}'))
+	.article_block.white.force_height(class = (a ? 'type_' + a.type : 'type_{{type}}'), id = (a ? 'type_' + a.type : 'type_{{type}}'))
 		.article_header
 			.article_date.inline_adorable_container
 				.adorable

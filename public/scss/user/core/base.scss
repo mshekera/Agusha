@@ -221,6 +221,12 @@ ol, ul {
 		.adorable_cell {
 			padding: 0 0 5px;
 		}
+		
+		&:hover {
+			a {
+				text-decoration: underline;
+			}
+		}
 	}
 	
 	#marker {
