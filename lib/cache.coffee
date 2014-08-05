@@ -20,6 +20,12 @@ exports.list = list = [
 		prefixKey: '' 
 	}
 	{ 
+		segment: '/products', 
+		name: 'Продукты', 
+		prefix: 'products_', 
+		prefixKey: 'products' 
+	}
+	{ 
 		segment: '/production', 
 		name: 'Каталог', 
 		prefix: 'production_', 
