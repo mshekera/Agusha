@@ -65,6 +65,7 @@
 			padding: 0 37px;
 			margin-top: 7px;
 			color: $dark;
+			letter-spacing: 0.6px;
 		}
 		
 		.warning {
@@ -153,6 +154,8 @@
 	.text {
 		padding: 30px 30px 0 30px;
 		color: #4d4d4d;
+		line-height: 25px;
+		letter-spacing: -0.1px;
 		
 		&.active {
 			.desc_text {
