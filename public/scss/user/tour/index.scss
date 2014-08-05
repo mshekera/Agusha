@@ -398,9 +398,13 @@ $closest_color: #0d5c92;
 	
 	label {
 		&.error {
-			color: red;
+			display: block;
+			height: 0;
+			line-height: 0;
 			position: relative;
-			top: -25px;
+			top: -100px;
+			font-size: 12px;
+			font-style: italic;
 		}
 	}
 }
