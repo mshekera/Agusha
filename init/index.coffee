@@ -5,6 +5,7 @@ moment = require 'moment'
 
 Database = require './database'
 Logger = require '../lib/logger'
+Image = require '../lib/image'
 Migrate = require './migrate'
 Application = require './application'
 Notifier = require '../lib/notifier'
@@ -31,6 +32,10 @@ async.waterfall [
 		Migrate.init next
 	(next) ->
 		Logger.log 'info', 'Migrate is initializated'
+
+		Image.checkDirectories next
+	(next) ->
+		Logger.log 'info', 'Image directories are checked'
 		
 		Application.init next
 	(next) ->
