@@ -75,22 +75,22 @@ exports.clientFail = (err, res)->
 
 
 exports.globals = (req, res, callback)->
-	async.waterfall [
-		(next)->
-			if not global.menuArticles
-				cbArticles = (err, docs)->
-					if err
-						return Logger.warn err
+	# async.waterfall [
+		# (next)->
+			# if not global.menuArticles
+				# cbArticles = (err, docs)->
+					# if err
+						# return Logger.warn err
 
-					global.menuArticles = docs
+					# global.menuArticles = docs
 
-					next()
+					# next()
 
-				return Model 'Article', 'find', cbArticles, type: 2, 'desc_title'
-			next()
-		(next)->
-			res.locals.topper_menu =
-				food: global.menuArticles || menuArticles
+				# return Model 'Article', 'find', cbArticles, type: 2, 'desc_title'
+			# next()
+		# (next)->
+			# res.locals.topper_menu =
+				# food: global.menuArticles || menuArticles
 			
 			res.locals.defLang = 'ru'
 			res.locals.lang = req.lang
@@ -111,9 +111,9 @@ exports.globals = (req, res, callback)->
 				str.replace /<\/?[^>]+>/g, ' '
 			
 			callback()
-	], (err)->
-		Logger.warn err
-		callback()
+	# ], (err)->
+		# Logger.warn err
+		# callback()
 
 exports.ajaxResponse = (res, err, data) ->
 	data =
