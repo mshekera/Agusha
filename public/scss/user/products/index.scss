@@ -357,7 +357,7 @@
 	}
 	
 	&:hover {
-		@include box_shadow(0 0 0 0.5em $blue);
+		@include box_shadow(0 0 0 10px $darkblue);
 		
 		.image {
 			top: 80px;
@@ -376,6 +376,10 @@
 		
 		.desc {
 			display: none;
+		}
+		
+		.info {
+			background: $white;
 		}
 	}
 }
