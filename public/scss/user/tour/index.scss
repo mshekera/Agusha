@@ -395,18 +395,6 @@ $closest_color: #0d5c92;
 	.left {
 		clear: both;
 	}
-	
-	label {
-		&.error {
-			display: block;
-			height: 0;
-			line-height: 0;
-			position: relative;
-			top: -100px;
-			font-size: 12px;
-			font-style: italic;
-		}
-	}
 }
 
 .children_inputs {
