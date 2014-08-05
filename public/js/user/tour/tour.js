@@ -23,6 +23,8 @@ var Tour_controller = can.Control.extend(
 			
 			this.tour_key = 0;
 			this.tours = tours;
+			
+			this.check_arrows();
 
 			this.preformat_tours();
 			
@@ -39,7 +41,6 @@ var Tour_controller = can.Control.extend(
 			$('#form_topper_date').html(can.view("#topper_date_tmpl", this.data));
 			
 			this.init_plugins();
-			this.change_tour();
 		},
 		
 		preformat_tours: function() {
@@ -260,22 +261,26 @@ var Tour_controller = can.Control.extend(
 			this.change_tour();
 		},
 		
-		change_tour: function() {
-			var	tour = this.tours[this.tour_key],
-				closest_block_inside = $('#closest_block_inside'),
-				classname = 'inactive';
-			
+		check_arrows: function() {
+			var classname = 'inactive';
 			if(this.tour_key == 0) {
 				this.element.find('.prev_tour').addClass(classname);
 			} else {
 				this.element.find('.prev_tour').removeClass(classname);
 			}
 			
-			if(this.tour_key = this.tours.length - 1) {
+			if(this.tour_key == this.tours.length - 1) {
 				this.element.find('.next_tour').addClass(classname);
 			} else {
 				this.element.find('.next_tour').removeClass(classname);
 			}
+		},
+		
+		change_tour: function() {
+			var	tour = this.tours[this.tour_key],
+				closest_block_inside = $('#closest_block_inside');
+			
+			this.check_arrows();
 			
 			if(!tour) {
 				return;
@@ -325,8 +330,8 @@ var Tour_controller = can.Control.extend(
 			rule = 'firstname';
 			validation.rules[rule] = {
 				required: true,
-				minlength: 'Минимальное количество символов - 3',
-				maxlength: 'Минимальное количество символов - 64'
+				minlength: 3,
+				maxlength: 64
 			};
 			validation.messages[rule] = {
 				required: required_message,
@@ -351,8 +356,8 @@ var Tour_controller = can.Control.extend(
 			rule = 'lastname';
 			validation.rules[rule] = {
 				required: true,
-				minlength: 'Минимальное количество символов - 3',
-				maxlength: 'Минимальное количество символов - 64'
+				minlength: 3,
+				maxlength: 64
 			};
 			validation.messages[rule] = {
 				required: required_message,
