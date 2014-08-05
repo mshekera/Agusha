@@ -9,14 +9,15 @@ block append content
 		
 		#product_container
 			.product_left.border_boxed
-				.label.novito_nova #{product.title}
-				.text !{product.text}
-				.text_label Состав:
-				.text #{product.composition}
-				.text_label Условия хранения:
-				.text #{product.storage_conditions}
-				.text_label Рекомендации к употреблению:
-				.text #{product.recommended}
+				.product_content
+					.label.novito_nova #{product.title}
+					.text !{product.text}
+					.text_label Состав:
+					.text #{product.composition}
+					.text_label Условия хранения:
+					.text #{product.storage_conditions}
+					.text_label Рекомендации к употреблению:
+					.text #{product.recommended}
 				if product.certificate
 					.certificates_container
 						- each c, key in product.certificate
