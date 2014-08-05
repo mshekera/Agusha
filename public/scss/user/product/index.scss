@@ -23,6 +23,8 @@
 		margin-bottom: 20px;
 		padding: 0;
 		color: $darkblue;
+		letter-spacing: -0.5px;
+		line-height: 50px;
 	}
 	
 	.text_label {
@@ -69,6 +71,7 @@
 		button {
 			font-size: 100%;
 			font-weight: bold;
+			padding: 10px 20px;
 		}
 	}
 }

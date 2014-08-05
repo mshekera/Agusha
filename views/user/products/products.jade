@@ -41,14 +41,14 @@ mixin product(p)
 							.top=(p ? p.age.title : '{{age.title}}')
 							if p
 								if p.age.level < 12
-									- var age = 'мес.'
+									- var age = 'месяцев'
 								else
 									- var age = 'лет'
 								.bottom #{age}
 							else
 								.bottom
 									| {{#ageLevel}}
-									| мес.
+									| месяцев
 									| {{else}}
 									| лет
 									| {{/ageLevel}}
