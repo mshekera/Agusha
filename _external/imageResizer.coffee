@@ -62,6 +62,6 @@ resizeImageTo = (filename, width, callback) ->
 			else
 				console.log "Saved resized file to #{filepath}..."
 
-			callback err, true
+			callback null, true
 
 init()
