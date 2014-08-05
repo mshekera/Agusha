@@ -69,6 +69,14 @@ exports.save = (req, res) ->
 			else
 				Model 'Article', 'create', next, data
 		(doc, next) ->
+			cbArticles = (err, docs)->
+				if err
+					return console.log 'error', err
+
+				global.menuArticles = docs
+
+			Model 'Article', 'findOne', cbArticles, {_id}
+
 			if not doc
 				return next "Произошла неизвестная ошибка."
 

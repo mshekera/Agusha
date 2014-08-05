@@ -16,7 +16,6 @@ exports.render = render = (name, res, data, cacheId) ->
 
 			Cache.put name, data, cacheId, res.locals, next
 		(next) -> # view
-			console.log name
 			res.render name, data
 			next()
 	], (err, results)->
@@ -71,15 +70,27 @@ exports.clientFail = (err, res)->
 		success: false
 		message: err
 
-	res.send data	
+	res.send data
+
+
 
 exports.globals = (req, res, callback)->
 	async.waterfall [
-		(next) ->
-			Model 'Article', 'find', next, type: 2, 'desc_title'
-		(docs) ->
+		(next)->
+			if not global.menuArticles
+				cbArticles = (err, docs)->
+					if err
+						return Logger.warn err
+
+					global.menuArticles = docs
+
+					next()
+
+				return Model 'Article', 'find', cbArticles, type: 2, 'desc_title'
+			next()
+		(next)->
 			res.locals.topper_menu =
-				food: docs
+				food: global.menuArticles || menuArticles
 			
 			res.locals.defLang = 'ru'
 			res.locals.lang = req.lang
@@ -100,9 +111,9 @@ exports.globals = (req, res, callback)->
 				str.replace /<\/?[^>]+>/g, ' '
 			
 			callback()
-	], (err) ->
-		error = err.message or err
-		Logger.log 'info', "Error in lib/view/globals: #{error}"
+	], (err)->
+		Logger.warn err
+		callback()
 
 exports.ajaxResponse = (res, err, data) ->
 	data =
