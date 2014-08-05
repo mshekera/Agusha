@@ -7,6 +7,11 @@
 	> div {
 		@include transform(none !important);
 	}
+	
+	.slides {
+		width: 1280px;
+		height: 469px;
+	}
 }
 
 .slider {
