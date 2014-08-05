@@ -13,9 +13,10 @@
 				.label.novito_nova.white_font !{msg}
 				
 				- var msg = err || message
-				.top_label.non_uppercase.dark_font !{msg}
+				.top_label.non_uppercase.dark_font !{JSON.stringify(msg)}
 				
-				.top_label.white_font Ждем вас в гости!
+				- if (!err)
+					.top_label.white_font Ждем вас в гости!
 		
 		- var bottomClass = 'message_bottom adorable_table'
 		
