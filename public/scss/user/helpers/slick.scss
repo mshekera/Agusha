@@ -87,7 +87,6 @@ $opacity-not-active: .22;
 	float: left;
 	height: 100%;
 	min-height: 1px;
-	opacity: $opacity-not-active;
 	
 	img {
 		display: block;
@@ -254,8 +253,4 @@ $opacity-not-active: .22;
 			opacity: $opacity-default;
 		}
 	}
-}
-
-:not(.slick-active) + .slick-active + .slick-active {
-	opacity: 1;
 }

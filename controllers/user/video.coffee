@@ -15,7 +15,8 @@ exports.index = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Youtube.getChannelVideos 'agushaukraine', next
+			Model 'Video', 'find', next
+			# Youtube.getChannelVideos 'agushaukraine', next
 		(videos) ->
 			data.videos = videos
 			

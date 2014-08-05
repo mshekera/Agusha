@@ -27,7 +27,6 @@ var window_resize = function() {
 			dropdown_width = dropdown.width();
 		
 		var offset = ((dropdown_width - span_width) / 2) | 0;
-		console.log(offset);
 	}
 }
 
