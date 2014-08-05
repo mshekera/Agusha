@@ -1,7 +1,6 @@
 extends ../layout
 
 block append header
-	//- link(href="/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css")
 	link(href="/css/froala/font-awesome.min.css" rel="stylesheet" type="text/css")
 	link(href="/css/froala/froala_editor.min.css" rel="stylesheet" type="text/css")
 	style.
@@ -30,7 +29,6 @@ block append header
 		}
 
 block append scripts
-	script(src="/js/plugins/underscore/underscore-min.js")
 	script(src="/js/froala/froala_editor.min.js")
 	script(src="/js/froala/plugins/fonts/font_size.min.js")
 	script(src="/js/froala/plugins/fonts/font_family.min.js")
@@ -39,6 +37,22 @@ block append scripts
 	
 	script.
 		(function($) {
+			$(".t-removeImage").on('click', function(ev){
+				ev.preventDefault();
+
+				self = $(this);
+				$.get(self.attr('href'), function(data){
+					if(data === true) {
+						self.parent().remove();
+					} else {
+						var msg = data === false
+							? "Произошла ошибка при удалении изображения." 
+							: data;
+						alert(msg);
+					}
+				});
+			});
+
 			var options = {
 				inlineMode: false,
 				buttons: [
