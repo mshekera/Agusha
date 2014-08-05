@@ -20,7 +20,7 @@ Auth = require '../lib/auth'
 Cache = require '../lib/cache'
 View = require '../lib/view'
 Admin = require '../lib/admin'
-Image = require '../utils/image'
+Image = require '../lib/image'
 
 admin_controller = require '../controllers/admin'
 user_controller = require '../controllers/user'

@@ -7,6 +7,7 @@ path = require 'path'
 View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
+Image = require '../../lib/image'
 
 exports.index = (req, res) ->
 	async.waterfall [
@@ -96,8 +97,7 @@ exports.deleteImage = (req, res) ->
 		(next) ->
 			Model 'Article', 'findOne', next, {_id}
 		(doc, next) ->
-			imgPath = path.join "#{__dirname}", "../../public/img/uploads/#{img}"
-			fs.unlink imgPath, (err) ->
+			Image.doRemoveImage img, (err) ->
 				next err, doc
 		(doc, next) ->
 			images = doc.desc_image
@@ -106,10 +106,8 @@ exports.deleteImage = (req, res) ->
 
 			doc.save next
 		() ->
-			#View.message true, 'Изображение удалено!', res
 			res.send true
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/news/remove: %s #{err.message or err}"
 		msg = "Произошла ошибка при удалении: #{err.message or err}"
-		#View.message false, msg, res
 		res.send msg
