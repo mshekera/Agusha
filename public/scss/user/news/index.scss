@@ -17,7 +17,7 @@
 }
 
 .type_block {
-	margin: 0 25px;
+	margin: 0 5px;
 	display: inline-block;
 	vertical-align: top;
 	height: 100%;
@@ -27,7 +27,7 @@
 .choose_type {
 	cursor: pointer;
     font-size: 112.5%;
-    padding: 5px 15px;
+    padding: 5px 33px;
 	
 	&:hover {
 		@include inset_box_shadow(0 0 0 1px #666666);
@@ -35,8 +35,20 @@
 	
 	&.active {
 		@include inset_box_shadow(0 0 0 0 transparent);
-		background-color: $darkgreen;
-		color: white;
+		
+		&.all {
+			@include inset_box_shadow(0 0 0 1px #666666);
+		}
+		
+		&.actions {
+			background-color: $darkgreen;
+			color: white;
+		}
+		
+		&.news {
+			background-color: $darkyellow;
+			color: white;
+		}
 	}
 }
 

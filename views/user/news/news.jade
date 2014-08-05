@@ -103,17 +103,17 @@ block append content
 			.type_block
 				.adorable_table
 					.adorable_cell
-						span.choose_type.rounded(class=(params.type ? '' : 'active')) Все
+						span.choose_type.all.rounded(class=(params.type ? '' : 'active')) Все
 			
 			.type_block
 				.adorable_table
 					.adorable_cell
-						span.choose_type.rounded(data-type='0', class=(params.category == 0 ? 'active' : '')) Новости
+						span.choose_type.news.rounded(data-type='0', class=(params.category == 0 ? 'active' : '')) Новости
 			
 			.type_block
 				.adorable_table
 					.adorable_cell
-						span.choose_type.rounded(data-type='1', class=(params.category == 1 ? 'active' : '')) Акции
+						span.choose_type.actions.rounded(data-type='1', class=(params.category == 1 ? 'active' : '')) Акции
 		
 		#articles_container
 			.articles_left
