@@ -1,8 +1,4 @@
-async = require 'async'
-
 View = require '../../lib/view'
-Model = require '../../lib/model'
-Logger = require '../../lib/logger'
 
 tree = require '../../utils/tree'
 
