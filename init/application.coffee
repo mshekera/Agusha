@@ -41,7 +41,6 @@ routes = () ->
 	@use '/', user_controller.Router
 	@use '/admin', admin_controller.Router
 	@use (err, req, res, next) ->
-		console.log err.message || err
 		res.send 500, 'Something broke!'
 
 configure = () ->
@@ -63,7 +62,7 @@ configure = () ->
 	
 	@use multer {dest: './public/img/uploads/'}
 	
-	@use Cache.requestCache
+	# @use Cache.requestCache
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams
