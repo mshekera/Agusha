@@ -299,6 +299,11 @@ var Tour_controller = can.Control.extend(
 			this.age_inputmask();
 		},
 		
+		'.want_signup .text click': function(el) {
+			var checkbox = $('#want_signup_checkbox');
+			checkbox.prop('checked', !checkbox.prop('checked'));
+		},
+		
 		'#tour_form submit': function(el, ev) {
 			var form = $(el);
 			this.tour_validate(form);
