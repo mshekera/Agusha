@@ -167,6 +167,12 @@
 				.adorable_table {
 					line-height: 0;
 				}
+				
+				&:hover {
+					.hover_image {
+						display: block;
+					}
+				}
 			}
 			
 			.right {
@@ -178,11 +184,18 @@
 			}
 			
 			.image {
+				@include absolute_centered;
 				width: 80%;
+				z-index: 1;
 				
 				&:hover {
 					width: 90%;
 				}
+			}
+			
+			.hover_image {
+				display: none;
+				z-index: 2;
 			}
 		}
 		

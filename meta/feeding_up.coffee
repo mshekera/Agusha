@@ -2,6 +2,7 @@ module.exports =
 	natural: [
 		product: 'Соки'
 		image: '/img/user/feeding_up/juices.jpg'
+		hoverImage: '/img/user/feeding_up/juices_hover.jpg'
 		term: 'c 6<br>месяцев'
 		'6m': '30-50<br>мл'
 		'7m': '50-70<br>мл'
@@ -13,6 +14,7 @@ module.exports =
 	,
 		product: 'Фруктовое<br>пюре'
 		image: '/img/user/feeding_up/sauce.jpg'
+		hoverImage: '/img/user/feeding_up/sauce_hover.jpg'
 		term: 'c 6<br>месяцев'
 		'6m': '40-50<br>мл'
 		'7m': '50-70<br>мл'
@@ -57,6 +59,7 @@ module.exports =
 	,
 		product: 'Кисломолочные<br>продукты'
 		image: '/img/user/feeding_up/dairy_products.jpg'
+		hoverImage: '/img/user/feeding_up/dairy_products_hover.jpg'
 		term: '8-9<br>месяц'
 		'6m': ''
 		'7m': ''
@@ -68,6 +71,7 @@ module.exports =
 	,
 		product: 'Творог'
 		image: '/img/user/feeding_up/curd.jpg'
+		hoverImage: '/img/user/feeding_up/curd_hover.jpg'
 		term: '6,5-7,5<br>месяц'
 		'6m': '5-25<br>грамм'
 		'7m': '10-30<br>грамм'
