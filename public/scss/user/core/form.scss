@@ -45,6 +45,7 @@ input {
 	text-transform: uppercase;
 	margin: 0 0 30px;
 	font-size: 100%;
+	outline-style: none;
 	
 	&:focus {
 		@include inset_box_shadow(0 0 0 3px $yellow);

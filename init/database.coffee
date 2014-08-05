@@ -2,7 +2,7 @@ mongoose = require 'mongoose'
 async = require 'async'
 
 opts =
-	server: { auto_reconnect: true, primary:null, poolSize: 50 },
+	server: { auto_reconnect: true, primary:null, poolSize: 500 },
 	user: 'admin',
 	pass: 'jHn42K2p1mK',
 	host: 'localhost'

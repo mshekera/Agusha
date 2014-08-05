@@ -317,6 +317,14 @@ var Tour_controller = can.Control.extend(
 			checkbox.prop('checked', !checkbox.prop('checked'));
 		},
 		
+		'#city_select2 change': function(el) {
+			console.log(1)
+			var form = $('#tour_form');
+			
+			this.tour_validate(form);
+			form.valid();
+		},
+		
 		'#tour_form submit': function(el, ev) {
 			var form = $(el);
 			this.tour_validate(form);
@@ -329,6 +337,7 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		tour_validate: function(form) {
+			console.log(2)
 			var	validation = {rules: {}, messages: {}},
 				rule,
 				child_items = $('.child_block'),
