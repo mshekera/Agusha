@@ -9,13 +9,13 @@ mixin product(p)
 			.image
 				if p
 					if p.image
-						- var src = '/img/uploads/' + p.image
+						- var src = '/img/uploads/x200/' + p.image
 					else
 						- var src = '/img/no_photo.png'
 					img(src=src)
 				else
 					| {{#if image}}
-					img(src="/img/uploads/{{image}}")
+					img(src="/img/uploads/x200/{{image}}")
 					| {{else}}
 					img(src="/img/no_photo.png")
 					| {{/if}}
