@@ -15,7 +15,6 @@ passport.serializeUser (user, done) ->
 	done null, user.id
 
 passport.deserializeUser (id, done) ->
-
 	async.waterfall [
 		(next)->
 			Model 'User', 'findOne', next, {_id : id}

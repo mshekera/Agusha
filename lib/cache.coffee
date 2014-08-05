@@ -15,7 +15,7 @@ _ = require 'underscore'
 exports.list = list = [
 	{ 
 		segment: '/', 
-		name: 'Главная страница', 
+		name: 'Главная', 
 		prefix: 'main_', 
 		prefixKey: '' 
 	}
@@ -43,6 +43,12 @@ exports.list = list = [
 		prefix: 'contacts_', 
 		prefixKey: 'contacts' 
 	}
+	{
+		segment: '/feeding_up'
+		name: 'Про питание'
+		prefix: 'feedengup_'
+		prefixKey: 'feeding_up'
+	}
 ]
 
 
@@ -57,7 +63,7 @@ cacheDirectory = "#{__dirname}/../cache"
 # 	Directory of views
 # ###
 
-viewDirectory = "#{__dirname}/../view"
+viewDirectory = "#{__dirname}/../views"
 
 
 # ###
@@ -107,10 +113,7 @@ exports.cacheSize = (cacheOptions, callback)->
 existSegment = (path)->
 	segments = path.split('/')
 
-	if segments[1].length < 6
-		segmentPrefix = segments[2] || segments[0]
-	else
-		segmentPrefix = segments[0]
+	segmentPrefix = segments[1] || segments[0]
 
 	segmentList = _.pluck list, 'prefixKey'
 
@@ -171,10 +174,7 @@ cacheOptionsByPath = (path, cb)->
 			if not segments
 				return next new Error 'Fail parse Segments of cache'
 
-			if segments[1].length < 6
-				segmentPrefix = segments[2] || segments[0]
-			else
-				segmentPrefix = segments[0]
+			segmentPrefix = segments[1] || segments[0]
 
 			return next null, segmentPrefix
 		(segmentPrefix, next)->
@@ -213,7 +213,7 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 		(options, next)->
 			data.options = options
 
-			globString = "#{cacheDirectory}/#{options.prefix}#{lang}_#{cacheRegExp}_*"
+			globString = "#{cacheDirectory}/#{options.prefix}_#{cacheRegExp}_*"
 
 			glob globString, next
 		(files, next) ->
@@ -225,7 +225,7 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 		(html, next)->
 			time = new Date().getTime()
 			filename = "#{cacheDirectory}/"+
-				"#{data.options.prefix}#{lang}_#{cacheRegExp}_#{time}"
+				"#{data.options.prefix}#{cacheRegExp}_#{time}"
 
 			fs.writeFile filename, html, next
 		()->
@@ -257,7 +257,7 @@ exports.requestCache = (req, res, callback)->
 		(options, next)->
 			data.options = options
 
-			globString = "#{cacheDirectory}/#{options.prefix}#{req.lang}_#{cacheRegExp}_*"
+			globString = "#{cacheDirectory}/#{options.prefix}#{cacheRegExp}_*"
 
 			glob globString, next
 		(files, next)->

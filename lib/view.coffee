@@ -16,6 +16,7 @@ exports.render = render = (name, res, data, cacheId) ->
 
 			Cache.put name, data, cacheId, res.locals, next
 		(next) -> # view
+			console.log name
 			res.render name, data
 			next()
 	], (err, results)->
@@ -34,7 +35,7 @@ exports.renderWithSession = (req, res, path, data) ->
 		delete req.session.messageLabel
 		delete req.session.message
 	
-	render path, res, data
+	render path, res, data, req.path
 
 exports.message = message = (success, message, res) ->
 	data = {
