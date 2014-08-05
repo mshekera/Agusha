@@ -301,6 +301,12 @@ $closest_color: #0d5c92;
 		}
 	}
 	
+	.tour_arrow {
+		&.inactive {
+			display: none;
+		}
+	}
+	
 	.prev_tour {
 		@include closest_arrow;
 		left: 26px;
