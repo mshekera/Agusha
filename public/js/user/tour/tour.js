@@ -8,6 +8,14 @@ moment.lang('ru');
 
 var base_url = window.location.protocol + '//' + window.location.host;
 
+$.validator.addMethod('mask',
+    function(value, element, regexp) {
+		var theregex = /_/g;
+        return this.optional(element) || !theregex.test(value);
+    },
+    'Пожалуйста, введите все символы'
+);
+
 var Tour_controller = can.Control.extend(
 	{
 		defaults: {
@@ -379,7 +387,8 @@ var Tour_controller = can.Control.extend(
 			
 			rule = 'phone';
 			validation.rules[rule] = {
-				required: true
+				required: true,
+				mask: true
 			};
 			validation.messages[rule] = {
 				required: required_message
