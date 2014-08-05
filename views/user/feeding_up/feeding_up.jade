@@ -59,7 +59,7 @@ block append content
 						.adorable_table
 							.adorable_cell Таблица введения прикорма
 					
-					.half.right
+					//.half.right
 						.adorable_table
 							.adorable_cell
 								span Тип вскармливания
@@ -80,6 +80,8 @@ block append content
 											.adorable_table
 												.adorable_cell
 													img.image.rounded(src=item.image)
+													- if (item.hoverImage)
+														img.image.hover_image.rounded(src=item.hoverImage)
 										
 										.half.right
 											.adorable_table
@@ -122,7 +124,7 @@ block append content
 				mixin thead(false)
 		
 		.feeding_up_order.adorable_table
-			.adorable_cell Согласно Приказа МОЗ Украины №149 от 20.03.2008 «Про утверждение клинического протокола медицинского ухода за здоровым ребенком  в возрасте до 3 лет»
+			.adorable_cell Согласно Приказа МОЗ Украины №149 от 20.03.2008 «Про утверждение клинического протокола медицинского ухода за здоровым ребенком в возрасте до 3 лет»
 		
 		.feeding_up_notice.white
 			.warning.rounded

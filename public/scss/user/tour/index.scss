@@ -301,6 +301,12 @@ $closest_color: #0d5c92;
 		}
 	}
 	
+	.tour_arrow {
+		&.inactive {
+			display: none;
+		}
+	}
+	
 	.prev_tour {
 		@include closest_arrow;
 		left: 26px;
@@ -513,6 +519,7 @@ $closest_color: #0d5c92;
 		vertical-align: middle;
 		margin-left: 14px;
 		font-size: 112.5%;
+		cursor: pointer;
 	}
 }
 
@@ -668,5 +675,10 @@ $closest_color: #0d5c92;
 	.text {
 		font-style: italic;
 		color: #0d5c92;
+	}
+	
+	a {
+		color: #0d5c92;
+		text-decoration: none;
 	}
 }

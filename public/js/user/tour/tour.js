@@ -39,6 +39,7 @@ var Tour_controller = can.Control.extend(
 			$('#form_topper_date').html(can.view("#topper_date_tmpl", this.data));
 			
 			this.init_plugins();
+			this.change_tour();
 		},
 		
 		preformat_tours: function() {
@@ -261,7 +262,20 @@ var Tour_controller = can.Control.extend(
 		
 		change_tour: function() {
 			var	tour = this.tours[this.tour_key],
-				closest_block_inside = $('#closest_block_inside');
+				closest_block_inside = $('#closest_block_inside'),
+				classname = 'inactive';
+			
+			if(this.tour_key == 0) {
+				this.element.find('.prev_tour').addClass(classname);
+			} else {
+				this.element.find('.prev_tour').removeClass(classname);
+			}
+			
+			if(this.tour_key = this.tours.length - 1) {
+				this.element.find('.next_tour').addClass(classname);
+			} else {
+				this.element.find('.next_tour').removeClass(classname);
+			}
 			
 			if(!tour) {
 				return;
@@ -283,6 +297,11 @@ var Tour_controller = can.Control.extend(
 			
 			$('#children_container').append(can.view("#add_child_tmpl", data));
 			this.age_inputmask();
+		},
+		
+		'.want_signup .text click': function(el) {
+			var checkbox = $('#want_signup_checkbox');
+			checkbox.prop('checked', !checkbox.prop('checked'));
 		},
 		
 		'#tour_form submit': function(el, ev) {
