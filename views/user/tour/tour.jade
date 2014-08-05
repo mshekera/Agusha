@@ -237,7 +237,7 @@ block append content
 			.want_signup.adorable_table
 				.adorable_cell
 					.checkbox
-						input(name!="signup", type="checkbox", checked="checked")
+						input#want_signup_checkbox(name!="signup", type="checkbox", checked="checked")
 						label
 							.img
 					.text  Да, я хочу зарегистрироваться на сайте «Агуша».
@@ -284,7 +284,9 @@ block append content
 		.tour_footer.darkblue.adorable_table
 			.adorable_cell
 				.label.novito_nova Остались вопросы?
-				.text Звоните на горячую линию 0 800 307 302
+				.text
+					| Звоните на горячую линию 
+					a(href="tel:+380800307302") 0 800 307 302
 
 block append scripts
 	script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD0t-3b3EVbt4Tm0p1be5ck_gHHrHyzZhE")
