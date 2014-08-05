@@ -11,7 +11,7 @@ Notifier = require '../lib/notifier'
 AuthStartegies = require './auth'
 ModelPreloader = require './mpload'
 
-appPort = 8080
+appPort = 80
 
 _.mixin _.str.exports()
 
