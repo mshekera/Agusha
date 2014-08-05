@@ -20,6 +20,7 @@ Auth = require '../lib/auth'
 Cache = require '../lib/cache'
 View = require '../lib/view'
 Admin = require '../lib/admin'
+Image = require '../utils/image'
 
 admin_controller = require '../controllers/admin'
 user_controller = require '../controllers/user'
@@ -60,7 +61,10 @@ configure = () ->
 		res.set 'Content-Type', 'text/plain'
 		res.send "User-agent: *\nDisallow: /"
 	
-	@use multer {dest: './public/img/uploads/'}
+	@use multer {
+		dest: './public/img/uploads/'
+		onFileUploadComplete: Image.doResize
+	}
 	
 	@use Cache.requestCache
 	@use bodyParser()
