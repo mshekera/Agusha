@@ -11,6 +11,10 @@
 	.slides {
 		width: 1280px;
 		height: 469px;
+		
+		&> div {
+			left: 1280px;
+		}
 	}
 }
 
