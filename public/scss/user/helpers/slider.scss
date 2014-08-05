@@ -16,7 +16,10 @@
 			background: $darkblue;
 			
 			&:first-child {
-				z-index: 1;
+				z-index: 5;
+				position: absolute;
+				width: 1280px;
+				height: 469px;
 			}
 		}
 	}

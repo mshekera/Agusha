@@ -6,6 +6,7 @@
 	position: absolute;
 	top: 40px;
 	right: 150px;
+	z-index: 10;
 	
 	.photo {
 		@include absolute_horizontal_centered;
