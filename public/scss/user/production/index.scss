@@ -102,13 +102,15 @@
 	text-transform: uppercase;
 	margin: 0 9px;
 	font-size: 100%;
-	padding: 10px 18px;
+	padding: 10px 40px;
 	color: $white;
 	background: $darkblue;
 	@include inset_box_shadow(0 0 0 1px $lightblue);
 	font-family: 'PT_Sans_Bold';
 	z-index: 10;
 	position: relative;
+	letter-spacing: 0.5px;
+	font-size: 13px;
 	
 	&.active, &:hover {
 		@include box_shadow(none);
