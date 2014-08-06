@@ -49,6 +49,12 @@ input {
 	
 	&:focus {
 		@include inset_box_shadow(0 0 0 3px $yellow);
+		background: $white;
+	}
+	
+	&.error {
+		@include inset_box_shadow(0 0 0 3px #fd7b6a !important);
+		background: $white !important;
 	}
 }
 
@@ -104,5 +110,7 @@ label {
 		top: -100px;
 		font-size: 12px;
 		font-family: 'PT_Sans_Italic';
+		text-align: left;
+		left: 22px;
 	}
 }

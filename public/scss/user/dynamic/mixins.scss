@@ -32,9 +32,9 @@
 }
 
 @mixin inset_box_shadow($val) {
-	-webkit-box-shadow:	$val inset;
-	-moz-box-shadow:	$val inset;
-	box-shadow:			$val inset;
+	-webkit-box-shadow: inset $val;
+	-moz-box-shadow: inset $val;
+	box-shadow: inset $val;
 }
 
 @mixin lovely {
