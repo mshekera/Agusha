@@ -31,8 +31,11 @@ exports.index = (req, res) ->
 					main_page: 1
 			
 			Model 'Product', 'find', next, findOptions, {}, sortOptions
+		(docs, next) ->
+			Model 'Product', 'populate', next, docs, 'category'
 		(docs) ->
 			data.mainPageProducts = docs
+			
 			View.render 'user/index', res, data, req.path
 	], (err) ->
 		error = err.message or err

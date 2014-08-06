@@ -47,12 +47,12 @@ block content
 						.adorable_table
 							.adorable_cell
 								if p.image
-									- var src = '/img/uploads/x200/' + p.image
+									- var src = '/img/uploads/x160/' + p.image
 								else
 									- var src = '/img/no_photo.png'
 								
 								img.product_img(src=src)
-								.product_label #{p.title}
+								.product_label #{p.category[0].name}
 		
 		.right.border_boxed.green.adorable_table
 			.adorable_cell
