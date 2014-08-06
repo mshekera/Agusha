@@ -31,13 +31,21 @@
 	
 	&:hover {
 		@include inset_box_shadow(0 0 0 1px #666666);
+		
+		&.actions {
+			@include inset_box_shadow(0 0 0 1px $darkgreen);
+		}
+		
+		&.news {
+			@include inset_box_shadow(0 0 0 1px $darkyellow);
+		}
 	}
 	
 	&.active {
 		@include inset_box_shadow(0 0 0 0 transparent);
 		
 		&.all {
-			@include inset_box_shadow(0 0 0 1px #666666);
+			background-color: $el_bg;
 		}
 		
 		&.actions {
@@ -167,6 +175,12 @@
 		color: #4d4d4d;
 		line-height: 20px;
 		letter-spacing: -0.1px;
+		
+		h3 {
+			font-size: 100%;
+			color: $darkblue;
+			font-family: 'PT_Sans_Bold';
+		}
 		
 		&.active {
 			.desc_text {
