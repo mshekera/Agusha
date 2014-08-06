@@ -87,9 +87,10 @@
 		position: relative;
 		
 		img {
-			@include absolute_centered;
-			max-height: 90%;
-			max-width: 90%;
+			@include absolute_horizontal_centered;
+			top: 78px;
+			max-height: 421px;
+			max-width: 421px;
 		}
 	}
 	
