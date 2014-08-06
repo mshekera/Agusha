@@ -21,19 +21,6 @@ exports.doResize = (file) ->
 			console.error "Error occured while resizing image #{file.name}", err
 		
 
-resizeImageTo = (filename, width, callback) ->
-	gm(uploadsPath + filename)
-		.resize(width)
-		.noProfile()
-		.write "#{uploadsPath}x#{width}/#{filename}", (err) ->
-			filepath = "public/img/uploads/x#{width}/#{filename}"
-			if err
-				console.log "Error occured while saving file to #{filepath}..."
-			else
-				console.log "Saved resized file to #{filepath}..."
-
-			callback err, true
-
 exports.doRemoveImage = (imageName, callback) ->
 	prefixes = ['']
 	for s in sizes
@@ -54,6 +41,19 @@ exports.checkDirectories = (callback) ->
 getResizeFn = (filename, size) ->
 	return (callback) ->
 		resizeImageTo filename, size, callback
+
+resizeImageTo = (filename, width, callback) ->
+	gm(uploadsPath + filename)
+		.resize(width)
+		.noProfile()
+		.write "#{uploadsPath}x#{width}/#{filename}", (err) ->
+			filepath = "public/img/uploads/x#{width}/#{filename}"
+			if err
+				console.log "Error occured while saving file to #{filepath}..."
+			else
+				console.log "Saved resized file to #{filepath}..."
+
+			callback err, true
 
 removeImage = (imageName, prefix, callback) ->
 	imgPath = path.join uploadsPath, prefix, imageName
