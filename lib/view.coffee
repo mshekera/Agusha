@@ -102,6 +102,7 @@ exports.globals = (req, res, callback)->
 			res.locals.moment = moment
 			
 			res.locals.base_url = base_url = 'http://' + req.headers.host
+			res.locals.current_url = 'http://' + req.headers.host + req.originalUrl
 			res.locals.url = (path) ->
 				base_url + path
 			

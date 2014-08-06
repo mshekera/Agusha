@@ -58,6 +58,10 @@ $(function() {
 								
 								return currentValue;
 							}
+						},
+						
+						url: {
+							value: document.URL
 						}
 					}
 				});
