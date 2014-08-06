@@ -125,9 +125,9 @@
 	height: 34px;
 	width: 34px;
 	position: absolute;
-	background: $darkblue;
+	background: url('/img/user/production/production_buttons.png');
+	background-position: -34px 0;
 	cursor: pointer;
-	color: $white;
 	z-index: 10;
 	
 	&.opened {
@@ -180,23 +180,8 @@
 		right: 87px;
 	}
 	
-	&:before {
-		@include pseudo;
-		@include absolute_centered;
-		content: '+';
-		text-align: center;
-		line-height: 34px;
-		font-family: Arial;
-		font-size: 24px;
-	}
-	
 	&:hover {
-		background: $red;
-		
-		&:before {
-			content: '\D7';
-			font-family: Arial;
-		}
+		background-position: 0 0;
 	}
 	
 	&:hover  ~ .production_content {
