@@ -19,6 +19,14 @@ ol, ul {
 	list-style-image: url("/img/user/drop.png");
 }
 
+p {
+	margin-top: 0;
+}
+
+h3 {
+	margin-top: 0;
+}
+
 #header {
 	@include full_width_layout;
 	height: $hfheight;
@@ -123,6 +131,7 @@ ol, ul {
 	
 	#contacts {
 		padding: 0 15px;
+		text-align: right;
 		
 		a {
 			color: $darkblue;
@@ -220,6 +229,12 @@ ol, ul {
 		
 		.adorable_cell {
 			padding: 0 0 5px;
+		}
+		
+		&:hover {
+			a {
+				text-decoration: underline;
+			}
 		}
 	}
 	

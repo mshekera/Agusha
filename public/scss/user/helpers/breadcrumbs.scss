@@ -6,5 +6,9 @@
 	
 	a {
 		color: #a19084;
+		
+		&:hover {
+			text-decoration: none;
+		}
 	}
 }

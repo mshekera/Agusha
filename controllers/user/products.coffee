@@ -28,7 +28,7 @@ exports.index = (req, res) ->
 				list[key] = item.toObject()
 				list[key].volume = volume
 			
-			View.render 'user/products/products', res, data
+			View.render 'user/products/products', res, data, req.path
 	]
 	
 	async.waterfall asyncFunctions, (err) ->

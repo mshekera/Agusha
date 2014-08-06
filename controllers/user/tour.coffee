@@ -74,7 +74,16 @@ exports.add_record = (req, res) ->
 			login: data.firstname + ' ' + data.lastname
 			email: data.email
 		
-		asyncFunctions = asyncFunctions.concat Client.addAsyncFunctionsForSignUp res, {}, signUpData
+		async.waterfall [
+			(next) ->
+				Model 'Client', 'findOne', next, email: data.email
+			(doc) ->
+				if !doc?
+					asyncFunctions = asyncFunctions.concat Client.addAsyncFunctionsForSignUp res, {}, signUpData
+		], (err) ->
+			Logger.log 'info', "Error in controllers/user/tour/add_record: #{err}"
+			req.session.err = err
+			res.redirect '/tour'
 	
 	asyncFunctions.push (next) ->
 		res.redirect '/tour'

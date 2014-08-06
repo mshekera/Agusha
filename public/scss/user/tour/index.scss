@@ -64,7 +64,7 @@ $closest_color: #0d5c92;
 	height: 100%;
 	padding: 40px;
 	font-size: 112.5%;
-	font-style: italic;
+	font-family: 'PT_Sans_Italic';
 	
 	.adorable_cell {
 		text-align: left;
@@ -105,7 +105,7 @@ $closest_color: #0d5c92;
 		display: inline-block;
 		width: 16.6%;
 		font-size: 112.5%;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 		min-width: 160px;
 		position: relative;
 		height: 65px;
@@ -228,7 +228,7 @@ $closest_color: #0d5c92;
 		left: 0;
 		font-size: 112.5%;
 		width: 100%;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 	}
 	
 	.steps {
@@ -389,19 +389,11 @@ $closest_color: #0d5c92;
 	.topper {
 		margin-bottom: 30px;
 		color: #fd7b6a;
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 	}
 	
 	.left {
 		clear: both;
-	}
-	
-	label {
-		&.error {
-			color: red;
-			position: relative;
-			top: -25px;
-		}
 	}
 }
 
@@ -411,7 +403,7 @@ $closest_color: #0d5c92;
 	
 	.children_topper {
 		margin-bottom: 30px;
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 		font-size: 85.7%;
 		color: #a6a6a6;
 		position: relative;
@@ -498,7 +490,7 @@ $closest_color: #0d5c92;
 	height: 68px;
 	background-color: #fd7b6a;
 	color: #c0574b;
-	font-style: italic;
+	font-family: 'PT_Sans_Italic';
 	
 	.checkbox {
 		width: 30px;
@@ -585,7 +577,7 @@ $closest_color: #0d5c92;
 		
 		a {
 			text-decoration: none;
-			font-style: italic;
+			font-family: 'PT_Sans_Italic';
 			color: #0d5c92;
 		}
 	}
@@ -620,25 +612,41 @@ $closest_color: #0d5c92;
 
 .review_arrows {
 	width: 100px;
+	height: 50px;
 	position: absolute;
-	top: 0;
-	height: 100%;
+	bottom: 0;
 	right: 0;
-	font-size: 23px;
+	z-index: 1;
 	
 	.half {
-		position: relative;
+		background: $el_bg url("/img/user/button_arrows.png") no-repeat;
 		cursor: pointer;
-	}
-	
-	.left {
-		background: $darkblue;
-		color: $white;
-	}
-	
-	.right {
-		background: $el_bg;
-		color: #cccccc;
+		
+		&.left {
+			background-position: -50px -50px;
+			
+			&:hover, &:active {
+				background-position: 0 0;
+			}
+		}
+		
+		&.right {
+			background-position: -50px 0;
+			
+			&:hover, &:active {
+				background-position: 0 -50px;
+			}
+		}
+		
+		&:hover {
+			background-color: $darkblue;
+			color: $white;
+		}
+		
+		&:active {
+			background-color: #3d9ccc;
+			color: $white;
+		}
 	}
 }
 
@@ -673,7 +681,7 @@ $closest_color: #0d5c92;
 	height: 150px;
 	
 	.text {
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 		color: #0d5c92;
 	}
 	

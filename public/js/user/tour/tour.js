@@ -8,6 +8,14 @@ moment.lang('ru');
 
 var base_url = window.location.protocol + '//' + window.location.host;
 
+$.validator.addMethod('mask',
+    function(value, element, regexp) {
+		var theregex = /_/;
+        return this.optional(element) || !theregex.test(value);
+    },
+    'Пожалуйста, введите все символы'
+);
+
 var Tour_controller = can.Control.extend(
 	{
 		defaults: {
@@ -17,12 +25,19 @@ var Tour_controller = can.Control.extend(
 	
 	{
 		init: function () {
+			var that = this;
+			
 			this.mapLatLng = new google.maps.LatLng(50.4300000, 30.389388);
 			this.akademLatLng = new google.maps.LatLng(50.4648609, 30.3553083);
 			this.vishnevoeLatLng = new google.maps.LatLng(50.3856838, 30.3471481);
 			
 			this.tour_key = 0;
 			this.tours = tours;
+			
+			this.step = 1;
+			this.step_clicked = false;
+			
+			this.check_arrows();
 
 			this.preformat_tours();
 			
@@ -39,7 +54,7 @@ var Tour_controller = can.Control.extend(
 			$('#form_topper_date').html(can.view("#topper_date_tmpl", this.data));
 			
 			this.init_plugins();
-			this.change_tour();
+			this.loop();
 		},
 		
 		preformat_tours: function() {
@@ -54,6 +69,31 @@ var Tour_controller = can.Control.extend(
 				tour.formattedDate = date.format('DD/MM/YYYY');
 				tour.topperDate = two_words + ' ' + string_date;
 			}
+		},
+		
+		loop: function() {
+			var	that = this,
+				rand = Math.round(Math.random() * (7000 - 5000)) + 5000;
+			
+			setTimeout(function() {
+				that.step_rotation();
+				that.loop();
+			}, rand);
+		},
+		
+		step_rotation: function() {
+			if(this.step_clicked) {
+				this.step_clicked = false;
+				return;
+			}
+			
+			if(this.step == 3) {
+				this.step = 1;
+			} else {
+				this.step++;
+			}
+			
+			this.change_step();
 		},
 		
 		init_plugins: function() {
@@ -233,13 +273,20 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		'.step_button click': function(el) {
-			var element = $(el),
-				val = element.data('step'),
-				calendar_block_inside = $('#calendar_block_inside');
+			var element = $(el);
+			
+			this.step = element.data('step');
+			
+			this.step_clicked = true;
+			this.change_step();
+		},
+		
+		change_step: function() {
+			var	calendar_block_inside = $('#calendar_block_inside');
 			
 			calendar_block_inside.find('.step').removeClass('active');
 			calendar_block_inside.find('.step_button').removeClass('active');
-			calendar_block_inside.find('.step_' + val).addClass('active');
+			calendar_block_inside.find('.step_' + this.step).addClass('active');
 		},
 		
 		'.prev_tour click': function(el) {
@@ -260,22 +307,26 @@ var Tour_controller = can.Control.extend(
 			this.change_tour();
 		},
 		
-		change_tour: function() {
-			var	tour = this.tours[this.tour_key],
-				closest_block_inside = $('#closest_block_inside'),
-				classname = 'inactive';
-			
+		check_arrows: function() {
+			var classname = 'inactive';
 			if(this.tour_key == 0) {
 				this.element.find('.prev_tour').addClass(classname);
 			} else {
 				this.element.find('.prev_tour').removeClass(classname);
 			}
 			
-			if(this.tour_key = this.tours.length - 1) {
+			if(this.tour_key == this.tours.length - 1) {
 				this.element.find('.next_tour').addClass(classname);
 			} else {
 				this.element.find('.next_tour').removeClass(classname);
 			}
+		},
+		
+		change_tour: function() {
+			var	tour = this.tours[this.tour_key],
+				closest_block_inside = $('#closest_block_inside');
+			
+			this.check_arrows();
 			
 			if(!tour) {
 				return;
@@ -304,6 +355,14 @@ var Tour_controller = can.Control.extend(
 			checkbox.prop('checked', !checkbox.prop('checked'));
 		},
 		
+		'#city_select2 change': function(el) {
+			console.log(1)
+			var form = $('#tour_form');
+			
+			this.tour_validate(form);
+			form.valid();
+		},
+		
 		'#tour_form submit': function(el, ev) {
 			var form = $(el);
 			this.tour_validate(form);
@@ -316,6 +375,7 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		tour_validate: function(form) {
+			console.log(2)
 			var	validation = {rules: {}, messages: {}},
 				rule,
 				child_items = $('.child_block'),
@@ -325,8 +385,8 @@ var Tour_controller = can.Control.extend(
 			rule = 'firstname';
 			validation.rules[rule] = {
 				required: true,
-				minlength: 'Минимальное количество символов - 3',
-				maxlength: 'Минимальное количество символов - 64'
+				minlength: 3,
+				maxlength: 64
 			};
 			validation.messages[rule] = {
 				required: required_message,
@@ -351,8 +411,8 @@ var Tour_controller = can.Control.extend(
 			rule = 'lastname';
 			validation.rules[rule] = {
 				required: true,
-				minlength: 'Минимальное количество символов - 3',
-				maxlength: 'Минимальное количество символов - 64'
+				minlength: 3,
+				maxlength: 64
 			};
 			validation.messages[rule] = {
 				required: required_message,
@@ -374,7 +434,8 @@ var Tour_controller = can.Control.extend(
 			
 			rule = 'phone';
 			validation.rules[rule] = {
-				required: true
+				required: true,
+				mask: true
 			};
 			validation.messages[rule] = {
 				required: required_message

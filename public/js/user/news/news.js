@@ -58,13 +58,32 @@ $(function() {
 								
 								return currentValue;
 							}
+						},
+						
+						url: {
+							value: document.URL
 						}
 					}
 				});
 				
 				this.data = new ViewModel();
 				
-				var view = can.view("#articles_tmpl", this.data);
+				var view = can.view("#articles_tmpl", this.data, {
+					showArrows: function(options) {
+						return options.context.desc_image.length > 1 ? options.fn() : options.inverse();
+					},
+					startIndex: function(options) {
+						window['INDEX'] = 0;
+						return;
+					},
+					firstElem: function(options) {
+						if(window['INDEX'] == 0) {
+							window['INDEX']++;
+							return options.fn();
+						}
+						return options.inverse();
+					}
+				});
 				
 				$('#articles_container').html(view);
 			},
@@ -89,6 +108,73 @@ $(function() {
 					text = elem.closest('.text');
 				
 				text.toggleClass('active');
+			},
+			
+			'.desc_images_arrows .right click': function(el) {
+				var	elem = $(el),
+					article_block = elem.parents('.article_block'),
+					id = article_block[0].id;
+				
+				this.next_image(id);
+			},
+			
+			next_image: function(id) {
+				var	classname = 'active',
+					article_block = $('#' + id),
+					images = article_block.find('.image'),
+					active_image = images.filter('.' + classname);
+				
+				if(!active_image.length) {
+					$(images[0]).addClass(classname);
+					return;
+				}
+				
+				images.removeClass(classname);
+				
+				var	next_image = active_image.next();
+				
+				if(!next_image.length) {
+					$(images[0]).addClass(classname);
+					return;
+				}
+				
+				next_image.addClass(classname);
+			},
+			
+			'.desc_images_arrows .left click': function(el) {
+				var	elem = $(el),
+					article_block = elem.parents('.article_block'),
+					id = article_block[0].id;
+				
+				this.prev_image(id);
+			},
+			
+			prev_image: function(id) {
+				var	classname = 'active',
+					article_block = $('#' + id),
+					images = article_block.find('.image');
+				
+				if(images.length < 2) {
+					return;
+				}
+				
+				var	active_image = images.filter('.' + classname);
+				
+				if(!active_image.length) {
+					$(images[0]).addClass(classname);
+					return;
+				}
+				
+				images.removeClass(classname);
+				
+				var	prev_image = active_image.prev();
+				
+				if(!prev_image.length) {
+					$(images[images.length - 1]).addClass(classname);
+					return;
+				}
+				
+				prev_image.addClass(classname);
 			}
 		}
 	);

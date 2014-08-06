@@ -46,9 +46,6 @@
 	
 	.half {
 		background: $el_bg url("/img/user/button_arrows.png") no-repeat;
-		color: #cccccc;
-		font-size: 20px;
-		font-weight: bold;
 		cursor: pointer;
 		
 		&.left {
@@ -105,13 +102,15 @@
 	text-transform: uppercase;
 	margin: 0 9px;
 	font-size: 100%;
-	padding: 10px 18px;
+	padding: 10px 40px;
 	color: $white;
 	background: $darkblue;
 	@include inset_box_shadow(0 0 0 1px $lightblue);
-	font-weight: bold;
+	font-family: 'PT_Sans_Bold';
 	z-index: 10;
 	position: relative;
+	letter-spacing: 0.5px;
+	font-size: 13px;
 	
 	&.active, &:hover {
 		@include box_shadow(none);
@@ -125,9 +124,9 @@
 	height: 34px;
 	width: 34px;
 	position: absolute;
-	background: $darkblue;
+	background: url('/img/user/production/production_buttons.png');
+	background-position: -34px 0;
 	cursor: pointer;
-	color: $white;
 	z-index: 10;
 	
 	&.opened {
@@ -180,23 +179,8 @@
 		right: 87px;
 	}
 	
-	&:before {
-		@include pseudo;
-		@include absolute_centered;
-		content: '+';
-		text-align: center;
-		line-height: 34px;
-		font-family: Arial;
-		font-size: 24px;
-	}
-	
 	&:hover {
-		background: $red;
-		
-		&:before {
-			content: '\D7';
-			font-family: Arial;
-		}
+		background-position: 0 0;
 	}
 	
 	&:hover  ~ .production_content {

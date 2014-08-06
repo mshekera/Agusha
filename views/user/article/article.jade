@@ -30,20 +30,25 @@ block append content
 						span Поделиться
 					
 					.share_buttons
-						.share_button
-							img(src="/img/user/social/vk.png")
+						a(href = 'http://vk.com/share.php?url=' + current_url + '&title=' + article.big_title, target="_blank")
+							.share_button
+								img(src="/img/user/social/vk.png")
 						
-						.share_button
-							img(src="/img/user/social/odnoklasniki.png")
+						a(href = 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + article.big_title + '&st._surl=' + current_url, target="_blank")
+							.share_button
+								img(src="/img/user/social/odnoklasniki.png")
 						
-						.share_button
-							img(src="/img/user/social/google.png")
+						a(href = 'http://plus.google.com/share?url=' + current_url + '&title=' + article.big_title, target="_blank")
+							.share_button
+								img(src="/img/user/social/google.png")
 						
-						.share_button
-							img(src="/img/user/social/facebook.png")
+						a(href = 'http://www.facebook.com/share.php?u=' + current_url + '&title=' + article.big_title, target="_blank")
+							.share_button
+								img(src="/img/user/social/facebook.png")
 						
-						.share_button
-							img(src="/img/user/social/twitter.png")
+						a(href = 'http://twitter.com/home?status=' + article.big_title + '+' + current_url, target="_blank")
+							.share_button
+								img(src="/img/user/social/twitter.png")
 			
 			- if (article.type.id == 2)
 				.article_right.did_you_know

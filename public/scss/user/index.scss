@@ -39,6 +39,7 @@
 		width: 25%;
 		height: 100%;
 		color: $base;
+		position: relative;
 		
 		.adorable_cell {
 			vertical-align: bottom;
@@ -55,6 +56,7 @@
 	}
 	
 	.product_img {
+		@include absolute_centered;
 		padding: 0 0 5px;
 		max-height: 189px;
 		max-width: 100%;

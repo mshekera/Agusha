@@ -10,7 +10,7 @@
 	
 	.top_label {
 		font-size: 112.5%;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 	}
 }
 
@@ -243,9 +243,9 @@
 	
 	.desc_subtitle {
 		color: #fd7b6a;
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 		margin-bottom: 15px;
-		width: 190px;
+		width: 201px;
 	}
 	
 	.desc_title {
@@ -314,7 +314,7 @@
 			color: $blue;
 			font-size: 107.2%;
 			text-transform: uppercase;
-			font-weight: bold;
+			font-family: 'PT_Sans_Bold';
 		}
 	}
 	
@@ -326,7 +326,8 @@
 		padding: 0 10px;
 		
 		span {
-			font-size: 93%;
+			font-size: 96.4%;
+			vertical-align: top;
 		}
 	}
 	
@@ -340,7 +341,7 @@
 		.top {
 			font-size: 112.5%;
 			color: $blue;
-			font-weight: bold;
+			font-family: 'PT_Sans_Bold';
 		}
 		
 		.bottom {
@@ -357,7 +358,7 @@
 	}
 	
 	&:hover {
-		@include box_shadow(0 0 0 0.5em $blue);
+		@include box_shadow(0 0 0 10px $darkblue);
 		
 		.image {
 			top: 80px;
@@ -376,6 +377,10 @@
 		
 		.desc {
 			display: none;
+		}
+		
+		.info {
+			background: $white;
 		}
 	}
 }

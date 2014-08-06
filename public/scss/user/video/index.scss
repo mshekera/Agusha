@@ -56,6 +56,10 @@
 		margin-right: 10px;
 		cursor: pointer;
 		opacity: 0.5;
+		
+		&:hover, &:active {
+			opacity: 1;
+		}
 	}
 	
 	.channel_arrow {
@@ -70,7 +74,7 @@
 		.text {
 			color: #0D5C92;
 			display: inline-block;
-			font-style: italic;
+			font-family: 'PT_Sans_Italic';
 			height: 34px;
 			line-height: 34px;
 			vertical-align: top;
@@ -205,7 +209,7 @@
 	
 	.title {
 		font-size: 112.5%;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 		color: $darkblue;
 	}
 	

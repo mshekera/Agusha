@@ -1,6 +1,5 @@
 var	before_main = $('#before_main'),
 	slider_container = $('#slider_container'),
-	slides = slider_container.find('.slides'),
 	menu_blocks = $('#header .dropdown');
 
 var window_resize = function() {
@@ -18,7 +17,7 @@ var window_resize = function() {
 	slider_container.css({
 		left: left
 	});
-	console.log(menu_blocks.length);
+	
 	for(i = menu_blocks.length; i--;) {
 		var menu_block = $(menu_blocks[i]),
 			span = menu_block.find('span'),
@@ -36,8 +35,6 @@ var options = {
 	width: 1280,
 	height: 469
 };
-
-slides.css(options);
 
 var options = {
 	$AutoPlay: true,

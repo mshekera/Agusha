@@ -21,10 +21,6 @@
 	}
 }
 
-.food_container {
-	
-}
-
 .food_block {
 	background-color: $darkblue;
 	margin-bottom: 1.1%;
@@ -91,9 +87,10 @@
 		font-size: 40px;
 		line-height: 40px;
 		padding: 15px 0 10px;
-		width: 70%;
+		width: 73%;
 		margin: 0 auto;
 		height: 80px;
+		letter-spacing: 1px;
 	}
 	
 	&:nth-child(3n+1) {
