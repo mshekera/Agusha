@@ -35,19 +35,19 @@ block append content
 					img(src = (product.image ? '/img/uploads/x420/' + product.image : '/img/no_photo.png'))
 				
 				.right_footer
-					.half
+					.half.left
 						.adorable_table
 							.adorable_cell
 								//- - var volume = product.getFormattedVolume()
 								.top #{product.volume.volume} #{product.volume.postfix}
 								.bottom #{product.volume.type}
 					
-					.half
+					.half.right
 						.adorable_table
 							.adorable_cell
 								.top #{product.age.title}
 								if product.age.level < 12
-									- var age = 'мес.'
+									- var age = 'месяцев'
 								else
 									- var age = 'лет'
 								.bottom #{age}

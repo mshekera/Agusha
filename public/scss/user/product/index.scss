@@ -118,4 +118,18 @@
 			background-color: $base;
 		}
 	}
+	
+	.half {
+		&.left {
+			.adorable_cell {
+				padding-left: 50px;
+			}
+		}
+		
+		&.right {
+			.adorable_cell {
+				padding-right: 50px;
+			}
+		}
+	}
 }
