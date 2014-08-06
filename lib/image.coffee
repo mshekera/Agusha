@@ -7,7 +7,8 @@ Logger = require './logger'
 
 uploadsPath = "#{process.cwd()}/public/img/uploads/"
 
-sizes = [100, 200, 350]
+#sizes = [100, 200, 350]
+sizes = [160, 220, 420]
 
 exports.doResize = (file) ->
 	fns = {}
