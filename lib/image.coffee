@@ -10,10 +10,6 @@ uploadsPath = "#{process.cwd()}/public/img/uploads/"
 #sizes = [100, 200, 350]
 sizes = [160, 220, 420]
 
-getResizeFn = (filename, size) ->
-	return (callback) ->
-		resizeImageTo filename, size, callback
-
 exports.doResize = (file) ->
 	fns = {}
 
@@ -45,6 +41,20 @@ exports.doRemoveImage = (imageName, callback) ->
 
 	async.each prefixes, async.apply(removeImage, imageName), callback	
 
+exports.checkDirectories = (callback) ->
+	Logger.log 'info', 'Checking image directoires...'
+	fns = {}
+
+	for s in sizes
+		fns["x#{s}"] = getChkdirFn s
+
+	async.parallel fns, (err, results) ->
+		callback err
+
+getResizeFn = (filename, size) ->
+	return (callback) ->
+		resizeImageTo filename, size, callback
+
 removeImage = (imageName, prefix, callback) ->
 	imgPath = path.join uploadsPath, prefix, imageName
 
@@ -60,16 +70,6 @@ removeImage = (imageName, prefix, callback) ->
 			response = err
 
 		callback response
-
-exports.checkDirectories = (callback) ->
-	Logger.log 'info', 'Checking image directoires...'
-	fns = {}
-
-	for s in sizes
-		fns["x#{s}"] = getChkdirFn s
-
-	async.parallel fns, (err, results) ->
-		callback err
 
 getChkdirFn = (s) ->
 	return (cb) ->
