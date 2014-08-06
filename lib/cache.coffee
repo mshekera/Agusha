@@ -25,7 +25,7 @@ exports.list = list = [
 		prefix: 'products_', 
 		prefixKey: 'products' 
 	}
-	{ 
+	{
 		segment: '/production', 
 		name: 'Каталог', 
 		prefix: 'production_', 

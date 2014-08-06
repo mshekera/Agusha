@@ -25,12 +25,17 @@ var Tour_controller = can.Control.extend(
 	
 	{
 		init: function () {
+			var that = this;
+			
 			this.mapLatLng = new google.maps.LatLng(50.4300000, 30.389388);
 			this.akademLatLng = new google.maps.LatLng(50.4648609, 30.3553083);
 			this.vishnevoeLatLng = new google.maps.LatLng(50.3856838, 30.3471481);
 			
 			this.tour_key = 0;
 			this.tours = tours;
+			
+			this.step = 1;
+			this.step_clicked = false;
 			
 			this.check_arrows();
 
@@ -49,6 +54,7 @@ var Tour_controller = can.Control.extend(
 			$('#form_topper_date').html(can.view("#topper_date_tmpl", this.data));
 			
 			this.init_plugins();
+			this.loop();
 		},
 		
 		preformat_tours: function() {
@@ -63,6 +69,31 @@ var Tour_controller = can.Control.extend(
 				tour.formattedDate = date.format('DD/MM/YYYY');
 				tour.topperDate = two_words + ' ' + string_date;
 			}
+		},
+		
+		loop: function() {
+			var	that = this,
+				rand = Math.round(Math.random() * (7000 - 5000)) + 5000;
+			
+			setTimeout(function() {
+				that.step_rotation();
+				that.loop();
+			}, rand);
+		},
+		
+		step_rotation: function() {
+			if(this.step_clicked) {
+				this.step_clicked = false;
+				return;
+			}
+			
+			if(this.step == 3) {
+				this.step = 1;
+			} else {
+				this.step++;
+			}
+			
+			this.change_step();
 		},
 		
 		init_plugins: function() {
@@ -242,13 +273,20 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		'.step_button click': function(el) {
-			var element = $(el),
-				val = element.data('step'),
-				calendar_block_inside = $('#calendar_block_inside');
+			var element = $(el);
+			
+			this.step = element.data('step');
+			
+			this.step_clicked = true;
+			this.change_step();
+		},
+		
+		change_step: function() {
+			var	calendar_block_inside = $('#calendar_block_inside');
 			
 			calendar_block_inside.find('.step').removeClass('active');
 			calendar_block_inside.find('.step_button').removeClass('active');
-			calendar_block_inside.find('.step_' + val).addClass('active');
+			calendar_block_inside.find('.step_' + this.step).addClass('active');
 		},
 		
 		'.prev_tour click': function(el) {
