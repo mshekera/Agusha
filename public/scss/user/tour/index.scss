@@ -64,7 +64,7 @@ $closest_color: #0d5c92;
 	height: 100%;
 	padding: 40px;
 	font-size: 112.5%;
-	font-style: italic;
+	font-family: 'PT_Sans_Italic';
 	
 	.adorable_cell {
 		text-align: left;
@@ -105,7 +105,7 @@ $closest_color: #0d5c92;
 		display: inline-block;
 		width: 16.6%;
 		font-size: 112.5%;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 		min-width: 160px;
 		position: relative;
 		height: 65px;
@@ -228,7 +228,7 @@ $closest_color: #0d5c92;
 		left: 0;
 		font-size: 112.5%;
 		width: 100%;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 	}
 	
 	.steps {
@@ -389,7 +389,7 @@ $closest_color: #0d5c92;
 	.topper {
 		margin-bottom: 30px;
 		color: #fd7b6a;
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 	}
 	
 	.left {
@@ -403,7 +403,7 @@ $closest_color: #0d5c92;
 	
 	.children_topper {
 		margin-bottom: 30px;
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 		font-size: 85.7%;
 		color: #a6a6a6;
 		position: relative;
@@ -490,7 +490,7 @@ $closest_color: #0d5c92;
 	height: 68px;
 	background-color: #fd7b6a;
 	color: #c0574b;
-	font-style: italic;
+	font-family: 'PT_Sans_Italic';
 	
 	.checkbox {
 		width: 30px;
@@ -577,7 +577,7 @@ $closest_color: #0d5c92;
 		
 		a {
 			text-decoration: none;
-			font-style: italic;
+			font-family: 'PT_Sans_Italic';
 			color: #0d5c92;
 		}
 	}
@@ -681,7 +681,7 @@ $closest_color: #0d5c92;
 	height: 150px;
 	
 	.text {
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 		color: #0d5c92;
 	}
 	

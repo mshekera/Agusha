@@ -10,7 +10,7 @@
 	
 	.top_label {
 		font-size: 112.5%;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 	}
 }
 
@@ -243,7 +243,7 @@
 	
 	.desc_subtitle {
 		color: #fd7b6a;
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 		margin-bottom: 15px;
 		width: 201px;
 	}
@@ -314,7 +314,7 @@
 			color: $blue;
 			font-size: 107.2%;
 			text-transform: uppercase;
-			font-weight: bold;
+			font-family: 'PT_Sans_Bold';
 		}
 	}
 	
@@ -341,7 +341,7 @@
 		.top {
 			font-size: 112.5%;
 			color: $blue;
-			font-weight: bold;
+			font-family: 'PT_Sans_Bold';
 		}
 		
 		.bottom {

@@ -106,7 +106,7 @@
 	color: $white;
 	background: $darkblue;
 	@include inset_box_shadow(0 0 0 1px $lightblue);
-	font-weight: bold;
+	font-family: 'PT_Sans_Bold';
 	z-index: 10;
 	position: relative;
 	
