@@ -10,12 +10,15 @@ uploadsPath = "#{process.cwd()}/public/img/uploads/"
 #sizes = [100, 200, 350]
 sizes = [160, 220, 420]
 
+getResizeFn = (filename, size) ->
+	return (callback) ->
+		resizeImageTo filename, size, callback
+
 exports.doResize = (file) ->
 	fns = {}
 
 	for s in sizes
-		fns["x#{s}"] = (callback) ->
-			resizeImageTo file.name, s, callback
+		fns["x#{s}"] = getResizeFn file.name, s
 
 	async.parallel fns, (err) ->
 		if err
