@@ -49,6 +49,10 @@ h3 {
 		
 		&.right {
 			text-align: center;
+			
+			.menu_block {
+				padding: 5px 0 0 17px;
+			}
 		}
 	}
 	
@@ -127,10 +131,14 @@ h3 {
 				}
 			}
 		}
+		
+		&.contacts {
+			padding-left: 75px !important;
+		}
 	}
 	
 	#contacts {
-		padding: 0 15px;
+		padding: 0 0 0 15px;
 		text-align: right;
 		
 		a {
