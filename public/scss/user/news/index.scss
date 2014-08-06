@@ -164,6 +164,11 @@
 	.image {
 		position: absolute;
 		width: 100%;
+		display: none;
+		
+		&.active {
+			display: block;
+		}
 		
 		&:before {
 			margin-top: 79.2%;

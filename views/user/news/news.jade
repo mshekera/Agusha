@@ -27,20 +27,27 @@ mixin article(a)
 		if a
 			if a.desc_image.length
 				.desc_images
-					- each img, j in a.desc_image
-						img.image(src = '/img/uploads/' + img, data-img = img)
-					.desc_images_arrows
-						.half.left
-						.half.right
+					div
+						- each img, j in a.desc_image
+							img.image(src = '/img/uploads/' + img, class = (j == 0 ? 'active' : ''))
+					- if (a.desc_image.length > 1)
+						.desc_images_arrows
+							.half.left
+							.half.right
 		else
 			| {{#if desc_image.length}}
 			.desc_images
-				| {{#each desc_image}}
-				img.image(src="/img/uploads/{{.}}", data-img = '{{.}}')
-				| {{/each}}
+				div
+					| {{startIndex}}
+					| {{#each desc_image}}
+					img.image(src="/img/uploads/{{.}}", class='{{#firstElem}}active{{/if}}')
+					| {{/each}}
+				| {{#showArrows}}
 				.desc_images_arrows
 					.half.left
 					.half.right
+				| {{else}}
+				| {{/showArrows}}
 			| {{/if}}
 		
 		.text
