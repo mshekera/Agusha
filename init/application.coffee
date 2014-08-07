@@ -21,6 +21,7 @@ Cache = require '../lib/cache'
 View = require '../lib/view'
 Admin = require '../lib/admin'
 Image = require '../lib/image'
+Logger = require '../lib/logger'
 
 admin_controller = require '../controllers/admin'
 user_controller = require '../controllers/user'
@@ -42,7 +43,10 @@ routes = () ->
 	@use '/', user_controller.Router
 	@use '/admin', admin_controller.Router
 	@use (err, req, res, next) ->
-		res.send 500, 'Something broke!'
+		if process.env.NODE_ENV isnt 'production'
+			Logger.info 'error', err
+
+		res.send 500, 'Something broke, sorry! :('
 
 configure = () ->
 	@set 'views', "#{__dirname}/../views"
