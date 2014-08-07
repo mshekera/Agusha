@@ -29,7 +29,7 @@
 		float: left;
 		margin-right: 1.5%;
 		height: 100%;
-		padding: 10px 25px 50px;
+		padding: 0 25px 60px;
 		text-align: center;
 	}
 	
@@ -43,6 +43,10 @@
 		
 		.adorable_cell {
 			vertical-align: bottom;
+		}
+		
+		.label {
+			line-height: 55px;
 		}
 		
 		button {
