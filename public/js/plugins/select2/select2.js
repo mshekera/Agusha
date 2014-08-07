@@ -1301,18 +1301,18 @@ the specific language governing permissions and limitations under the Apache Lic
                 width: width
             };
 
-            if (above) {
-                css.top = offset.top - dropHeight;
-                css.bottom = 'auto';
-                this.container.addClass("select2-drop-above");
-                $dropdown.addClass("select2-drop-above");
-            }
-            else {
+            // if (above) {
+                // css.top = offset.top - dropHeight;
+                // css.bottom = 'auto';
+                // this.container.addClass("select2-drop-above");
+                // $dropdown.addClass("select2-drop-above");
+            // }
+            // else {
                 css.top = dropTop;
                 css.bottom = 'auto';
                 this.container.removeClass("select2-drop-above");
                 $dropdown.removeClass("select2-drop-above");
-            }
+            // }
             css = $.extend(css, evaluate(this.opts.dropdownCss, this.opts.element));
 
             $dropdown.css(css);
