@@ -41,18 +41,26 @@ block content
 						a(href="/products")
 							button.blue Еще
 			
-			- each p, key in mainPageProducts
-				a(href = '/product/' + p._id)
-					.content_block
-						.adorable_table
-							.adorable_cell
-								if p.image
-									- var src = '/img/uploads/x200/' + p.image
-								else
-									- var src = '/img/no_photo.png'
-								
-								img.product_img(src=src)
-								.product_label #{p.category[0].name}
+			a(href = '/products')
+				.content_block
+					.adorable_table
+						.adorable_cell
+							img.product_img(src="/img/user/main/Agysha_paket_sok_apple_light_200g.jpg")
+							.product_label Фруктовые соки
+			
+			a(href = '/products')
+				.content_block
+					.adorable_table
+						.adorable_cell
+							img.product_img(src="/img/user/main/Agysha_yogyrt_zlaki1.jpg")
+							.product_label Детские йогурты
+			
+			a(href = '/products')
+				.content_block
+					.adorable_table
+						.adorable_cell
+							img.product_img(src="/img/user/main/AgushaPack.cereals_100g_s.jpg")
+							.product_label Детские творожки
 		
 		.right.border_boxed.green.adorable_table
 			.adorable_cell
