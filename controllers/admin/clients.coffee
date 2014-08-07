@@ -9,11 +9,12 @@ Client = require '../../lib/client'
 exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
-			options =
-				sort:
-					date: -1
+		# Why sort it if datatable resorting it by login after initialization?
+		#	options =
+		#		sort:
+		#			date: -1
 			
-			Model 'Client', 'find', next, {}, {}, options
+			Model 'Client', 'find', next#, {}, {}, options
 		(docs, next) ->
 			Model 'Client', 'populate', next, docs, 'invited_by'
 		(docs) ->
