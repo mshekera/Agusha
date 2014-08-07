@@ -141,6 +141,10 @@ h3 {
 		padding: 0 0 0 15px;
 		text-align: right;
 		
+		.phone {
+			color: $darkblue;
+		}
+		
 		a {
 			color: $darkblue;
 		}
@@ -225,7 +229,7 @@ h3 {
 		float: right;
 		height: 100%;
 		width: 70%;
-		min-width: 720px;
+		min-width: 747px;
 	}
 	
 	.menu_block {
@@ -234,6 +238,7 @@ h3 {
 		display: inline-block;
 		vertical-align: top;
 		padding: 0 15px;
+		line-height: 14px;
 		
 		.adorable_cell {
 			padding: 0 0 5px;
@@ -248,6 +253,7 @@ h3 {
 	}
 	
 	#marker {
+		font-family: 'PT_Sans_Bold';
 		float: right;
 		width: 5%;
 		height: 100%;

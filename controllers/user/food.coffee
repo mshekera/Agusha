@@ -16,9 +16,17 @@ exports.index = (req, res) ->
 		(next) ->
 			async.parallel
 				articles: (next2) ->
-					Model 'Article', 'find', next2, type: 2
+					findOptions =
+						type: 2
+						active: true
+					
+					Model 'Article', 'find', next2, findOptions
 				specialist: (next2) ->
-					Model 'Article', 'findOne', next2, type: 3
+					findOptions =
+						type: 3
+						active: true
+					
+					Model 'Article', 'findOne', next2, findOptions
 			, next
 		(results, next) ->
 			data.articles = results.articles
