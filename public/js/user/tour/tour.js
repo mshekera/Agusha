@@ -356,11 +356,12 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		'#city_select2 change': function(el) {
-			console.log(1)
-			var form = $('#tour_form');
+			var	elem = $(el),
+				error = elem.next();
 			
-			this.tour_validate(form);
-			form.valid();
+			if(error.length) {
+				error.remove();
+			}
 		},
 		
 		'#tour_form submit': function(el, ev) {
@@ -375,7 +376,6 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		tour_validate: function(form) {
-			console.log(2)
 			var	validation = {rules: {}, messages: {}},
 				rule,
 				child_items = $('.child_block'),
