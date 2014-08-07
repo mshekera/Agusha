@@ -55,6 +55,9 @@ schema = new mongoose.Schema
 		type: String
 	apartment:
 		type: String
+	newClient:
+		type: Boolean
+		default: true
 ,
 	collection: 'client'
 
