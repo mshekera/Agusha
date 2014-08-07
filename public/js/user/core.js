@@ -1,5 +1,6 @@
 $(function() {
-	var	menu_blocks = $('#header .dropdown_container');
+	var	menu_blocks = $('#header .dropdown_container'),
+		i;
 	
 	for(i = menu_blocks.length; i--;) {
 		var menu_block = $(menu_blocks[i]),
@@ -19,6 +20,17 @@ $(function() {
 		
 		dropdown.css({
 			left: left
+		});
+	}
+	
+	menu_blocks = $('#footer .menu_block');
+	
+	for(i = menu_blocks.length; i--;) {
+		var menu_block = $(menu_blocks[i]),
+			width = menu_block.width() + 4;
+		
+		menu_block.css({
+			width: width
 		});
 	}
 });
