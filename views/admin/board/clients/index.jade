@@ -8,6 +8,48 @@ block append header
 			font-size: 1.1em;
 		}
 
+block append scripts
+	script(src="../js/admin/plugins/datatables/jquery.dataTables.js" type="text/javascript")
+	script(src="../js/admin/plugins/datatables/dataTables.bootstrap.js" type="text/javascript")
+	script.
+		$(function(){
+			$('.popovered').popover({
+				delay: {
+					show: 500,
+					hide: 100
+				},
+				trigger: 'hover',
+				html: true,
+				container: 'body'
+			});
+
+			$('#client_list').dataTable({
+				'iDisplayLength': 25,
+				'aLengthMenu': [25,50,100]
+			});
+
+			$('.t-process').on('click', function(){
+				var self = this,
+					btn = $(self);
+				var opts = {
+					id: btn.data('id')
+				};
+				btn.button('loading');
+				$.post('clients/process', opts, function(response){
+					if(typeof response === 'string' || !response.result) {
+						alert(response || "Произошла неизвестная ошибка.");
+						return btn.button('reset');
+					} 
+
+					if(response.result == 0) {
+						alert('Клиент уже обработан!');
+					}
+
+					btn.parent().fadeOut().remove();
+				});
+			});
+		});
+
 block content
 	.panel.panel-default
 		.panel-body
@@ -20,6 +62,7 @@ block content
 						th Тип:
 						th Приглашение от:
 						th Активен?
+						th Действия
 				tbody
 					- each u, key in clients
 						- var content = "Имя: <span>" + u.fullName() + "</span><br/>Телефон: <span>" + u.phone + "</span><br/>Город: <span>" + u.city + "</span><br/>Улица: <span>" + u.street + "</span><br/>Номер дома: <span>" + u.house + "</span><br/>Квартира: <span>" + u.apartment + "</span><br/>Индекс: <span>" + u.postIndex + "</span>";
@@ -38,23 +81,9 @@ block content
 								if u.invited_by
 									| #{u.invited_by.login}
 							td #{u.active}
-
-block append scripts
-	script(src="../js/admin/plugins/datatables/jquery.dataTables.js" type="text/javascript")
-	script(src="../js/admin/plugins/datatables/dataTables.bootstrap.js" type="text/javascript")
-	script.
-		$(function(){
-			$('.popovered').popover({
-				delay: {
-					show: 500,
-					hide: 100
-				},
-				trigger: 'hover',
-				html: true,
-				container: 'body'
-			});
-			$('#client_list').dataTable({
-				'iDisplayLength': 25,
-				'aLengthMenu': [25,50,100]
-			});
-		});
+							td
+								if u.newClient
+									.dt-button
+										button.btn.btn-primary.t-process(type="button" data-id=u._id data-loading-text="Ждите...")
+											i.glyphicon.glyphicon-ok-circle
+											span= " Обработать"
