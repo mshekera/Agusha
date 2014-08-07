@@ -29,6 +29,7 @@ exports.index = (req, res) ->
 			sortOptions =
 				sort:
 					main_page: 1
+				limit: 3
 			
 			Model 'Product', 'find', next, findOptions, {}, sortOptions
 		(docs, next) ->
