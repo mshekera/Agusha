@@ -44,7 +44,7 @@ routes = () ->
 	@use '/admin', admin_controller.Router
 	@use (err, req, res, next) ->
 		if process.env.NODE_ENV isnt 'production'
-			Logger.info 'error', err
+			console.log err
 
 		res.send 500, 'Something broke, sorry! :('
 
