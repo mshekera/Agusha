@@ -14,6 +14,10 @@ exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'signup'
 	
+	if req.session.message
+		data.message = true
+		delete req.session.message
+	
 	View.renderWithSession req, res, 'user/signup/signup', data, req.path
 
 exports.register = (req, res) ->
@@ -23,7 +27,8 @@ exports.register = (req, res) ->
 	
 	asyncFunctions = asyncFunctions.concat [
 		(salt) ->
-			res.redirect '/signup/success/' + data.client._id
+			req.session.message = true
+			res.redirect '/signup'
 	]
 	
 	async.waterfall asyncFunctions, (err) ->
@@ -106,19 +111,21 @@ exports.success = (req, res) ->
 	View.renderWithSession req, res, 'user/signup/success/success', data, req.path
 
 exports.activate = (req, res) ->
+	data =
+		breadcrumbs: tree.findWithParents breadcrumbs, 'activate'
+		
 	id = new Buffer(req.params.salt, 'base64').toString 'utf8'
 	
 	async.parallel
 		client: (next) ->
-			Model 'Client', 'findByIdAndUpdate', next, id, active: true
+			Model 'Client', 'findByIdAndUpdate', next, id, active: 1
 		salt: (next) ->
 			Model 'Salt', 'findOneAndUpdate', next, {salt: req.params.salt}, {dateUpdated: Date.now()}
 	, (err, results) ->
 		if err
 			error = err.message or err
-			Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
-		else if not results.client
-			Logger.log 'info', "Error in controllers/user/signup/activate: 'There is no such user'"
-			res.redirect '/signup/success/'
-		else
-			res.redirect '/signup/success/' + results.client._id
+			return Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
+		
+		data.client = results.client
+		
+		View.renderWithSession req, res, 'user/signup/activate/activate', data, req.path

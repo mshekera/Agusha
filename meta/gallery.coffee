@@ -1,10 +1,17 @@
 module.exports = [
-	img: 'banner_1_1.png'
-	top_label: ''
-	label: '«Завод Агуша» -<br />только детское<br />питание'
+	# img: 'banner_1_1.png'
+	# top_label: ''
+	# label: '«Завод Агуша» -<br />только детское<br />питание'
+	# link:
+		# title: 'Вкусное-полезное'
+		# href: '/production'
+# ,
+	img: 'banner_action.png'
+	top_label: '<div class="action_label">Акция!</div>'
+	label: '<div class="action">Регистрируйтесь и получите один из<br>1 000 ПОДАРКОВ<br>ДЛЯ ВАШЕГО МАЛЫША</div>'
 	link:
-		title: 'Вкусное-полезное'
-		href: '/production'
+		title: 'Получите свой!'
+		href: '/signup'
 ,
 	img: 'banner_1_2.png'
 	top_label: 'Заявляем смело:'

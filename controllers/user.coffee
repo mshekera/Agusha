@@ -26,6 +26,8 @@ Router.get '/', Main.index
 #
 
 Router.get '/signup', SignUp.index
+Router.get '/signup/activate/:salt', SignUp.activate
+
 Router.get '/signup/success', SignUp.success
 Router.get '/signup/success/:id', SignUp.success
 Router.get '/signup/activate/:salt', SignUp.activate

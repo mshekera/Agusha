@@ -4,10 +4,10 @@ block append header
 	link(rel="stylesheet" href="/css/user/signup/signup.css")
 
 block append content
-	.content
+	#signup.content
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
-		- if (err || message)
+		- if (err)
 			include ../../helpers/user/message/message
 		
 		.white
@@ -26,35 +26,46 @@ block append content
 			.pentagon.white_font.border_boxed
 				.pentagon_content.adorable_table
 					.adorable_cell
-						.label.novito_nova Будьте первооткрывателями!
+						.label.novito_nova Будьте первооткрывателями и получайте подарки!
 			
 			.map.centered
-				img(src="/img/user/signup/map.png")
+				img(src="/img/user/signup/map.jpg")
 			
-			.top_label.dark_font.centered Зарегистрируйтесь сейчас
+			button.middle_button.action_button Правила акции
+			
 			.label.novito_nova.centered.green_font
-				| И получите 1000 баллов, которые вы сможете обменять
-				br
-				| на подарки после открытия сайта!
+				| Первая тысяча зарегистрированных пользователей получит
+				| гарантированные подарки от ТМ «АГУША»:
 			
-			form#registration_form.footer.green(method="POST", action="/signup/register")
-				.inputs
-					.content.border_boxed
-						.half.left
-							.adorable_table
-								.adorable_cell
-									.input
-										input(type="text", name="login", placeholder="Ваше имя и фамилия")
-						
-						.half.right
-							.adorable_table
-								.adorable_cell
-									.input
-										input(type="email", name="email", placeholder="Ваш e-mail")
-				
-				.submit.darkgreen.adorable_table
+			img.prize(src="/img/user/signup/prize.png")
+			
+			if message
+				.thanks.darkgreen.adorable_table
 					.adorable_cell
-						button.white.darkgreen_font.middle_button.uppercase.bold(type="submit") Зарегистрироваться
+						.label.novito_nova СПАСИБО, вы зарегистрированы!
+						.top_label
+							| Ваш подарок от ТМ «АГУША» уже ждет вас!
+							br
+							| Пожалуйста, проверьте свой e-mail, чтобы узнать, как его получить.
+			else
+				form#registration_form.footer.green(method="POST", action="/signup/register")
+					.inputs
+						.content.border_boxed
+							.half.left
+								.adorable_table
+									.adorable_cell
+										.input
+											input(type="text", name="login", placeholder="Ваше имя и фамилия")
+							
+							.half.right
+								.adorable_table
+									.adorable_cell
+										.input
+											input(type="email", name="email", placeholder="Ваш e-mail")
+					
+					.submit.darkgreen.adorable_table
+						.adorable_cell
+							button.white.darkgreen_font.middle_button.uppercase.bold(type="submit") Зарегистрироваться
 
 block append scripts
 	script(src="/js/plugins/placeholders/placeholders.min.js")

@@ -1,0 +1,97 @@
+extends ../../layout
+
+block append header
+	link(rel="stylesheet" href="/css/user/signup/activate/activate.css")
+
+block append content
+	#activate.content
+		include ../../../helpers/user/breadcrumbs/breadcrumbs
+		
+		.topper.adorable_table
+			.adorable_cell
+				.label.novito_nova
+					| ПОЖАЛУЙСТА, УКАЖИТЕ СВОИ КОНТАКТНЫЕ ДАННЫЕ,
+					br
+					| ЧТОБЫ МЫ МОГЛИ ПОСКОРЕЙ ОТПРАВИТЬ ВАМ ПОДАРОК
+		
+		form#activate_form(method="POST", action="")
+			.form_inputs.force_height
+				.content.form_topper.force_height
+					.topper
+						.required Все поля в форме обязательны для заполнения!
+						.dont_worry Не волнуйтесь, все полученные данные строго конфиденциальны
+						a(href="#")
+							button.rules_button.darkgreen.uppercase Правила акции
+				
+				.content.form_radio.border_boxed.adorable_table
+					.adorable_cell
+						
+				
+				.content.inputs_content.border_boxed
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="firstname", placeholder="Имя")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									input#city_select2(type="text", name="city", placeholder="Город проживания")
+					
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="lastname", placeholder="Фамилия")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="index", placeholder="Индекс")
+					
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="patronymic", placeholder="Отчество")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="street", placeholder="Улица")
+					
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input#tour_phone(type="text", name="phone", placeholder="+3 8(___) ___ - __ - __")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									.half.left.border_boxed
+										input(type="text", name="building", placeholder="№ дома")
+									.half.right.border_boxed
+										input(type="text", name="flat", placeholder="№ квартиры")
+			
+			.i_agree.adorable_table
+				.adorable_cell
+					.checkbox
+						input#want_signup_checkbox(name="agree", type="checkbox")
+						label
+							.img
+					.text Я согласен(на) с тем, что мои данные будут обработаны и использованы сайтом agusha.com.ua.
+			
+			.form_footer.adorable_table
+				.adorable_cell
+					button.middle_button.uppercase Отправить
+
+block append scripts
+	script(src="/js/plugins/placeholders/placeholders.min.js")
+	script(src="/js/plugins/validate/jquery.validate.js")
+	script(src="/js/user/signup/activate.js")
