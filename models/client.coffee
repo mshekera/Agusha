@@ -37,7 +37,28 @@ schema = new mongoose.Schema
 	active:
 		type: Boolean
 		default: false
+	firstName:
+		type: String
+	patronymic:
+		type: String
+	lastName:
+		type: String
+	phone:
+		type: String
+	city:
+		type: String
+	postIndex:
+		type: Number
+	street:
+		type: String
+	house:
+		type: String
+	apartment:
+		type: String
 ,
 	collection: 'client'
+
+schema.methods.fullName = () ->
+	[@lastName, @firstName, @patronymic].join ' '
 
 module.exports = mongoose.model 'Client', schema
