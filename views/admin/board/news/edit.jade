@@ -34,22 +34,29 @@ block append scripts
 	script(src="/js/froala/plugins/fonts/font_family.min.js")
 	script(src="/js/froala/plugins/colors.min.js")
 	script(src="/js/froala/plugins/block_styles.min.js")
+	script(src="/js/admin/plugins/input-mask/jquery.inputmask.js")
+	script(src="/js/admin/plugins/input-mask/jquery.inputmask.date.extensions.js")
+	script(src="/js/admin/plugins/input-mask/jquery.inputmask.extensions.js")
 	
 	script.
 		(function($) {
-			$(".t-removeImage").on('click', function(ev){
-				ev.preventDefault();
+			$(function(){
+				$("#date").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+			
+				$(".t-removeImage").on('click', function(ev){
+					ev.preventDefault();
 
-				self = $(this);
-				$.get(self.attr('href'), function(data){
-					if(data === true) {
-						self.parent().remove();
-					} else {
-						var msg = data === false
-							? "Произошла ошибка при удалении изображения." 
-							: data;
-						alert(msg);
-					}
+					self = $(this);
+					$.get(self.attr('href'), function(data){
+						if(data === true) {
+							self.parent().remove();
+						} else {
+							var msg = data === false
+								? "Произошла ошибка при удалении изображения." 
+								: data;
+							alert(msg);
+						}
+					});
 				});
 			});
 
@@ -100,6 +107,12 @@ block content
 							.form-group
 								label(for="desc_title")= "Название:"
 								input.form-control(type="text" name="desc_title" placeholder="Название статьи" value=news.desc_title)
+							.form-group
+								label(for="date")= "Дата:"
+								.input-group
+									.input-group-addon
+										i.fa.fa-calendar
+									input#date.form-control(type="text" name="date" value=news.date)
 							.form-group
 								label(for="type")= "Тип:"
 								select.form-control(name="type")
