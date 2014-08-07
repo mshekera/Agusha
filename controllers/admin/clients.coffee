@@ -21,3 +21,22 @@ exports.index = (req, res) ->
 			View.render 'admin/board/clients/index', res, {clients: docs}
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/clients/index: #{err.message or err}"
+
+exports.process = (req, res) ->
+	async.waterfall [
+		(next) ->
+			Model 'Client', 'findOne', next, _id: req.body.id.replace /"/g, ''
+		(doc, next) ->
+			unless doc
+				return res.send 'Нет клиента с таким ID.'
+
+			if doc.newClient
+				doc.newClient = false
+				doc.save next
+			else
+				res.send result: 0
+		(doc) ->
+			res.send result: if doc.newClient then -1 else 1
+
+	], (err) ->
+		res.send err.message or err
