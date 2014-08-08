@@ -40,3 +40,17 @@ exports.process = (req, res) ->
 
 	], (err) ->
 		res.send err.message or err
+
+exports.remove = (req, res) ->
+	async.waterfall [
+		(next) ->
+			Model 'Client', 'findOne', next, _id: req.body.id.replace /"/g, ''
+		(doc, next) ->
+			unless doc
+				return next "Такого пользователя (уже) нет в системе."
+
+			doc.remove next
+		(doc) ->
+			res.send result: true
+	], (err) ->
+		res.send result: err.message or err

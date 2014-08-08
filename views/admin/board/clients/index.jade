@@ -30,10 +30,11 @@ block append scripts
 
 			$('.t-process').on('click', function(){
 				var self = this,
-					btn = $(self);
-				var opts = {
-					id: btn.data('id')
-				};
+					btn = $(self),
+					opts = {
+						id: btn.data('id')
+					};
+
 				btn.button('loading');
 				$.post('clients/process', opts, function(response){
 					if(typeof response === 'string' || !response.result) {
@@ -46,6 +47,31 @@ block append scripts
 					}
 
 					btn.parent().fadeOut().remove();
+				});
+			});
+
+			$('.t-remove').on('click', function(){
+				if(!confirm("Вы точно хотите удалить этого пользователя?")) {
+					return;
+				}
+
+				var self = this,
+					btn = $(self),
+					opts = {
+						id: btn.data('id')
+					};
+
+				btn.button('loading');
+				$.post('clients/remove', opts, function(response){
+					if(typeof response.result === 'string' || !response.result) {
+						alert(response.result || "Произошла неизвестная ошибка.");
+						return btn.button('reset');
+					} 
+
+					$('#client_list').dataTable()
+						.row(btn.parents('tr'))
+						.remove()
+						.draw();
 				});
 			});
 		});
@@ -87,3 +113,7 @@ block content
 										button.btn.btn-primary.t-process(type="button" data-id=u._id data-loading-text="Ждите...")
 											i.glyphicon.glyphicon-ok-circle
 											span= " Обработать"
+									.dt-button
+										button.btn.btn-danger.t-remove(type="button" data-id=u._id data-loading-text="Ждите...")
+											i.glyphicon.glyphicon-remove-circle
+											span= " Удалить"
