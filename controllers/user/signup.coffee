@@ -47,13 +47,16 @@ exports.register = (req, res) ->
 
 exports.invite = (req, res) ->
 	path = '/signup/success'
-	if req.body.invited_by?
-		path += '/' + req.body.invited_by
+	
+	invited_by = req.body.invited_by
+	
+	if invited_by?
+		path += '/' + invited_by
 	
 	async.map req.body.client, (client, callback) ->
 		if client.login and client.email
-			if req.body.invited_by?
-				client.invited_by = req.body.invited_by
+			if invited_by?
+				client.invited_by = invited_by
 				client.type = 1
 			
 			Model 'Client', 'create', callback, client
@@ -64,35 +67,42 @@ exports.invite = (req, res) ->
 			inviteErr err, req
 			return res.redirect path
 		
-		async.map clients, (client, callback) ->
-			if client
-				data = {}
-				
-				async.waterfall [
-					(next) ->
-						options =
-							template: 'invite'
-							client: client
-							subject: "Успешная регистрация по приглашению!"
+		async.waterfall [
+			(next) ->
+				Model 'Client', 'findById', next, invited_by
+			(doc, next) ->
+				async.map clients, (client, callback) ->
+					if client
+						data = {}
 						
-						options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
-						
-						Client.sendMail res, options, next
-					(next) ->
-						saltData =
-							salt: data.salt
-						
-						Model 'Salt', 'create', callback, saltData
-				], callback
-			else
-				callback null
-		, (err, result) ->
-			if err
-				inviteErr err, req
-			
-			req.session.message = 'ТЕПЕРЬ ВАШИ ДРУЗЬЯ БУДУТ В КУРСЕ ВСЕГО САМОГО ПОЛЕЗНОГО И ИНТЕРЕСНОГО.'
-			req.session.messageLabel = 'Спасибо!'
-			res.redirect path
+						async.waterfall [
+							(next2) ->
+								options =
+									template: 'invite'
+									client: client
+									subject: "Успешная регистрация по приглашению!"
+								
+								options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
+								
+								if doc
+									options.friend = doc.login
+								
+								Client.sendMail res, options, next2
+							(next2) ->
+								saltData =
+									salt: data.salt
+								
+								Model 'Salt', 'create', callback, saltData
+						], callback
+					else
+						callback null
+				, next
+			(result) ->
+				req.session.message = 'ТЕПЕРЬ ВАШИ ДРУЗЬЯ БУДУТ В КУРСЕ ВСЕГО САМОГО ПОЛЕЗНОГО И ИНТЕРЕСНОГО.'
+				req.session.messageLabel = 'Спасибо!'
+				res.redirect path
+		], (err) ->
+			inviteErr err, req
 
 inviteErr = (err, req) ->
 	if err.code == 11000
@@ -140,6 +150,8 @@ exports.activatePost = (req, res) ->
 	
 	id = new Buffer(salt, 'base64').toString 'utf8'
 	
+	client = {}
+	
 	async.waterfall [
 		(next) ->
 			fields = [
@@ -157,15 +169,24 @@ exports.activatePost = (req, res) ->
 			data = _.pick req.body, fields
 			
 			Model 'Client', 'findByIdAndUpdate', next, id, data
-		(doc) ->
+		(doc, next) ->
 			if not doc
 				error = 'Такого пользователя не существует, кто-то пытается жульничать.'
 				Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
 				return res.redirect '/signup'
 			
+			client = doc
+			
 			res.cookie('registered', doc._id);
 			
-			res.redirect '/signup/success/' + doc._id
+			options =
+				template: 'activate'
+				client: doc
+				subject: "Успешная регистрация на акцию!"
+			
+			Client.sendMail res, options, next
+		() ->
+			res.redirect '/signup/success/' + client._id
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"

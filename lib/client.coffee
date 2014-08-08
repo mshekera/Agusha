@@ -15,6 +15,9 @@ exports.sendMail = sendMail = (res, data, callback) ->
 	if data.salt
 		options.salt = data.salt
 	
+	if data.friend
+		options.friend = data.friend
+	
 	Mail.send data.template, options, callback
 
 exports.addAsyncFunctionsForSignUp = (res, data, post) ->

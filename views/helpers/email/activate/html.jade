@@ -1,0 +1,38 @@
+.border2
+	table.table_wrap
+	table.header
+		tbody
+			tr
+				th.logo
+					a(href=base_url)
+						.logo_image
+				th.welcome
+					.welcome_test
+						span.pt_italic
+							| Здравствуйте, #{login}!
+							br
+							| Теперь у нас есть ваши контактные данные
+							br
+							| и мы наконец-то можем отправить вам
+							br
+							| подарок!
+	.promise
+		.promise_text
+			| Мы постараемся сделать это как можно раньше и обещаем, что вы
+			br
+			| получите свой подарок от ТМ «АГУША» не позже 10 октября 2014
+			br
+			| года.
+			.about_action
+				| С подробными правилами акции вы можете ознакомиться 
+				a.italic_link(href = base_url + '/action') здесь
+				| .
+	.not_registred_text
+		| Если вы не регистрировались на agusha.com.ua, проигнорируйте это письмо.
+		br
+		| Или все-таки посетите наш сайт – у нас много интересного :)
+	.footer
+		.copyright
+			| © Agusha.com.ua 2014
+		.denial_email
+			| Отказаться от рассылки

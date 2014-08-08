@@ -1,14 +1,50 @@
-h1 Добрый день, #{login}
-
-p
-	| Вы успешно зарегистрировались на 
-	a(href=base_url) Агуше
-	| .
-
-p
-	- var href = base_url + '/signup/activate/' + salt
-	| Используйте
-	a(href=href) эту ссылку
-	|  для активации вашего аккаунта
-
-h3 Спасибо за регистрацию!
+.border
+	table.table_wrap
+	table.header
+		tbody
+			tr
+				th.logo
+					a(href=base_url)
+						.logo_image
+				th.welcome
+					.welcome_test
+						span.pt_italic
+							| Здравствуйте, #{login}
+							br
+							| Поздравляем, вы зарегистрированы на
+							br
+							a(href=base_url) agusha.com.ua
+							|  и уже учавствуете в акции
+							br
+							| "Первая тысяча"!
+	table.posil
+	table.action
+		tbody
+			tr
+				td
+					.about_action
+						| С подробными правилами акции вы можете ознакомиться 
+						- var href = base_url + '/action'
+						a(href=href) здесь
+						| .
+			tr
+				td
+					.get_contacts
+						| Пожалуйста, укажите свои контактные данные, чтобы мы могли
+						br
+						| поскорей отправить вам подарки!
+			tr
+				td
+					.action_button
+						- var href = base_url + '/signup/activate/' + salt
+						a(href=href)
+							button.abutton.pt_bold хочу подарок
+	.not_registred_text
+		| Если вы не регистрировались на agusha.com.ua, проигнорируйте это письмо.
+		br
+		| Или все-таки посетите наш сайт – у нас много интересного :)
+	.footer
+		.copyright
+			| © Agusha.com.ua 2014
+		.denial_email
+			| Отказаться от рассылки
