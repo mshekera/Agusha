@@ -17,13 +17,19 @@ $('#registration_form').submit(function(ev) {
 
 var registration_validate = function(form) {
 	var	validation = {rules: {}, messages: {}},
-		rule;
+		rule,
+		required_message = 'Это обязательное поле';
 	
 	rule = 'login';
 	validation.rules[rule] = {
 		required: true,
 		minlength: 3,
 		maxlength: 64
+	};
+	validation.messages[rule] = {
+		required: required_message,
+		minlength: 'Минимальное количество символов - 3',
+		maxlength: 'Минимальное количество символов - 64'
 	};
 	
 	rule = 'email';
@@ -32,6 +38,12 @@ var registration_validate = function(form) {
 		minlength: 3,
 		maxlength: 64,
 		email: true
+	};
+	validation.messages[rule] = {
+		required: required_message,
+		minlength: 'Минимальное количество символов - 3',
+		maxlength: 'Минимальное количество символов - 64',
+		email: 'Некорректно указан E-mail. Попробуйте еще раз.'
 	};
 	
 	validation.ignore = [];

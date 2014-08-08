@@ -241,7 +241,7 @@ h3 {
 		float: right;
 		height: 100%;
 		width: 70%;
-		min-width: 747px;
+		min-width: 760px;
 	}
 	
 	.menu_block {
@@ -363,8 +363,7 @@ h3 {
 }
 
 .pentagon {
-	background: url(/img/user/registration/pentagon_bg.png) bottom no-repeat;
-	@include linear_gradient(bottom, transparent 42.8%, $darkgreen 42.8%);
+	background: url(/img/user/signup/pentagon_bg.png) bottom no-repeat;
 	height: 105px;
 	position: relative;
 	margin-bottom: 29px;
@@ -378,18 +377,6 @@ h3 {
 	.label {
 		font-size: 53px;
 		line-height: 53px;
-	}
-	
-	&:before {
-		@include pentagon_pseudo;
-		@include linear_gradient(to left bottom, $darkgreen 50%, transparent 50%);
-		left: 0;
-	}
-	
-	&:after {
-		@include pentagon_pseudo;
-		@include linear_gradient(to right bottom, $darkgreen 50%, transparent 50%);
-		right: 0;
 	}
 }
 

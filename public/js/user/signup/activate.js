@@ -3,7 +3,7 @@ $.validator.addMethod('mask',
 		var theregex = /_/;
         return this.optional(element) || !theregex.test(value);
     },
-    'Пожалуйста, введите все символы'
+    'Некорректно указан номер. Попробуйте еще раз.'
 );
 
 var Activate_controller = can.Control.extend(

@@ -12,7 +12,7 @@ gallery = require '../../meta/gallery'
 
 exports.index = (req, res) ->
 	currentDate = moment()
-	endDate = moment '20.11.2014', 'DD/MM/YYYY'
+	endDate = moment '01.10.2014', 'DD/MM/YYYY'
 	diffInDays = endDate.diff currentDate, 'days'
 	
 	data =

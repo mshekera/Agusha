@@ -13,7 +13,7 @@ $.validator.addMethod('mask',
 		var theregex = /_/;
         return this.optional(element) || !theregex.test(value);
     },
-    'Пожалуйста, введите все символы'
+    'Некорректно указан номер. Попробуйте еще раз.'
 );
 
 var Tour_controller = can.Control.extend(
@@ -406,7 +406,7 @@ var Tour_controller = can.Control.extend(
 				required: required_message,
 				minlength: 'Минимальное количество символов - 3',
 				maxlength: 'Минимальное количество символов - 64',
-				email: 'Пожалуйста, введите e-mail'
+				email: 'Некорректно указан E-mail. Попробуйте еще раз.'
 			};
 			
 			rule = 'lastname';
