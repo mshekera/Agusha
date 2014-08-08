@@ -12,8 +12,8 @@ tree = require '../../utils/tree'
 breadcrumbs = require '../../meta/breadcrumbs'
 
 exports.index = (req, res) ->
-	if req.session.registered
-		return res.redirect '/signup/success/' + req.session.registered
+	if req.cookies.registered
+		return res.redirect '/signup/success/' + req.cookies.registered
 	
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'signup'
@@ -163,7 +163,7 @@ exports.activatePost = (req, res) ->
 				Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
 				return res.redirect '/signup'
 			
-			req.session.registered = doc._id
+			res.cookie('registered', doc._id);
 			
 			res.redirect '/signup/success/' + doc._id
 	], (err) ->
