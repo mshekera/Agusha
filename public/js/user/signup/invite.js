@@ -35,6 +35,9 @@ var validate_login = function(validation, i) {
 		minlength: 3,
 		maxlength: 64,
 		required: function(element){
+			if(i == 0) {
+				return true;
+			}
 			return $("input[name='client[" + i + "][email]']").val().length > 0;
 		}
 	};
@@ -54,6 +57,9 @@ var validate_email = function(validation, i) {
 		maxlength: 64,
 		email: true,
 		required: function(element){
+			if(i == 0) {
+				return true;
+			}
 			return $("input[name='client[" + i + "][login]']").val().length > 0;
 		}
 	};

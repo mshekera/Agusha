@@ -33,7 +33,7 @@ exports.addAsyncFunctionsForSignUp = (res, data, post) ->
 			
 			options.template = 'register'
 			options.client = client
-			options.subject = "Успешная регистрация!"
+			options.subject = "Агуша: подтверждение регистрации"
 			options.salt = info.salt = new Buffer(client._id.toString()).toString 'base64'
 			
 			sendMail res, options, next

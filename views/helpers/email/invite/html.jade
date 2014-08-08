@@ -35,7 +35,9 @@
 			tr
 				td
 					.action_button
-						button.abutton.green.pt_bold заполнить анкету
+						- var href = base_url + '/signup/activate/' + salt
+						a(href=href)
+							button.abutton.green.pt_bold заполнить анкету
 	.not_registred_text
 		| Если вы не регистрировались на agusha.com.ua, проигнорируйте это письмо.
 		br

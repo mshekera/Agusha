@@ -77,15 +77,17 @@ exports.invite = (req, res) ->
 						
 						async.waterfall [
 							(next2) ->
+								friend = null
+								
 								options =
 									template: 'invite'
 									client: client
-									subject: "Успешная регистрация по приглашению!"
-								
-								options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
 								
 								if doc
-									options.friend = doc.login
+									options.friend = friend = doc.login								
+								
+								options.subject = 'Ваш друг ' + friend + ' приглашает вас в сообщество Агуша'
+								options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
 								
 								Client.sendMail res, options, next2
 							(next2) ->
@@ -182,7 +184,7 @@ exports.activatePost = (req, res) ->
 			options =
 				template: 'activate'
 				client: doc
-				subject: "Успешная регистрация на акцию!"
+				subject: "Ваш подарок от Агуши"
 			
 			Client.sendMail res, options, next
 		() ->
