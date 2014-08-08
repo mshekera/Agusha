@@ -243,6 +243,7 @@ var Tour_controller = can.Control.extend(
 					url: '/city_autocomplete',
 					type: 'post',
 					dataType: 'json',
+					quietMillis: 300,
 					data: function (term, page) {
 						return {
 							term: term

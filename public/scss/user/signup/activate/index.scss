@@ -2,6 +2,7 @@
 @import '../../helpers/breadcrumbs';
 @import '../../helpers/message';
 @import '../../helpers/checkbox';
+@import '../../helpers/select2';
 
 #activate {
 	&> .topper {
@@ -10,10 +11,27 @@
 		background: #5dc9f3;
 		color: $white;
 	}
+	
+	.message {
+		height: 370px;
+		
+		button {
+			background: $white;
+			color: $darkgreen;
+			font-size: 112.5%;
+			text-transform: uppercase;
+			padding: 12px 60px;
+			font-family: 'PT_Sans_Bold';
+			
+			&:active {
+				color: rgba(100, 203, 129, 0.5);
+			}
+		}
+	}
 }
 
 #activate_form {
-	margin-bottom: 20px;
+	margin-bottom: 64px;
 	
 	input {
 		background-color: #f2f2f2;
@@ -142,6 +160,7 @@
 		height: 68px;
 		color: #999999;
 		font-family: 'PT_Sans_Italic';
+		overflow: hidden;
 		
 		.checkbox {
 			width: 30px;

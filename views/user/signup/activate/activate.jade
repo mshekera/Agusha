@@ -1,6 +1,7 @@
 extends ../../layout
 
 block append header
+	link(rel="stylesheet" href="/js/plugins/select2/select2.css")
 	link(rel="stylesheet" href="/css/user/signup/activate/activate.css")
 
 block append content
@@ -21,27 +22,29 @@ block append content
 						.required Все поля в форме обязательны для заполнения!
 						.dont_worry Не волнуйтесь, все полученные данные строго конфиденциальны
 						a(href="#")
-							button.rules_button.darkgreen.uppercase Правила акции
+							button.rules_button.darkgreen.uppercase(type="button") Правила акции
 				
 				.content.form_radio.border_boxed.adorable_table
+					input(type="hidden", name="salt", value=salt)
+					
 					.adorable_cell
 						.radio
 							.checkbox
-								input#want_signup_checkbox(name="hasKids", type="radio", checked="checked", value="1")
+								input(name="hasKids", type="radio", checked="checked", value="1")
 								label
 									.img
 							.text У меня есть ребенок (дети)
 						
 						.radio
 							.checkbox
-								input#want_signup_checkbox(name="hasKids", type="radio", value="2")
+								input(name="hasKids", type="radio", value="2")
 								label
 									.img
 							.text Я жду ребенка
 						
 						.radio
 							.checkbox
-								input#want_signup_checkbox(name="hasKids", type="radio", value="0")
+								input(name="hasKids", type="radio", value="0")
 								label
 									.img
 							.text У меня нет детей
@@ -87,7 +90,7 @@ block append content
 						.adorable_table
 							.adorable_cell
 								.input
-									input#tour_phone(type="text", name="phone", placeholder="+3 8(___) ___ - __ - __")
+									input#activate_phone(type="text", name="phone", placeholder="+3 8(___) ___ - __ - __")
 					
 					.half.right
 						.adorable_table
@@ -101,7 +104,7 @@ block append content
 			.i_agree.adorable_table
 				.adorable_cell
 					.checkbox
-						input#want_signup_checkbox(name="agree", type="checkbox")
+						input#i_agree_checkbox(name="agree", type="checkbox")
 						label
 							.img
 					.text Я согласен(на) с тем, что мои данные будут обработаны и использованы сайтом agusha.com.ua.
@@ -109,8 +112,27 @@ block append content
 			.form_footer.adorable_table
 				.adorable_cell
 					button.middle_button.uppercase Отправить
+		
+		.message
+			div.message_top.adorable_table(class='green')
+				.adorable_cell
+					.label.novito_nova.white_font Кажется, эта акция не для вас!
+					.top_label
+						| Вероятно, кто-то хотел съесть детский подарок самостоятельно.
+						br
+						| Напоминаем, что наша акция только для настоящих и будущих родителей!
+			
+			div.message_bottom.adorable_table(class='darkgreen')
+				.adorable_cell
+					button.middle_button.white.uppercase.bold.close(class='darkgreen_font') Закрыть
+			
+			div.close_button.close(class='darkgreen_font') &times;
 
 block append scripts
+	script(src="/js/plugins/can/can.js")
+	script(src="/js/plugins/modal/jquery.easyModal.js")
+	script(src="/js/plugins/inputmask/jquery.inputmask.js")
 	script(src="/js/plugins/placeholders/placeholders.min.js")
+	script(src="/js/plugins/select2/select2.js")
 	script(src="/js/plugins/validate/jquery.validate.js")
 	script(src="/js/user/signup/activate.js")

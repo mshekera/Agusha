@@ -111,10 +111,13 @@ exports.success = (req, res) ->
 	View.renderWithSession req, res, 'user/signup/success/success', data, req.path
 
 exports.activate = (req, res) ->
+	salt = req.params.salt
+	
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'activate'
+		salt: salt
 		
-	id = new Buffer(req.params.salt, 'base64').toString 'utf8'
+	id = new Buffer(salt, 'base64').toString 'utf8'
 	
 	async.parallel
 		client: (next) ->
