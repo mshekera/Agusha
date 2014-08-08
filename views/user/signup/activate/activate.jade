@@ -25,14 +25,33 @@ block append content
 				
 				.content.form_radio.border_boxed.adorable_table
 					.adorable_cell
+						.radio
+							.checkbox
+								input#want_signup_checkbox(name="hasKids", type="radio", checked="checked", value="1")
+								label
+									.img
+							.text У меня есть ребенок (дети)
 						
+						.radio
+							.checkbox
+								input#want_signup_checkbox(name="hasKids", type="radio", value="2")
+								label
+									.img
+							.text Я жду ребенка
+						
+						.radio
+							.checkbox
+								input#want_signup_checkbox(name="hasKids", type="radio", value="0")
+								label
+									.img
+							.text У меня нет детей
 				
 				.content.inputs_content.border_boxed
 					.half.left
 						.adorable_table
 							.adorable_cell
 								.input
-									input(type="text", name="firstname", placeholder="Имя")
+									input(type="text", name="firstName", placeholder="Имя")
 					
 					.half.right
 						.adorable_table
@@ -44,13 +63,13 @@ block append content
 						.adorable_table
 							.adorable_cell
 								.input
-									input(type="text", name="lastname", placeholder="Фамилия")
+									input(type="text", name="lastName", placeholder="Фамилия")
 					
 					.half.right
 						.adorable_table
 							.adorable_cell
 								.input
-									input(type="text", name="index", placeholder="Индекс")
+									input(type="text", name="postIndex", placeholder="Индекс")
 					
 					.half.left
 						.adorable_table
@@ -75,9 +94,9 @@ block append content
 							.adorable_cell
 								.input
 									.half.left.border_boxed
-										input(type="text", name="building", placeholder="№ дома")
+										input(type="text", name="house", placeholder="№ дома")
 									.half.right.border_boxed
-										input(type="text", name="flat", placeholder="№ квартиры")
+										input(type="text", name="apartment", placeholder="№ квартиры")
 			
 			.i_agree.adorable_table
 				.adorable_cell

@@ -37,6 +37,8 @@ schema = new mongoose.Schema
 	active:
 		type: Boolean
 		default: false
+	hasKids: # 0 - does not have, 1 - has, 2 - is waiting
+		type: Number
 	firstName:
 		type: String
 	patronymic:
@@ -46,7 +48,8 @@ schema = new mongoose.Schema
 	phone:
 		type: String
 	city:
-		type: String
+		type: ObjectId
+		ref: 'City'
 	postIndex:
 		type: Number
 	street:
