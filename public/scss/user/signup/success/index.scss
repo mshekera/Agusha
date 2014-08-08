@@ -2,7 +2,7 @@
 @import '../../helpers/breadcrumbs';
 @import '../../helpers/message';
 
-.content {
+#success {
 	.topper {
 		height: 265px;
 		margin-bottom: 20px;
@@ -56,6 +56,19 @@
 	#add_client {
 		border-bottom: 1px dashed;
 		cursor: pointer;
+	}
+	
+	.message {
+		.top_label {
+			&.dark_font {
+				color: $white;
+				font-size: 16px;
+			}
+			
+			&.white_font {
+				display: none;
+			}
+		}
 	}
 }
 

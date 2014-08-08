@@ -12,6 +12,9 @@ tree = require '../../utils/tree'
 breadcrumbs = require '../../meta/breadcrumbs'
 
 exports.index = (req, res) ->
+	if req.session.registered
+		return res.redirect '/signup/success/' + req.session.registered
+	
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'signup'
 	
@@ -86,7 +89,9 @@ exports.invite = (req, res) ->
 		, (err, result) ->
 			if err
 				inviteErr err, req
-				
+			
+			req.session.message = 'ТЕПЕРЬ ВАШИ ДРУЗЬЯ БУДУТ В КУРСЕ ВСЕГО САМОГО ПОЛЕЗНОГО И ИНТЕРЕСНОГО.'
+			req.session.messageLabel = 'Спасибо!'
 			res.redirect path
 
 inviteErr = (err, req) ->
@@ -157,6 +162,8 @@ exports.activatePost = (req, res) ->
 				error = 'Такого пользователя не существует, кто-то пытается жульничать.'
 				Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
 				return res.redirect '/signup'
+			
+			req.session.registered = doc._id
 			
 			res.redirect '/signup/success/' + doc._id
 	], (err) ->

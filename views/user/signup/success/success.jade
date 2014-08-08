@@ -18,7 +18,7 @@ mixin add_client(i)
 						input(type="email", name!="client[#{i}][email]", placeholder="E-mail друга")
 
 block append content
-	.content
+	#success.content
 		include ../../../helpers/user/breadcrumbs/breadcrumbs
 		
 		- if (err || message)
