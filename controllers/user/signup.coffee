@@ -104,10 +104,6 @@ exports.success = (req, res) ->
 	
 	if req.params.id?
 		data.invited_by = req.params.id
-		
-		if not req.session.err
-			data.messageLabel = 'Спасибо за регистрацию!'
-			data.message = 'В ближашее время на ваш e-mail придет письмо<br />с подтверждением.'
 	
 	View.renderWithSession req, res, 'user/signup/success/success', data, req.path
 

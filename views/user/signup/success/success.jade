@@ -27,12 +27,12 @@ block append content
 		.topper.blue.adorable_table
 			.adorable_cell
 				.label.novito_nova
-					| Поздравляем, вы зарегистрированы!
-				
-				.top_label
-					| После открытия сайта вы сможете воспользоваться всеми упомянутыми преимуществами и
+					| Спасибо! СОВСЕМ СКОРО МЫ СВЯЖЕМСЯ С ВАМИ,
 					br
-					| оставить свой отзыв
+					| ЧТОБЫ УТОЧНИТЬ ВРЕМЯ ДОСТАВКИ ПОДАРКА.
+				
+				.top_label.non_uppercase
+					| Воспользоваться остальными упомянутыми возможностями вы сможете после открытия сайта.
 		
 		.white
 			.top_label.non_uppercase.adorable_table
@@ -42,7 +42,7 @@ block append content
 					| чтоб и они были в курсе всего самого полезного и интересного. Вместе веселее!
 			
 			.invite.centered
-					img(src="/img/user/signup/invite.png")
+				img(src="/img/user/signup/invite.jpg")
 		
 			form#invite_form.footer.green(method="POST", action="/signup/invite")
 				if invited_by
