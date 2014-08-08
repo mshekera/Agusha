@@ -80,6 +80,15 @@ var Activate_controller = can.Control.extend(
 			checkbox.prop('checked', !checkbox.prop('checked'));
 		},
 		
+		'#city_select2 change': function(el) {
+			var	elem = $(el),
+				error = elem.next();
+			
+			if(error.length) {
+				error.remove();
+			}
+		},
+		
 		'#activate_form submit': function(el, ev) {
 			var	radio = this.element.find('input[name=hasKids]:checked'),
 				val = radio.val();
