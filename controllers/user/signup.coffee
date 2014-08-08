@@ -1,4 +1,5 @@
 async = require 'async'
+_ = require 'underscore'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
@@ -132,3 +133,38 @@ exports.activate = (req, res) ->
 		data.client = results.client
 		
 		View.renderWithSession req, res, 'user/signup/activate/activate', data, req.path
+
+exports.activatePost = (req, res) ->
+	salt = req.body.salt
+	
+	id = new Buffer(salt, 'base64').toString 'utf8'
+	
+	async.waterfall [
+		(next) ->
+			fields = [
+				'hasKids'
+				'firstName'
+				'city'
+				'lastName'
+				'postIndex'
+				'patronymic'
+				'street'
+				'phone'
+				'house'
+				'apartment'
+			]
+			data = _.pick req.body, fields
+			
+			Model 'Client', 'findByIdAndUpdate', next, id, data
+		(doc) ->
+			if not doc
+				error = 'Такого пользователя не существует, кто-то пытается жульничать.'
+				Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
+				return res.redirect '/signup'
+			
+			res.redirect '/signup/success/' + doc._id
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
+		req.session.err = error
+		res.redirect '/signup/activate/' + salt

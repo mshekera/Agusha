@@ -34,6 +34,7 @@ Router.get '/signup/activate/:salt', SignUp.activate
 
 Router.post '/signup/invite', SignUp.invite
 Router.post '/signup/register', SignUp.register
+Router.post '/signup/activate', SignUp.activatePost
 
 #
 

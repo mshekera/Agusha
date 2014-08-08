@@ -169,11 +169,13 @@ var Activate_controller = can.Control.extend(
 			rule = 'postIndex';
 			validation.rules[rule] = {
 				required: true,
+				number: true,
 				minlength: 5,
 				maxlength: 6
 			};
 			validation.messages[rule] = {
 				required: required_message,
+				number: 'Пожалуйста, введите число',
 				minlength: 'Минимальное количество символов - 5',
 				maxlength: 'Минимальное количество символов - 6'
 			};
