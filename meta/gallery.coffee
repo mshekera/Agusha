@@ -8,7 +8,7 @@ module.exports = [
 # ,
 	img: 'banner_action.png'
 	top_label: '<div class="action_label">Акция!</div>'
-	label: '<div class="action">Регистрируйтесь и получите один из<br>1 000 ПОДАРКОВ<br>ДЛЯ ВАШЕГО МАЛЫША</div>'
+	label: '<div class="action">Регистрируйтесь и получите один из<br><span class="novito">1 000</span> <span class="novito_nova_regular">ПОДАРКОВ</span><br>ДЛЯ ВАШЕГО МАЛЫША</div>'
 	link:
 		title: 'Получите свой!'
 		href: '/signup'
