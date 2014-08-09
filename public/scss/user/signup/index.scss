@@ -162,6 +162,7 @@
 	&:hover  ~ .map_content {
 		background: $darkblue;
 		color: $white;
+		z-index: 15;
 		
 		.text {
 			display: block;
