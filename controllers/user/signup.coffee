@@ -118,9 +118,10 @@ exports.invite = (req, res) ->
 					while alreadyInvitedLength--
 						client = already_invited[alreadyInvitedLength]
 						req.session.err += '<div>' + client.login + ' уже приглашен. Попробуйте пригласить еще кого-нибудь.</div>'
+				else
+					req.session.message = 'ТЕПЕРЬ ВАШИ ДРУЗЬЯ БУДУТ В КУРСЕ ВСЕГО САМОГО ПОЛЕЗНОГО И ИНТЕРЕСНОГО.'
+					req.session.messageLabel = 'Спасибо!'
 				
-				req.session.message = 'ТЕПЕРЬ ВАШИ ДРУЗЬЯ БУДУТ В КУРСЕ ВСЕГО САМОГО ПОЛЕЗНОГО И ИНТЕРЕСНОГО.'
-				req.session.messageLabel = 'Спасибо!'
 				res.redirect path
 		], (err) ->
 			inviteErr err, req
