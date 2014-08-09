@@ -157,6 +157,7 @@
 	
 	&:hover {
 		background-position: 0 0;
+		z-index: 20;
 	}
 	
 	&:hover  ~ .map_content {
