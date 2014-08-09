@@ -45,10 +45,10 @@ mixin article(a)
 					| {{startIndex}}
 					| {{#each desc_image}}
 					| {{#if desc_image_link}}
-						a(href='{{desc_image_link}}')
-							img.image(src="/img/uploads/{{.}}", class='{{#firstElem}}active{{/if}}')
-					| {{else}}
+					a(href='{{desc_image_link}}')
 						img.image(src="/img/uploads/{{.}}", class='{{#firstElem}}active{{/if}}')
+					| {{else}}
+					img.image(src="/img/uploads/{{.}}", class='{{#firstElem}}active{{/if}}')
 					| {{/if}}
 					| {{/each}}
 				| {{#showArrows}}
