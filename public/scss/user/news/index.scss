@@ -75,6 +75,11 @@
 	width: 100%;
 	margin-bottom: 4%;
 	
+	a {
+		text-decoration: none;
+		color: $base;
+	}
+	
 	.article_header {
 		width: 100%;
 		position: relative;
@@ -85,7 +90,7 @@
 			padding: 0 37px;
 			margin-top: 7px;
 			color: $dark;
-			letter-spacing: 0.6px;
+			letter-spacing: 1px;
 		}
 		
 		.warning {
