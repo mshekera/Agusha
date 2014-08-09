@@ -35,6 +35,8 @@ schema = new mongoose.Schema
 	desc_image: [
 		type: String
 	]
+	desc_image_link:
+		type: String
 	desc_title:
 		type: String
 		required: true

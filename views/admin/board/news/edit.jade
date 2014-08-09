@@ -158,6 +158,10 @@ block content
 											a.t-removeImage(href="/admin/news/deleteimg/#{news._id}/#{img}")
 												i.removeImage.glyphicon.glyphicon-remove
 									.clearfix
-								
+							
+							.form-group
+								label(for="desc_image_link")= "Ссылка изображения:"
+								input.form-control(type="text" name="desc_image_link" placeholder="Ссылка изображения" value=news.desc_image_link)
+							
 						.box-footer
 							button.btn.btn-primary(type="submit")= "Сохранить изменения"

@@ -29,7 +29,11 @@ mixin article(a)
 				.desc_images
 					div
 						- each img, j in a.desc_image
-							img.image(src = '/img/uploads/' + img, class = (j == 0 ? 'active' : ''))
+							if a.desc_image_link
+								a(href=a.desc_image_link)
+									img.image(src = '/img/uploads/' + img, class = (j == 0 ? 'active' : ''))
+							else
+								img.image(src = '/img/uploads/' + img, class = (j == 0 ? 'active' : ''))
 					- if (a.desc_image.length > 1)
 						.desc_images_arrows
 							.half.left
@@ -40,7 +44,12 @@ mixin article(a)
 				div
 					| {{startIndex}}
 					| {{#each desc_image}}
-					img.image(src="/img/uploads/{{.}}", class='{{#firstElem}}active{{/if}}')
+					| {{#if desc_image_link}}
+						a(href='{{desc_image_link}}')
+							img.image(src="/img/uploads/{{.}}", class='{{#firstElem}}active{{/if}}')
+					| {{else}}
+						img.image(src="/img/uploads/{{.}}", class='{{#firstElem}}active{{/if}}')
+					| {{/if}}
 					| {{/each}}
 				| {{#showArrows}}
 				.desc_images_arrows
