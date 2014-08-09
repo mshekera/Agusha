@@ -75,11 +75,6 @@
 	width: 100%;
 	margin-bottom: 4%;
 	
-	a {
-		text-decoration: none;
-		color: $base;
-	}
-	
 	.article_header {
 		width: 100%;
 		position: relative;
@@ -185,6 +180,11 @@
 		color: #4d4d4d;
 		line-height: 20px;
 		letter-spacing: -0.1px;
+		
+		a {
+			text-decoration: none;
+			color: $base;
+		}
 		
 		h1, h2, h3, h4, h5, h6 {
 			font-size: 100%;
