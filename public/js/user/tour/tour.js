@@ -1,4 +1,4 @@
-$('.message').easyModal({
+$('.server_message').easyModal({
 	autoOpen: true,
 	overlayOpacity: 0.9,
 	overlayColor: "#ffffff",
@@ -366,6 +366,14 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		'#tour_form submit': function(el, ev) {
+			$('.tour_message').easyModal({
+				autoOpen: true,
+				overlayOpacity: 0.9,
+				overlayColor: "#ffffff",
+			});
+			
+			return false;
+			
 			var form = $(el);
 			this.tour_validate(form);
 			
