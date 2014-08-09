@@ -18,6 +18,7 @@ Article = require './user/article'
 Production = require './user/production'
 Contacts = require './user/contacts'
 Video = require './user/video'
+Action = require './user/action'
 
 Router = express.Router()
 
@@ -76,6 +77,10 @@ Router.get '/contacts', Contacts.index
 #
 
 Router.get '/video', Video.index
+
+#
+
+Router.get '/action', Action.index
 
 #
 
