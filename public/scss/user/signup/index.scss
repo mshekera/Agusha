@@ -18,10 +18,18 @@
 	}
 	
 	.map {
+		margin-bottom: 16px;
+		
 		img {
 			max-width: 100%;
-			margin-bottom: 16px;
 		}
+	}
+	
+	.map_container {
+		margin: auto;
+		width: 944px;
+		height: 654px;
+		position: relative;
 	}
 	
 	.action_button {
@@ -105,5 +113,114 @@
 			font-size: 66px;
 			line-height: 66px;
 		}
+	}
+}
+
+.map_circle {
+	height: 26px;
+	width: 26px;
+	position: absolute;
+	background: url('/img/user/signup/map_buttons.png');
+	background-position: -26px 0;
+	cursor: pointer;
+	z-index: 10;
+	
+	&.encyclopedia {
+		top: 40px;
+		left: 270px;
+	}
+	
+	&.consultation {
+		top: 325px;
+		left: 280px;
+	}
+	
+	&.news {
+		top: 205px;
+		right: 420px;
+	}
+	
+	&.piggy_bank {
+		bottom: 205px;
+		right: 415px;
+	}
+	
+	&.action {
+		top: 190px;
+		right: 140px;
+	}
+	
+	&.service {
+		top: 305px;
+		right: 55px;
+	}
+	
+	&:hover {
+		background-position: 0 0;
+	}
+	
+	&:hover  ~ .map_content {
+		background: $darkblue;
+		color: $white;
+		
+		.text {
+			display: block;
+		}
+	}
+}
+
+.map_content {
+	@include border_radius(5px);
+	position: absolute;
+	padding: 18px;
+	color: $darkblue;
+	height: auto;
+	width: 240px;
+	
+	.text {
+		line-height: 20px;
+		display: none;
+	}
+	
+	&.left {
+		.adorable_cell {
+			text-align: left;
+		}
+	}
+	
+	&.right {
+		.adorable_cell {
+			text-align: right;
+		}
+	}
+	
+	&.encyclopedia {
+		top: 53px;
+		left: 283px;
+	}
+	
+	&.consultation {
+		top: 338px;
+		left: 293px;
+	}
+	
+	&.news {
+		top: 218px;
+		right: 197px;
+	}
+	
+	&.piggy_bank {
+		top: 435px;
+		right: 188px;
+	}
+	
+	&.action {
+		top: 203px;
+		right: 153px;
+	}
+	
+	&.service {
+		top: 318px;
+		right: 68px;
 	}
 }
