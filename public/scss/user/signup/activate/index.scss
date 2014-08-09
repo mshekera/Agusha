@@ -183,6 +183,12 @@
 			font-size: 112.5%;
 			cursor: pointer;
 		}
+		
+		label[generated='true'] {
+			left: 0;
+			top: -10px;
+			width: 350px;
+		}
 	}
 	
 	.form_footer {

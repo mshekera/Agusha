@@ -53,15 +53,26 @@ exports.invite = (req, res) ->
 	if invited_by?
 		path += '/' + invited_by
 	
+	already_invited = []
+	
 	async.map req.body.client, (client, callback) ->
-		if client.login and client.email
-			if invited_by?
-				client.invited_by = invited_by
-				client.type = 1
-			
-			Model 'Client', 'create', callback, client
-		else
-			callback null
+		async.waterfall [
+			(next) ->
+				Model 'Client', 'findOne', next, email: client.email
+			(doc) ->
+				if doc
+					already_invited.push client
+					return callback null
+				
+				if client.login and client.email
+					if invited_by?
+						client.invited_by = invited_by
+						client.type = 1
+					
+					Model 'Client', 'create', callback, client
+				else
+					callback null
+		], callback
 	, (err, clients) ->
 		if err
 			inviteErr err, req
@@ -100,6 +111,14 @@ exports.invite = (req, res) ->
 						callback null
 				, next
 			(result) ->
+				alreadyInvitedLength = already_invited.length
+				if alreadyInvitedLength
+					req.session.err = ''
+					
+					while alreadyInvitedLength--
+						client = already_invited[alreadyInvitedLength]
+						req.session.err += '<div>' + client.login + ' уже приглашен. Попробуйте пригласить еще кого-нибудь.</div>'
+				
 				req.session.message = 'ТЕПЕРЬ ВАШИ ДРУЗЬЯ БУДУТ В КУРСЕ ВСЕГО САМОГО ПОЛЕЗНОГО И ИНТЕРЕСНОГО.'
 				req.session.messageLabel = 'Спасибо!'
 				res.redirect path
@@ -113,7 +132,7 @@ inviteErr = (err, req) ->
 		error = err.message or err
 	
 	Logger.log 'info', "Error in controllers/user/signup/invite: #{error}"
-	req.session.err = error
+	return req.session.err = error
 
 exports.success = (req, res) ->
 	data =

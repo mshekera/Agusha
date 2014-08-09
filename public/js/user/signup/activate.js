@@ -217,7 +217,7 @@ var Activate_controller = can.Control.extend(
 				required: true
 			};
 			validation.messages[rule] = {
-				required: required_message
+				required: 'Пожалуйста, подтвердите, что вы согласны с Правилами Акции'
 			};
 			
 			validation.ignore = [];
