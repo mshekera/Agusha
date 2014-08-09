@@ -51,7 +51,7 @@ mixin article(a)
 			| {{/if}}
 		
 		.text
-			.desc_shorttext!=(a ? a.desc_shorttext : '{{desc_shorttext}}')
+			.desc_shorttext!=(a ? a.desc_shorttext : '{{{desc_shorttext}}}')
 			if a
 				if a.desc_text
 					.desc_text!=(a ? a.desc_text : '{{{desc_text}}}')
