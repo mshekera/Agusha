@@ -65,6 +65,11 @@ var Activate_controller = can.Control.extend(
 				autoOpen: true,
 				overlayOpacity: 0.9,
 				overlayColor: "#ffffff",
+				onClose: function(myModal) {
+					_gaq.push(['_setReferrerOverride', referrer]);
+					_gaq.push(['_trackEvent', 'closeerror', 'click']);
+					_gaq.push(['_trackPageview'], url);
+				}
 			});
 		},
 		
@@ -89,6 +94,12 @@ var Activate_controller = can.Control.extend(
 			}
 		},
 		
+		'.rules click': function(el) {
+			_gaq.push(['_setReferrerOverride', referrer]);
+			_gaq.push(['_trackEvent', 'rules', 'click']);
+			_gaq.push(['_trackPageview'], url);
+		},
+		
 		'#activate_form submit': function(el, ev) {
 			var	radio = this.element.find('input[name=hasKids]:checked'),
 				val = radio.val();
@@ -102,6 +113,10 @@ var Activate_controller = can.Control.extend(
 			this.activate_validate(form);
 			
 			if(form.valid() == true) {
+				_gaq.push(['_setReferrerOverride', referrer]);
+				_gaq.push(['_trackEvent', 'send', 'click']);
+				_gaq.push(['_trackPageview'], url);
+				
 				return true;
 			} else {
 				return false;

@@ -17,7 +17,7 @@ block before_main
 									.adorable_cell
 										.top_label !{g.top_label}
 										.label.novito_nova !{g.label}
-										a.link.lightblue_font(href=g.link.href) !{g.link.title}
+										a.link.lightblue_font(href=g.link.href, class = (g.link.class ? g.link.class : '')) !{g.link.title}
 				
 				.jssorb12(u='navigator')
 					div(u='prototype', class='prototype rounded ')
@@ -83,7 +83,7 @@ block content
 				.top_label #{declension}
 				
 				a(href="/signup")
-					button.middle_button.yellow Зарегистрироваться
+					button.middle_button.yellow.bannerleft Зарегистрироваться
 
 block append scripts
 	script(src="/js/plugins/slider/jssor.core.js")

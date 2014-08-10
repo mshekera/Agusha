@@ -8,6 +8,17 @@ $('.message').easyModal({
 	autoOpen: true,
 	overlayOpacity: 0.9,
 	overlayColor: "#ffffff",
+	onClose: function(myModal) {
+		_gaq.push(['_setReferrerOverride', referrer]);
+		_gaq.push(['_trackEvent', 'closeerror', 'click']);
+		_gaq.push(['_trackPageview'], url);
+	}
+});
+
+$('.rules').click(function(ev) {
+	_gaq.push(['_setReferrerOverride', referrer]);
+	_gaq.push(['_trackEvent', 'rules', 'click']);
+	_gaq.push(['_trackPageview'], url);
 });
 
 $('#registration_form').submit(function(ev) {
@@ -15,6 +26,10 @@ $('#registration_form').submit(function(ev) {
 	registration_validate(form);
 	
 	if(form.valid() == true) {
+		_gaq.push(['_setReferrerOverride', referrer]);
+		_gaq.push(['_trackEvent', 'registration', 'click']);
+		_gaq.push(['_trackPageview'], url);
+		
 		return true;
 	} else {
 		return false;

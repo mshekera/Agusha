@@ -2,6 +2,11 @@ $('.message').easyModal({
 	autoOpen: true,
 	overlayOpacity: 0.9,
 	overlayColor: "#ffffff",
+	onClose: function(myModal) {
+		_gaq.push(['_setReferrerOverride', referrer]);
+		_gaq.push(['_trackEvent', 'closeerror', 'click']);
+		_gaq.push(['_trackPageview'], url);
+	}
 });
 
 $('#add_client').on('click', function() {
@@ -21,6 +26,10 @@ $('#invite_form').submit(function(ev) {
 	invite_validate(form);
 	
 	if(form.valid() == true) {
+		_gaq.push(['_setReferrerOverride', referrer]);
+		_gaq.push(['_trackEvent', 'invite', 'click']);
+		_gaq.push(['_trackPageview'], url);
+		
 		return true;
 	} else {
 		return false;

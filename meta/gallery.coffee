@@ -12,6 +12,7 @@ module.exports = [
 	link:
 		title: 'Получите свой!'
 		href: '/signup'
+		class: 'bannertop'
 ,
 	img: 'banner_1_2.png'
 	top_label: 'Заявляем смело:'

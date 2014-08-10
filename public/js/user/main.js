@@ -55,3 +55,15 @@ var jssor_slider = new $JssorSlider$('slider_container', options);
 if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
 	$(window).bind('resize', window_resize);
 }
+
+$('.bannertop').click(function(ev) {
+	_gaq.push(['_setReferrerOverride', referrer]);
+	_gaq.push(['_trackEvent', 'bannertop', 'click']);
+	_gaq.push(['_trackPageview'], url);
+});
+
+$('.bannerleft').click(function(ev) {
+	_gaq.push(['_setReferrerOverride', referrer]);
+	_gaq.push(['_trackEvent', 'bannerleft', 'click']);
+	_gaq.push(['_trackPageview'], url);
+});
