@@ -44,7 +44,7 @@ exports.specialist = (req, res) ->
 				article: (next2) ->
 					Model 'Article', 'findOne', next2, alias: req.params.alias
 				articles: (next2) ->
-					Model 'Article', 'find', next2, type: 3, 'desc_image big_title'
+					Model 'Article', 'find', next2, type: 3, 'desc_image big_title alias'
 			, next
 		(results) ->
 			data.article = results.article
