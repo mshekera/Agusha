@@ -71,6 +71,9 @@ translit = require('translit')({
 	'є': 'ye'
 	' ': '_'
 	'?': ''
+	'"': ''
+	'»': ''
+	'«': ''
 })
 
 string = require './string'
