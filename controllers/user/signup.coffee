@@ -32,7 +32,7 @@ exports.register = (req, res) ->
 	asyncFunctions = asyncFunctions.concat [
 		(salt) ->
 			req.session.message = true
-			res.redirect '/signup'
+			res.redirect '/signup/registered'
 	]
 	
 	async.waterfall asyncFunctions, (err) ->
