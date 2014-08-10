@@ -4,7 +4,7 @@
 		tbody
 			tr
 				th.logo
-					a(href=base_url)
+					a(href = base_url + '?utm_source=email_main&utm_medium=email&utm_campaign=light_email')
 						.logo_image
 				th.welcome
 					.welcome_test
@@ -25,14 +25,17 @@
 			| года.
 			.about_action
 				| С подробными правилами акции вы можете ознакомиться 
-				a.italic_link(href = base_url + '/action') здесь
+				a.italic_link(href = base_url + '/action?utm_source=email_rules&utm_medium=email&utm_campaign=light_email') здесь
 				| .
+	
 	.not_registred_text
-		| Если вы не регистрировались на agusha.com.ua, проигнорируйте это письмо.
+		| Если вы не регистрировались на 
+		a(href = base_url + '?utm_source=email_main&utm_medium=email&utm_campaign=light_email') agusha.com.ua
+		|, проигнорируйте это письмо.
 		br
 		| Или все-таки посетите наш сайт – у нас много интересного :)
 	.footer
 		.copyright
-			| © Agusha.com.ua 2014
-		.denial_email
-			| Отказаться от рассылки
+			| © 
+			a(href = base_url + '?utm_source=email_main&utm_medium=email&utm_campaign=light_email') Agusha.com.ua
+			|  2014
