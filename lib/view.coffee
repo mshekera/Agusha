@@ -6,6 +6,8 @@ Logger = require './logger'
 Cache = require './cache'
 Model = require './model'
 
+string = require '../utils/string'
+
 exports.render = render = (name, res, data, cacheId) ->
 	data or= {}
 
@@ -108,8 +110,7 @@ exports.globals = (req, res, callback)->
 			
 			res.locals.params = req.params
 			
-			res.locals.strip_tags = (str) ->
-				str.replace /<\/?[^>]+>/g, ' '
+			res.locals.strip_tags = string.strip_tags
 			
 			callback()
 	# ], (err)->

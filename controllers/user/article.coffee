@@ -17,7 +17,7 @@ exports.index = (req, res) ->
 		(next) ->
 			async.parallel
 				article: (next2) ->
-					Model 'Article', 'findById', next2, req.params.id
+					Model 'Article', 'findOne', next2, alias: req.params.alias
 				articles: (next2) ->
 					Model 'Article', 'find', next2, type: 2, 'desc_title'
 			, next
@@ -42,7 +42,7 @@ exports.specialist = (req, res) ->
 		(next) ->
 			async.parallel
 				article: (next2) ->
-					Model 'Article', 'findById', next2, req.params.id
+					Model 'Article', 'findOne', next2, alias: req.params.alias
 				articles: (next2) ->
 					Model 'Article', 'find', next2, type: 3, 'desc_image big_title'
 			, next

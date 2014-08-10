@@ -5,6 +5,8 @@ View = require './view'
 Model = require './model'
 Logger = require './logger'
 
+translit = require '../utils/translit'
+
 exports.preformatForUser = preformatForUser = (docs) ->
 	result =
 		left: []
@@ -63,3 +65,17 @@ exports.findAll = (req, res) ->
 		error = err.message or err
 		Logger.log 'info', "Error in lib/article/findAll: #{error}"
 		View.ajaxResponse res, err
+
+exports.makeAliases = (callback) ->
+	async.waterfall [
+		(next) ->
+			Model 'Article', 'find', next
+		(docs) ->
+			async.each docs, (item, next2) ->
+				string = item.desc_title
+				
+				item.alias = translit string
+				
+				item.save next2
+			, callback
+	], callback

@@ -102,7 +102,7 @@ block append content
 					.articles_right_container
 						- each a, key in articles
 							- if (a._id + '' != article._id + '')
-								a(href = '/specialist/' + a._id)
+								a(href = '/specialist/' + a.alias)
 									.article_block.adorable_container
 										.adorable
 											.adorable_table

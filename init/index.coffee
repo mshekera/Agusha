@@ -6,6 +6,8 @@ moment = require 'moment'
 Database = require './database'
 Logger = require '../lib/logger'
 Image = require '../lib/image'
+Product = require '../lib/product'
+Article = require '../lib/article'
 Migrate = require './migrate'
 Application = require './application'
 # Notifier = require '../lib/notifier'
@@ -39,6 +41,14 @@ async.waterfall [
 	(next) ->
 		Logger.log 'info', 'Image directories are checked'
 		
+		Product.makeAliases next
+	(next) ->
+		Logger.log 'info', 'Product aliases are recreated'
+		
+		Article.makeAliases next
+	(next) ->
+		Logger.log 'info', 'Article aliases are recreated'
+		
 		Application.init next
 	(next) ->
 		Logger.log 'info', "Application is initializated"
@@ -55,4 +65,5 @@ async.waterfall [
 	(next) ->
 		Logger.log 'info', "Application is binded to #{appPort}"
 ], (err) ->
-	Logger.error 'Init error: ', err
+	error = err.message || err
+	Logger.error 'Init error: ', error

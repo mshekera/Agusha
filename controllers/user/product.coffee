@@ -15,7 +15,7 @@ exports.index = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			product = Model 'Product', 'findById', null, req.params.id
+			product = Model 'Product', 'findOne', null, alias: req.params.alias
 			
 			product.populate('age certificate').exec next
 		(doc) ->

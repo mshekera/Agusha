@@ -28,7 +28,7 @@ block append content
 		.food_container
 			.food_block.inline_adorable_container
 				if specialist
-					a(href = '/specialist/' + specialist._id)
+					a(href = '/specialist/' + specialist.alias)
 						mixin doc()
 				else
 					mixin doc()
@@ -49,7 +49,7 @@ block append content
 			
 			- each a, key in articles
 				.food_block.inline_adorable_container
-					a(href = '/article/' + a._id)
+					a(href = '/article/' + a.alias)
 						.adorable
 							if a.desc_image.length
 								.food_block_bg

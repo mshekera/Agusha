@@ -3,6 +3,7 @@ express = require 'express'
 View = require '../lib/view'
 City = require '../lib/city'
 ArticleLib = require '../lib/article'
+ProductLib = require '../lib/product'
 
 Migrate = require '../init/migrate'
 
@@ -47,7 +48,7 @@ Router.post '/products/findAll', Products.findAll
 
 #
 
-Router.get '/product/:id', Product.index
+Router.get '/product/:alias', Product.index
 
 #
 
@@ -84,8 +85,8 @@ Router.get '/action', Action.index
 
 #
 
-Router.get '/article/:id', Article.index
-Router.get '/specialist/:id', Article.specialist
+Router.get '/article/:alias', Article.index
+Router.get '/specialist/:alias', Article.specialist
 
 Router.post '/articles/findAll', ArticleLib.findAll
 

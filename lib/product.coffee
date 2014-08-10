@@ -4,6 +4,8 @@ View = require './view'
 Model = require './model'
 Logger = require './logger'
 
+translit = require '../utils/translit'
+
 falseObjectID = '111111111111111111111111'
 
 exports.addAsyncFunctionsByFilter = (data, category, age) ->
@@ -58,3 +60,20 @@ exports.getAgesAndCategories = (callback) ->
 		categories: (next) ->
 			Model 'Category', 'find', next, {active: true}
 	}, callback
+
+exports.makeAliases = (callback) ->
+	async.waterfall [
+		(next) ->
+			Model 'Product', 'find', next
+		(docs) ->
+			async.each docs, (item, next2) ->
+				volume = item.getFormattedVolume()
+				string = item.title + ' ' + volume.volume + ' ' + volume.postfix
+				string = string.replace(RegExp(' +(?= )', 'g'), '') # remove double spaces
+				string = string.toLowerCase()
+				
+				item.alias = translit string
+				
+				item.save next2
+			, callback
+	], callback

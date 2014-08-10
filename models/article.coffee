@@ -40,6 +40,7 @@ schema = new mongoose.Schema
 	desc_title:
 		type: String
 		required: true
+		unique: true
 	button_label:
 		type: String
 	big_title:
@@ -52,6 +53,10 @@ schema = new mongoose.Schema
 		type: Boolean
 		required: true
 		default: true
+	alias:
+		type: String
+		index: true
+		unique: true
 ,
 	collection: 'article'
 

@@ -4,7 +4,7 @@ block append header
 	link(rel="stylesheet" href="/css/user/products/products.css")
 
 mixin product(p)
-	a(href = '/product/' + (p ? p._id : '{{_id}}'))
+	a(href = '/product/' + (p ? p.alias : '{{alias}}'))
 		.product_block
 			.image
 				if p
