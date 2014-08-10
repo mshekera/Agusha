@@ -1,3 +1,9 @@
+if($('.thanks').length) {
+	$('html, body').animate({
+        scrollTop: 9999
+    }, 1);
+}
+
 $('.message').easyModal({
 	autoOpen: true,
 	overlayOpacity: 0.9,
@@ -29,7 +35,7 @@ var registration_validate = function(form) {
 	validation.messages[rule] = {
 		required: required_message,
 		minlength: 'Минимальное количество символов - 3',
-		maxlength: 'Минимальное количество символов - 64'
+		maxlength: 'Максимальное количество символов - 64'
 	};
 	
 	rule = 'email';
@@ -42,7 +48,7 @@ var registration_validate = function(form) {
 	validation.messages[rule] = {
 		required: required_message,
 		minlength: 'Минимальное количество символов - 3',
-		maxlength: 'Минимальное количество символов - 64',
+		maxlength: 'Максимальное количество символов - 64',
 		email: 'Некорректно указан E-mail. Попробуйте еще раз.'
 	};
 	

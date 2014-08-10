@@ -43,7 +43,7 @@ var validate_login = function(validation, i) {
 	};
 	validation.messages[rule] = {
 		minlength: 'Минимальное количество символов - 3',
-		maxlength: 'Минимальное количество символов - 64',
+		maxlength: 'Максимальное количество символов - 64',
 		required: required_message
 	};
 };
@@ -65,7 +65,7 @@ var validate_email = function(validation, i) {
 	};
 	validation.messages[rule] = {
 		minlength: 'Минимальное количество символов - 3',
-		maxlength: 'Минимальное количество символов - 64',
+		maxlength: 'Максимальное количество символов - 64',
 		email: 'Некорректно указан E-mail. Попробуйте еще раз.',
 		required: required_message
 	};

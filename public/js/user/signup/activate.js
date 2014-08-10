@@ -122,7 +122,7 @@ var Activate_controller = can.Control.extend(
 			validation.messages[rule] = {
 				required: required_message,
 				minlength: 'Минимальное количество символов - 3',
-				maxlength: 'Минимальное количество символов - 64'
+				maxlength: 'Максимальное количество символов - 64'
 			};
 			
 			rule = 'lastName';
@@ -134,7 +134,7 @@ var Activate_controller = can.Control.extend(
 			validation.messages[rule] = {
 				required: required_message,
 				minlength: 'Минимальное количество символов - 3',
-				maxlength: 'Минимальное количество символов - 64'
+				maxlength: 'Максимальное количество символов - 64'
 			};
 			
 			rule = 'patronymic';
@@ -146,7 +146,7 @@ var Activate_controller = can.Control.extend(
 			validation.messages[rule] = {
 				required: required_message,
 				minlength: 'Минимальное количество символов - 3',
-				maxlength: 'Минимальное количество символов - 64'
+				maxlength: 'Максимальное количество символов - 64'
 			};
 			
 			rule = 'phone';
@@ -177,7 +177,7 @@ var Activate_controller = can.Control.extend(
 				required: required_message,
 				number: 'Пожалуйста, введите число',
 				minlength: 'Минимальное количество символов - 5',
-				maxlength: 'Минимальное количество символов - 6'
+				maxlength: 'Максимальное количество символов - 6'
 			};
 			
 			rule = 'street';
@@ -189,7 +189,7 @@ var Activate_controller = can.Control.extend(
 			validation.messages[rule] = {
 				required: required_message,
 				minlength: 'Минимальное количество символов - 4',
-				maxlength: 'Минимальное количество символов - 64'
+				maxlength: 'Максимальное количество символов - 64'
 			};
 			
 			rule = 'house';

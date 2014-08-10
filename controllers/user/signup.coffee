@@ -58,6 +58,8 @@ exports.invite = (req, res) ->
 	async.map req.body.client, (client, callback) ->
 		async.waterfall [
 			(next) ->
+				client.email = client.email.toLowerCase()
+				
 				Model 'Client', 'findOne', next, email: client.email
 			(doc) ->
 				if doc

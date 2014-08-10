@@ -25,6 +25,8 @@ exports.addAsyncFunctionsForSignUp = (res, data, post) ->
 	
 	return asyncFunctions = [
 		(next) ->
+			post.email = post.email.toLowerCase()
+			
 			Model 'Client', 'create', next, post
 		(client, next) ->
 			data.client = client
