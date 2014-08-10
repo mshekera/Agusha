@@ -2,6 +2,34 @@ extends ../layout
 
 block append header
 	link(rel="stylesheet" href="/css/user/signup/signup.css")
+	if message
+		// Facebook Conversion Code for Agusha Light_signup succesful 
+		script.
+			(function() {
+				var _fbq = window._fbq || (window._fbq = []);
+				if (!_fbq.loaded) {
+					var fbds = document.createElement('script');
+					fbds.async = true;
+					fbds.src = '//connect.facebook.net/en_US/fbds.js';
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(fbds, s);
+					_fbq.loaded = true;
+				}
+			})();
+			window._fbq = window._fbq || [];
+			window._fbq.push(['track', '6015287707342', {'value':'0.00','currency':'USD'}]);
+		noscript
+			img(height='1', width='1', alt='', style='display: none;', src='https://www.facebook.com/tr?ev=6015287707342&cd[value]=0.00&cd[currency]=USD&noscript=1')
+		
+		// vk
+		
+		script(type='text/javascript').
+			(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=Q1B1tQtXjyZZ9GmtvCMY25OZBUchH/kqa5GJfQZbU1s2In528Yo1iMl3g7Iph/YLBAhvvLxS8mU*m73FM3N1EPE4xGaExP05nPiR7bPYFTF3Wfr8fVV/9NeWOgPYHCn8IFoEWX8OEEQrLIPxOr5e64M9Ea6OXmsqRDkG0WZMSZk-';
+	else
+		// vk
+		script(type='text/javascript').
+			(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=zBPJsZ*g/znMc7JpOXdFA4G8XZBgyCGj9XTdDeMZVyCJmHnEiaINu6kStj6QkDpRMDDRXpdztCyWz8Ez*uodNW203MKaQXAWk9AH2spdoYmjhxbTQeqG4uAU0Q8oYI1NBPzt8rlozmezk61luuQzBtcMI91N1lFpfr0T3q0l44E-';
+
 
 block append content
 	#signup.content
