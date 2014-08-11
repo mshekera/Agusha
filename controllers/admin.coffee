@@ -73,6 +73,7 @@ Router.get '/clients', Clients.index
 
 Router.post '/clients/process', Clients.process
 Router.post '/clients/remove', Clients.remove
+Router.post '/clients/setStatus', Clients.setStatus
 #----------------#
 Router.get '/tours', Tours.index
 Router.get '/tour/create', Tours.create
