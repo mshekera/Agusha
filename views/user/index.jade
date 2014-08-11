@@ -86,9 +86,26 @@ block content
 				
 				a.bannerleft(href="/signup")
 					button.middle_button.yellow Зарегистрироваться
+		
+		if unsubscribe
+			.message.unsubscribe_message.inline_adorable_container
+				.adorable
+					div.message_top.adorable_table(class='green')
+						.adorable_cell
+							.label.novito_nova.white_font Ну вот...
+							.top_label.non_uppercase.dark_font
+								| Вы отписались от новостей сайта 
+								a.message_link(href=base_url) agusha.com.ua.
+					
+					div.message_bottom.adorable_table(class='darkgreen')
+						.adorable_cell
+							button.middle_button.white.uppercase.bold.close(class='darkgreen_font') Вернуться на сайт
+					
+					div.close_button.close(class='darkgreen_font') &times;
 
 block append scripts
 	script(src="/js/plugins/slider/jssor.core.js")
 	script(src="/js/plugins/slider/jssor.utils.js")
 	script(src="/js/plugins/slider/jssor.slider.js")
+	script(src="/js/plugins/modal/jquery.easyModal.js")
 	script(src="/js/user/main.js")

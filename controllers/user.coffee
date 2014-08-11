@@ -93,6 +93,10 @@ Router.post '/articles/findAll', ArticleLib.findAll
 
 #
 
+Router.get '/unsubscribe', Main.unsubscribe
+
+#
+
 Router.post '/city_autocomplete', City.autocomplete
 
 #

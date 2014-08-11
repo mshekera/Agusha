@@ -20,6 +20,10 @@ exports.index = (req, res) ->
 		daysArray: _.chars diffInDays+''
 		declension: time.declension diffInDays
 	
+	if req.session.unsubscribe
+		data.unsubscribe = true
+		delete req.session.unsubscribe
+	
 	View.render 'user/index', res, data, req.path #
 	
 	# async.waterfall [
@@ -43,3 +47,8 @@ exports.index = (req, res) ->
 	# ], (err) ->
 		# error = err.message or err
 		# Logger.log 'info', "Error in controllers/user/main/index: #{error}"
+
+exports.unsubscribe = (req, res) ->
+	req.session.unsubscribe = true
+	
+	res.redirect '/'
