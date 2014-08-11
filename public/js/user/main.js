@@ -68,7 +68,7 @@ $('.bannertop').click(function(ev) {
 
 $('.bannerleft').click(function(ev) {
 	ev.preventDefault();
-	var href = ev.target.href;
+	var href = $(this).attr('href');
 	
 	_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 	_gaq.push(['_trackEvent', 'bannerleft', 'click']);
