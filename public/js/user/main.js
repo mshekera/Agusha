@@ -57,13 +57,21 @@ if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
 }
 
 $('.bannertop').click(function(ev) {
-	_gaq.push(['_setReferrerOverride', referrer]);
+	ev.preventDefault();
+	var href = ev.target.href;
+	
+	_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 	_gaq.push(['_trackEvent', 'bannertop', 'click']);
-	_gaq.push(['_trackPageview'], url);
+	
+	location.href = href;
 });
 
 $('.bannerleft').click(function(ev) {
-	_gaq.push(['_setReferrerOverride', referrer]);
+	ev.preventDefault();
+	var href = ev.target.href;
+	
+	_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 	_gaq.push(['_trackEvent', 'bannerleft', 'click']);
-	_gaq.push(['_trackPageview'], url);
+	
+	location.href = href;
 });

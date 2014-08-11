@@ -3,9 +3,8 @@ $('.server_message').easyModal({
 	overlayOpacity: 0.9,
 	overlayColor: "#ffffff",
 	onClose: function(myModal) {
-		_gaq.push(['_setReferrerOverride', referrer]);
+		_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 		_gaq.push(['_trackEvent', 'closeerror', 'click']);
-		_gaq.push(['_trackPageview'], url);
 	}
 });
 
