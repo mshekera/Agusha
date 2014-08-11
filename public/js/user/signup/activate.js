@@ -66,9 +66,8 @@ var Activate_controller = can.Control.extend(
 				overlayOpacity: 0.9,
 				overlayColor: "#ffffff",
 				onClose: function(myModal) {
-					_gaq.push(['_setReferrerOverride', referrer]);
+					_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 					_gaq.push(['_trackEvent', 'closeerror', 'click']);
-					_gaq.push(['_trackPageview'], url);
 				}
 			});
 		},
@@ -94,10 +93,14 @@ var Activate_controller = can.Control.extend(
 			}
 		},
 		
-		'.rules click': function(el) {
-			_gaq.push(['_setReferrerOverride', referrer]);
+		'.rules click': function(el, ev) {
+			ev.preventDefault();
+			var href = ev.target.href;
+			
+			_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 			_gaq.push(['_trackEvent', 'rules', 'click']);
-			_gaq.push(['_trackPageview'], url);
+			
+			location.href = href;
 		},
 		
 		'#activate_form submit': function(el, ev) {
