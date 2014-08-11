@@ -13,6 +13,7 @@ _ = require 'underscore'
 # ###
 
 exports.list = list = [
+	# do not cache pages which do not work with databse
 	# { 
 		# segment: '/', 
 		# name: 'Главная', 
