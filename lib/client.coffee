@@ -38,7 +38,11 @@ exports.addAsyncFunctionsForSignUp = (res, data, post) ->
 			options.subject = "Агуша: подтверждение регистрации"
 			options.salt = info.salt = new Buffer(client._id.toString()).toString 'base64'
 			
-			sendMail res, options, next
+			sendMail res, options, (err) ->
+				if err
+					client.remove next
+				else
+					next null
 		(next) ->
 			saltData =
 				salt: info.salt

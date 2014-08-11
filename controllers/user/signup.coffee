@@ -102,7 +102,11 @@ exports.invite = (req, res) ->
 								options.subject = 'Ваш друг ' + friend + ' приглашает вас в сообщество Агуша'
 								options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
 								
-								Client.sendMail res, options, next2
+								Client.sendMail res, options, (err) ->
+									if err
+										client.remove callback
+									else
+										next2 null
 							(next2) ->
 								saltData =
 									salt: data.salt
