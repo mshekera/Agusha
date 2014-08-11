@@ -27,12 +27,12 @@ exports.addAsyncFunctionsForSignUp = (res, data, post) ->
 	return asyncFunctions = [
 		(next) ->
 			post.email = post.email.toLowerCase()
-
+			
 			doc = new mongoose.models.Client
-
+			
 			for own prop, val of post
 				doc[prop] = val
-
+			
 			doc.save next
 			#Model 'Client', 'create', next, post
 		(client, affected, next) ->

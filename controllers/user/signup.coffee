@@ -1,5 +1,6 @@
 async = require 'async'
 _ = require 'underscore'
+mongoose = require 'mongoose'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
@@ -27,7 +28,10 @@ exports.index = (req, res) ->
 exports.register = (req, res) ->
 	data = {}
 	
-	asyncFunctions = Client.addAsyncFunctionsForSignUp res, data, req.body
+	signUpData = req.body
+	signUpData.ip_address = req.connection.remoteAddress
+	
+	asyncFunctions = Client.addAsyncFunctionsForSignUp res, data, signUpData
 	
 	asyncFunctions = asyncFunctions.concat [
 		(salt) ->
@@ -71,7 +75,14 @@ exports.invite = (req, res) ->
 						client.invited_by = invited_by
 						client.type = 1
 					
-					Model 'Client', 'create', callback, client
+					doc = new mongoose.models.Client
+					
+					for own prop, val of client
+						doc[prop] = val
+					
+					doc.save callback
+					
+					# Model 'Client', 'create', callback, client
 				else
 					callback null
 		], callback
@@ -195,6 +206,8 @@ exports.activatePost = (req, res) ->
 				'apartment'
 			]
 			data = _.pick req.body, fields
+			data.ip_address = req.connection.remoteAddress
+			data.activated_at = new Date()
 			
 			Model 'Client', 'findByIdAndUpdate', next, id, data
 		(doc, next) ->
