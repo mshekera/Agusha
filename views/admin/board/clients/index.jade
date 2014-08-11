@@ -74,6 +74,22 @@ block append scripts
 						.draw();
 				});
 			});
+
+			$('.t-status').on('ifToggled', function(ev){
+				var opts = {
+						status: this.checked,
+						id: $(this).data('id')
+					},
+					self = this;
+
+				$.post('clients/setStatus', opts, function(response){
+					if(response.result !== true) {
+						var msg = response.result || "Произошла неизвестная ошибка.";
+						msg += ' Состояние НЕ СОХРАНЕНО!'
+						alert(msg);
+					}
+				});
+			});
 		});
 
 block content
@@ -90,6 +106,7 @@ block content
 						th Тип:
 						th Приглашение от:
 						th Активен?
+						th Подарок
 						th Действия
 				tbody
 					- each u, key in clients
@@ -113,6 +130,8 @@ block content
 								else
 									| -
 							td= (u.active?"Да":"Нет")
+							td
+								input.t-status(type="checkbox" data-id=u._id checked=(u.status == true))
 							td
 								if u.newClient
 									.dt-button
