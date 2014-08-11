@@ -21,11 +21,12 @@ exports.getDate = (val) ->
 	
 	return moment(val).format('DD/MM/YYYY')
 
-exports.getTimeDate = (val) ->
+exports.getTimeDate = (val, seconds = true) ->
 	if not val
 		return val
 	
-	return moment(val).format('HH:mm:ss DD/MM/YYYY')
+	format = 'HH:mm' + (if seconds then ':ss' else '') + ' DD/MM/YYYY'
+	return moment(val).format format
 
 exports.setDate = (val) ->
 	if not val

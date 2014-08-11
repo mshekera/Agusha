@@ -1,5 +1,7 @@
 async = require 'async'
 mongoose = require 'mongoose'
+moment = require 'moment'
+nodeExcel = require 'excel-export'
 
 View = require './view'
 Model = require './model'
@@ -56,3 +58,62 @@ exports.addAsyncFunctionsForSignUp = (res, data, post) ->
 			
 			Model 'Salt', 'create', next, saltData
 	]
+
+exports.exportDocs = (docs, res) ->
+	conf = {}
+
+	conf.stylesXmlFile = "#{process.cwd()}/meta/styles.xml"
+
+	beforeCellWrite = () ->
+		return (row, cellData, eOpt) ->
+            unless cellData
+                return '-';
+
+            return cellData
+
+	conf.cols = [
+		{ caption: 'ID', type: 'number' },
+		{ caption: 'Логин', type: 'string' },
+		{ caption: 'E-m@il', type: 'string' },
+		{ caption: 'Дата регистрации', type: 'string' },
+		{ caption: 'Дата активации', type: 'string' },
+		{ caption: 'Тип', type: 'string' },
+		{ caption: 'Приглашение:', type: 'string' },
+		{ caption: 'Активен?', type: 'bool' },
+		{ caption: 'Подарок', type: 'bool' },
+		{ caption: 'Обработан?', type: 'bool' },
+		{ caption: 'Имя', type: 'string' },
+		{ caption: 'Телефон', type: 'string' },
+		{ caption: 'Город', type: 'string' },
+		{ caption: 'Улица', type: 'string' },
+		{ caption: 'Номер дома', type: 'string' },
+		{ caption: 'Квартира', type: 'string' },
+		{ caption: 'IP-адрес', type: 'string' }	
+	]
+
+	conf.rows = []
+
+	momentFormat = 'HH:mm:ss MM/DD/YYYY'
+
+	for item in docs
+		conf.rows.push [
+			item.id,
+			item.login,
+			item.email,
+			item.created_at or 'N/A',
+			item.activated_at or 'N/A',
+			item.type,
+			item.invited_by?.login or 'N/A',
+			item.active,
+			item.status,
+			!item.newClient,
+			item.fullName() or 'N/A',
+			item.phone or 'N/A',
+			item.city?.name or 'N/A',
+			item.street or 'N/A',
+			item.house or 'N/A',
+			item.apartment or 'N/A',
+			item.ip_address or 'N/A'
+		]
+
+	return nodeExcel.execute conf

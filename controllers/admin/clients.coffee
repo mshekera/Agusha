@@ -1,4 +1,5 @@
 async = require 'async'
+moment = require 'moment'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
@@ -16,7 +17,7 @@ exports.index = (req, res) ->
 			
 			Model 'Client', 'find', next#, {}, {}, options
 		(docs, next) ->
-			Model 'Client', 'populate', next, docs, 'invited_by'
+			Model 'Client', 'populate', next, docs, 'invited_by city'
 		(docs) ->
 			View.render 'admin/board/clients/index', res, {clients: docs}
 	], (err) ->
@@ -69,3 +70,27 @@ exports.setStatus = (req, res) ->
 			res.send result: if affected then true else false
 	], (err) ->
 		res.send result: err.message or err
+
+exports.export = (req, res) ->
+	field = req.body.type
+	range = req.body.range.split ' - '
+	from = moment range[0], 'DD/MM/YYYY HH:mm'
+	to = moment range[1], 'DD/MM/YYYY HH:mm'
+
+	async.waterfall [
+		(next) ->
+			where = {}
+			where[field] =
+				$gte: from.valueOf()
+				$lt: to.valueOf()
+
+			Model 'Client', 'find', next, where
+		(docs, next) ->
+			Model 'Client', 'populate', next, docs, 'invited_by city'
+		(docs) ->
+			result = Client.exportDocs docs, res
+			res.setHeader 'Content-Type', 'application/vnd.openxmlformats'
+			res.setHeader "Content-Disposition", "attachment; filename=Clients.xlsx"
+			res.end result, 'binary'
+	], (err) ->
+
