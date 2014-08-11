@@ -57,6 +57,8 @@ schema = new mongoose.Schema
 		type: String
 		index: true
 		unique: true
+	shared_text:
+		type: String
 ,
 	collection: 'article'
 
