@@ -4,6 +4,12 @@ block append header
 	link(rel="stylesheet" href="/css/user/news/news.css")
 	script(type='text/javascript').
 		(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=yb0bsJMIQ5tGXR/L4ufIEGUJZhrYwSaqtetSb48bIz3xjxhSuny6ThgP*g7U6pj4RnPjtksKfad60GFKgnZRvHEi7fh849MkMlQmVdahDFFi5xCzy2bIrVL4U*PrTyFwHv*0hTTeNMHoJeSA3LFrzZThTFdvRrXaK3ZLBJa44ac-';
+	if (diffInDays > 0)
+		- var desc = 'Акция от ТМ "Агуша"! Регистрируйтесь и получите один из 1000 подарков для вашего малыша.'
+		meta(property='og:url', content = current_url)
+		meta(property='og:title', content = 'Агуша')
+		meta(property='og:image', content = base_url + '/img/user/action/fb_akciya.jpg')
+		meta(property='og:description', content = desc)
 
 mixin article(a)
 	.article_block.white.force_height(class = (a ? 'type_' + a.type : 'type_{{type}}'), id = (a ? a._id : '{{_id}}'))
@@ -85,43 +91,44 @@ mixin article(a)
 				if (diffInDays > 0)
 					- var desc = 'Акция от ТМ "Агуша"! Регистрируйтесь и получите один из 1000 подарков для вашего малыша.'
 					- var image = base_url + '/img/user/action/vk_akciya.jpg'
-					a(href = (a ? 'http://vk.com/share.php?url=' + current_url + '?utm_source=vkontakte&utm_medium=share&utm_campaign=light_viral_content&title=' + a.desc_title + '&description=' + desc + '&image=' + image : 'http://vk.com/share.php?url={{url}}?utm_source=vkontakte&utm_medium=share&utm_campaign=light_viral_content&title={{desc_title}}&description=' + desc + '&image=' + image), target="_blank")
+					a(href = (a ? 'http://vk.com/share.php?url=' + current_url + '&title=' + a.desc_title + '&description=' + desc + '&image=' + image : 'http://vk.com/share.php?url={{url}}&title={{desc_title}}&description=' + desc + '&image=' + image), target="_blank")
 						.share_button
 							img(src="/img/user/social/vk.png")
 					
-					a(href = (a ? 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + a.desc_title + '&st._surl=' + current_url + '?utm_source=Odnoklassniki&utm_medium=share&utm_campaign=light_viral_content' : 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments={{desc_title}}&st._surl={{url}}?utm_source=Odnoklassniki&utm_medium=share&utm_campaign=light_viral_content'), target="_blank")
+					a(href = (a ? 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + desc + '&st._surl=' + current_url : 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + desc +'&st._surl={{url}}'), target="_blank")
 						.share_button
 							img(src="/img/user/social/odnoklasniki.png")
 					
-					a(href = (a ? 'http://plus.google.com/share?url=' + current_url + '?utm_source=googleplus&utm_medium=share&utm_campaign=light_viral_content&title=' + a.desc_title : 'http://plus.google.com/share?url={{url}}?utm_source=googleplus&utm_medium=share&utm_campaign=light_viral_content&title={{desc_title}}'), target="_blank")
+					a(href = (a ? 'http://plus.google.com/share?url=' + current_url + '&title=' + desc : 'http://plus.google.com/share?url={{url}}&title=' + desc), target="_blank")
 						.share_button
 							img(src="/img/user/social/google.png")
 					
-					a(href = (a ? 'http://www.facebook.com/share.php?u=' + current_url + '?utm_source=facebook&utm_medium=share&utm_campaign=light_viral_content&title=' + a.desc_title : 'http://www.facebook.com/share.php?u={{url}}?utm_source=facebook&utm_medium=share&utm_campaign=light_viral_content&title={{desc_title}}'), target="_blank")
+					- var image = base_url + '/img/user/action/fb_akciya.jpg'
+					a(href = (a ? 'http://www.facebook.com/sharer.php?s=100&p[url]=' + current_url + '&p[title]=' + a.desc_title + '&p[summary]=' + desc + '&p[images][0]=' + image : 'http://www.facebook.com/sharer.php?s=100&p[url]={{url}}&title={{desc_title}}&p[summary]=' + desc + '&p[images][0]=' + image), target="_blank")
 						.share_button
 							img(src="/img/user/social/facebook.png")
 					
-					a(href = (a ? 'http://twitter.com/home?status=' + a.desc_title + '+' + current_url + '?utm_source=twitter&utm_medium=share&utm_campaign=light_viral_content' : 'http://twitter.com/home?status={{desc_title}}+{{url}}?utm_source=twitter&utm_medium=share&utm_campaign=light_viral_content'), target="_blank")
+					a(href = (a ? 'http://twitter.com/share?text=' + desc + '&url=' + current_url : 'http://twitter.com/share?text=' + desc + '&url={{url}}'), target="_blank")
 						.share_button
 							img(src="/img/user/social/twitter.png")
 				else
-					a(href = (a ? 'http://vk.com/share.php?url=' + current_url + '?utm_source=vkontakte&utm_medium=share&utm_campaign=light_viral_content&title=' + a.desc_title : 'http://vk.com/share.php?url={{url}}?utm_source=vkontakte&utm_medium=share&utm_campaign=light_viral_content&title={{desc_title}}'), target="_blank")
+					a(href = (a ? 'http://vk.com/share.php?url=' + current_url + '&title=' + a.desc_title : 'http://vk.com/share.php?url={{url}}&title={{desc_title}}'), target="_blank")
 						.share_button
 							img(src="/img/user/social/vk.png")
 					
-					a(href = (a ? 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + a.desc_title + '&st._surl=' + current_url + '?utm_source=Odnoklassniki&utm_medium=share&utm_campaign=light_viral_content' : 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments={{desc_title}}&st._surl={{url}}?utm_source=Odnoklassniki&utm_medium=share&utm_campaign=light_viral_content'), target="_blank")
+					a(href = (a ? 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + a.desc_title + '&st._surl=' + current_url : 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments={{desc_title}}&st._surl={{url}}'), target="_blank")
 						.share_button
 							img(src="/img/user/social/odnoklasniki.png")
 					
-					a(href = (a ? 'http://plus.google.com/share?url=' + current_url + '?utm_source=googleplus&utm_medium=share&utm_campaign=light_viral_content&title=' + a.desc_title : 'http://plus.google.com/share?url={{url}}?utm_source=googleplus&utm_medium=share&utm_campaign=light_viral_content&title={{desc_title}}'), target="_blank")
+					a(href = (a ? 'http://plus.google.com/share?url=' + current_url + '&title=' + a.desc_title : 'http://plus.google.com/share?url={{url}}&title={{desc_title}}'), target="_blank")
 						.share_button
 							img(src="/img/user/social/google.png")
 					
-					a(href = (a ? 'http://www.facebook.com/share.php?u=' + current_url + '?utm_source=facebook&utm_medium=share&utm_campaign=light_viral_content&title=' + a.desc_title : 'http://www.facebook.com/share.php?u={{url}}?utm_source=facebook&utm_medium=share&utm_campaign=light_viral_content&title={{desc_title}}'), target="_blank")
+					a(href = (a ? 'http://www.facebook.com/sharer.php?s=100&p[url]=' + current_url + '&p[title]=' + a.desc_title : 'http://www.facebook.com/sharer.php?s=100&p[url]={{url}}&p[title]={{desc_title}}'), target="_blank")
 						.share_button
 							img(src="/img/user/social/facebook.png")
 					
-					a(href = (a ? 'http://twitter.com/home?status=' + a.desc_title + '+' + current_url + '?utm_source=twitter&utm_medium=share&utm_campaign=light_viral_content' : 'http://twitter.com/home?status={{desc_title}}+{{url}}?utm_source=twitter&utm_medium=share&utm_campaign=light_viral_content'), target="_blank")
+					a(href = (a ? 'http://twitter.com/share?text=' + a.desc_title + '&url=' + current_url : 'http://twitter.com/share?text={{desc_title}}&url={{url}}'), target="_blank")
 						.share_button
 							img(src="/img/user/social/twitter.png")
 
