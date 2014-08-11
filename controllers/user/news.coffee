@@ -1,4 +1,5 @@
 async = require 'async'
+moment = require 'moment'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
@@ -12,6 +13,10 @@ breadcrumbs = require '../../meta/breadcrumbs'
 exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'news'
+	
+	currentDate = moment()
+	endDate = moment '01.10.2014', 'DD/MM/YYYY'
+	data.diffInDays = endDate.diff currentDate, 'days'
 	
 	async.waterfall [
 		(next) ->
