@@ -1,9 +1,15 @@
 extends ../layout
 
+if (diffInDays > 0)
+	- var desc = 'Акция от ТМ "Агуша"! Регистрируйтесь и получите один из 1000 подарков для вашего малыша.'
+
 block append header
 	link(rel="stylesheet" href="/css/user/news/news.css")
 	script(type='text/javascript').
 		(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=yb0bsJMIQ5tGXR/L4ufIEGUJZhrYwSaqtetSb48bIz3xjxhSuny6ThgP*g7U6pj4RnPjtksKfad60GFKgnZRvHEi7fh849MkMlQmVdahDFFi5xCzy2bIrVL4U*PrTyFwHv*0hTTeNMHoJeSA3LFrzZThTFdvRrXaK3ZLBJa44ac-';
+	if (diffInDays > 0)
+		meta(property='og:image', content = base_url + '/img/user/action/fb_akciya.jpg')
+		meta(property='og:description', content = desc)
 
 mixin article(a)
 	.article_block.white.force_height(class = (a ? 'type_' + a.type : 'type_{{type}}'), id = (a ? a._id : '{{_id}}'))
@@ -83,7 +89,6 @@ mixin article(a)
 			
 			.share_buttons
 				if (diffInDays > 0)
-					- var desc = 'Акция от ТМ "Агуша"! Регистрируйтесь и получите один из 1000 подарков для вашего малыша.'
 					- var image = base_url + '/img/user/action/vk_akciya.jpg'
 					a(href = (a ? 'http://vk.com/share.php?url=' + current_url + '?utm_source=vkontakte&utm_medium=share&utm_campaign=light_viral_content&title=' + a.desc_title + '&description=' + desc + '&image=' + image : 'http://vk.com/share.php?url={{url}}?utm_source=vkontakte&utm_medium=share&utm_campaign=light_viral_content&title={{desc_title}}&description=' + desc + '&image=' + image), target="_blank")
 						.share_button
