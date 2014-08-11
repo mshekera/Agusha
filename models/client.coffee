@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+autoIncrement = require 'mongoose-auto-increment'
 
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
@@ -16,6 +17,9 @@ schema = new mongoose.Schema
 	created_at:
 		type: Date
 		default: Date.now
+		get: Time.getDate
+	activated_at:
+		type: Date
 		get: Time.getDate
 	login:
 		type: String
@@ -51,7 +55,7 @@ schema = new mongoose.Schema
 		type: ObjectId
 		ref: 'City'
 	postIndex:
-		type: Number
+		type: String
 	street:
 		type: String
 	house:
@@ -61,10 +65,18 @@ schema = new mongoose.Schema
 	newClient:
 		type: Boolean
 		default: true
+	status:
+		type: Boolean
+		default: true
+	ip_address:
+		type: String
+		validate: Validate.ipAddressIpv4
 ,
 	collection: 'client'
 
 schema.methods.fullName = () ->
 	[@lastName, @firstName, @patronymic].join ' '
+
+schema.plugin autoIncrement.plugin, { model: 'Client', field: 'id' }
 
 module.exports = mongoose.model 'Client', schema

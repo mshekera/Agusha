@@ -82,17 +82,20 @@ block content
 			table#client_list.table.table-striped.table-bordered.table-hover
 				thead
 					tr
+						th ID
 						th Логин
 						th E-m@il
-						th Дата создания:
+						th Дата регистрации:
+						th Дата активации:
 						th Тип:
 						th Приглашение от:
 						th Активен?
 						th Действия
 				tbody
 					- each u, key in clients
-						- var content = "Имя: <span>" + u.fullName() + "</span><br/>Телефон: <span>" + u.phone + "</span><br/>Город: <span>" + u.city + "</span><br/>Улица: <span>" + u.street + "</span><br/>Номер дома: <span>" + u.house + "</span><br/>Квартира: <span>" + u.apartment + "</span><br/>Индекс: <span>" + u.postIndex + "</span>";
+						- var content = "Имя: <span>" + u.fullName() + "</span><br/>Телефон: <span>" + u.phone + "</span><br/>Город: <span>" + u.city + "</span><br/>Улица: <span>" + u.street + "</span><br/>Номер дома: <span>" + u.house + "</span><br/>Квартира: <span>" + u.apartment + "</span><br/>Индекс: <span>" + u.postIndex + "</span><br/><br/>IP-адрес: <span>" + u.ip_address + "</span>";
 						tr(data-id='#{u._id}')
+							td #{u.id}
 							td.popovered(
 								data-toggle="popover" 
 								title="Детальная информация"
@@ -102,6 +105,7 @@ block content
 								span #{u.login}
 							td #{u.email}
 							td #{u.created_at}
+							td #{u.activated_at}
 							td #{u.type}
 							td
 								if u.invited_by
@@ -113,7 +117,7 @@ block content
 										button.btn.btn-primary.t-process(type="button" data-id=u._id data-loading-text="Ждите...")
 											i.glyphicon.glyphicon-ok-circle
 											span= " Обработать"
-									.dt-button
-										button.btn.btn-danger.t-remove(type="button" data-id=u._id data-loading-text="Ждите...")
-											i.glyphicon.glyphicon-remove-circle
-											span= " Удалить"
+								.dt-button
+									button.btn.btn-danger.t-remove(type="button" data-id=u._id data-loading-text="Ждите...")
+										i.glyphicon.glyphicon-remove-circle
+										span= " Удалить"
