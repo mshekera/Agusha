@@ -1,4 +1,5 @@
 async = require 'async'
+mongoose = require 'mongoose'
 
 View = require './view'
 Model = require './model'
@@ -26,9 +27,15 @@ exports.addAsyncFunctionsForSignUp = (res, data, post) ->
 	return asyncFunctions = [
 		(next) ->
 			post.email = post.email.toLowerCase()
-			
-			Model 'Client', 'create', next, post
-		(client, next) ->
+
+			doc = new mongoose.models.Client
+
+			for own prop, val of post
+				doc[prop] = val
+
+			doc.save next
+			#Model 'Client', 'create', next, post
+		(client, affected, next) ->
 			data.client = client
 			
 			options = {}
