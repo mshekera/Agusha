@@ -110,7 +110,9 @@ block content
 							td
 								if u.invited_by
 									| #{u.invited_by.login}
-							td #{u.active}
+								else
+									| -
+							td= (u.active?"Да":"Нет")
 							td
 								if u.newClient
 									.dt-button
