@@ -17,10 +17,10 @@ schema = new mongoose.Schema
 	created_at:
 		type: Date
 		default: Date.now
-		get: Time.getDate
+		get: Time.getTimeDate
 	activated_at:
 		type: Date
-		get: Time.getDate
+		get: Time.getTimeDate
 	login:
 		type: String
 		required: true
