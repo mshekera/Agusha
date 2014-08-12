@@ -1,7 +1,7 @@
 extends ../layout
 
 block append header
-	title 'Агуша - ' + article.big_title
+	title #{'Агуша - ' + article.big_title}
 	link(rel="canonical", href=current_url)
 	link(rel="stylesheet" href="/css/user/article/article.css")
 	script(type='text/javascript').
