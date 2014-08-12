@@ -2,6 +2,7 @@
 @import 'helpers/slider';
 @import 'helpers/live_program';
 @import 'helpers/join_tour';
+@import 'helpers/message';
 
 @mixin number_pseudo {
 	@include pseudo;
@@ -129,5 +130,11 @@
 			@include number_pseudo;
 			left: -2px;
 		}
+	}
+	
+	.message_link {
+		color: #0c5b93;
+		font-family: 'PT_Sans_Italic';
+		margin-top: 25px;
 	}
 }

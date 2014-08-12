@@ -1,3 +1,13 @@
+$('.unsubscribe_message').easyModal({
+	autoOpen: true,
+	overlayOpacity: 0.9,
+	overlayColor: "#ffffff",
+	onClose: function(myModal) {
+		_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
+		_gaq.push(['_trackEvent', 'closeerror', 'click']);
+	}
+});
+
 var	before_main = $('#before_main'),
 	slider_container = $('#slider_container'),
 	menu_blocks = $('#header .dropdown');

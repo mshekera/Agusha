@@ -208,6 +208,7 @@ exports.activatePost = (req, res) ->
 			data = _.pick req.body, fields
 			data.ip_address = req.connection.remoteAddress
 			data.activated_at = new Date()
+			data.status = true
 			
 			Model 'Client', 'findByIdAndUpdate', next, id, data
 		(doc, next) ->

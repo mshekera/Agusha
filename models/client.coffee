@@ -67,7 +67,7 @@ schema = new mongoose.Schema
 		default: true
 	status:
 		type: Boolean
-		default: true
+		default: false
 	ip_address:
 		type: String
 		validate: Validate.ipAddressIpv4

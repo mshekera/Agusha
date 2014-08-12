@@ -298,3 +298,11 @@ a.italic_small_link:hover {
 	font-size: 10pt;
 	padding-top: 63px;
 }
+
+.copyright {
+	float: left;
+}
+
+.unsubscribe {
+	float: right;
+}
