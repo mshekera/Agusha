@@ -64,13 +64,6 @@ exports.exportDocs = (docs, res) ->
 
 	conf.stylesXmlFile = "#{process.cwd()}/meta/styles.xml"
 
-	beforeCellWrite = () ->
-		return (row, cellData, eOpt) ->
-            unless cellData
-                return '-';
-
-            return cellData
-
 	conf.cols = [
 		{ caption: 'ID', type: 'number' },
 		{ caption: 'Логин', type: 'string' },
