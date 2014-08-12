@@ -9,7 +9,13 @@ block append header
 		meta(property='og:title', content = 'Агуша')
 		meta(property='og:image', content = base_url + '/img/user/action/fb_akciya.jpg')
 		meta(property='og:description', content = desc)
+		
+		meta(property='twitter:card', content='photo')
+		meta(property='twitter:site', content = base_url)
 		meta(property='twitter:image', content = base_url + '/img/user/action/twitter_akciya.jpg')
+		meta(property='twitter:title', content = 'Агуша')
+		meta(property='twitter:description', content = desc)
+		meta(property='twitter:url', content = current_url)
 
 if (diffInDays > 0)
 	block title
