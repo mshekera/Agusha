@@ -28,6 +28,13 @@ exports.getTimeDate = (val, seconds = true) ->
 	format = 'HH:mm' + (if seconds then ':ss' else '') + ' DD/MM/YYYY'
 	return moment(val).format format
 
+exports.getTimeDateBackwards = (val, seconds = true) ->
+	if not val
+		return val
+	
+	format = 'YYYY/MM/DD HH:mm' + (if seconds then ':ss' else '')
+	return moment(val).format format
+
 exports.setDate = (val) ->
 	if not val
 		return val
