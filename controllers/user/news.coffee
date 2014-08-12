@@ -18,6 +18,9 @@ exports.index = (req, res) ->
 	endDate = moment '01.10.2014', 'DD/MM/YYYY'
 	data.diffInDays = endDate.diff currentDate, 'days'
 	
+	if data.diffInDays > 0
+		data.desc = 'Акция от ТМ "Агуша"! Регистрируйтесь и получите один из 1000 подарков для вашего малыша.'
+	
 	async.waterfall [
 		(next) ->
 			Model 'Article', 'findNews', next, true
