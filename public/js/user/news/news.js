@@ -62,6 +62,26 @@ $(function() {
 						
 						url: {
 							value: document.URL
+						},
+						
+						vk_url: {
+							value: encodeURIComponent(document.URL + '?utm_source=vkontakte&utm_medium=share&utm_campaign=light_viral_content')
+						},
+						
+						ok_url: {
+							value: encodeURIComponent(document.URL + '?utm_source=Odnoklassniki&utm_medium=share&utm_campaign=light_viral_content')
+						},
+						
+						gp_url: {
+							value: encodeURIComponent(document.URL + '?utm_source=googleplus&utm_medium=share&utm_campaign=light_viral_content')
+						},
+						
+						fb_url: {
+							value: encodeURIComponent(document.URL + '?utm_source=facebook&utm_medium=share&utm_campaign=light_viral_content')
+						},
+						
+						tw_url: {
+							value: encodeURIComponent(document.URL + '?utm_source=twitter&utm_medium=share&utm_campaign=light_viral_content')
 						}
 					}
 				});
