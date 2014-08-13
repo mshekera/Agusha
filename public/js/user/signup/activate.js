@@ -95,7 +95,7 @@ var Activate_controller = can.Control.extend(
 		
 		'.rules click': function(el, ev) {
 			ev.preventDefault();
-			var href = ev.target.href;
+			var href = href = $(el).attr('href');
 			
 			_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 			_gaq.push(['_trackEvent', 'rules', 'click']);
