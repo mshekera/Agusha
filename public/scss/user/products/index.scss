@@ -281,14 +281,14 @@
 }
 
 .product_block {
-	background-color: $white;
-	height: 465px;
+	height: 485px;
 	float: left;
-	margin: 0 1% 2% 1%;
-    width: 23%;
-	position: relative;
+	margin: 0;
+    position: relative;
+    width: 25%;
 	cursor: pointer;
 	color: $base;
+	border: 10px solid transparent;
 	
 	.image {
 		position: absolute;
@@ -361,17 +361,17 @@
 	}
 	
 	&:hover {
-		@include box_shadow(0 0 0 10px $darkblue);
+		border: 10px solid $darkblue;
 		
 		.image {
 			top: 134px;
-			width: 221px;
-			height: 221px;
+			width: 225px;
+			height: 225px;
 			left: 0;
 			
 			img {
-				max-height: 221px;
-				max-width: 221px;
+				max-height: 225px;
+				max-width: 225px;
 			}
 		}
 		
@@ -388,4 +388,9 @@
 			background: $white;
 		}
 	}
+}
+
+.product_block_inside {
+	background-color: $white;
+	height: 100%;
 }
