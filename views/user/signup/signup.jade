@@ -30,9 +30,8 @@ block append header
 		script(type='text/javascript').
 			(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=zBPJsZ*g/znMc7JpOXdFA4G8XZBgyCGj9XTdDeMZVyCJmHnEiaINu6kStj6QkDpRMDDRXpdztCyWz8Ez*uodNW203MKaQXAWk9AH2spdoYmjhxbTQeqG4uAU0Q8oYI1NBPzt8rlozmezk61luuQzBtcMI91N1lFpfr0T3q0l44E-';
 
-
 block append content
-	#signup.content
+	#signup.content.force_height
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
 		- if (err)
