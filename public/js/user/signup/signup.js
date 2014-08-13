@@ -16,7 +16,7 @@ $('.message').easyModal({
 
 $('.rules').click(function(ev) {
 	ev.preventDefault();
-	var href = ev.target.href;
+	var href = href = $(this).attr('href');
 	
 	_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 	_gaq.push(['_trackEvent', 'rules', 'click']);
