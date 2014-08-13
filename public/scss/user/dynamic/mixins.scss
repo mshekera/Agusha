@@ -18,14 +18,12 @@
 	-webkit-border-radius: $size;
 	-khtml-border-radius: $size;
 	border-radius: $size;
-
 }
 
 @mixin box_shadow($val) {
 	-webkit-box-shadow:	$val;
 	-moz-box-shadow:	$val;
 	box-shadow:			$val;
-
 }
 
 @mixin image_fix {
@@ -37,7 +35,6 @@
 	-webkit-box-shadow: inset $val;
 	-moz-box-shadow: inset $val;
 	box-shadow: inset $val;
-
 }
 
 @mixin lovely {
