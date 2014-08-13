@@ -34,7 +34,7 @@ var Contacts_controller = can.Control.extend(
 			new google.maps.Marker({
 				position: this.vishnevoeLatLng,
 				map: this.map,
-				icon: base_url + '/img/user/tour/agusha_marker.png'
+				icon: base_url + '/img/user/contacts/agusha_marker.png'
 			});
 		}
 	}
