@@ -16,7 +16,7 @@ mixin doc()
 						| Главное о детском
 						br
 						| питании
-					button.middle_button.white Статьи от специалиста
+					span.middle_button.white Статьи от специалиста
 
 block append content
 	#food.content
@@ -47,7 +47,7 @@ block append content
 										| Cхема введения
 										br
 										| прикорма
-									button.middle_button.darkblue Еда: что, сколько и когда
+									span.middle_button.darkblue Еда: что, сколько и когда
 			
 			- each a, key in articles
 				.food_block.inline_adorable_container
@@ -62,7 +62,7 @@ block append content
 										.label.novito_nova.adorable_table
 											.adorable_cell !{a.desc_title}
 										
-										button.middle_button.darkblue #{a.button_label}
+										span.middle_button.darkblue #{a.button_label}
 
 block append scripts
 	script(src="/js/user/food/food.js")

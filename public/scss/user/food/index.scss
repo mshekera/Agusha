@@ -44,7 +44,7 @@
 			height: 100%;
 		}
 		
-		&~ button {
+		&~ .middle_button {
 			color: $blue;
 			
 			&:active {
@@ -79,8 +79,9 @@
 		}
 	}
 	
-	button {
+	.middle_button {
 		font-size: 100%;
+		display: inline-block;
 	}
 	
 	.label {
