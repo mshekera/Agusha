@@ -18,12 +18,14 @@
 	-webkit-border-radius: $size;
 	-khtml-border-radius: $size;
 	border-radius: $size;
+	behavior: url('/css/pie/pie.htc');
 }
 
 @mixin box_shadow($val) {
 	-webkit-box-shadow:	$val;
 	-moz-box-shadow:	$val;
 	box-shadow:			$val;
+	behavior: url('/css/pie/pie.htc');
 }
 
 @mixin image_fix {
@@ -35,6 +37,7 @@
 	-webkit-box-shadow: inset $val;
 	-moz-box-shadow: inset $val;
 	box-shadow: inset $val;
+	behavior: url('/css/pie/pie.htc');
 }
 
 @mixin lovely {
