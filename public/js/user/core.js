@@ -33,6 +33,10 @@ $(function() {
 			width: width
 		});
 	}
+	
+	// corners
+	$('#header .menu_block span').corner('15px');
+	$('button').corner('15px');
 });
 
 var _gaq = _gaq || [];

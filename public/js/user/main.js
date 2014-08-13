@@ -62,6 +62,12 @@ var options = {
 
 var jssor_slider = new $JssorSlider$('slider_container', options);
 
+$('.prototype').corner('6px');
+$('.live_program .photo').corner('60px');
+$('.join_tour .photo').corner('63px');
+$('#footer #marker .item').corner('17px');
+
+
 if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
 	$(window).bind('resize', window_resize);
 }

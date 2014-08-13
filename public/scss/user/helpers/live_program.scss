@@ -11,6 +11,7 @@
 	.photo {
 		@include absolute_horizontal_centered;
 		width: 120px;
+		height: 120px;
 		top: 17px;
 		
 		.rounded {
