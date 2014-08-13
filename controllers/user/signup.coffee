@@ -9,6 +9,7 @@ Logger = require '../../lib/logger'
 Client = require '../../lib/client'
 
 tree = require '../../utils/tree'
+string = require '../../utils/string'
 
 breadcrumbs = require '../../meta/breadcrumbs'
 
@@ -30,6 +31,7 @@ exports.register = (req, res) ->
 	
 	signUpData = req.body
 	signUpData.ip_address = req.connection.remoteAddress
+	signUpData.login = string.title_case signUpData.login
 	
 	asyncFunctions = Client.addAsyncFunctionsForSignUp res, data, signUpData
 	
@@ -63,6 +65,7 @@ exports.invite = (req, res) ->
 		async.waterfall [
 			(next) ->
 				client.email = client.email.toLowerCase()
+				client.login = string.title_case client.login
 				
 				Model 'Client', 'findOne', next, email: client.email
 			(doc) ->
@@ -209,6 +212,9 @@ exports.activatePost = (req, res) ->
 			data.ip_address = req.connection.remoteAddress
 			data.activated_at = new Date()
 			data.status = true
+			data.firstName = string.title_case data.firstName
+			data.lastName = string.title_case data.lastName
+			data.patronymic = string.title_case data.patronymic
 			
 			Model 'Client', 'findByIdAndUpdate', next, id, data
 		(doc, next) ->
