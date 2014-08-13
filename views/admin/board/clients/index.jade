@@ -35,24 +35,7 @@ block append scripts
 				container: 'body'
 			});
 
-			$('#client_list').dataTable({
-				'iDisplayLength': 25,
-				'aLengthMenu': [25,50,100]
-			});
-
-			$('#t-export-range').daterangepicker({
-				timePicker: true, 
-				timePickerIncrement: 5, 
-				format: momentFormat,
-				timePicker12Hour: true,
-				startDate: moment().subtract('months', 1),
-				endDate: moment(),
-				maxDate: moment()
-			});
-
-			$('#t-export-range').val(moment().subtract('months', 1).format(momentFormat) + ' - ' + moment().format(momentFormat));
-
-			$('.t-process').on('click', function(){
+			$(document).on('click', '.t-process', function(){
 				var self = this,
 					btn = $(self),
 					opts = {
@@ -74,7 +57,7 @@ block append scripts
 				});
 			});
 
-			$('.t-remove').on('click', function(){
+			$('#client_list').on('click', '.t-remove', function(){
 				if(!confirm("Вы точно хотите удалить этого пользователя?")) {
 					return;
 				}
@@ -95,9 +78,27 @@ block append scripts
 					$('#client_list').DataTable()
 						.row(btn.parents('tr'))
 						.remove()
-						.draw();
+						.draw(false);
 				});
 			});
+
+			$('#client_list')
+				.dataTable({
+					'iDisplayLength': 25,
+					'aLengthMenu': [25,50,100]
+				});
+
+			$('#t-export-range').daterangepicker({
+				timePicker: true, 
+				timePickerIncrement: 5, 
+				format: momentFormat,
+				timePicker12Hour: true,
+				startDate: moment().subtract('months', 1),
+				endDate: moment(),
+				maxDate: moment()
+			});
+
+			$('#t-export-range').val(moment().subtract('months', 1).format(momentFormat) + ' - ' + moment().format(momentFormat));
 
 			$('.t-status').on('ifToggled', function(ev){
 				var opts = {
@@ -115,12 +116,6 @@ block append scripts
 				});
 			});
 
-			/*$('#t-export').on('click', function(ev) {
-				var form = $(this).closest('form');
-				var data = form.serialize();
-
-				$.post('clients/export', data);
-			});*/
 		});
 
 block content
