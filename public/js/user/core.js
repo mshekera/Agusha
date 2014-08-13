@@ -37,9 +37,7 @@ $(function() {
 	// corners
 	$('#header .menu_block span').corner('15px');
 	$('button').corner('15px');
-	$('input').corner('5px');
-	$('select').corner('5px');
-	$('select ~ label').corner('5px');
+	$('#footer #marker .item').corner('17px');
 });
 
 var _gaq = _gaq || [];

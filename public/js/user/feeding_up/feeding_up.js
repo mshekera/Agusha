@@ -1,3 +1,7 @@
+$('.image').corner('31px');
+$('.hover_image').corner('34px');
+$('.warning').corner('29px');
+
 var Feeding_up_controller = can.Control.extend(
 	{
 		defaults: {

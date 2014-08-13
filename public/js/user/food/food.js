@@ -1,0 +1,1 @@
+$('.food_block .avatar').corner('67px');

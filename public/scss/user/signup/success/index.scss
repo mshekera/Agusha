@@ -3,6 +3,8 @@
 @import '../../helpers/message';
 
 #success {
+	overflow: hidden;
+	
 	.topper {
 		height: 265px;
 		margin-bottom: 20px;
@@ -21,6 +23,7 @@
 	
 	> .white {
 		margin-bottom: 50px;
+		overflow: hidden;
 		
 		> .top_label {
 			height: 130px;
@@ -69,6 +72,8 @@
 }
 
 #invite_form {
+	overflow: hidden;
+	
 	button {
 		&:active {
 			color: rgba(100, 203, 129, 0.5);

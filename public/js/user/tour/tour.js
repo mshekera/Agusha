@@ -20,6 +20,8 @@ $.validator.addMethod('mask',
     'Некорректно указан номер. Попробуйте еще раз.'
 );
 
+$('.step_button').corner('8px');
+
 var Tour_controller = can.Control.extend(
 	{
 		defaults: {
@@ -219,6 +221,8 @@ var Tour_controller = can.Control.extend(
 			if(typeof(this.tours[0]) != 'undefined' && this.tours[0]) {
 				calendar.datepicker('setDate', this.tours[0].formattedDate);
 			}
+			
+			calendar.find('.ui-state-default').corner('14px');
 		},
 		
 		init_inputmask: function() {

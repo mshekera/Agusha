@@ -1,3 +1,6 @@
+$('.choose_type').corner('15px');
+$('.refresh_articles').corner('25px');
+
 $(function() {
 	Article = can.Model.extend({
 		findAll : function(data){

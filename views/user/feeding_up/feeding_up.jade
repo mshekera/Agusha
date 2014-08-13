@@ -81,9 +81,11 @@ block append content
 										.half.left
 											.adorable_table
 												.adorable_cell
-													img.image.rounded(src=item.image)
+													.image.rounded(src=item.image)
+														img.rounded(src=item.image)
 													- if (item.hoverImage)
-														img.image.hover_image.rounded(src=item.hoverImage)
+														.image.hover_image.rounded
+															img.rounded(src=item.hoverImage)
 										
 										.half.right
 											.adorable_table
