@@ -1,4 +1,8 @@
-Logger = require '../lib/logger'
+mongoose = require 'mongoose'
+
+View = require './view'
+Model = require './model'
+Logger = require './logger'
 
 domainReg = /:\/\/(.[^/]+)/
 
@@ -19,19 +23,35 @@ badDomains = [
 	'www.prizolov.ua'
 ]
 
-exports.isGoodReferrer = (req, res, next)->
+exports.isGoodReferrer = (req, res, callback)->
 	
 	referrer = req.header 'Referer'
 	
 	if referrer
 		refDomain = referrer.match(domainReg)[1]
 		
-		badDomainsLength = badDomains.length
-		while badDomainsLength--
-			badDomain = badDomains[badDomainsLength]
-			if badDomain == refDomain
-				res.send false
-				console.log refDomain
-				Logger.log 'info', refDomain
+		ip = req.connection.remoteAddress
+		
+		async.waterfall [
+			(next) ->
+				Model 'Suspected', findOne, next, ip_address: ip
+			(doc) ->
+				if !doc
+					badDomainsLength = badDomains.length
+					while badDomainsLength--
+						badDomain = badDomains[badDomainsLength]
+						if badDomain == refDomain
+							data =
+								ip_address: ip
+							
+							doc = new mongoose.models.Suspected
+							doc.ip_address = ip
+							
+							return doc.save callback
+					
+					return callback()
+				
+				return res.send false
+		], callback
 	
-	next()
+	callback()
