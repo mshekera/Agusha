@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+async = require 'async'
 
 View = require './view'
 Model = require './model'
@@ -35,22 +36,21 @@ exports.isGoodReferrer = (req, res, callback)->
 		async.waterfall [
 			(next) ->
 				Model 'Suspected', findOne, next, ip_address: ip
-			(doc) ->
+			(doc, next) ->
 				if !doc
 					badDomainsLength = badDomains.length
 					while badDomainsLength--
 						badDomain = badDomains[badDomainsLength]
-						if badDomain == refDomain
-							data =
-								ip_address: ip
+						if badDomain == refDomain							
+							newDoc = new mongoose.models.Suspected
+							newDoc.ip_address = ip
 							
-							doc = new mongoose.models.Suspected
-							doc.ip_address = ip
-							
-							return doc.save callback
+							return newDoc.save next
 					
 					return callback()
 				
+				return res.send false
+			(doc) ->
 				return res.send false
 		], callback
 	
