@@ -31,22 +31,22 @@ exports.isGoodReferrer = (req, res, callback)->
 		(next) ->
 			Model 'Suspected', 'findOne', next, ip_address: ip
 		(doc, next) ->
-			if !doc
+			if !doc # client is not suspected yet, check him
 				if referrer
 					refDomain = referrer.match(domainReg)[1]
 					
 					badDomainsLength = badDomains.length
 					while badDomainsLength--
 						badDomain = badDomains[badDomainsLength]
-						if badDomain == refDomain							
+						if badDomain == refDomain # client came from one of bad domains, block him		
 							newDoc = new mongoose.models.Suspected
 							newDoc.ip_address = ip
 							
 							return newDoc.save next
 				
-				return callback()
+				return callback() # client is clean
 			
-			return res.send false
+			return res.send false # client is suspected
 		(doc) ->
-			return res.send false
+			return res.send false # client is suspected
 	], callback
