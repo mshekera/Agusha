@@ -25,19 +25,16 @@ badDomains = [
 ]
 
 exports.isGoodReferrer = (req, res, callback)->
+	ip = req.connection.remoteAddress
 	
-	referrer = req.header 'Referer'
-	
-	if referrer
-		refDomain = referrer.match(domainReg)[1]
-		
-		ip = req.connection.remoteAddress
-		
-		async.waterfall [
-			(next) ->
-				Model 'Suspected', 'findOne', next, ip_address: ip
-			(doc, next) ->
-				if !doc
+	async.waterfall [
+		(next) ->
+			Model 'Suspected', 'findOne', next, ip_address: ip
+		(doc, next) ->
+			if !doc
+				if referrer
+					refDomain = referrer.match(domainReg)[1]
+					
 					badDomainsLength = badDomains.length
 					while badDomainsLength--
 						badDomain = badDomains[badDomainsLength]
@@ -46,17 +43,10 @@ exports.isGoodReferrer = (req, res, callback)->
 							newDoc.ip_address = ip
 							
 							return newDoc.save next
-					
-					return callback()
 				
-				# newDoc = new mongoose.models.Suspected
-				# newDoc.ip_address = ip
-				
-				# return newDoc.save next
-				
-				return res.send false
-			(doc) ->
-				return res.send false
-		], callback
-	
-	callback()
+				return callback()
+			
+			return res.send false
+		(doc) ->
+			return res.send false
+	], callback
