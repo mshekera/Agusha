@@ -4,6 +4,7 @@ View = require '../lib/view'
 City = require '../lib/city'
 ArticleLib = require '../lib/article'
 ProductLib = require '../lib/product'
+Referrer = require '../lib/referrer'
 
 Migrate = require '../init/migrate'
 
@@ -94,6 +95,7 @@ Router.post '/articles/findAll', ArticleLib.findAll
 #
 
 Router.get '/unsubscribe', Main.unsubscribe
+Router.get '/remove_me_from_suspected', Referrer.removeMeFromSuspected
 
 #
 

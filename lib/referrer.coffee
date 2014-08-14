@@ -50,3 +50,18 @@ exports.isGoodReferrer = (req, res, callback)->
 		(doc) ->
 			return res.send false # client is suspected
 	], callback
+
+exports.removeMeFromSuspected = (req, res)->
+	ip = req.connection.remoteAddress
+	
+	async.waterfall [
+		(next) ->
+			Model 'Suspected', 'findOne', next, ip_address: ip
+		(doc, next) ->
+			doc.remove next
+		(doc) ->
+			res.redirect '/'
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in lib/referrer/removeMeFromSuspected: #{error}"
+		res.send false
