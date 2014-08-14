@@ -16,7 +16,7 @@ ModelPreloader = require './mpload'
 
 process.setMaxListeners 0
 
-appPort = 8080
+appPort = 80
 
 _.mixin _.str.exports()
 
