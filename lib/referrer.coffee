@@ -35,7 +35,7 @@ exports.isGoodReferrer = (req, res, callback)->
 		
 		async.waterfall [
 			(next) ->
-				Model 'Suspected', findOne, next, ip_address: ip
+				Model 'Suspected', 'findOne', next, ip_address: ip
 			(doc, next) ->
 				if !doc
 					badDomainsLength = badDomains.length
@@ -48,6 +48,11 @@ exports.isGoodReferrer = (req, res, callback)->
 							return newDoc.save next
 					
 					return callback()
+				
+				# newDoc = new mongoose.models.Suspected
+				# newDoc.ip_address = ip
+				
+				# return newDoc.save next
 				
 				return res.send false
 			(doc) ->
