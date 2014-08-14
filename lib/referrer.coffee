@@ -8,7 +8,7 @@ exports.isGoodReferrer = (req, res, next)->
 		reg = /:\/\/(.[^/]+)/
 		refDomain = referrer.match(reg)[1]
 		
-		console.log referrer
-		Logger.log 'info', referrer
+		console.log refDomain
+		Logger.log 'info', refDomain
 	
 	next()
