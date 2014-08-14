@@ -160,7 +160,8 @@ body {
 .header .welcome .welcome_test {
 	margin-top: -47px;
 	margin-left: 33px;
-	line-height: 24pt;
+	line-height: 17pt;
+	font-size: 14pt;
 }
 
 
