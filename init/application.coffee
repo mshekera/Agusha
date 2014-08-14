@@ -22,6 +22,7 @@ View = require '../lib/view'
 Admin = require '../lib/admin'
 Image = require '../lib/image'
 Logger = require '../lib/logger'
+Referrer = require '../lib/referrer'
 
 admin_controller = require '../controllers/admin'
 user_controller = require '../controllers/user'
@@ -76,6 +77,7 @@ configure = () ->
 	@use session sessionParams
 	@use passport.initialize()
 	@use passport.session()
+	@use Referrer.isGoodReferrer
 	@use '/admin', Auth.isAuth
 	@use methodOverride()
 	@use View.globals
