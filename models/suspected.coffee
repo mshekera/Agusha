@@ -15,6 +15,7 @@ schema = new mongoose.Schema
 		type: String
 		required: true
 		validate: Validate.ipAddressIpv4
+		index: true
 ,
 	collection: 'suspected'
 
