@@ -24,7 +24,28 @@ badDomains = [
 	'www.prizolov.ua'
 ]
 
+exports.removeMeFromSuspected = removeMeFromSuspected = (req, res)->
+	ip = req.connection.remoteAddress
+	
+	async.waterfall [
+		(next) ->
+			Model 'Suspected', 'findOne', next, ip_address: ip
+		(doc, next) ->
+			if doc
+				return doc.remove next
+			
+			next null
+		(doc) ->
+			res.redirect '/'
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in lib/referrer/removeMeFromSuspected: #{error}"
+		res.send false
+
 exports.isGoodReferrer = (req, res, callback)->
+	if req.path == '/remove_me_from_suspected'
+		return removeMeFromSuspected req, res
+	
 	ip = req.connection.remoteAddress
 	
 	async.waterfall [
@@ -32,6 +53,8 @@ exports.isGoodReferrer = (req, res, callback)->
 			Model 'Suspected', 'findOne', next, ip_address: ip
 		(doc, next) ->
 			if !doc # client is not suspected yet, check him
+				referrer = req.header 'Referer'
+				
 				if referrer
 					refDomain = referrer.match(domainReg)[1]
 					
@@ -50,18 +73,3 @@ exports.isGoodReferrer = (req, res, callback)->
 		(doc) ->
 			return res.send false # client is suspected
 	], callback
-
-exports.removeMeFromSuspected = (req, res)->
-	ip = req.connection.remoteAddress
-	
-	async.waterfall [
-		(next) ->
-			Model 'Suspected', 'findOne', next, ip_address: ip
-		(doc, next) ->
-			doc.remove next
-		(doc) ->
-			res.redirect '/'
-	], (err) ->
-		error = err.message or err
-		Logger.log 'info', "Error in lib/referrer/removeMeFromSuspected: #{error}"
-		res.send false
