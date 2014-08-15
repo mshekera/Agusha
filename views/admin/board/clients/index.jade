@@ -154,10 +154,10 @@ block content
 						th Подарок
 						th Действия
 				tbody
-					- each u, key in clients
+					- each u, index in clients
 						- var content = "Имя: <span>" + u.fullName() + "</span><br/>Телефон: <span>" + u.phone + "</span><br/>Город: <span>" + (u.city?u.city.name:'-')  + "</span><br/>Улица: <span>" + u.street + "</span><br/>Номер дома: <span>" + u.house + "</span><br/>Квартира: <span>" + u.apartment + "</span><br/>Индекс: <span>" + u.postIndex + "</span><br/><br/>IP-адрес: <span>" + u.ip_address + "</span>";
 						tr(data-id='#{u._id}')
-							td #{u.id}
+							td #{index}
 							td.popovered(
 								data-toggle="popover" 
 								title="Детальная информация"
