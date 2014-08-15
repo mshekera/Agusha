@@ -5,6 +5,7 @@ mongoose = require 'mongoose'
 View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
+Mail = require '../../lib/mail'
 
 Client = require '../../lib/client'
 
@@ -12,6 +13,21 @@ tree = require '../../utils/tree'
 string = require '../../utils/string'
 
 breadcrumbs = require '../../meta/breadcrumbs'
+
+sendMail = (res, data, callback) ->
+	options =
+		subject: data.subject
+		login: data.client.login
+		email: data.client.email
+		base_url: res.locals.base_url
+	
+	if data.salt
+		options.salt = data.salt
+	
+	if data.friend
+		options.friend = data.friend
+	
+	Mail.send data.template, options, callback
 
 exports.index = (req, res) ->
 	if req.cookies.registered
@@ -33,15 +49,40 @@ exports.register = (req, res) ->
 	signUpData.ip_address = req.connection.remoteAddress
 	signUpData.login = string.title_case signUpData.login
 	
-	asyncFunctions = Client.addAsyncFunctionsForSignUp res, data, signUpData
-	
-	asyncFunctions = asyncFunctions.concat [
+	async.waterfall [
+		(next) ->
+			signUpData.email = signUpData.email.toLowerCase()
+			
+			doc = new mongoose.models.Client
+			
+			for own prop, val of signUpData
+				doc[prop] = val
+			
+			doc.save next
+			#Model 'Client', 'create', next, post
+		(client, affected, next) ->
+			data.client = client
+			
+			options = {}
+			
+			options.template = 'register'
+			options.client = client
+			options.subject = "Агуша: подтверждение регистрации"
+			options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
+			
+			sendMail res, options, next
+		(next) ->
+			saltData =
+				salt: data.salt
+			
+			Model 'Salt', 'create', next, saltData
 		(salt) ->
+			
 			req.session.message = true
 			res.redirect '/signup/registered'
-	]
-	
-	async.waterfall asyncFunctions, (err) ->
+	], (err) ->
+		data.client.remove()
+		
 		if err.code == 11000
 			error = 'Указанный e-mail уже зарегистрирован'
 		else
@@ -50,6 +91,24 @@ exports.register = (req, res) ->
 		Logger.log 'info', "Error in controllers/user/signup/register: #{error}"
 		req.session.err = error
 		res.redirect '/signup'
+	
+	# asyncFunctions = Client.addAsyncFunctionsForSignUp res, data, signUpData
+	
+	# asyncFunctions = asyncFunctions.concat [
+		# (salt) ->
+			# req.session.message = true
+			# res.redirect '/signup/registered'
+	# ]
+	
+	# async.waterfall asyncFunctions, (err) ->
+		# if err.code == 11000
+			# error = 'Указанный e-mail уже зарегистрирован'
+		# else
+			# error = err.message or err
+		
+		# Logger.log 'info', "Error in controllers/user/signup/register: #{error}"
+		# req.session.err = error
+		# res.redirect '/signup'
 
 exports.invite = (req, res) ->
 	path = '/signup/success'

@@ -17,7 +17,7 @@ exports.addAsyncFunctionsByFilter = (data, category, age) ->
 	if category
 		asyncFunctions = asyncFunctions.concat [
 			(next) ->
-				Model 'Category', 'findOne', next, {url_label: category}
+				Model 'Category', 'findOne', next, {url_label: category}, ''
 			(doc, next) ->
 				if doc
 					searchOptions.category = doc._id
@@ -29,7 +29,7 @@ exports.addAsyncFunctionsByFilter = (data, category, age) ->
 	if age
 		asyncFunctions = asyncFunctions.concat [
 			(next) ->
-				Model 'Age', 'findOne', next, {level: age}
+				Model 'Age', 'findOne', next, {level: age}, ''
 			(doc, next) ->
 				if doc
 					searchOptions.age = doc._id
