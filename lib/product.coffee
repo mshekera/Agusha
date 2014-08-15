@@ -6,48 +6,32 @@ Logger = require './logger'
 
 translit = require '../utils/translit'
 
-falseObjectID = '111111111111111111111111'
-
-exports.addAsyncFunctionsByFilter = (data, category, age) ->
+exports.makeSearchOptions = (category, age, callback) ->
 	searchOptions =
 		active: true
 	
-	asyncFunctions = []
-	
-	if category
-		asyncFunctions = asyncFunctions.concat [
-			(next) ->
-				Model 'Category', 'findOne', next, {url_label: category}, ''
-			(doc, next) ->
-				if doc
-					searchOptions.category = doc._id
-				else
-					searchOptions.category = falseObjectID
-				next()
-		]
-	
-	if age
-		asyncFunctions = asyncFunctions.concat [
-			(next) ->
-				Model 'Age', 'findOne', next, {level: age}, ''
-			(doc, next) ->
-				if doc
-					searchOptions.age = doc._id
-				else
-					searchOptions.age = falseObjectID
-				next()
-		]
-	
-	return asyncFunctions = asyncFunctions.concat [
-		(next) ->
-			Model 'Product', 'find', next, searchOptions
-		(docs, next) ->
-			Model 'Product', 'populate', next, docs, 'age category'
-		(docs, next) ->
-			data.products = docs
+	async.parallel
+		category: (next) ->
+			if category
+				return Model 'Category', 'findOne', next, {url_label: category}, ''
 			
-			next()
-	]
+			next null
+		age: (next) ->
+			if age
+				return Model 'Age', 'findOne', next, {level: age}, ''
+			
+			next null
+	, (err, results) ->
+		if err
+			return callback err
+		
+		if results.category
+			searchOptions.category = results.category._id
+		
+		if results.age
+			searchOptions.age = results.age._id
+		
+		callback null, searchOptions
 
 exports.getAgesAndCategories = (callback) ->
 	async.parallel {
