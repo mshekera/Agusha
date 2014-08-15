@@ -16,11 +16,7 @@ exports.index = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Product.makeSearchOptions req.params.category, req.params.age, next
-		(searchOptions, next) ->
-			Model 'Product', 'find', next, searchOptions
-		(docs, next) ->
-			Model 'Product', 'populate', next, docs, 'age category'
+			Product.findAll req.params.category, req.params.age, next
 		(docs, next) ->
 			data.products = docs
 			
@@ -30,7 +26,7 @@ exports.index = (req, res) ->
 		(results) ->
 			data.ages = results.ages
 			data.categories = results.categories
-
+			
 			_.each data.products, (item, key, list)->
 				volume = item.getFormattedVolume()
 				list[key] = item.toObject()
@@ -46,11 +42,7 @@ exports.findAll = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			Product.makeSearchOptions req.body.category, req.body.age, next
-		(searchOptions, next) ->
-			Model 'Product', 'find', next, searchOptions
-		(docs, next) ->
-			Model 'Product', 'populate', next, docs, 'age category'
+			Product.findAll req.body.category, req.body.age, next
 		(docs, next) ->
 			data.products = docs
 			

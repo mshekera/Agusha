@@ -23,10 +23,10 @@ exports.sendMail = sendMail = (res, data, callback) ->
 	
 	Mail.send data.template, options, callback
 
-exports.addAsyncFunctionsForSignUp = (res, data, post) ->
+exports.signUp = (res, data, post, callback) ->
 	info = {}
 	
-	return asyncFunctions = [
+	async.waterfall [
 		(next) ->
 			post.email = post.email.toLowerCase()
 			
@@ -56,8 +56,19 @@ exports.addAsyncFunctionsForSignUp = (res, data, post) ->
 			saltData =
 				salt: info.salt
 			
-			Model 'Salt', 'create', next, saltData
-	]
+			Model 'Salt', 'create', callback, saltData
+	], (err) ->
+		if data.client
+			data.client.remove()
+		
+		if err.code == 11000
+			error = 'Указанный e-mail уже зарегистрирован'
+		else
+			error = err.message or err
+		
+		Logger.log 'info', "Error in lib/client/signUp: #{error}"
+		
+		callback err
 
 exports.exportDocs = (docs, res) ->
 	conf = {}

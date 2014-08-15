@@ -59,7 +59,7 @@ exports.add_record = (req, res) ->
 		child.age = parseInt child.age
 		data.children.push child
 	
-	asyncFunctions = [
+	async.waterfall [
 		(next) ->
 			Model 'Tour_record', 'create', next, data
 		(client, next) ->
@@ -67,28 +67,26 @@ exports.add_record = (req, res) ->
 			req.session.messageLabel = 'Поздравляем, вы записаны на экскурсию!'
 			
 			next()
-	]
-	
-	if req.body.signup
-		signUpData =
-			login: data.firstname + ' ' + data.lastname
-			email: data.email
-		
-		async.waterfall [
-			(next) ->
-				Model 'Client', 'findOne', next, email: data.email
-			(doc) ->
-				if !doc?
-					asyncFunctions = asyncFunctions.concat Client.addAsyncFunctionsForSignUp res, {}, signUpData
-		], (err) ->
-			Logger.log 'info', "Error in controllers/user/tour/add_record: #{err}"
-			req.session.err = err
+		(next) ->
+			if req.body.signup
+				signUpData =
+					login: data.firstname + ' ' + data.lastname
+					email: data.email
+				
+				return async.waterfall [
+					(next2) ->
+						Model 'Client', 'findOne', next, email: data.email
+					(doc) ->
+						if !doc?
+							return Client.signUp res, {}, signUpData, next
+						
+						next null
+				], next
+			
+			next null
+		(next) ->
 			res.redirect '/tour'
-	
-	asyncFunctions.push (next) ->
-		res.redirect '/tour'
-	
-	async.waterfall asyncFunctions, (err) ->
+	], (err) ->
 		Logger.log 'info', "Error in controllers/user/tour/add_record: #{err}"
 		req.session.err = err
 		res.redirect '/tour'

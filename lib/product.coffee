@@ -6,7 +6,7 @@ Logger = require './logger'
 
 translit = require '../utils/translit'
 
-exports.makeSearchOptions = (category, age, callback) ->
+exports.makeSearchOptions = makeSearchOptions = (category, age, callback) ->
 	searchOptions =
 		active: true
 	
@@ -32,6 +32,19 @@ exports.makeSearchOptions = (category, age, callback) ->
 			searchOptions.age = results.age._id
 		
 		callback null, searchOptions
+
+exports.findAll = (category, age, callback) ->
+	async.waterfall [
+		(next) ->
+			makeSearchOptions category, age, next
+		(searchOptions, next) ->
+			Model 'Product', 'find', next, searchOptions
+		(docs, next) ->
+			Model 'Product', 'populate', callback, docs, 'age category'
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in lib/product/findAll: #{error}"
+		View.ajaxResponse res, err
 
 exports.getAgesAndCategories = (callback) ->
 	async.parallel {
