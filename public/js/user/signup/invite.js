@@ -21,10 +21,15 @@ $('#add_client').on('click', function() {
 });
 
 $('#invite_form').submit(function(ev) {
-	var form = $(this);
+	var form = $(this),
+		valid;
+	
 	invite_validate(form);
 	
-	if(form.valid() == true) {
+	valid = form.valid();
+	Placeholders.enable();
+	
+	if(valid == true) {
 		_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 		_gaq.push(['_trackEvent', 'invite', 'click']);
 		

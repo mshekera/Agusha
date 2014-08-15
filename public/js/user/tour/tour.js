@@ -382,10 +382,15 @@ var Tour_controller = can.Control.extend(
 			
 			return false;
 			
-			var form = $(el);
+			var form = $(el),
+				valid;
+			
 			this.tour_validate(form);
 			
-			if(form.valid() == true) {
+			valid = form.valid();
+			Placeholders.enable();
+			
+			if(valid == true) {
 				return true;
 			} else {
 				return false;

@@ -112,10 +112,15 @@ var Activate_controller = can.Control.extend(
 				return false;
 			}
 			
-			var form = $(el);
+			var form = $(el),
+				valid;
+			
 			this.activate_validate(form);
 			
-			if(form.valid() == true) {
+			valid = form.valid();
+			Placeholders.enable();
+			
+			if(valid == true) {
 				_gaq.push(['_setReferrerOverride', referrer]);
 				_gaq.push(['_trackEvent', 'send', 'click']);
 				_gaq.push(['_trackPageview'], url);

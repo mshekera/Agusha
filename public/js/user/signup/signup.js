@@ -27,10 +27,15 @@ $('.rules').click(function(ev) {
 });
 
 $('#registration_form').submit(function(ev) {
-	var form = $(this);
+	var form = $(this),
+		valid;
+	
 	registration_validate(form);
 	
-	if(form.valid() == true) {
+	valid = form.valid();
+	Placeholders.enable();
+	
+	if(valid == true) {
 		if(!submitted) {
 			submitted = true;
 		} else {
