@@ -24,7 +24,7 @@ exports.index = (req, res) ->
 		data.unsubscribe = true
 		delete req.session.unsubscribe
 	
-	View.render 'user/index', res, data, req.path #
+	View.render 'user/index', res, data
 	
 	# async.waterfall [
 		# (next) ->
