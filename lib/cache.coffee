@@ -284,8 +284,7 @@ exports.requestCache = (req, res, callback)->
 			res.set 'Content-Type', 'text/html'
 
 			res.send html
-	], ()->
-		console.log arguments
+	], callback
 
 
 # ###
