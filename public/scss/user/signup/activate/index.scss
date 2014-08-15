@@ -133,10 +133,12 @@
 				font-family: 'PT_Sans_Italic';
 			}
 			
-			&:not(:last-child) {
-				.text {
-					margin-right: 123px;
-				}
+			&:first-child {
+				margin-right: 110px;
+			}
+			
+			&:last-child {
+				margin-left: 110px
 			}
 		}
 		
