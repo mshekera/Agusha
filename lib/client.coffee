@@ -2,6 +2,7 @@ async = require 'async'
 mongoose = require 'mongoose'
 moment = require 'moment'
 nodeExcel = require 'excel-export'
+emailExistence = require 'email-existence'
 
 View = require './view'
 Model = require './model'
@@ -9,19 +10,27 @@ Logger = require './logger'
 Mail = require './mail'
 
 exports.sendMail = sendMail = (res, data, callback) ->
-	options =
-		subject: data.subject
-		login: data.client.login
-		email: data.client.email
-		base_url: res.locals.base_url
-	
-	if data.salt
-		options.salt = data.salt
-	
-	if data.friend
-		options.friend = data.friend
-	
-	Mail.send data.template, options, callback
+	async.waterfall [
+		(next) ->
+			emailExistence.check data.client.email, next
+		(result) ->
+			if result
+				options =
+					subject: data.subject
+					login: data.client.login
+					email: data.client.email
+					base_url: res.locals.base_url
+				
+				if data.salt
+					options.salt = data.salt
+				
+				if data.friend
+					options.friend = data.friend
+				
+				Mail.send data.template, options, callback
+			else
+				callback 'There is no such e-mail'
+	], callback
 
 exports.signUp = (res, data, post, callback) ->
 	info = {}

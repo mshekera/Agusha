@@ -44,8 +44,9 @@
     "connect-flash": "0.1.1",
     "request": "2.39.0",
     "gm": "1.16.0",
-	  "translit": "0.0.1",
+	"translit": "0.0.1",
     "mongoose-auto-increment": "3.0.8",
-    "excel-export": "0.3.11"
+    "excel-export": "0.3.11",
+	"email-existence": "0.1.2"
   }
 }
