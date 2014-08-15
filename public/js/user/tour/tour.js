@@ -33,6 +33,8 @@ var Tour_controller = can.Control.extend(
 		init: function () {
 			var that = this;
 			
+			this.submitted = false;
+			
 			this.mapLatLng = new google.maps.LatLng(50.4300000, 30.389388);
 			this.akademLatLng = new google.maps.LatLng(50.4648609, 30.3553083);
 			this.vishnevoeLatLng = new google.maps.LatLng(50.3856838, 30.3471481);
@@ -391,6 +393,12 @@ var Tour_controller = can.Control.extend(
 			Placeholders.enable();
 			
 			if(valid == true) {
+				if(!this.submitted) {
+					this.submitted = true;
+				} else {
+					return false;
+				}
+				
 				return true;
 			} else {
 				return false;

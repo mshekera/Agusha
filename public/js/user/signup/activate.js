@@ -15,6 +15,8 @@ var Activate_controller = can.Control.extend(
 	
 	{
 		init: function () {
+			this.submitted = false;
+			
 			this.init_plugins();
 		},
 		
@@ -121,6 +123,12 @@ var Activate_controller = can.Control.extend(
 			Placeholders.enable();
 			
 			if(valid == true) {
+				if(!this.submitted) {
+					this.submitted = true;
+				} else {
+					return false;
+				}
+				
 				_gaq.push(['_setReferrerOverride', referrer]);
 				_gaq.push(['_trackEvent', 'send', 'click']);
 				_gaq.push(['_trackPageview'], url);

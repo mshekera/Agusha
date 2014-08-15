@@ -8,6 +8,8 @@ $('.message').easyModal({
 	}
 });
 
+var submitted = false;
+
 $('#add_client').on('click', function() {
 	var client_block = $('.client_block');
 	var template = $('#add_client_tmpl').html();
@@ -30,6 +32,12 @@ $('#invite_form').submit(function(ev) {
 	Placeholders.enable();
 	
 	if(valid == true) {
+		if(!submitted) {
+			submitted = true;
+		} else {
+			return false;
+		}
+		
 		_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 		_gaq.push(['_trackEvent', 'invite', 'click']);
 		
