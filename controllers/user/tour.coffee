@@ -62,9 +62,12 @@ exports.add_record = (req, res) ->
 	async.waterfall [
 		(next) ->
 			Model 'Tour_record', 'create', next, data
-		(client, next) ->
-			req.session.message = 'В ближайшее время на ваш e-mail<br />придет письмо с подробными инструкциями.'
-			req.session.messageLabel = 'Поздравляем, вы записаны на экскурсию!'
+		(doc, next) ->
+			# req.session.message = 'В ближайшее время на ваш e-mail<br />придет письмо с подробными инструкциями.'
+			# req.session.messageLabel = 'Поздравляем, вы записаны на экскурсию!'
+			
+			req.session.message = 'Дождитесь следующей экскурсии!'
+			req.session.messageLabel = 'Ой, все места заняты!'
 			
 			next()
 		(next) ->

@@ -376,14 +376,6 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		'#tour_form submit': function(el, ev) {
-			$('.tour_message').easyModal({
-				autoOpen: true,
-				overlayOpacity: 0.9,
-				overlayColor: "#ffffff",
-			});
-			
-			return false;
-			
 			var form = $(el),
 				valid;
 			

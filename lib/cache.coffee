@@ -13,7 +13,7 @@ _ = require 'underscore'
 # ###
 
 exports.list = list = [
-	# do not cache pages which do not work with databse
+	# do not cache main, it could have server messages
 	# { 
 	# 	segment: '/', 
 	# 	name: 'Главная', 
@@ -26,12 +26,13 @@ exports.list = list = [
 		prefix: 'products_', 
 		prefixKey: 'products' 
 	}
-	{
-		segments: '/tour'
-		name: "Запись на тур"
-		prefix: "tour_"
-		prefixKey: "tour"
-	}
+	# do not cache tour, it could have server messages
+	# {
+		# segments: '/tour'
+		# name: "Запись на тур"
+		# prefix: "tour_"
+		# prefixKey: "tour"
+	# }
 	{
 		segments: '/video'
 		name: "Видео"
