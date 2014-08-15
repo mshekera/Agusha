@@ -3,6 +3,11 @@
 
 #feeding_up {
 	margin-bottom: 50px;
+	
+	.print {
+		padding: 13px 28px;
+		line-height: 15px;
+	}
 }
 
 .feeding_up_topper {
@@ -37,7 +42,7 @@
 		
 		.right {
 			span {
-				font-style: italic;
+				font-family: 'PT_Sans_Italic';
 				margin-right: 17px;
 			}
 			
@@ -163,9 +168,16 @@
 			
 			.left {
 				width: 50%;
+				text-align: center;
 				
 				.adorable_table {
 					line-height: 0;
+				}
+				
+				&:hover {
+					.hover_image {
+						display: block;
+					}
 				}
 			}
 			
@@ -177,12 +189,39 @@
 				text-align: left;
 			}
 			
-			.image {
-				width: 80%;
+			.image_block {
+				width: 62px;
+				height: 62px;
+				z-index: 1;
+				position: relative;
+				display: inline-block;
 				
 				&:hover {
-					width: 90%;
+					width: 69px;
+					height: 69px;
 				}
+			}
+			
+			.image {
+				@include absolute_centered;
+				width: 62px;
+				height: 62px;
+				z-index: 1;
+				
+				img {
+					width: 100%;
+					height: 100%;
+				}
+				
+				&:hover {
+					width: 69px;
+					height: 69px;
+				}
+			}
+			
+			.hover_image {
+				display: none;
+				z-index: 2;
 			}
 		}
 		
@@ -221,7 +260,7 @@
 .feeding_up_order {
 	height: 38px;
 	font-size: 85.7%;
-	font-style: italic;
+	font-family: 'PT_Sans_Italic';
 	color: #a19084;
 }
 
@@ -245,7 +284,7 @@
 		font-size: 85.7%;
 		height: 58px;
 		width: 60%;
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 		
 		.adorable_cell {
 			text-align: left;

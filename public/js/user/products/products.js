@@ -14,6 +14,8 @@ if(isLocalStorageAvailable()) {
 	}
 }
 
+$('.choose_category').corner('15px');
+
 Product = can.Model.extend({
 	findAll: 'POST /products/findAll',
 	parseModels: function(data) {

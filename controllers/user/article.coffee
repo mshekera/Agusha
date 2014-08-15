@@ -17,7 +17,7 @@ exports.index = (req, res) ->
 		(next) ->
 			async.parallel
 				article: (next2) ->
-					Model 'Article', 'findById', next2, req.params.id
+					Model 'Article', 'findOne', next2, alias: req.params.alias
 				articles: (next2) ->
 					Model 'Article', 'find', next2, type: 2, 'desc_title'
 			, next
@@ -29,7 +29,7 @@ exports.index = (req, res) ->
 				parent_id: 'food'
 				title: data.article.desc_title
 			
-			View.render 'user/article/article', res, data
+			View.render 'user/article/article', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/article/index: #{error}"
@@ -42,9 +42,9 @@ exports.specialist = (req, res) ->
 		(next) ->
 			async.parallel
 				article: (next2) ->
-					Model 'Article', 'findById', next2, req.params.id
+					Model 'Article', 'findOne', next2, alias: req.params.alias
 				articles: (next2) ->
-					Model 'Article', 'find', next2, type: 3, 'desc_image big_title'
+					Model 'Article', 'find', next2, type: 3, 'desc_image big_title alias'
 			, next
 		(results) ->
 			data.article = results.article
@@ -54,7 +54,7 @@ exports.specialist = (req, res) ->
 				parent_id: 'food'
 				title: data.article.desc_title
 			
-			View.render 'user/article/article', res, data
+			View.render 'user/article/article', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/article/specialist: #{error}"

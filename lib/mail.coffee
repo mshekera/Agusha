@@ -13,15 +13,15 @@ exports.send = (name, data, cb) ->
 			template name, data, next
 		(html, text, next) ->
 			transportOptions =
-				service: "Gmail"
+				host: 'mx1.mirohost.net'
 				auth:
-					user: "nodesmtp@gmail.com",
-					pass: "smtpisverygood11"
+					user: 'contact@agusha.com.ua',
+					pass: 'aHErkvZu'
 			
 			transport = nodemailer.createTransport 'SMTP', transportOptions
 			
 			mailOptions =
-				from: "noreply <noreply@winnlab.com>"
+				from: "Агуша <contact@agusha.com.ua>",
 				to: "#{data.login} <#{data.email}>"
 				subject: data.subject
 				text: text

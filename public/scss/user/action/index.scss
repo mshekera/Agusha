@@ -1,0 +1,80 @@
+@import '../dynamic/dynamic';
+@import '../helpers/breadcrumbs';
+
+#action {
+	margin-bottom: 50px;
+	
+	.topper {
+		height: 215px;
+		background: #7dd495;
+		color: $white;
+		margin-bottom: 24px;
+		
+		.label {
+			font-size: 65px;
+			line-height: 75px;
+		}
+		
+		.text {
+			font-size: 18px;
+		}
+	}
+	
+	.action_content {
+		background: $white;
+		padding: 25px 60px 60px;
+	}
+	
+	ol, li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	li {
+		display: table;
+		line-height: 25px;
+	}
+	
+	.li_title {
+		font-size: 16px;
+		font-family: 'PT_Sans_Bold';
+		text-transform: uppercase;
+		color: $darkblue;
+		line-height: 65px;
+		
+		&.after_sublist {
+			margin-top: -20px;
+		}
+	}
+	
+	.address {
+		position: relative;
+		top: -20px;
+		font-size: 16px;
+	}
+	
+	.sublist {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	
+	.number {
+		display: table-cell;
+		width: 50px;
+	}
+	
+	.title {
+		display: table-cell;
+	}
+	
+	.italic {
+		font-family: 'PT_Sans_Italic';
+		color: #0d5c92;
+		text-decoration: none;
+	}
+	
+	.subnumber {
+		width: 50px;
+	}
+}

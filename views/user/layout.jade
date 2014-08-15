@@ -3,7 +3,28 @@ html(lang="ru")
 	head
 		block header
 			meta(charset="UTF-8")
-			title= "Агуша"
+			title
+				block title
+					| Агуша
+			link(href='/img/favicon.ico', rel='shortcut icon', type='image/x-icon')
+			script.
+				// facebook
+				(function() {
+					var _fbq = window._fbq || (window._fbq = []);
+					if (!_fbq.loaded) {
+						var fbds = document.createElement('script');
+						fbds.async = true;
+						fbds.src = '//connect.facebook.net/en_US/fbds.js';
+						var s = document.getElementsByTagName('script')[0];
+						s.parentNode.insertBefore(fbds, s);
+						_fbq.loaded = true;
+					}
+					_fbq.push(['addPixelId', '1438499813104928']);
+				})();
+				window._fbq = window._fbq || [];
+				window._fbq.push(['track', 'PixelInitialized', {}]);
+			noscript
+				img(height='1', width='1', alt='', style='display: none;', src='https://www.facebook.com/tr?id=1438499813104928&ev=NoScript')
 	
 	body
 		include header
@@ -16,5 +37,49 @@ html(lang="ru")
 		include footer
 		
 		block scripts
-			script(src="/js/jquery.min.js")
+			// Rating@Mail.ru counter 
+			script(type='text/javascript').
+				var _tmr = _tmr || [];
+				_tmr.push({id: "2554869", type: "pageView", start: (new Date()).getTime()});
+				(function (d, w) {
+					var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true;
+					ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
+					var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+					if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+				})(document, window);
+			noscript
+				div(style='position: absolute; left: -10000px;')
+					img(src='//top-fwz1.mail.ru/counter?id=2554869;js=na', style='border: 0;', height='1', width='1', alt='ђейтинг@Mail.ru')
+			// //Rating@Mail.ru counter
+			script(src="/js/jquery-1.11.1.min.js")
+			script(src="/js/plugins/corner/jquery.corner.js")
+			script(src="/js/plugins/selectivizr/selectivizr-min.js")
 			script(src="/js/user/core.js")
+			script.
+				<!-- Yandex.Metrika counter -->
+				(function (d, w, c) {
+					(w[c] = w[c] || []).push(function() {
+						try {
+							w.yaCounter25778882 = new Ya.Metrika({id:25778882,
+									webvisor:true,
+									clickmap:true,
+									trackLinks:true,
+									accurateTrackBounce:true});
+						} catch(e) { }
+					});
+
+					var n = d.getElementsByTagName("script")[0],
+						s = d.createElement("script"),
+						f = function () { n.parentNode.insertBefore(s, n); };
+					s.type = "text/javascript";
+					s.async = true;
+					s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+					if (w.opera == "[object Opera]") {
+						d.addEventListener("DOMContentLoaded", f, false);
+					} else { f(); }
+				})(document, window, "yandex_metrika_callbacks");
+				<!-- /Yandex.Metrika counter -->
+			noscript
+				div
+					img(src='//mc.yandex.ru/watch/25778882', style='position: absolute; left: -9999px;', alt='')

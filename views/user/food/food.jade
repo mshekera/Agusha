@@ -2,6 +2,8 @@ extends ../layout
 
 block append header
 	link(rel="stylesheet" href="/css/user/food/food.css")
+	script(type='text/javascript').
+		(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=yb0bsJMIQ5tGXR/L4ufIEGUJZhrYwSaqtetSb48bIz3xjxhSuny6ThgP*g7U6pj4RnPjtksKfad60GFKgnZRvHEi7fh849MkMlQmVdahDFFi5xCzy2bIrVL4U*PrTyFwHv*0hTTeNMHoJeSA3LFrzZThTFdvRrXaK3ZLBJa44ac-';
 
 mixin doc()
 	.adorable
@@ -14,7 +16,7 @@ mixin doc()
 						| Главное о детском
 						br
 						| питании
-					button.middle_button.white Статьи от специалиста
+					span.middle_button.white Статьи от специалиста
 
 block append content
 	#food.content
@@ -28,7 +30,7 @@ block append content
 		.food_container
 			.food_block.inline_adorable_container
 				if specialist
-					a(href = '/specialist/' + specialist._id)
+					a(href = '/specialist/' + specialist.alias)
 						mixin doc()
 				else
 					mixin doc()
@@ -45,11 +47,11 @@ block append content
 										| Cхема введения
 										br
 										| прикорма
-									button.middle_button.darkblue Еда: что, сколько и когда
+									span.middle_button.darkblue Еда: что, сколько и когда
 			
 			- each a, key in articles
 				.food_block.inline_adorable_container
-					a(href = '/article/' + a._id)
+					a(href = '/article/' + a.alias)
 						.adorable
 							if a.desc_image.length
 								.food_block_bg
@@ -60,7 +62,7 @@ block append content
 										.label.novito_nova.adorable_table
 											.adorable_cell !{a.desc_title}
 										
-										button.middle_button.darkblue #{a.button_label}
+										span.middle_button.darkblue #{a.button_label}
 
 block append scripts
-	
+	script(src="/js/user/food/food.js")

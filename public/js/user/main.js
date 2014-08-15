@@ -1,6 +1,15 @@
+$('.unsubscribe_message').easyModal({
+	autoOpen: true,
+	overlayOpacity: 0.9,
+	overlayColor: "#ffffff",
+	onClose: function(myModal) {
+		_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
+		_gaq.push(['_trackEvent', 'closeerror', 'click']);
+	}
+});
+
 var	before_main = $('#before_main'),
 	slider_container = $('#slider_container'),
-	slides = slider_container.find('.slides'),
 	menu_blocks = $('#header .dropdown');
 
 var window_resize = function() {
@@ -18,7 +27,7 @@ var window_resize = function() {
 	slider_container.css({
 		left: left
 	});
-	console.log(menu_blocks.length);
+	
 	for(i = menu_blocks.length; i--;) {
 		var menu_block = $(menu_blocks[i]),
 			span = menu_block.find('span'),
@@ -27,7 +36,6 @@ var window_resize = function() {
 			dropdown_width = dropdown.width();
 		
 		var offset = ((dropdown_width - span_width) / 2) | 0;
-		console.log(offset);
 	}
 }
 
@@ -38,10 +46,8 @@ var options = {
 	height: 469
 };
 
-slides.css(options);
-
 var options = {
-	$AutoPlay: true,
+	// $AutoPlay: true,
 	$SlideDuration: 800, 
 	$BulletNavigatorOptions: {
 		$Class: $JssorBulletNavigator$,
@@ -56,6 +62,31 @@ var options = {
 
 var jssor_slider = new $JssorSlider$('slider_container', options);
 
+$('.prototype').corner('6px');
+$('.live_program .photo').corner('60px');
+$('.join_tour .photo').corner('63px');
+
+
 if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
 	$(window).bind('resize', window_resize);
 }
+
+$('.bannertop').click(function(ev) {
+	ev.preventDefault();
+	var href = ev.target.href;
+	
+	_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
+	_gaq.push(['_trackEvent', 'bannertop', 'click']);
+	
+	location.href = href;
+});
+
+$('.bannerleft').click(function(ev) {
+	ev.preventDefault();
+	var href = $(this).attr('href');
+	
+	_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
+	_gaq.push(['_trackEvent', 'bannerleft', 'click']);
+	
+	location.href = href;
+});

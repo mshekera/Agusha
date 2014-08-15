@@ -6,10 +6,12 @@
 	position: absolute;
 	bottom: 25px;
 	right: 150px;
+	z-index: 10;
 	
 	.photo {
 		@include absolute_horizontal_centered;
 		width: 127px;
+		height: 127px;
 		top: 12px;
 		
 		.rounded {

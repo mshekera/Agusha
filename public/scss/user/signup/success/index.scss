@@ -2,25 +2,29 @@
 @import '../../helpers/breadcrumbs';
 @import '../../helpers/message';
 
-.content {
+#success {
+	overflow: hidden;
+	
 	.topper {
 		height: 265px;
 		margin-bottom: 20px;
 		
 		.label {
-			margin-bottom: 15px;
+			margin-bottom: 5px;
 			font-size: 65px;
-			line-height: 65px;
+			line-height: 60px;
+			padding: 0 60px;
 		}
 	}
 	
 	.top_label {
-		font-size: 112.5%;
+		font-size: 18px;
 		line-height: 150%;
 	}
 	
 	> .white {
 		margin-bottom: 50px;
+		overflow: hidden;
 		
 		> .top_label {
 			height: 130px;
@@ -41,10 +45,6 @@
 		}
 	}
 	
-	.client_block {
-		overflow: hidden;
-	}
-	
 	.more {
 		padding-bottom: 30px;
 		
@@ -57,9 +57,24 @@
 		border-bottom: 1px dashed;
 		cursor: pointer;
 	}
+	
+	.message {
+		.top_label {
+			&.dark_font {
+				color: $white;
+				font-size: 16px;
+			}
+			
+			&.white_font {
+				display: none;
+			}
+		}
+	}
 }
 
 #invite_form {
+	overflow: hidden;
+	
 	button {
 		&:active {
 			color: rgba(100, 203, 129, 0.5);

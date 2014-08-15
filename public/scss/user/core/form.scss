@@ -4,6 +4,7 @@ button {
 	@include border_radius(99999em);
 	border: none;
 	padding: 4px 45px;
+	outline-style: none;
 	
 	&:hover {
 		opacity: 0.8;
@@ -38,15 +39,23 @@ input {
 	@include border_boxed;
 	border: none;
 	height: 58px;
+	line-height: 58px !important;
 	width: 100%;
 	padding: 0 22px;
 	color: $light;
 	text-transform: uppercase;
 	margin: 0 0 30px;
 	font-size: 100%;
+	outline-style: none;
 	
 	&:focus {
 		@include inset_box_shadow(0 0 0 3px $yellow);
+		background: $white;
+	}
+	
+	&.error {
+		@include inset_box_shadow(0 0 0 3px #fd7b6a !important);
+		background: $white !important;
 	}
 }
 
@@ -90,5 +99,19 @@ input {
 	select ~ label img {
 		@include absolute_centered;
 		display: block;
+	}
+}
+
+label {
+	&.error {
+		display: block;
+		height: 0;
+		line-height: 0;
+		position: relative;
+		top: -100px;
+		font-size: 12px;
+		font-family: 'PT_Sans_Italic';
+		text-align: left;
+		left: 22px;
 	}
 }

@@ -6,7 +6,9 @@
 }
 
 #product_container {
-	height: 680px;
+	min-height: 680px;
+	background: $white;
+	overflow: hidden;
 }
 
 .product_left {
@@ -14,23 +16,29 @@
 	width: 57%;
 	background-color: $el_bg;
 	padding: 40px 40px 0 40px;
-	height: 100%;
+	min-height: 680px;
 	position: relative;
 	
 	.label {
 		margin-bottom: 20px;
 		padding: 0;
 		color: $darkblue;
+		letter-spacing: -0.5px;
+		line-height: 50px;
 	}
 	
 	.text_label {
 		text-transform: uppercase;
 		color: $blue;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 	}
 	
 	.text {
 		margin-bottom: 25px;
+		
+		&:last-child {
+			margin-bottom: 220px;
+		}
 	}
 	
 	.certificates_container {
@@ -62,7 +70,8 @@
 		
 		button {
 			font-size: 100%;
-			font-weight: bold;
+			font-family: 'PT_Sans_Bold';
+			padding: 10px 20px;
 		}
 	}
 }
@@ -70,7 +79,7 @@
 .product_right {
 	float: left;
 	width: 43%;
-	height: 100%;
+	min-height: 680px;
 	position: relative;
 	
 	.right_image {
@@ -78,9 +87,10 @@
 		position: relative;
 		
 		img {
-			@include absolute_centered;
-			max-height: 90%;
-			max-width: 90%;
+			@include absolute_horizontal_centered;
+			top: 78px;
+			max-height: 421px;
+			max-width: 421px;
 		}
 	}
 	
@@ -93,7 +103,7 @@
 		.top {
 			font-size: 112.5%;
 			color: $blue;
-			font-weight: bold;
+			font-family: 'PT_Sans_Bold';
 		}
 		
 		.bottom {
@@ -106,6 +116,20 @@
 			height: 48px;
 			width: 1px;
 			background-color: $base;
+		}
+	}
+	
+	.half {
+		&.left {
+			.adorable_cell {
+				padding-left: 50px;
+			}
+		}
+		
+		&.right {
+			.adorable_cell {
+				padding-right: 50px;
+			}
 		}
 	}
 }

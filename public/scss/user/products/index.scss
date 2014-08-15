@@ -1,7 +1,8 @@
 @import '../dynamic/dynamic';
 @import '../helpers/breadcrumbs';
 
-.content {
+#products {
+	overflow: hidden;
 	margin-bottom: 70px;
 }
 
@@ -10,7 +11,7 @@
 	
 	.top_label {
 		font-size: 112.5%;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 	}
 }
 
@@ -36,6 +37,16 @@
 	
 	&.active {
 		background-color: $el_bg;
+		
+		img {
+			&.norm {
+				display: none;
+			}
+			
+			&.hover {
+				display: block;
+			}
+		}
 	}
 	
 	.image_container {
@@ -44,11 +55,15 @@
 		vertical-align: top;
 		width: 55px;
 		position: relative;
+	}
+	
+	img {
+		@include absolute_centered;
+		max-width: 100%;
+		max-height: 100%;
 		
-		img {
-			@include absolute_centered;
-			max-width: 100%;
-			max-height: 100%;
+		&.hover {
+			display: none;
 		}
 	}
 	
@@ -121,27 +136,16 @@
 	}
 	
 	.minimize_button {
-		width: 17px;
-		height: 17px;
+		background: url('/img/user/products/minimize_buttons.png');
+		background-position: -16px 0;
+		width: 16px;
+		height: 16px;
+		margin-right: 10px;
 		display: inline-block;
 		vertical-align: top;
-		background: #fd7b6a;
-		margin-right: 10px;
-		position: relative;
 		
 		&:hover {
-			background: $red;
-		}
-		
-		&:before {
-			@include absolute_centered;
-			content: '\D7';
-			display: table-cell;
-			text-align: center;
-			vertical-align: middle;
-			color: $white;
-			font-size: 13px;
-			line-height: 17px;
+			background-position: -16px -16px;
 		}
 	}
 	
@@ -184,10 +188,20 @@
 		.desc_title {
 			float: left;
 			padding: 0 0 30px;
+			width: auto;
+			line-height: 63px;
+			
+			.small {
+				display: inline-block;
+				line-height: 27px;
+				height: 63px;
+				vertical-align: top;
+				width: 130px;
+			}
 		}
 		
 		.minimize {
-			right: 40px;
+			right: 148px;
 			margin: auto;
 			top: 0;
 			bottom: 0;
@@ -196,10 +210,10 @@
 		}
 		
 		.minimize_button {
-			&:before {
-				content: '+';
-				font-family: verdana;
-				font-size: 11px;
+			background-position: 0 0;
+			
+			&:hover {
+				background-position: 0 -16px;
 			}
 		}
 		
@@ -230,14 +244,24 @@
 	
 	.desc_subtitle {
 		color: #fd7b6a;
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 		margin-bottom: 15px;
-		width: 150px;
+		width: 201px;
 	}
 	
 	.desc_title {
 		color: $dark;
 		padding: 0;
+		width: 205px;
+		line-height: 55px;
+		letter-spacing: 1px;
+		
+		.small {
+			font-size: 30px;
+			line-height: 30px;
+			display: block;
+			letter-spacing: 0;
+		}
 	}
 	
 	.article_image {
@@ -258,25 +282,28 @@
 }
 
 .product_block {
-	background-color: $white;
-	height: 465px;
+	height: 485px;
 	float: left;
-	margin: 0 0 2% 2%;
-    width: 22.5%;
-	position: relative;
+	margin: 0;
+    position: relative;
+    width: 25%;
 	cursor: pointer;
 	color: $base;
+	border: 10px solid transparent;
 	
 	.image {
 		position: absolute;
 		top: 0;
 		height: 225px;
-		width: 100%;
+		width: 158px;
+		height: 158px;
+		top: 32px;
+		left: 32px;
 		
 		img {
 			@include absolute_centered;
-			max-height: 60%;
-			max-width: 60%;
+			max-height: 100%;
+			max-width: 100%;
 		}
 	}
 	
@@ -291,7 +318,7 @@
 			color: $blue;
 			font-size: 107.2%;
 			text-transform: uppercase;
-			font-weight: bold;
+			font-family: 'PT_Sans_Bold';
 		}
 	}
 	
@@ -303,7 +330,8 @@
 		padding: 0 10px;
 		
 		span {
-			font-size: 93%;
+			font-size: 96.4%;
+			vertical-align: top;
 		}
 	}
 	
@@ -317,7 +345,7 @@
 		.top {
 			font-size: 112.5%;
 			color: $blue;
-			font-weight: bold;
+			font-family: 'PT_Sans_Bold';
 		}
 		
 		.bottom {
@@ -334,15 +362,17 @@
 	}
 	
 	&:hover {
-		@include box_shadow(0 0 0 0.5em $blue);
+		border: 10px solid $darkblue;
 		
 		.image {
-			top: 80px;
-			height: 305px;
+			top: 134px;
+			width: 225px;
+			height: 225px;
+			left: 0;
 			
 			img {
-				max-height: 90%;
-				max-width: 90%;
+				max-height: 225px;
+				max-width: 225px;
 			}
 		}
 		
@@ -354,5 +384,14 @@
 		.desc {
 			display: none;
 		}
+		
+		.info {
+			background: $white;
+		}
 	}
+}
+
+.product_block_inside {
+	background-color: $white;
+	height: 100%;
 }

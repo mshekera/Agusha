@@ -2,12 +2,39 @@ extends ../layout
 
 block append header
 	link(rel="stylesheet" href="/css/user/signup/signup.css")
+	if message
+		// Facebook Conversion Code for Agusha Light_signup succesful 
+		script.
+			(function() {
+				var _fbq = window._fbq || (window._fbq = []);
+				if (!_fbq.loaded) {
+					var fbds = document.createElement('script');
+					fbds.async = true;
+					fbds.src = '//connect.facebook.net/en_US/fbds.js';
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(fbds, s);
+					_fbq.loaded = true;
+				}
+			})();
+			window._fbq = window._fbq || [];
+			window._fbq.push(['track', '6015287707342', {'value':'0.00','currency':'USD'}]);
+		noscript
+			img(height='1', width='1', alt='', style='display: none;', src='https://www.facebook.com/tr?ev=6015287707342&cd[value]=0.00&cd[currency]=USD&noscript=1')
+		
+		// vk
+		
+		script(type='text/javascript').
+			(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=Q1B1tQtXjyZZ9GmtvCMY25OZBUchH/kqa5GJfQZbU1s2In528Yo1iMl3g7Iph/YLBAhvvLxS8mU*m73FM3N1EPE4xGaExP05nPiR7bPYFTF3Wfr8fVV/9NeWOgPYHCn8IFoEWX8OEEQrLIPxOr5e64M9Ea6OXmsqRDkG0WZMSZk-';
+	else
+		// vk
+		script(type='text/javascript').
+			(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=zBPJsZ*g/znMc7JpOXdFA4G8XZBgyCGj9XTdDeMZVyCJmHnEiaINu6kStj6QkDpRMDDRXpdztCyWz8Ez*uodNW203MKaQXAWk9AH2spdoYmjhxbTQeqG4uAU0Q8oYI1NBPzt8rlozmezk61luuQzBtcMI91N1lFpfr0T3q0l44E-';
 
 block append content
-	.content
+	#signup.content.force_height
 		include ../../helpers/user/breadcrumbs/breadcrumbs
 		
-		- if (err || message)
+		- if (err)
 			include ../../helpers/user/message/message
 		
 		.white
@@ -26,35 +53,82 @@ block append content
 			.pentagon.white_font.border_boxed
 				.pentagon_content.adorable_table
 					.adorable_cell
-						.label.novito_nova Будьте первооткрывателями!
+						.label.novito_nova Будьте первооткрывателями и получайте подарки!
 			
 			.map.centered
-				img(src="/img/user/signup/map.png")
+				.map_container
+					img(src="/img/user/signup/map.jpg")
+					
+					.map_circle_container
+						.map_circle.rounded.encyclopedia
+						.map_content.rounded.border_boxed.left.adorable_table.encyclopedia
+							.adorable_cell
+								.text Cамые полезные статьи для родителей и возможность поделиться своим опытом с другими мамами и папами.
+					
+					.map_circle_container
+						.map_circle.rounded.consultation
+						.map_content.rounded.border_boxed.left.adorable_table.consultation
+							.adorable_cell
+								.text Советы и рекомендации по питанию, здоровью и развитию малыша от авторитетных специалистов.
+					
+					.map_circle_container
+						.map_circle.rounded.news
+						.map_content.rounded.border_boxed.left.adorable_table.news
+							.adorable_cell
+								.text Самые свежие и интересные новости из мира детства.
+					
+					.map_circle_container
+						.map_circle.rounded.piggy_bank
+						.map_content.rounded.border_boxed.left.adorable_table.piggy_bank
+							.adorable_cell
+								.text Зарегистрируйтесь и сразу получите в вашу копилку 100 баллов, которые потом сможете обменять на подарки.
+					
+					.map_circle_container
+						.map_circle.rounded.action
+						.map_content.rounded.border_boxed.left.adorable_table.action
+							.adorable_cell
+								.text Конкурсы, акции и множество подарков от «Агуши». 
+					
+					.map_circle_container
+						.map_circle.rounded.service
+						.map_content.rounded.border_boxed.left.adorable_table.service
+							.adorable_cell
+								.text Бесплатные сервисы, которые значительно упрощают жизнь родителям.
 			
-			.top_label.dark_font.centered Зарегистрируйтесь сейчас
+			a.rules(href='/action')
+				button.middle_button.action_button Правила акции
+			
 			.label.novito_nova.centered.green_font
-				| И получите 1000 баллов, которые вы сможете обменять
-				br
-				| на подарки после открытия сайта!
+				| Первая тысяча зарегистрированных пользователей получит
+				| гарантированные подарки от ТМ «АГУША»:
 			
-			form#registration_form.footer.green(method="POST", action="/signup/register")
-				.inputs
-					.content.border_boxed
-						.half.left
-							.adorable_table
-								.adorable_cell
-									.input
-										input(type="text", name="login", placeholder="Ваше имя и фамилия")
-						
-						.half.right
-							.adorable_table
-								.adorable_cell
-									.input
-										input(type="email", name="email", placeholder="Ваш e-mail")
-				
-				.submit.darkgreen.adorable_table
+			img.prize(src="/img/user/signup/prize.png")
+			
+			if message
+				.thanks.darkgreen.adorable_table
 					.adorable_cell
-						button.white.darkgreen_font.middle_button.uppercase.bold(type="submit") Зарегистрироваться
+						.label.novito_nova СПАСИБО, вы зарегистрированы!
+						.top_label
+							| Пожалуйста, проверьте свой e-mail, чтобы подтвердить регистрацию.
+			else
+				form#registration_form.footer.green(method="POST", action="/signup/register")
+					.inputs
+						.content.border_boxed
+							.half.left
+								.adorable_table
+									.adorable_cell
+										.input
+											input(type="text", name="login", placeholder="Ваше имя и фамилия")
+							
+							.half.right
+								.adorable_table
+									.adorable_cell
+										.input
+											input(type="email", name="email", placeholder="Ваш e-mail")
+					
+					.submit.darkgreen.adorable_table
+						.adorable_cell
+							button.white.darkgreen_font.middle_button.uppercase.bold(type="submit") Зарегистрироваться
 
 block append scripts
 	script(src="/js/plugins/placeholders/placeholders.min.js")

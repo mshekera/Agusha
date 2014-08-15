@@ -11,7 +11,7 @@
 	
 	.top_text {
 		font-size: 112.5%;
-		font-style: italic;
+		font-family: 'PT_Sans_Italic';
 		margin-bottom: 25px;
 	}
 	
@@ -34,7 +34,7 @@
 		text-transform: uppercase;
 		background: $white;
 		color: $darkgreen;
-		font-weight: bold;
+		font-family: 'PT_Sans_Bold';
 		
 		&:active {
 			color: rgba(100, 203, 129, 0.5);

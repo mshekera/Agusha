@@ -3,6 +3,15 @@ module.exports = [
 	title: 'Регистрация'
 	href: '/signup'
 ,
+	id: 'action'
+	title: 'Акция'
+	href: '/action'
+,
+	id: 'activate'
+	title: 'Форма'
+	href: '/activate'
+	parent_id: 'signup'
+,
 	id: 'products'
 	title: 'Продукты Агуша'
 	href: '/products'

@@ -2,8 +2,12 @@
 @import '../helpers/breadcrumbs';
 @import '../helpers/message';
 
-.content {
+#signup {
 	margin-bottom: 50px;
+	
+	a {
+		text-decoration: none;
+	}
 	
 	.topper {
 		height: 240px;
@@ -13,14 +17,54 @@
 		}
 	}
 	
+	.pentagon .label {
+		margin-bottom: 15px;
+	}
+	
 	.map {
+		margin-bottom: 16px;
+		
 		img {
 			max-width: 100%;
-			margin-bottom: 35px;
 		}
 	}
 	
+	.map_container {
+		margin: auto;
+		width: 944px;
+		height: 654px;
+		position: relative;
+	}
+	
+	.action_button {
+		margin: auto;
+		display: block;
+		margin-bottom: 15px;
+		color: white;
+		background: #7dd495;
+		text-transform: uppercase;
+		font-size: 100%;
+		font-family: 'PT_Sans_Bold';
+		padding: 10px 25px;
+		
+		&:active {
+			color: rgba(255, 255, 255, 0.5);
+		}
+	}
+	
+	.rules {
+		display: inline-block;
+	}
+	
+	.prize {
+		margin: auto;
+		display: block;
+		margin-bottom: 48px;
+	}
+	
 	.white {
+		text-align: center;
+		
 		.top_label {
 			font-size: 112.5%;
 			margin-bottom: 5px;
@@ -54,6 +98,11 @@
 				margin-right: 40px;
 			}
 		}
+		
+		label.error {
+			top: -70px;
+			font-size: 14px;
+		}
 	}
 	
 	.submit {
@@ -66,5 +115,126 @@
 				color: rgba(100, 203, 129, 0.5);
 			}
 		}
+	}
+	
+	.thanks {
+		height: 237px;
+		
+		.label {
+			font-size: 66px;
+			line-height: 66px;
+		}
+	}
+}
+
+.map_circle {
+	height: 26px;
+	width: 26px;
+	position: absolute;
+	background: url('/img/user/signup/map_buttons.png');
+	background-position: -26px 0;
+	cursor: pointer;
+	z-index: 10;
+	
+	&.encyclopedia {
+		top: 40px;
+		left: 270px;
+	}
+	
+	&.consultation {
+		top: 325px;
+		left: 280px;
+	}
+	
+	&.news {
+		top: 205px;
+		right: 420px;
+	}
+	
+	&.piggy_bank {
+		bottom: 205px;
+		right: 415px;
+	}
+	
+	&.action {
+		top: 190px;
+		right: 140px;
+	}
+	
+	&.service {
+		top: 305px;
+		right: 55px;
+	}
+	
+	&:hover {
+		background-position: 0 0;
+		z-index: 20;
+	}
+	
+	&:hover  ~ .map_content {
+		background: $darkblue;
+		color: $white;
+		z-index: 15;
+		
+		.text {
+			display: block;
+		}
+	}
+}
+
+.map_content {
+	@include border_radius(5px);
+	position: absolute;
+	padding: 18px;
+	color: $darkblue;
+	height: auto;
+	width: 240px;
+	
+	.text {
+		line-height: 20px;
+		display: none;
+		font-size: 16px;
+	}
+	
+	&.left {
+		.adorable_cell {
+			text-align: left;
+		}
+	}
+	
+	&.right {
+		.adorable_cell {
+			text-align: right;
+		}
+	}
+	
+	&.encyclopedia {
+		top: 53px;
+		left: 283px;
+	}
+	
+	&.consultation {
+		top: 338px;
+		left: 293px;
+	}
+	
+	&.news {
+		top: 218px;
+		right: 197px;
+	}
+	
+	&.piggy_bank {
+		top: 435px;
+		right: 188px;
+	}
+	
+	&.action {
+		top: 203px;
+		right: 153px;
+	}
+	
+	&.service {
+		top: 318px;
+		right: 68px;
 	}
 }

@@ -4,48 +4,47 @@ View = require './view'
 Model = require './model'
 Logger = require './logger'
 
-falseObjectID = '111111111111111111111111'
+translit = require '../utils/translit'
 
-exports.addAsyncFunctionsByFilter = (data, category, age) ->
+exports.makeSearchOptions = makeSearchOptions = (category, age, callback) ->
 	searchOptions =
 		active: true
 	
-	asyncFunctions = []
-	
-	if category
-		asyncFunctions = asyncFunctions.concat [
-			(next) ->
-				Model 'Category', 'findOne', next, {url_label: category}
-			(doc, next) ->
-				if doc
-					searchOptions.category = doc._id
-				else
-					searchOptions.category = falseObjectID
-				next()
-		]
-	
-	if age
-		asyncFunctions = asyncFunctions.concat [
-			(next) ->
-				Model 'Age', 'findOne', next, {level: age}
-			(doc, next) ->
-				if doc
-					searchOptions.age = doc._id
-				else
-					searchOptions.age = falseObjectID
-				next()
-		]
-	
-	return asyncFunctions = asyncFunctions.concat [
+	async.parallel
+		category: (next) ->
+			if category
+				return Model 'Category', 'findOne', next, {url_label: category}, ''
+			
+			next null
+		age: (next) ->
+			if age
+				return Model 'Age', 'findOne', next, {level: age}, ''
+			
+			next null
+	, (err, results) ->
+		if err
+			return callback err
+		
+		if results.category
+			searchOptions.category = results.category._id
+		
+		if results.age
+			searchOptions.age = results.age._id
+		
+		callback null, searchOptions
+
+exports.findAll = (category, age, callback) ->
+	async.waterfall [
 		(next) ->
+			makeSearchOptions category, age, next
+		(searchOptions, next) ->
 			Model 'Product', 'find', next, searchOptions
 		(docs, next) ->
-			Model 'Product', 'populate', next, docs, 'age category'
-		(docs, next) ->
-			data.products = docs
-			
-			next()
-	]
+			Model 'Product', 'populate', callback, docs, 'age category'
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in lib/product/findAll: #{error}"
+		View.ajaxResponse res, err
 
 exports.getAgesAndCategories = (callback) ->
 	async.parallel {
@@ -58,3 +57,20 @@ exports.getAgesAndCategories = (callback) ->
 		categories: (next) ->
 			Model 'Category', 'find', next, {active: true}
 	}, callback
+
+exports.makeAliases = (callback) ->
+	async.waterfall [
+		(next) ->
+			Model 'Product', 'find', next
+		(docs) ->
+			async.each docs, (item, next2) ->
+				volume = item.getFormattedVolume()
+				string = item.title + ' ' + volume.volume + ' ' + volume.postfix
+				string = string.replace(RegExp(' +(?= )', 'g'), '') # remove double spaces
+				string = string.toLowerCase()
+				
+				item.alias = translit string
+				
+				item.save next2
+			, callback
+	], callback

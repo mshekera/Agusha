@@ -19,6 +19,14 @@ ol, ul {
 	list-style-image: url("/img/user/drop.png");
 }
 
+p {
+	margin-top: 0;
+}
+
+h3 {
+	margin-top: 0;
+}
+
 #header {
 	@include full_width_layout;
 	height: $hfheight;
@@ -41,6 +49,10 @@ ol, ul {
 		
 		&.right {
 			text-align: center;
+			
+			.menu_block {
+				padding: 5px 0 0 17px;
+			}
 		}
 	}
 	
@@ -119,10 +131,23 @@ ol, ul {
 				}
 			}
 		}
+		
+		&.contacts {
+			padding-left: 75px !important;
+		}
 	}
 	
 	#contacts {
-		padding: 0 15px;
+		padding: 0 0 0 15px;
+		text-align: right;
+		
+		.phone {
+			color: $darkblue;
+		}
+		
+		a {
+			color: $darkblue;
+		}
 	}
 	
 	.before_logo {
@@ -147,6 +172,18 @@ ol, ul {
 		text-align: left;
 		display: inline-block;
 		vertical-align: top;
+	}
+}
+
+#slider_container {
+	.action_label {
+		font-size: 18px;
+		font-family: 'PT_Sans_Bold';
+	}
+	
+	.action {
+		font-size: 53px;
+		line-height: 53px;
 	}
 }
 
@@ -204,7 +241,7 @@ ol, ul {
 		float: right;
 		height: 100%;
 		width: 70%;
-		min-width: 720px;
+		min-width: 760px;
 	}
 	
 	.menu_block {
@@ -213,13 +250,22 @@ ol, ul {
 		display: inline-block;
 		vertical-align: top;
 		padding: 0 15px;
+		line-height: 14px;
 		
 		.adorable_cell {
 			padding: 0 0 5px;
 		}
+		
+		&:hover {
+			a {
+				text-decoration: underline;
+				font-family: 'PT_Sans_Bold';
+			}
+		}
 	}
 	
 	#marker {
+		font-family: 'PT_Sans_Bold';
 		float: right;
 		width: 5%;
 		height: 100%;
@@ -317,8 +363,7 @@ ol, ul {
 }
 
 .pentagon {
-	background: url(/img/user/registration/pentagon_bg.png) bottom no-repeat;
-	@include linear_gradient(bottom, transparent 42.8%, $darkgreen 42.8%);
+	background: url(/img/user/signup/pentagon_bg.png) bottom no-repeat;
 	height: 105px;
 	position: relative;
 	margin-bottom: 29px;
@@ -332,18 +377,6 @@ ol, ul {
 	.label {
 		font-size: 53px;
 		line-height: 53px;
-	}
-	
-	&:before {
-		@include pentagon_pseudo;
-		@include linear_gradient(to left bottom, $darkgreen 50%, transparent 50%);
-		left: 0;
-	}
-	
-	&:after {
-		@include pentagon_pseudo;
-		@include linear_gradient(to right bottom, $darkgreen 50%, transparent 50%);
-		right: 0;
 	}
 }
 

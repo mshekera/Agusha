@@ -3,6 +3,8 @@ extends ../layout
 block append header
 	link(rel="stylesheet" href="/js/plugins/select2/select2.css")
 	link(rel="stylesheet" href="/css/user/tour/tour.css")
+	script(type='text/javascript').
+		(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=yb0bsJMIQ5tGXR/L4ufIEGUJZhrYwSaqtetSb48bIz3xjxhSuny6ThgP*g7U6pj4RnPjtksKfad60GFKgnZRvHEi7fh849MkMlQmVdahDFFi5xCzy2bIrVL4U*PrTyFwHv*0hTTeNMHoJeSA3LFrzZThTFdvRrXaK3ZLBJa44ac-';
 
 mixin add_child(i)
 	.child_block(class!='child_block_#{i}', data-key!='#{i}')
@@ -115,7 +117,7 @@ block append content
 					.adorable_cell
 						.label.novito_nova Найти нас очень просто!
 						.text.place место сбора
-						.text Киев, м.Академгородок
+						.text Киев, м. Академгородок
 						img.marker(src="/img/user/tour/marker.png")
 		
 		.calendar_container.adorable_container
@@ -138,7 +140,7 @@ block append content
 							.step.step_3.adorable_table.border_boxed
 								.adorable_cell
 									.label.novito_nova Шаг 3
-									.text В день экскурсии в 10 утра приезжайте к ст. м. Академгородок	
+									.text В день экскурсии в 10 утра приезжайте к м. Академгородок	
 							
 							.steps_navigator.centered
 								.step_button.step_1.rounded.active(data-step="1")
@@ -158,10 +160,10 @@ block append content
 										.label.novito_nova #{date.format('D')}
 										.top_label #{date.format('LL').split(' ', 3).splice(1, 2).join(' ')}
 							
-							.prev_tour
+							.prev_tour.tour_arrow
 								img(src="/img/user/tour/arrow_left.png")
 							
-							.next_tour
+							.next_tour.tour_arrow
 								img(src="/img/user/tour/arrow_right.png")
 					
 					.calendar_block
@@ -237,7 +239,7 @@ block append content
 			.want_signup.adorable_table
 				.adorable_cell
 					.checkbox
-						input(name!="signup", type="checkbox", checked="checked")
+						input#want_signup_checkbox(name!="signup", type="checkbox", checked="checked")
 						label
 							.img
 					.text  Да, я хочу зарегистрироваться на сайте «Агуша».
@@ -258,9 +260,6 @@ block append content
 				.text.adorable_table.border_boxed
 					.adorable_cell
 						| Очень понравилось! И судя по рассказам и увиденному - делаю вывод, что Агуша (йогурт и творожок) на сегодняшний день для деток самое лучшее!!! Даже лучше чем домашнее, так как там все стерильно и качество молока проверено.
-						br
-						br
-						a(href='https://vk.com/inno4ka9393', target='blank') https://vk.com/inno4ka9393
 			
 			.bottom
 				.reviews_navigator.centered
@@ -269,22 +268,52 @@ block append content
 				.review_arrows
 					.half.left
 						.adorable_table
-							.adorable_cell <
+							.adorable_cell
+					
 					.half.right
 						.adorable_table
-							.adorable_cell >	
+							.adorable_cell
 		
 		.tour_gallery_container.adorable_container
 			.adorable
 				#tour_gallery
-					- for (var i = 5; i--;)
-						div
-							img(src="/img/user/tour/photo.jpg")
+					div
+						img(src="/img/user/tour/photo.jpg")
+					
+					div
+						img(src="/img/user/tour/photo_2.jpg")
+					
+					div
+						img(src="/img/user/tour/photo_3.jpg")
+					
+					div
+						img(src="/img/user/tour/photo_4.jpg")
+					
+					div
+						img(src="/img/user/tour/photo_5.jpg")
+					
+					div
+						img(src="/img/user/tour/photo_6.jpg")
 		
 		.tour_footer.darkblue.adorable_table
 			.adorable_cell
 				.label.novito_nova Остались вопросы?
-				.text Звоните на горячую линию 0 800 307 302
+				.text
+					| Звоните на горячую линию 
+					| 0 800 307 302
+		
+		.message.tour_message.inline_adorable_container
+			.adorable
+				div.message_top.adorable_table(class='green')
+					.adorable_cell
+						.label.novito_nova.white_font Ой, все места заняты!
+						.top_label.non_uppercase.dark_font Дождитесь следующей экскурсии!
+				
+				div.message_bottom.adorable_table(class='darkgreen')
+					.adorable_cell
+						button.middle_button.white.uppercase.bold.close(class='darkgreen_font') Вернуться на сайт
+				
+				div.close_button.close(class='darkgreen_font') &times;
 
 block append scripts
 	script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD0t-3b3EVbt4Tm0p1be5ck_gHHrHyzZhE")

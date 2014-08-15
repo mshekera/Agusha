@@ -1,4 +1,4 @@
-.message.inline_adorable_container
+.message.inline_adorable_container.server_message
 	.adorable
 		- var topClass = 'message_top adorable_table'
 		
@@ -15,7 +15,7 @@
 				- var msg = err || message
 				.top_label.non_uppercase.dark_font !{msg}
 				
-				.top_label.white_font САЙТ ОТКРОЕТСЯ 1.09.2014!
+				.top_label.white_font САЙТ ОТКРОЕТСЯ 01.10.2014!
 		
 		- var bottomClass = 'message_bottom adorable_table'
 		
@@ -36,7 +36,7 @@
 				else
 					- btnClass += ' ' + darkred_font
 				
-				button(class=btnClass) Закрыть
+				button(class=btnClass) Вернуться на сайт
 		
 		- var btnClass = 'close_button close'
 				

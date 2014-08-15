@@ -2,6 +2,7 @@
 @import 'helpers/slider';
 @import 'helpers/live_program';
 @import 'helpers/join_tour';
+@import 'helpers/message';
 
 @mixin number_pseudo {
 	@include pseudo;
@@ -29,7 +30,7 @@
 		float: left;
 		margin-right: 1.5%;
 		height: 100%;
-		padding: 10px 10px 50px;
+		padding: 0 25px 60px;
 		text-align: center;
 	}
 	
@@ -39,9 +40,14 @@
 		width: 25%;
 		height: 100%;
 		color: $base;
+		position: relative;
 		
 		.adorable_cell {
 			vertical-align: bottom;
+		}
+		
+		.label {
+			line-height: 55px;
 		}
 		
 		button {
@@ -52,16 +58,23 @@
 				color: rgba(255, 255, 255, 0.5);
 			}
 		}
+		
+		&.product {
+			&:hover {
+				font-weight: bold;
+			}
+		}
 	}
 	
 	.product_img {
+		@include absolute_centered;
 		padding: 0 0 5px;
 		max-height: 189px;
 		max-width: 100%;
 	}
 	
 	.product_label {
-		padding: 4px 0 0;
+		height: 36px;
 	}
 	
 	.right {
@@ -117,5 +130,11 @@
 			@include number_pseudo;
 			left: -2px;
 		}
+	}
+	
+	.message_link {
+		color: #0c5b93;
+		font-family: 'PT_Sans_Italic';
+		margin-top: 25px;
 	}
 }

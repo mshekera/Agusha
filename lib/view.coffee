@@ -6,6 +6,8 @@ Logger = require './logger'
 Cache = require './cache'
 Model = require './model'
 
+string = require '../utils/string'
+
 exports.render = render = (name, res, data, cacheId) ->
 	data or= {}
 
@@ -34,7 +36,7 @@ exports.renderWithSession = (req, res, path, data) ->
 		delete req.session.messageLabel
 		delete req.session.message
 	
-	render path, res, data
+	render path, res, data, req.path
 
 exports.message = message = (success, message, res) ->
 	data = {
@@ -70,15 +72,27 @@ exports.clientFail = (err, res)->
 		success: false
 		message: err
 
-	res.send data	
+	res.send data
+
+
 
 exports.globals = (req, res, callback)->
-	async.waterfall [
-		(next) ->
-			Model 'Article', 'find', next, type: 2, 'desc_title'
-		(docs) ->
-			res.locals.topper_menu =
-				food: docs
+	# async.waterfall [
+		# (next)->
+			# if not global.menuArticles
+				# cbArticles = (err, docs)->
+					# if err
+						# return Logger.warn err
+
+					# global.menuArticles = docs
+
+					# next()
+
+				# return Model 'Article', 'find', cbArticles, type: 2, 'desc_title'
+			# next()
+		# (next)->
+			# res.locals.topper_menu =
+				# food: global.menuArticles || menuArticles
 			
 			res.locals.defLang = 'ru'
 			res.locals.lang = req.lang
@@ -90,18 +104,18 @@ exports.globals = (req, res, callback)->
 			res.locals.moment = moment
 			
 			res.locals.base_url = base_url = 'http://' + req.headers.host
+			res.locals.current_url = 'http://' + req.headers.host + req.originalUrl
 			res.locals.url = (path) ->
 				base_url + path
 			
 			res.locals.params = req.params
 			
-			res.locals.strip_tags = (str) ->
-				str.replace /<\/?[^>]+>/g, ' '
+			res.locals.strip_tags = string.strip_tags
 			
 			callback()
-	], (err) ->
-		error = err.message or err
-		Logger.log 'info', "Error in lib/view/globals: #{error}"
+	# ], (err)->
+		# Logger.warn err
+		# callback()
 
 exports.ajaxResponse = (res, err, data) ->
 	data =

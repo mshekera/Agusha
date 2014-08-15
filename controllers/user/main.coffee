@@ -12,7 +12,7 @@ gallery = require '../../meta/gallery'
 
 exports.index = (req, res) ->
 	currentDate = moment()
-	endDate = moment '20.11.2014', 'DD/MM/YYYY'
+	endDate = moment '01.10.2014', 'DD/MM/YYYY'
 	diffInDays = endDate.diff currentDate, 'days'
 	
 	data =
@@ -20,20 +20,35 @@ exports.index = (req, res) ->
 		daysArray: _.chars diffInDays+''
 		declension: time.declension diffInDays
 	
-	async.waterfall [
-		(next) ->
-			findOptions =
-				main_page:
-					'$ne': 0
+	if req.session.unsubscribe
+		data.unsubscribe = true
+		delete req.session.unsubscribe
+	
+	View.render 'user/index', res, data, req.path #
+	
+	# async.waterfall [
+		# (next) ->
+			# findOptions =
+				# main_page:
+					# '$ne': 0
 			
-			sortOptions =
-				sort:
-					main_page: 1
+			# sortOptions =
+				# sort:
+					# main_page: 1
+				# limit: 3
 			
-			Model 'Product', 'find', next, findOptions, {}, sortOptions
-		(docs) ->
-			data.mainPageProducts = docs
-			View.render 'user/index', res, data
-	], (err) ->
-		error = err.message or err
-		Logger.log 'info', "Error in controllers/user/main/index: #{error}"
+			# Model 'Product', 'find', next, findOptions, {}, sortOptions
+		# (docs, next) ->
+			# Model 'Product', 'populate', next, docs, 'category'
+		# (docs) ->
+			# data.mainPageProducts = docs
+			
+			# View.render 'user/index', res, data, req.path
+	# ], (err) ->
+		# error = err.message or err
+		# Logger.log 'info', "Error in controllers/user/main/index: #{error}"
+
+exports.unsubscribe = (req, res) ->
+	req.session.unsubscribe = true
+	
+	res.redirect '/'

@@ -12,7 +12,6 @@ schema = new mongoose.Schema
 		type: String
 	storage_life:
 		type: Number
-		required: true
 	storage_conditions:
 		type: String
 	composition:
@@ -46,14 +45,16 @@ schema = new mongoose.Schema
 	main_page:
 		type: Number
 		default: 0
+	alias:
+		type: String
+		index: true
+		unique: true
 ,
 	collection: 'product'
 
 schema.methods.getFormattedVolume = () ->
 	volume = @volume
-
 	
-
 	switch @volumeType
 		when 1
 			postfix = 'г' 

@@ -1,4 +1,5 @@
 async = require 'async'
+moment = require 'moment'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
@@ -13,6 +14,13 @@ exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'news'
 	
+	currentDate = moment()
+	endDate = moment '01.10.2014', 'DD/MM/YYYY'
+	data.diffInDays = endDate.diff currentDate, 'days'
+	
+	if data.diffInDays > 0
+		data.desc = 'Акция от ТМ "Агуша"! Регистрируйтесь и получите один из 1000 подарков для вашего малыша.'
+	
 	async.waterfall [
 		(next) ->
 			Model 'Article', 'findNews', next, true
@@ -21,7 +29,7 @@ exports.index = (req, res) ->
 			
 			data.articles = docs
 			
-			View.render 'user/news/news', res, data
+			View.render 'user/news/news', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/news/index: #{error}"

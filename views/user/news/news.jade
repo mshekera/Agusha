@@ -1,11 +1,30 @@
 extends ../layout
 
 block append header
+	link(rel="canonical", href = current_url)
 	link(rel="stylesheet" href="/css/user/news/news.css")
+	script(type='text/javascript').
+		(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=yb0bsJMIQ5tGXR/L4ufIEGUJZhrYwSaqtetSb48bIz3xjxhSuny6ThgP*g7U6pj4RnPjtksKfad60GFKgnZRvHEi7fh849MkMlQmVdahDFFi5xCzy2bIrVL4U*PrTyFwHv*0hTTeNMHoJeSA3LFrzZThTFdvRrXaK3ZLBJa44ac-';
+	if (diffInDays > 0)
+		meta(property='og:url', content = current_url)
+		meta(property='og:title', content = 'Агуша')
+		meta(property='og:image', content = base_url + '/img/user/action/fb_akciya.jpg')
+		meta(property='og:description', content = desc)
+		
+		meta(property='twitter:card', content='photo')
+		meta(property='twitter:site', content = base_url)
+		meta(property='twitter:image', content = base_url + '/img/user/action/twitter_akciya.jpg')
+		meta(property='twitter:title', content = 'Агуша')
+		meta(property='twitter:description', content = desc)
+		meta(property='twitter:url', content = current_url)
+
+if (diffInDays > 0)
+	block title
+		| #{'Агуша - ' + desc}
 
 mixin article(a)
-	.article_block.white.force_height
-		.article_header(class=(a ? 'type_' + a.type : 'type_{{type}}'))
+	.article_block.white.force_height(class = (a ? 'type_' + a.type : 'type_{{type}}'), id = (a ? a._id : '{{_id}}'))
+		.article_header
 			.article_date.inline_adorable_container
 				.adorable
 					.adorable_table
@@ -26,10 +45,37 @@ mixin article(a)
 		
 		if a
 			if a.desc_image.length
-				img.image(src = '/img/uploads/' + a.desc_image[0])
+				.desc_images
+					div
+						- each img, j in a.desc_image
+							if a.desc_image_link
+								a(href=a.desc_image_link)
+									img.image(src = '/img/uploads/' + img, class = (j == 0 ? 'active' : ''))
+							else
+								img.image(src = '/img/uploads/' + img, class = (j == 0 ? 'active' : ''))
+					- if (a.desc_image.length > 1)
+						.desc_images_arrows
+							.half.left
+							.half.right
 		else
 			| {{#if desc_image.length}}
-			img.image(src="/img/uploads/{{desc_image.0}}")
+			.desc_images
+				div
+					| {{startIndex}}
+					| {{#each desc_image}}
+					| {{#if desc_image_link}}
+					a(href='{{desc_image_link}}')
+						img.image(src="/img/uploads/{{.}}", class='{{#firstElem}}active{{/if}}')
+					| {{else}}
+					img.image(src="/img/uploads/{{.}}", class='{{#firstElem}}active{{/if}}')
+					| {{/if}}
+					| {{/each}}
+				| {{#showArrows}}
+				.desc_images_arrows
+					.half.left
+					.half.right
+				| {{else}}
+				| {{/showArrows}}
 			| {{/if}}
 		
 		.text
@@ -53,20 +99,48 @@ mixin article(a)
 				span Поделиться
 			
 			.share_buttons
-				.share_button
-					img(src="/img/user/social/vk.png")
-				
-				.share_button
-					img(src="/img/user/social/odnoklasniki.png")
-				
-				.share_button
-					img(src="/img/user/social/google.png")
-				
-				.share_button
-					img(src="/img/user/social/facebook.png")
-				
-				.share_button
-					img(src="/img/user/social/twitter.png")
+				if (diffInDays > 0)
+					- var image = base_url + '/img/user/action/vk_akciya.jpg'
+					a(href = (a ? 'http://vk.com/share.php?url=' + encodeURIComponent(current_url + '?utm_source=vkontakte&utm_medium=share&utm_campaign=light_viral_content') + '&title=' + a.desc_title + '&description=' + desc + '&image=' + image : 'http://vk.com/share.php?url={{vk_url}}&title={{desc_title}}&description=' + desc + '&image=' + image), target="_blank")
+						.share_button
+							img(src="/img/user/social/vk.png")
+					
+					a(href = (a ? 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + desc + '&st._surl=' + encodeURIComponent(current_url + '?utm_source=Odnoklassniki&utm_medium=share&utm_campaign=light_viral_content') : 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + desc +'&st._surl={{ok_url}}'), target="_blank")
+						.share_button
+							img(src="/img/user/social/odnoklasniki.png")
+					
+					a(href = (a ? 'http://plus.google.com/share?url=' + encodeURIComponent(current_url + '?utm_source=googleplus&utm_medium=share&utm_campaign=light_viral_content') + '&title=' + desc : 'http://plus.google.com/share?url={{gp_url}}&title=' + desc), target="_blank")
+						.share_button
+							img(src="/img/user/social/google.png")
+					
+					- var image = base_url + '/img/user/action/fb_akciya.jpg'
+					a(href = (a ? 'http://www.facebook.com/sharer.php?s=100&p[url]=' + encodeURIComponent(current_url + '?utm_source=facebook&utm_medium=share&utm_campaign=light_viral_content') + '&p[title]=' + a.desc_title + '&p[summary]=' + desc + '&p[images][0]=' + image : 'http://www.facebook.com/sharer.php?s=100&p[url]={{fb_url}}&title={{desc_title}}&p[summary]=' + desc + '&p[images][0]=' + image), target="_blank")
+						.share_button
+							img(src="/img/user/social/facebook.png")
+					
+					a(href = (a ? 'http://twitter.com/share?text=' + desc + '&url=' + encodeURIComponent(current_url + '?utm_source=twitter&utm_medium=share&utm_campaign=light_viral_content') : 'http://twitter.com/share?text=' + desc + '&url={{tw_url}}'), target="_blank")
+						.share_button
+							img(src="/img/user/social/twitter.png")
+				else
+					a(href = (a ? 'http://vk.com/share.php?url=' + current_url + '&title=' + a.desc_title : 'http://vk.com/share.php?url={{url}}&title={{desc_title}}'), target="_blank")
+						.share_button
+							img(src="/img/user/social/vk.png")
+					
+					a(href = (a ? 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + a.desc_title + '&st._surl=' + current_url : 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments={{desc_title}}&st._surl={{url}}'), target="_blank")
+						.share_button
+							img(src="/img/user/social/odnoklasniki.png")
+					
+					a(href = (a ? 'http://plus.google.com/share?url=' + current_url + '&title=' + a.desc_title : 'http://plus.google.com/share?url={{url}}&title={{desc_title}}'), target="_blank")
+						.share_button
+							img(src="/img/user/social/google.png")
+					
+					a(href = (a ? 'http://www.facebook.com/sharer.php?s=100&p[url]=' + current_url + '&p[title]=' + a.desc_title : 'http://www.facebook.com/sharer.php?s=100&p[url]={{url}}&p[title]={{desc_title}}'), target="_blank")
+						.share_button
+							img(src="/img/user/social/facebook.png")
+					
+					a(href = (a ? 'http://twitter.com/share?text=' + a.desc_title + '&url=' + current_url : 'http://twitter.com/share?text={{desc_title}}&url={{url}}'), target="_blank")
+						.share_button
+							img(src="/img/user/social/twitter.png")
 
 mixin articles_stache()
 	.articles_left
@@ -92,17 +166,17 @@ block append content
 			.type_block
 				.adorable_table
 					.adorable_cell
-						span.choose_type.rounded(class=(params.type ? '' : 'active')) Все
+						span.choose_type.all.rounded(class=(params.type ? '' : 'active')) Все
 			
 			.type_block
 				.adorable_table
 					.adorable_cell
-						span.choose_type.rounded(data-type='0', class=(params.category == 0 ? 'active' : '')) Новости
+						span.choose_type.news.rounded(data-type='0', class=(params.category == 0 ? 'active' : '')) Новости
 			
 			.type_block
 				.adorable_table
 					.adorable_cell
-						span.choose_type.rounded(data-type='1', class=(params.category == 1 ? 'active' : '')) Акции
+						span.choose_type.actions.rounded(data-type='1', class=(params.category == 1 ? 'active' : '')) Акции
 		
 		#articles_container
 			.articles_left
@@ -113,7 +187,7 @@ block append content
 				- each a, key in articles.right
 					mixin article(a)
 		
-		.refresh_articles.adorable_table.rounded
+		.refresh_articles.adorable_table.rounded(title="Обновить")
 			.adorable_cell
 				img(src="/img/user/news/refresh.png")
 

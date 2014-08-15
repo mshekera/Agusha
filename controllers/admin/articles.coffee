@@ -1,12 +1,10 @@
-
 async = require 'async'
 fs = require 'fs'
-
-path = require 'path'
 
 View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
+Image = require '../../lib/image'
 
 exports.index = (req, res) ->
 	async.waterfall [
@@ -69,6 +67,14 @@ exports.save = (req, res) ->
 			else
 				Model 'Article', 'create', next, data
 		(doc, next) ->
+			cbArticles = (err, docs)->
+				if err
+					return console.log 'error', err
+
+				global.menuArticles = docs
+
+			Model 'Article', 'findOne', cbArticles, {_id}
+
 			if not doc
 				return next "Произошла неизвестная ошибка."
 
@@ -97,9 +103,7 @@ exports.deleteImage = (req, res) ->
 		(next) ->
 			Model 'Article', 'findOne', next, {_id}
 		(doc, next) ->
-			imgPath = path.join "#{__dirname}", "../../public/img/uploads/#{img}"
-
-			fs.unlink imgPath, (err) ->
+			Image.doRemoveImage img, (err) ->
 				next err, doc
 		(doc, next) ->
 			images = doc.desc_image

@@ -1,3 +1,5 @@
+$('.specialist .avatar').corner('65px');
+
 var Article_controller = can.Control.extend(
 	{
 		defaults: {

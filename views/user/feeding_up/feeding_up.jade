@@ -2,6 +2,8 @@ extends ../layout
 
 block append header
 	link(rel="stylesheet" href="/css/user/feeding_up/feeding_up.css")
+	script(type='text/javascript').
+		(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=yb0bsJMIQ5tGXR/L4ufIEGUJZhrYwSaqtetSb48bIz3xjxhSuny6ThgP*g7U6pj4RnPjtksKfad60GFKgnZRvHEi7fh849MkMlQmVdahDFFi5xCzy2bIrVL4U*PrTyFwHv*0hTTeNMHoJeSA3LFrzZThTFdvRrXaK3ZLBJa44ac-';
 
 mixin thead(header)
 	.thead(class = header ? '' : 'tfooter')
@@ -59,7 +61,7 @@ block append content
 						.adorable_table
 							.adorable_cell Таблица введения прикорма
 					
-					.half.right
+					//.half.right
 						.adorable_table
 							.adorable_cell
 								span Тип вскармливания
@@ -79,7 +81,11 @@ block append content
 										.half.left
 											.adorable_table
 												.adorable_cell
-													img.image.rounded(src=item.image)
+													.image.rounded(src=item.image)
+														img.rounded(src=item.image)
+													- if (item.hoverImage)
+														.image.hover_image.rounded
+															img.rounded(src=item.hoverImage)
 										
 										.half.right
 											.adorable_table
@@ -122,7 +128,7 @@ block append content
 				mixin thead(false)
 		
 		.feeding_up_order.adorable_table
-			.adorable_cell Согласно Приказа МОЗ Украины №149 от 20.03.2008 «Про утверждение клинического протокола медицинского ухода за здоровым ребенком  в возрасте до 3 лет»
+			.adorable_cell Согласно Приказа МОЗ Украины №149 от 20.03.2008 «Про утверждение клинического протокола медицинского ухода за здоровым ребенком в возрасте до 3 лет»
 		
 		.feeding_up_notice.white
 			.warning.rounded

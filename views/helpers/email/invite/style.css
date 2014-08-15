@@ -1,0 +1,308 @@
+/*
+	Reset styles
+*/
+
+body {
+    margin:0;
+    padding:0;
+}
+
+img{
+    border:0 none;
+    height:auto;
+    line-height:100%;
+    outline:none;
+    text-decoration:none;
+}
+
+a {
+	cursor: pointer;
+}
+
+.abutton {
+	cursor: pointer;
+}
+
+a img{
+    border:0 none;
+}
+
+.imageFix{
+    display:block;
+}
+
+table, td{
+    border-collapse:collapse;
+}
+
+
+
+/*
+	Font-face
+*/
+
+@font-face {
+    font-family: 'pt_sans';
+    src: url('http://agusha.com.ua/css/fonts/pt_sans.eot'),
+    	 url('http://agusha.com.ua/css/fonts/pt_sans.woff') format('woff'),
+         url('http://agusha.com.ua/css/fonts/pt_sans.ttf') format('truetype'),
+         url('http://agusha.com.ua/css/fonts/pt_sans.svg#webfontE40g3tc3') format('svg');
+}
+
+@font-face {
+    font-family: 'pt_sansitalic';
+    src: url('http://agusha.com.ua/css/fonts/pt_sans_italic.eot'),
+    	 url('http://agusha.com.ua/css/fonts/pt_sans_italic.woff') format('woff'),
+         url('http://agusha.com.ua/css/fonts/pt_sans_italic.ttf') format('truetype'),
+         url('http://agusha.com.ua/css/fonts/pt_sans_italic.svg#webfontE40g3tc3') format('svg');
+}
+
+@font-face {
+    font-family: 'pt_sansbold';
+    src: url('http://agusha.com.ua/css/fonts/pt_sans_bold.eot'),
+    	 url('http://agusha.com.ua/css/fonts/pt_sans_bold.woff') format('woff'),
+         url('http://agusha.com.ua/css/fonts/pt_sans_bold.ttf') format('truetype'),
+         url('http://agusha.com.ua/css/fonts/pt_sans_bold.svg#webfontE40g3tc3') format('svg');
+}
+
+.pt {
+	font-family: sans-serif;
+}
+
+.pt_italic {
+	font-family: sans-serif;
+	font-style: italic;
+}
+
+.pt_bold {
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+
+
+/*
+	Background and border
+*/
+
+
+body {
+	background: #fff;
+	font-family: sans-serif;
+}
+
+.border {
+	max-width: 740px;
+	width: 760px;
+	padding: 10px;
+	background: url('http://agusha.com.ua/img/email/bg-border.png') no-repeat;
+}
+
+.border2 {
+	max-width: 740px;
+	width: 760px;
+	padding: 10px;
+	background: url('http://agusha.com.ua/img/email/bg-border-2.png') no-repeat;
+}
+
+
+/*
+	Header
+*/
+
+.header {
+	width: 100%;
+	height: 250px;
+	background: url('http://agusha.com.ua/img/email/header-bg_03.png') no-repeat;
+}
+
+.header.green {
+	background: url('http://agusha.com.ua/img/email/header-bg-2_03.png') no-repeat;
+}
+
+.header .block {
+	display: block;
+}
+
+.header .logo {
+	width: 245px;
+	height: 165px;
+	float: left;
+}
+
+.header .logo .logo_image {
+	margin-top: 13px;
+	margin-right: 39px;
+	width: 157px;
+	height: 152px;
+	background: url('http://agusha.com.ua/img/email/header-logo_03.png') no-repeat;
+	float: right;
+}
+
+.header .welcome {
+	width: 493px;
+	color: #fff;
+	font-size: 18pt;
+	text-align: left;
+	font-weight: lighter;
+}
+
+.header .welcome a {
+	color: #0d5c92;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.header .welcome a:hover {
+	text-decoration: none;
+}
+
+.header .welcome .welcome_test {
+	margin-top: -47px;
+	margin-left: 33px;
+	line-height: 24pt;
+}
+
+
+/*
+	Posil
+*/
+
+.posil {
+	width: 100%;
+	height: 590px;
+	background: url('http://agusha.com.ua/img/email/letter_middle_03.png') no-repeat;
+}
+
+.posil2 {
+	background: url('http://agusha.com.ua/img/email/letter-middle-2_03.png') no-repeat;
+}
+
+
+/*
+	Action
+*/
+
+.action {
+	width: 100%;
+	height: 314px;
+	background: #fbf8ef;
+	font-weight: lighter;
+	text-align: center;
+}
+
+.action td {
+	vertical-align: baseline;
+	font-weight: lighter;
+} 
+
+.action .about_action {
+	font-size: 10pt;
+	color: #4c4c4c;
+	padding-top: 31px;
+}
+
+a.italic_small_link {
+	color: #45b4e8;
+	font-family: sans-serif;
+	font-style: italic;
+	font-weight: bold;
+}
+
+a.italic_small_link:hover {
+	text-decoration: none;
+}
+
+.action .get_contacts {
+	font-size: 16pt;
+	color: #4c4c4c;
+	margin-top: -37px;
+}
+
+.action .action_button .abutton {
+	text-transform: uppercase;
+	background: #45b4e8;
+	color: white;
+	font-size: 16pt;
+	border: 0px;
+	padding: 25px 114px;
+	border-radius: 20px;
+	cursor: pointer;
+	outline: none;
+	display: inline-block;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.88);
+	-moz-box-shadow:    0px 2px 3px 0px rgba(50, 50, 50, 0.88);
+	box-shadow:         0px 2px 3px 0px rgba(50, 50, 50, 0.88);
+}
+
+.action .action_button .abutton.green {
+	background: #71db96;
+}
+
+
+/*
+	Not registred text
+*/
+
+.not_registred_text {
+	height: 63px;
+	width: 100%;
+	font-size: 10pt;
+	font-weight: normal;
+	background: #f1eee5;
+	text-align: center;
+	padding-top: 27px;
+}
+
+
+/*
+	Footer
+*/
+
+.footer {
+	background: #45b4e8;
+	width: auto;
+	height: 33px;
+	font-size: 10pt;
+	padding-top: 24px;
+	padding-left: 25px;
+	padding-right: 25px;
+	color: #fff;
+}
+
+.footer a {
+	color: #fff;
+}
+
+.footer a:hover {
+	text-decoration: none;
+}
+
+/*
+	Promise
+*/
+
+.promise {
+	text-align: center;
+	width: 100%;
+	font-size: 16pt;
+	padding: 74px 20px 71px;
+	width: 700px;
+}
+
+.promise .promise_text {
+	font-weight: normal;
+}
+
+.promise .about_action {
+	font-size: 10pt;
+	padding-top: 63px;
+}
+
+.copyright {
+	float: left;
+}
+
+.unsubscribe {
+	float: right;
+}

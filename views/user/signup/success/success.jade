@@ -18,7 +18,7 @@ mixin add_client(i)
 						input(type="email", name!="client[#{i}][email]", placeholder="E-mail друга")
 
 block append content
-	.content
+	#success.content
 		include ../../../helpers/user/breadcrumbs/breadcrumbs
 		
 		- if (err || message)
@@ -27,12 +27,10 @@ block append content
 		.topper.blue.adorable_table
 			.adorable_cell
 				.label.novito_nova
-					| Поздравляем, вы зарегистрированы!
+					| Спасибо! Если вы успели попасть в первую 1000 зарегистрированных пользователей, мы скоро свяжемся с вами, чтобы уточнить детали доставки!
 				
-				.top_label
-					| После открытия сайта вы сможете воспользоваться всеми упомянутыми преимуществами и
-					br
-					| оставить свой отзыв
+				.top_label.non_uppercase
+					| Воспользоваться остальными упомянутыми возможностями вы сможете после открытия сайта.
 		
 		.white
 			.top_label.non_uppercase.adorable_table
@@ -42,7 +40,7 @@ block append content
 					| чтоб и они были в курсе всего самого полезного и интересного. Вместе веселее!
 			
 			.invite.centered
-					img(src="/img/user/signup/invite.png")
+				img(src="/img/user/signup/invite.jpg")
 		
 			form#invite_form.footer.green(method="POST", action="/signup/invite")
 				if invited_by
@@ -59,7 +57,7 @@ block append content
 				
 				.submit.darkgreen.adorable_table
 					.adorable_cell
-						button.white.darkgreen_font.middle_button.uppercase.bold(type="submit") Отправить
+						button.white.darkgreen_font.middle_button.uppercase.bold(type="submit") Пригласить
 
 block append scripts
 	script(src="/js/plugins/underscore/underscore-min.js")

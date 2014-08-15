@@ -1,0 +1,138 @@
+extends ../../layout
+
+block append header
+	link(rel="stylesheet" href="/js/plugins/select2/select2.css")
+	link(rel="stylesheet" href="/css/user/signup/activate/activate.css")
+
+block append content
+	#activate.content
+		include ../../../helpers/user/breadcrumbs/breadcrumbs
+		
+		.topper.adorable_table
+			.adorable_cell
+				.label.novito_nova
+					| ПОЖАЛУЙСТА, УКАЖИТЕ СВОИ КОНТАКТНЫЕ ДАННЫЕ,
+					br
+					| ЧТОБЫ МЫ МОГЛИ ПОСКОРЕЙ ОТПРАВИТЬ ВАМ ПОДАРОК
+		
+		form#activate_form(method="POST", action="/signup/activate")
+			.form_inputs.force_height
+				.content.form_topper.force_height
+					.topper
+						.required Все поля в форме обязательны для заполнения!
+						.dont_worry Не волнуйтесь, все полученные данные строго конфиденциальны
+						a.rules(href='/action')
+							button.rules_button.darkgreen.uppercase(type="button") Правила акции
+				
+				.content.form_radio.border_boxed.adorable_table
+					input(type="hidden", name="salt", value=salt)
+					
+					.adorable_cell
+						.radio
+							.checkbox
+								input(name="hasKids", type="radio", checked="checked", value="1")
+								label
+									.img
+							.text У меня есть ребенок (дети)
+						
+						.radio
+							.checkbox
+								input(name="hasKids", type="radio", value="2")
+								label
+									.img
+							.text Я жду ребенка
+						
+						.radio
+							.checkbox
+								input(name="hasKids", type="radio", value="0")
+								label
+									.img
+							.text У меня нет детей
+				
+				.content.inputs_content.border_boxed
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="firstName", placeholder="Имя")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									input#city_select2(type="text", name="city", placeholder="Город проживания")
+					
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="lastName", placeholder="Фамилия")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="postIndex", placeholder="Индекс")
+					
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="patronymic", placeholder="Отчество")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									input(type="text", name="street", placeholder="Улица")
+					
+					.half.left
+						.adorable_table
+							.adorable_cell
+								.input
+									input#activate_phone(type="text", name="phone", placeholder="+3 8(___) ___ - __ - __")
+					
+					.half.right
+						.adorable_table
+							.adorable_cell
+								.input
+									.half.left.border_boxed
+										input(type="text", name="house", placeholder="№ дома")
+									.half.right.border_boxed
+										input(type="text", name="apartment", placeholder="№ квартиры")
+			
+			.i_agree.adorable_table
+				.adorable_cell
+					.checkbox
+						input#i_agree_checkbox(name="agree", type="checkbox", checked="checked")
+						label
+							.img
+					.text Я согласен(на) с тем, что мои данные будут обработаны и использованы сайтом agusha.com.ua.
+			
+			.form_footer.adorable_table
+				.adorable_cell
+					button.middle_button.uppercase Отправить
+		
+		.message
+			div.message_top.adorable_table(class='green')
+				.adorable_cell
+					.label.novito_nova.white_font Кажется, эта акция не для вас!
+					.top_label
+						| Вероятно, кто-то хотел съесть детский подарок самостоятельно.
+						br
+						| Напоминаем, что наша акция только для настоящих и будущих родителей!
+			
+			div.message_bottom.adorable_table(class='darkgreen')
+				.adorable_cell
+					button.middle_button.white.uppercase.bold.close(class='darkgreen_font') Вернуться на сайт
+			
+			div.close_button.close(class='darkgreen_font') &times;
+
+block append scripts
+	script(src="/js/plugins/can/can.js")
+	script(src="/js/plugins/modal/jquery.easyModal.js")
+	script(src="/js/plugins/inputmask/jquery.inputmask.js")
+	script(src="/js/plugins/placeholders/placeholders.min.js")
+	script(src="/js/plugins/select2/select2.js")
+	script(src="/js/plugins/validate/jquery.validate.js")
+	script(src="/js/user/signup/activate.js")

@@ -2,6 +2,8 @@ extends ../layout
 
 block append header
 	link(rel="stylesheet" href="/css/user/video/video.css")
+	script(type='text/javascript').
+		(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=yb0bsJMIQ5tGXR/L4ufIEGUJZhrYwSaqtetSb48bIz3xjxhSuny6ThgP*g7U6pj4RnPjtksKfad60GFKgnZRvHEi7fh849MkMlQmVdahDFFi5xCzy2bIrVL4U*PrTyFwHv*0hTTeNMHoJeSA3LFrzZThTFdvRrXaK3ZLBJa44ac-';
 
 block append content
 	#video.content
@@ -9,46 +11,69 @@ block append content
 		
 		.white
 			.pentagon
-				.adorable_table
-					.adorable_cell
-						.label.novito_nova Репортаж с места событий
+				- each v, key in videos
+					.video_title.video_selector.label.novito_nova(class = v.id + (key == 0 ? ' active' : '')) #{v.title}
 			
 			.video_container.video_inside
-				.video_block
-					object(frameborder="0", width="100%", height="100%", data="http://youtube.com/embed/uygKYwqfzKM", wmode="transparent", allowscriptaccess="always", allowfullscreen="true")
+				- each v, key in videos
+					- if (key == 0)
+						.video_block.video_selector(class = v.id + (key == 0 ? ' active' : ''))
+							object(frameborder="0", width="100%", height="100%", data="http://youtube.com/embed/" + v.id, wmode="transparent", allowscriptaccess="always", allowfullscreen="true")
 			
 			.video_social.video_inside
 				.adorable_table
 					.adorable_cell
+						- var title = 'Агуша - Видео'
 						.share_buttons
-							.share_button
-								img(src="/img/user/social/vk.png")
+							a(href = 'http://vk.com/share.php?url=' + current_url + '&title=' + title, target="_blank")
+								.share_button
+									img(src="/img/user/social/vk.png")
 							
-							.share_button
-								img(src="/img/user/social/odnoklasniki.png")
+							a(href = 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + title + '&st._surl=' + current_url, target="_blank")
+								.share_button
+									img(src="/img/user/social/odnoklasniki.png")
 							
-							.share_button
-								img(src="/img/user/social/google.png")
+							a(href = 'http://plus.google.com/share?url=' + current_url + '&title=' + title, target="_blank")
+								.share_button
+									img(src="/img/user/social/google.png")
 							
-							.share_button
-								img(src="/img/user/social/facebook.png")
+							a(href = 'http://www.facebook.com/share.php?u=' + current_url + '&title=' + title, target="_blank")
+								.share_button
+									img(src="/img/user/social/facebook.png")
 							
-							.share_button
-								img(src="/img/user/social/twitter.png")
+							a(href = 'http://twitter.com/home?status=' + title + '+' + current_url, target="_blank")
+								.share_button
+									img(src="/img/user/social/twitter.png")
 						
 						.channel_link
 							span.text Смотрите наш канал на youtube
-							a(href="http://youtube.com")
+							a(href="http://youtube.com/agushaukraine", target="_blank")
 								.youtube_img
 				
 				img.channel_arrow(src="/img/user/video/arrow.png")
 			
-			.more_videos.video_inside.force_height
-				.small_video_block
-				.small_video_block
-				.small_video_block
+			.more_videos_container
+				.more_videos.video_inside
+					#video_gallery
+						- each v, key in videos
+							.small_video_block.video_selector(class = v.id + (key == 0 ? ' active' : ''))
+								.small_video_content.border_boxed
+									.small_video_clicker(data-id=v.id)
+										.image_container
+											.image(style="background: url('http://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg') center center / 320px 240px;")
+											.youtube_img
+										.text.adorable_table.border_boxed
+											.adorable_cell
+												.title #{v.title}
+												- var date = moment(v.published, 'DD/MM/YYYY')
+												.date #{date.format('ll')}
+				
+				.arrow_left
+				.arrow_right
 		
 		include ../../helpers/user/join_tour_full/join_tour_full
 
 block append scripts
-	
+	script(src="/js/plugins/can/can.js")
+	script(src="/js/plugins/slick/slick.min.js")
+	script(src="/js/user/video/video.js")

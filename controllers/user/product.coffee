@@ -15,7 +15,7 @@ exports.index = (req, res) ->
 	
 	async.waterfall [
 		(next) ->
-			product = Model 'Product', 'findById', null, req.params.id
+			product = Model 'Product', 'findOne', null, alias: req.params.alias
 			
 			product.populate('age certificate').exec next
 		(doc) ->
@@ -31,7 +31,7 @@ exports.index = (req, res) ->
 				parent_id: 'product'
 				title: data.product.title
 			
-			View.render 'user/product/product', res, data
+			View.render 'user/product/product', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/product/index: #{error}"

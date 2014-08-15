@@ -24,6 +24,7 @@
 	border-left: none !important;
 	background-color: transparent !important;
 	background-image: url('/img/user/select2_arrow.png') !important;
+	display: none !important;
 	
 	b {
 		background-image: none !important;
@@ -33,4 +34,56 @@
 #select2-drop {
 	border: none !important;
 	box-shadow: none !important;
+	background: transparent !important;
+}
+
+.select2-search {
+	padding: 0 !important;
+	top: -58px;
+	
+	input {
+		@include border_radius(5px);
+		height: 58px !important;
+		border: 0 !important;
+		background: $white !important;
+		padding: 0 22px;
+		
+		&:focus {
+			@include inset_box_shadow(0 0 0 3px $darkgreen !important);
+		}
+	}
+}
+
+.select2-no-results {
+	display: none !important;
+}
+
+.select2-results {
+	@include border_radius(5px);
+	margin: 0 !important;
+	padding: 0 !important;
+	top: -58px;
+	max-height: 400px !important;
+}
+
+.select2-result {
+	background: #f2f2f2;
+	padding: 0 22px;
+	min-height: 24px;
+	line-height: 24px;
+	font-size: 14px;
+	color: #999999;
+	
+	&:first-child {
+		padding-top: 16px;
+	}
+	
+	&:last-child {
+		padding-bottom: 16px;
+	}
+}
+
+.select2-highlighted {
+	background: #f2f2f2 !important;
+	color: $dark !important;
 }

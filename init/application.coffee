@@ -20,6 +20,9 @@ Auth = require '../lib/auth'
 Cache = require '../lib/cache'
 View = require '../lib/view'
 Admin = require '../lib/admin'
+Image = require '../lib/image'
+Logger = require '../lib/logger'
+Referrer = require '../lib/referrer'
 
 admin_controller = require '../controllers/admin'
 user_controller = require '../controllers/user'
@@ -41,8 +44,10 @@ routes = () ->
 	@use '/', user_controller.Router
 	@use '/admin', admin_controller.Router
 	@use (err, req, res, next) ->
-		console.log err.message || err
-		res.send 500, 'Something broke!'
+		if process.env.NODE_ENV isnt 'production'
+			console.log err
+
+		res.send 500, 'Something broke, sorry! :('
 
 configure = () ->
 	@set 'views', "#{__dirname}/../views"
@@ -61,7 +66,10 @@ configure = () ->
 		res.set 'Content-Type', 'text/plain'
 		res.send "User-agent: *\nDisallow: /"
 	
-	@use multer {dest: './public/img/uploads/'}
+	@use multer {
+		dest: './public/img/uploads/'
+		onFileUploadComplete: Image.doResize
+	}
 	
 	@use Cache.requestCache
 	@use bodyParser()
@@ -69,6 +77,7 @@ configure = () ->
 	@use session sessionParams
 	@use passport.initialize()
 	@use passport.session()
+	@use Referrer.isGoodReferrer
 	@use '/admin', Auth.isAuth
 	@use methodOverride()
 	@use View.globals

@@ -1,7 +1,13 @@
 extends ../layout
 
 block append header
+	link(rel="canonical", href=current_url)
 	link(rel="stylesheet" href="/css/user/article/article.css")
+	script(type='text/javascript').
+		(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=yb0bsJMIQ5tGXR/L4ufIEGUJZhrYwSaqtetSb48bIz3xjxhSuny6ThgP*g7U6pj4RnPjtksKfad60GFKgnZRvHEi7fh849MkMlQmVdahDFFi5xCzy2bIrVL4U*PrTyFwHv*0hTTeNMHoJeSA3LFrzZThTFdvRrXaK3ZLBJa44ac-';
+
+block title
+	| #{'Агуша - ' + article.big_title}
 
 block append content
 	.article_container.content(id = 'article_' + article._id)
@@ -30,20 +36,25 @@ block append content
 						span Поделиться
 					
 					.share_buttons
-						.share_button
-							img(src="/img/user/social/vk.png")
+						a(href = 'http://vk.com/share.php?url=' + current_url + '&title=' + article.big_title, target="_blank")
+							.share_button
+								img(src="/img/user/social/vk.png")
 						
-						.share_button
-							img(src="/img/user/social/odnoklasniki.png")
+						a(href = 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=' + article.big_title + '&st._surl=' + current_url, target="_blank")
+							.share_button
+								img(src="/img/user/social/odnoklasniki.png")
 						
-						.share_button
-							img(src="/img/user/social/google.png")
+						a(href = 'http://plus.google.com/share?url=' + current_url + '&title=' + article.big_title, target="_blank")
+							.share_button
+								img(src="/img/user/social/google.png")
 						
-						.share_button
-							img(src="/img/user/social/facebook.png")
+						a(href = 'http://www.facebook.com/share.php?u=' + current_url + '&title=' + article.big_title, target="_blank")
+							.share_button
+								img(src="/img/user/social/facebook.png")
 						
-						.share_button
-							img(src="/img/user/social/twitter.png")
+						a(href = 'http://twitter.com/home?status=' + article.big_title + '+' + current_url, target="_blank")
+							.share_button
+								img(src="/img/user/social/twitter.png")
 			
 			- if (article.type.id == 2)
 				.article_right.did_you_know
@@ -82,7 +93,8 @@ block append content
 						.top
 							.adorable_table
 								.adorable_cell
-									img.rounded(src="/img/user/food/doc.jpg")
+									.avatar
+										img.rounded(src="/img/user/food/doc.jpg")
 									.top_label.author Автор статей
 									.top_label.name
 										| Матвиенко
@@ -97,7 +109,7 @@ block append content
 					.articles_right_container
 						- each a, key in articles
 							- if (a._id + '' != article._id + '')
-								a(href = '/specialist/' + a._id)
+								a(href = '/specialist/' + a.alias)
 									.article_block.adorable_container
 										.adorable
 											.adorable_table

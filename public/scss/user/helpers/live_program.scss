@@ -6,10 +6,12 @@
 	position: absolute;
 	top: 40px;
 	right: 150px;
+	z-index: 10;
 	
 	.photo {
 		@include absolute_horizontal_centered;
 		width: 120px;
+		height: 120px;
 		top: 17px;
 		
 		.rounded {
@@ -20,7 +22,11 @@
 	
 	.triangle {
 		@include absolute_horizontal_centered;
+		background: url('/img/user/helpers/live_program/live_program_arrow.png') no-repeat;
+		background-position: 0 0;
 		top: 50%;
+		width: 26px;
+		height: 32px;
 	}
 	
 	.label {
@@ -31,6 +37,18 @@
 		bottom: 5px;
 		letter-spacing: 1px;
 		padding: 5px 0;
+	}
+	
+	&:hover {
+		.triangle {
+			background-position: -26px 0;
+		}
+	}
+	
+	&:active {
+		.triangle {
+			background-position: -52px 0;
+		}
 	}
 	
 	&:before {

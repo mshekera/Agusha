@@ -14,42 +14,43 @@ exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'products'
 	
-	asyncFunctions = Product.addAsyncFunctionsByFilter data, req.params.category, req.params.age
-	
-	asyncFunctions = asyncFunctions.concat [
+	async.waterfall [
 		(next) ->
+			Product.findAll req.params.category, req.params.age, next
+		(docs, next) ->
+			data.products = docs
+			
 			Product.getAgesAndCategories next
 		(results) ->
 			data.ages = results.ages
 			data.categories = results.categories
-
+			
 			_.each data.products, (item, key, list)->
 				volume = item.getFormattedVolume()
 				list[key] = item.toObject()
 				list[key].volume = volume
 			
-			View.render 'user/products/products', res, data
-	]
-	
-	async.waterfall asyncFunctions, (err) ->
-		console.log err
+			View.render 'user/products/products', res, data, req.path
+	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/products/index: #{error}"
 
 exports.findAll = (req, res) ->
 	data = {}
 	
-	asyncFunctions = Product.addAsyncFunctionsByFilter data, req.body.category, req.body.age
-	
-	asyncFunctions.push (next) ->
-		_.each data.products, (item, key, list)->
-			volume = item.getFormattedVolume()
-			list[key] = item.toObject()
-			list[key].volume = volume
+	async.waterfall [
+		(next) ->
+			Product.findAll req.body.category, req.body.age, next
+		(docs, next) ->
+			data.products = docs
+			
+			_.each data.products, (item, key, list)->
+				volume = item.getFormattedVolume()
+				list[key] = item.toObject()
+				list[key].volume = volume
 
-		View.ajaxResponse res, null, data
-	
-	async.waterfall asyncFunctions, (err) ->
+			View.ajaxResponse res, null, data
+	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/products/findAll: #{error}"
 		View.ajaxResponse res, err

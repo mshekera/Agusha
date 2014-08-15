@@ -2,6 +2,8 @@ extends ../layout
 
 block append header
 	link(rel="stylesheet" href="/css/user/production/production.css")
+	script(type='text/javascript').
+		(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=yb0bsJMIQ5tGXR/L4ufIEGUJZhrYwSaqtetSb48bIz3xjxhSuny6ThgP*g7U6pj4RnPjtksKfad60GFKgnZRvHEi7fh849MkMlQmVdahDFFi5xCzy2bIrVL4U*PrTyFwHv*0hTTeNMHoJeSA3LFrzZThTFdvRrXaK3ZLBJa44ac-';
 
 block append content
 	#production.content
@@ -62,7 +64,7 @@ block append content
 								br
 								| питание
 							
-							.text
+							.text Мы производим исключительно детские продукты: питьевой йогурт, творожок, кефир и молочко. Производство полностью «автономное», и никак не связано с изготовлением «взрослых» продуктов.
 				
 				.production_circle_container
 					.production_circle.rounded.vitamins
@@ -73,7 +75,7 @@ block append content
 								br
 								| И ПРЕБИОТИКИ
 							
-							.text
+							.text Продукты производятся по особой рецептуре, которая разработана для детей раннего возраста и предусматривает обогащение витаминами и пребиотиком.
 			
 			.production_block.production_3
 				.production_bg
@@ -90,7 +92,7 @@ block append content
 								br
 								| поставщики
 							
-							.text
+							.text Все наши поставщики прошли сертификацию МОЗ Украины как производители сырья и продуктов, разрешенных для детского питания.
 				
 				.production_circle_container
 					.production_circle.rounded.milk
@@ -101,7 +103,7 @@ block append content
 								br
 								| экстра-класса
 							
-							.text
+							.text Один из наших поставщиков свежего молока - фермерское хозяйство «Агроэкология», на полях которого применяются только органические удобрения, а все коровки имеют ветеринарные удостоверения.
 				
 				.production_circle_container
 					.production_circle.rounded.fruits
@@ -112,7 +114,7 @@ block append content
 								br
 								| наполнители
 							
-							.text
+							.text Фруктовые наполнители поставляет украино-австрийское предприятие «Аграна Фрут Укарина». Они выращивают фрукты и ягоды в экологически чистой среде.
 			
 			.production_block.production_4
 				.production_bg
@@ -129,7 +131,7 @@ block append content
 								br
 								| всем нормам
 							
-							.text
+							.text «Завод Агуша» соответствует всем нормам украинского законодательства, включая Закон о детском питании от 6 января 2011 года, а также имеет сертификацию европейского и мирового образца ISO, HAССP.
 				
 				.production_circle_container
 					.production_circle.rounded.check
@@ -142,7 +144,7 @@ block append content
 								br
 								| проверке
 							
-							.text
+							.text Даже не смотря на ультрафильтрацию и очистку молока суперсовременной бактофугой, каждая партия продукции подвергается тщательной проверке более 15 (!) раз.
 				
 				.production_circle_container
 					.production_circle.rounded.safe
@@ -153,7 +155,7 @@ block append content
 								br
 								| безопасность
 							
-							.text
+							.text Главные требования к упаковке – удобство и безопасность. Каждая упаковка обрабатывается озонированной водой, а разлив осуществляется под избыточным давлением стерильного воздуха.
 		
 		.production_navigator.darkblue.adorable_table
 			.adorable_cell
@@ -165,3 +167,4 @@ block append content
 block append scripts
 	script(src="/js/plugins/can/can.js")
 	script(src="/js/user/production/production.js")
+

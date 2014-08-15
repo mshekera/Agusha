@@ -3,6 +3,8 @@ express = require 'express'
 View = require '../lib/view'
 City = require '../lib/city'
 ArticleLib = require '../lib/article'
+ProductLib = require '../lib/product'
+Referrer = require '../lib/referrer'
 
 Migrate = require '../init/migrate'
 
@@ -18,6 +20,7 @@ Article = require './user/article'
 Production = require './user/production'
 Contacts = require './user/contacts'
 Video = require './user/video'
+Action = require './user/action'
 
 Router = express.Router()
 
@@ -26,12 +29,16 @@ Router.get '/', Main.index
 #
 
 Router.get '/signup', SignUp.index
+Router.get '/signup/registered', SignUp.index
+Router.get '/signup/activate/:salt', SignUp.activate
+
 Router.get '/signup/success', SignUp.success
 Router.get '/signup/success/:id', SignUp.success
 Router.get '/signup/activate/:salt', SignUp.activate
 
 Router.post '/signup/invite', SignUp.invite
 Router.post '/signup/register', SignUp.register
+Router.post '/signup/activate', SignUp.activatePost
 
 #
 
@@ -43,7 +50,7 @@ Router.post '/products/findAll', Products.findAll
 
 #
 
-Router.get '/product/:id', Product.index
+Router.get '/product/:alias', Product.index
 
 #
 
@@ -76,10 +83,19 @@ Router.get '/video', Video.index
 
 #
 
-Router.get '/article/:id', Article.index
-Router.get '/specialist/:id', Article.specialist
+Router.get '/action', Action.index
+
+#
+
+Router.get '/article/:alias', Article.index
+Router.get '/specialist/:alias', Article.specialist
 
 Router.post '/articles/findAll', ArticleLib.findAll
+
+#
+
+Router.get '/unsubscribe', Main.unsubscribe
+Router.get '/remove_me_from_suspected', Referrer.removeMeFromSuspected
 
 #
 

@@ -4,7 +4,7 @@ moment = require 'moment'
 ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
 
-Time = require '../utils/time'
+timeUtil = require '../utils/time'
 
 getArticleType = (type) ->
 	switch type
@@ -19,9 +19,6 @@ getArticleType = (type) ->
 		msg: msg
 	}
 
-setUpdateDate = () ->
-	return moment()
-
 schema = new mongoose.Schema
 	type: # 0 - news, 1 - sales, 2 - feeding, 3 - from spec
 		type: Number
@@ -29,9 +26,8 @@ schema = new mongoose.Schema
 		get: getArticleType
 	date:
 		type: Date
-		set: setUpdateDate
-		default: Date.now
-		get: Time.getDate
+		get: timeUtil.getDate
+		set: timeUtil.setDate
 	image:
 		type: String
 	innerImage:
@@ -39,9 +35,12 @@ schema = new mongoose.Schema
 	desc_image: [
 		type: String
 	]
+	desc_image_link:
+		type: String
 	desc_title:
 		type: String
 		required: true
+		unique: true
 	button_label:
 		type: String
 	big_title:
@@ -54,6 +53,12 @@ schema = new mongoose.Schema
 		type: Boolean
 		required: true
 		default: true
+	alias:
+		type: String
+		index: true
+		unique: true
+	shared_text:
+		type: String
 ,
 	collection: 'article'
 
