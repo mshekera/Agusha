@@ -14,6 +14,8 @@ $('.message').easyModal({
 	}
 });
 
+var submitted = false;
+
 $('.rules').click(function(ev) {
 	ev.preventDefault();
 	var href = href = $(this).attr('href');
@@ -29,6 +31,12 @@ $('#registration_form').submit(function(ev) {
 	registration_validate(form);
 	
 	if(form.valid() == true) {
+		if(!submitted) {
+			submitted = true;
+		} else {
+			return false;
+		}
+		
 		_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 		_gaq.push(['_trackEvent', 'registration', 'click']);
 		
