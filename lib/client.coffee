@@ -108,9 +108,9 @@ exports.exportDocs = (docs, res) ->
 
 	momentFormat = 'HH:mm:ss MM/DD/YYYY'
 
-	for item in docs
+	for item, index in docs
 		conf.rows.push [
-			item.id,
+			index,
 			item.login,
 			item.email,
 			item.created_at or 'N/A',
