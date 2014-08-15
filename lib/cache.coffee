@@ -27,6 +27,18 @@ exports.list = list = [
 		prefixKey: 'products' 
 	}
 	{
+		segments: '/tour'
+		name: "Запись на тур"
+		prefix: "tour_"
+		prefixKey: "tour"
+	}
+	{
+		segments: '/video'
+		name: "Видео"
+		prefix: "video_"
+		prefixKey: "video"
+	}
+	{
 		segment: '/production', 
 		name: 'Каталог', 
 		prefix: 'production_', 

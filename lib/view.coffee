@@ -77,45 +77,25 @@ exports.clientFail = (err, res)->
 
 
 exports.globals = (req, res, callback)->
-	# async.waterfall [
-		# (next)->
-			# if not global.menuArticles
-				# cbArticles = (err, docs)->
-					# if err
-						# return Logger.warn err
-
-					# global.menuArticles = docs
-
-					# next()
-
-				# return Model 'Article', 'find', cbArticles, type: 2, 'desc_title'
-			# next()
-		# (next)->
-			# res.locals.topper_menu =
-				# food: global.menuArticles || menuArticles
-			
-			res.locals.defLang = 'ru'
-			res.locals.lang = req.lang
-			
-			if req.user
-				res.locals.euser = req.user
-				res.locals.user = req.user
-			
-			res.locals.moment = moment
-			
-			res.locals.base_url = base_url = 'http://' + req.headers.host
-			res.locals.current_url = 'http://' + req.headers.host + req.originalUrl
-			res.locals.url = (path) ->
-				base_url + path
-			
-			res.locals.params = req.params
-			
-			res.locals.strip_tags = string.strip_tags
-			
-			callback()
-	# ], (err)->
-		# Logger.warn err
-		# callback()
+	res.locals.defLang = 'ru'
+	res.locals.lang = req.lang
+	
+	if req.user
+		res.locals.euser = req.user
+		res.locals.user = req.user
+	
+	res.locals.moment = moment
+	
+	res.locals.base_url = base_url = 'http://' + req.headers.host
+	res.locals.current_url = 'http://' + req.headers.host + req.originalUrl
+	res.locals.url = (path) ->
+		base_url + path
+	
+	res.locals.params = req.params
+	
+	res.locals.strip_tags = string.strip_tags
+	
+	callback()
 
 exports.ajaxResponse = (res, err, data) ->
 	data =
