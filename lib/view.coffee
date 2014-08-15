@@ -22,7 +22,7 @@ exports.render = render = (name, res, data, cacheId) ->
 			next()
 	], (err, results)->
 		if err
-			Logger.log 'error', 'Error in View.render:', err
+			Logger.log 'error', 'Error in View.render:', err + ''
 
 exports.renderWithSession = (req, res, path, data) ->
 	data = data || {}
@@ -57,7 +57,6 @@ exports.clientError = (err, res) ->
 
 	render 'user/main/error/index', res, data
 
-
 exports.clientSuccess = (data, res)->
 	data =
 		success: true
@@ -73,8 +72,6 @@ exports.clientFail = (err, res)->
 		message: err
 
 	res.send data
-
-
 
 exports.globals = (req, res, callback)->
 	res.locals.defLang = 'ru'
