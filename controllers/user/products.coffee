@@ -20,8 +20,6 @@ exports.index = (req, res) ->
 		(docs, next) ->
 			data.products = docs
 			
-			next()
-		(next) ->
 			Product.getAgesAndCategories next
 		(results) ->
 			data.ages = results.ages
@@ -46,8 +44,6 @@ exports.findAll = (req, res) ->
 		(docs, next) ->
 			data.products = docs
 			
-			next()
-		(next) ->
 			_.each data.products, (item, key, list)->
 				volume = item.getFormattedVolume()
 				list[key] = item.toObject()
