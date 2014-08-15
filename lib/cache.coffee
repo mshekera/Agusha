@@ -14,13 +14,12 @@ _ = require 'underscore'
 
 exports.list = list = [
 	# do not cache pages which do not work with databse
-	# it's stupid. file send is esyiest
-	{ 
-		segment: '/', 
-		name: 'Главная', 
-		prefix: 'main_', 
-		prefixKey: '' 
-	}
+	# { 
+	# 	segment: '/', 
+	# 	name: 'Главная', 
+	# 	prefix: 'main_', 
+	# 	prefixKey: '' 
+	# }
 	{ 
 		segment: '/products', 
 		name: 'Продукты', 
