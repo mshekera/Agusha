@@ -14,24 +14,25 @@ _ = require 'underscore'
 
 exports.list = list = [
 	# do not cache pages which do not work with databse
-	# { 
-		# segment: '/', 
-		# name: 'Главная', 
-		# prefix: 'main_', 
-		# prefixKey: '' 
-	# }
+	# it's stupid. file send is esyiest
+	{ 
+		segment: '/', 
+		name: 'Главная', 
+		prefix: 'main_', 
+		prefixKey: '' 
+	}
 	{ 
 		segment: '/products', 
 		name: 'Продукты', 
 		prefix: 'products_', 
 		prefixKey: 'products' 
 	}
-	# {
-		# segment: '/production', 
-		# name: 'Каталог', 
-		# prefix: 'production_', 
-		# prefixKey: 'production' 
-	# }
+	{
+		segment: '/production', 
+		name: 'Каталог', 
+		prefix: 'production_', 
+		prefixKey: 'production' 
+	}
 	{ 
 		segment: '/food', 
 		name: 'Каталог', 
@@ -44,18 +45,18 @@ exports.list = list = [
 		prefix: 'news_', 
 		prefixKey: 'news' 
 	}
-	# { 
-		# segment: '/contacts', 
-		# name: 'Каталог', 
-		# prefix: 'contacts_', 
-		# prefixKey: 'contacts' 
-	# }
-	# {
-		# segment: '/feeding_up'
-		# name: 'Про питание'
-		# prefix: 'feedengup_'
-		# prefixKey: 'feeding_up'
-	# }
+	{ 
+		segment: '/contacts', 
+		name: 'Каталог', 
+		prefix: 'contacts_', 
+		prefixKey: 'contacts' 
+	}
+	{
+		segment: '/feeding_up'
+		name: 'Про питание'
+		prefix: 'feedengup_'
+		prefixKey: 'feeding_up'
+	}
 ]
 
 
@@ -283,7 +284,8 @@ exports.requestCache = (req, res, callback)->
 			res.set 'Content-Type', 'text/html'
 
 			res.send html
-	], callback
+	], ()->
+		console.log arguments
 
 
 # ###
