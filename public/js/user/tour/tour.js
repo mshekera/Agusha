@@ -21,6 +21,8 @@ $.validator.addMethod('mask',
 );
 
 $('.step_button').corner('8px');
+$('.slick-next').corner('25px');
+$('.slick-prev').corner('25px');
 
 var Tour_controller = can.Control.extend(
 	{
