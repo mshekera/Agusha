@@ -100,7 +100,7 @@ block append scripts
 
 			$('#t-export-range').val(moment().subtract('months', 1).format(momentFormat) + ' - ' + moment().format(momentFormat));
 
-			$('.t-status').on('ifToggled', function(ev){
+			$('#client_list').on('ifToggled', '.t-status', function(ev){
 				var opts = {
 						status: this.checked,
 						id: $(this).data('id')
