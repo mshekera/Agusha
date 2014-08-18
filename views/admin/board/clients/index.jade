@@ -82,7 +82,17 @@ block append scripts
 				});
 			});
 
+			iCheckAgain = function() {
+				$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
+					checkboxClass: 'icheckbox_minimal',
+					radioClass: 'iradio_minimal'
+				});
+			};
+
 			$('#client_list')
+				.on( 'order.dt', iCheckAgain )
+				.on( 'search.dt', iCheckAgain )
+				.on( 'page.dt', iCheckAgain )
 				.dataTable({
 					'iDisplayLength': 25,
 					'aLengthMenu': [25,50,100]
@@ -100,7 +110,7 @@ block append scripts
 
 			$('#t-export-range').val(moment().subtract('months', 1).format(momentFormat) + ' - ' + moment().format(momentFormat));
 
-			$('#client_list').on('ifToggled', '.t-status', function(ev){
+			$(document).on('ifToggled', '.t-status', function(ev){
 				var opts = {
 						status: this.checked,
 						id: $(this).data('id')
