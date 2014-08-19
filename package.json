@@ -47,6 +47,7 @@
 	"translit": "0.0.1",
     "mongoose-auto-increment": "3.0.8",
     "excel-export": "0.3.11",
-	"email-existence": "0.1.2"
+	"email-existence": "0.1.2",
+	"look": "0.1.3"
   }
 }
