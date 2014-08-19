@@ -56,6 +56,8 @@ var Signup_controller = can.Control.extend(
 						that.success_registration(response);
 					}
 				);
+			} else {
+				this.submitted = false;
 			}
 		},
 		

@@ -55,12 +55,7 @@ exports.register = (req, res) ->
 		View.ajaxResponse res, error
 
 exports.invite = (req, res) ->
-	path = '/signup/success'
-	
 	invited_by = req.body.invited_by
-	
-	if invited_by?
-		path += '/' + invited_by
 	
 	already_invited = []
 	
@@ -94,8 +89,7 @@ exports.invite = (req, res) ->
 		], callback
 	, (err, clients) ->
 		if err
-			inviteErr err, req
-			return res.redirect path
+			inviteErr err, res
 		
 		async.waterfall [
 			(next) ->
@@ -134,9 +128,11 @@ exports.invite = (req, res) ->
 						callback null
 				, next
 			(result) ->
+				err = null
+				
 				alreadyInvitedLength = already_invited.length
 				if alreadyInvitedLength
-					req.session.err = ''
+					err = ''
 					
 					while alreadyInvitedLength--
 						client = already_invited[alreadyInvitedLength]
@@ -145,18 +141,18 @@ exports.invite = (req, res) ->
 					req.session.message = 'ТЕПЕРЬ ВАШИ ДРУЗЬЯ БУДУТ В КУРСЕ ВСЕГО САМОГО ПОЛЕЗНОГО И ИНТЕРЕСНОГО.'
 					req.session.messageLabel = 'Спасибо!'
 				
-				res.redirect path
+				View.ajaxResponse res, err
 		], (err) ->
-			inviteErr err, req
+			inviteErr err, res
 
-inviteErr = (err, req) ->
+inviteErr = (err, res) ->
 	if err.code == 11000
 		error = 'Указанный e-mail уже зарегистрирован'
 	else
 		error = err.message or err
 	
 	Logger.log 'info', "Error in controllers/user/signup/invite: #{error}"
-	return req.session.err = error
+	View.ajaxResponse res, error
 
 exports.success = (req, res) ->
 	data =

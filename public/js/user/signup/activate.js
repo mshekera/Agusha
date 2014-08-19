@@ -144,6 +144,8 @@ var Activate_controller = can.Control.extend(
 						that.success_activation(response);
 					}
 				);
+			} else {
+				this.submitted = false;
 			}
 		},
 		
