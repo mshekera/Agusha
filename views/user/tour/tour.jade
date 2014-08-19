@@ -45,11 +45,35 @@ mixin form_topper_date(date, mustache)
 				input(type="hidden", name="tour", value="{{current_tour._id}}")
 
 block append content
+	#success_message.message.inline_adorable_container
+		.adorable
+			div.message_top.adorable_table(class='green')
+				.adorable_cell
+					.label.novito_nova.white_font Ой, все места заняты!
+					.top_label.non_uppercase.dark_font
+						| Дождитесь следующей экскурсии!
+			
+			div.message_bottom.adorable_table(class='darkgreen')
+				.adorable_cell
+					button.middle_button.white.uppercase.bold.close(class='darkgreen_font') Вернуться на сайт
+			
+			div.close_button.close(class='darkgreen_font') &times;
+	
+	#error_message.message.inline_adorable_container
+		.adorable
+			div.message_top.adorable_table(class='red')
+				.adorable_cell
+					.label.novito_nova.white_font Ошибка
+					.top_label.non_uppercase.dark_font
+			
+			div.message_bottom.adorable_table(class='darkred')
+				.adorable_cell
+					button.middle_button.white.uppercase.bold.close(class='darkred_font') Вернуться на сайт
+			
+			div.close_button.close(class='darkred_font') &times;
+	
 	#tour.content
 		include ../../helpers/user/breadcrumbs/breadcrumbs
-		
-		- if (err || message)
-			include ../../helpers/user/tour_message/tour_message
 		
 		.why_join_tour.white.adorable_container
 			.adorable

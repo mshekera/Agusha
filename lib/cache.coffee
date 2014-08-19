@@ -31,13 +31,12 @@ exports.list = list = [
 		prefix: 'products_', 
 		prefixKey: 'products' 
 	}
-	# do not cache tour, it could have server messages
-	# {
-		# segments: '/tour'
-		# name: "Запись на тур"
-		# prefix: "tour_"
-		# prefixKey: "tour"
-	# }
+	{
+		segments: '/tour'
+		name: "Запись на тур"
+		prefix: "tour_"
+		prefixKey: "tour"
+	}
 	{
 		segments: '/video'
 		name: "Видео"
@@ -71,7 +70,7 @@ exports.list = list = [
 	{
 		segment: '/feeding_up'
 		name: 'Про питание'
-		prefix: 'feedengup_'
+		prefix: 'feedingup_'
 		prefixKey: 'feeding_up'
 	}
 	{
@@ -88,7 +87,7 @@ exports.list = list = [
 	}
 	{
 		segment: '/specialist'
-		name: 'Статья'
+		name: 'Статья от специалиста'
 		prefix: 'specialist_'
 		prefixKey: 'specialist'
 	}
@@ -97,6 +96,12 @@ exports.list = list = [
 		name: 'Регистрация'
 		prefix: 'signup_'
 		prefixKey: 'signup'
+	}
+	{
+		segment: '/action'
+		name: 'Акция'
+		prefix: 'action_'
+		prefixKey: 'action'
 	}
 ]
 

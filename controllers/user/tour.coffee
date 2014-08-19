@@ -31,7 +31,7 @@ exports.index = (req, res) ->
 		(docs, next) ->
 			data.tours = docs
 			
-			View.renderWithSession req, res, 'user/tour/tour', data
+			View.render 'user/tour/tour', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/tour/index: #{error}"
@@ -66,8 +66,8 @@ exports.add_record = (req, res) ->
 			# req.session.message = 'В ближайшее время на ваш e-mail<br />придет письмо с подробными инструкциями.'
 			# req.session.messageLabel = 'Поздравляем, вы записаны на экскурсию!'
 			
-			req.session.message = 'Дождитесь следующей экскурсии!'
-			req.session.messageLabel = 'Ой, все места заняты!'
+			# req.session.message = 'Дождитесь следующей экскурсии!'
+			# req.session.messageLabel = 'Ой, все места заняты!'
 			
 			next()
 		(next) ->
@@ -88,8 +88,8 @@ exports.add_record = (req, res) ->
 			
 			next null
 		(next) ->
-			res.redirect '/tour'
+			View.ajaxResponse res
 	], (err) ->
-		Logger.log 'info', "Error in controllers/user/tour/add_record: #{err}"
-		req.session.err = err
-		res.redirect '/tour'
+		error = error.message || err
+		Logger.log 'info', "Error in controllers/user/tour/add_record: #{error}"
+		View.ajaxResponse res, error

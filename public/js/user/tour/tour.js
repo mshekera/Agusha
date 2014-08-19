@@ -24,6 +24,10 @@ $('.step_button').corner('8px');
 $('.slick-next').corner('25px');
 $('.slick-prev').corner('25px');
 
+Tour = can.Model.extend({
+	create: 'POST /tour/add_record'
+}, {});
+
 var Tour_controller = can.Control.extend(
 	{
 		defaults: {
@@ -378,6 +382,14 @@ var Tour_controller = can.Control.extend(
 		},
 		
 		'#tour_form submit': function(el, ev) {
+			ev.preventDefault();
+			
+			if(!this.submitted) {
+				this.submitted = true;
+			} else {
+				return false;
+			}
+			
 			var form = $(el),
 				valid;
 			
@@ -387,16 +399,48 @@ var Tour_controller = can.Control.extend(
 			Placeholders.enable();
 			
 			if(valid == true) {
-				if(!this.submitted) {
-					this.submitted = true;
-				} else {
-					return false;
-				}
+				var	data = form.serialize(),
+					that = this;
 				
-				return true;
+				Tour.create(data,
+					function(response) {
+						that.success_added(response);
+					}
+				);
 			} else {
-				return false;
+				this.submitted = false;
 			}
+		},
+		
+		success_added: function(response) {
+			this.submitted = false;
+			
+			if(response.err) {
+				$('#main_container').find('.message').find('.dark_font').html(response.err);
+				return this.show_error();
+			}
+			
+			this.show_success();
+		},
+		
+		show_success: function() {
+			this.show_message($('#success_message'));
+		},
+		
+		show_error: function() {
+			this.show_message($('#error_message'));
+		},
+		
+		show_message: function(selector) {
+			selector.easyModal({
+				autoOpen: true,
+				overlayOpacity: 0.9,
+				overlayColor: "#ffffff",
+				onClose: function(myModal) {
+					_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
+					_gaq.push(['_trackEvent', 'closeerror', 'click']);
+				}
+			});
 		},
 		
 		tour_validate: function(form) {

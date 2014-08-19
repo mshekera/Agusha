@@ -44,7 +44,7 @@ var Invite_controller = can.Control.extend(
 			Placeholders.enable();
 			
 			if(valid == true) {
-				var	data = $(form).serialize(),
+				var	data = form.serialize(),
 					that = this;
 				
 				Client.create(data,
