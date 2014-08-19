@@ -14,13 +14,13 @@ _ = require 'underscore'
 
 exports.list = list = [
 	# do not cache main, it could have server messages
-	# { 
-	# 	segment: '/', 
-	# 	name: 'Главная', 
-	# 	prefix: 'main_', 
-	# 	prefixKey: '' 
-	# }
-	{ 
+	{
+		segment: '/', 
+		name: 'Главная', 
+		prefix: 'main_', 
+		prefixKey: '' 
+	}
+	{
 		segment: '/products', 
 		name: 'Продукты', 
 		prefix: 'products_', 
@@ -45,19 +45,19 @@ exports.list = list = [
 		prefix: 'production_', 
 		prefixKey: 'production' 
 	}
-	{ 
+	{
 		segment: '/food', 
 		name: 'Каталог', 
 		prefix: 'food_', 
 		prefixKey: 'food' 
 	}
-	{ 
+	{
 		segment: '/news', 
 		name: 'Каталог', 
 		prefix: 'news_', 
 		prefixKey: 'news' 
 	}
-	{ 
+	{
 		segment: '/contacts', 
 		name: 'Каталог', 
 		prefix: 'contacts_', 
