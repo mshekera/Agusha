@@ -6,6 +6,10 @@ $.validator.addMethod('mask',
     'Некорректно указан номер. Попробуйте еще раз.'
 );
 
+Client = can.Model.extend({
+	create: 'POST /signup/activate'
+}, {});
+
 var Activate_controller = can.Control.extend(
 	{
 		defaults: {
@@ -106,11 +110,20 @@ var Activate_controller = can.Control.extend(
 		},
 		
 		'#activate_form submit': function(el, ev) {
+			ev.preventDefault();
+			
+			if(!this.submitted) {
+				this.submitted = true;
+			} else {
+				return false;
+			}
+			
 			var	radio = this.element.find('input[name=hasKids]:checked'),
 				val = radio.val();
 			
 			if(val == 0) {
 				this.show_modal();
+				this.submitted = false;
 				return false;
 			}
 			
@@ -123,20 +136,42 @@ var Activate_controller = can.Control.extend(
 			Placeholders.enable();
 			
 			if(valid == true) {
-				if(!this.submitted) {
-					this.submitted = true;
-				} else {
-					return false;
-				}
+				var	data = $(form).serialize(),
+					that = this;
 				
-				_gaq.push(['_setReferrerOverride', referrer]);
-				_gaq.push(['_trackEvent', 'send', 'click']);
-				_gaq.push(['_trackPageview'], url);
-				
-				return true;
-			} else {
-				return false;
+				Client.create(data,
+					function(response) {
+						that.success_activation(response);
+					}
+				);
 			}
+		},
+		
+		success_activation: function(response) {
+			this.submitted = false;
+			
+			if(response.err) {
+				$('#main_container').find('.message').find('.dark_font').html(response.err);
+				this.show_error();
+				return;
+			}
+			
+			_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
+			_gaq.push(['_trackEvent', 'send', 'click']);
+			
+			location.href = '/signup/success/' + response.data.id;
+		},
+		
+		show_error: function() {
+			$('.message').easyModal({
+				autoOpen: true,
+				overlayOpacity: 0.9,
+				overlayColor: "#ffffff",
+				onClose: function(myModal) {
+					_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
+					_gaq.push(['_trackEvent', 'closeerror', 'click']);
+				}
+			});
 		},
 		
 		activate_validate: function(form) {

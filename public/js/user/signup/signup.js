@@ -32,8 +32,14 @@ var Signup_controller = can.Control.extend(
 		
 		'#registration_form submit': function(el, ev) {
 			ev.preventDefault();
+			
+			if(!this.submitted) {
+				this.submitted = true;
+			} else {
+				return false;
+			}
+			
 			var form = $(el),
-				that = this,
 				valid;
 			
 			this.registration_validate(form);
@@ -42,17 +48,12 @@ var Signup_controller = can.Control.extend(
 			Placeholders.enable();
 			
 			if(valid == true) {
-				if(!this.submitted) {
-					this.submitted = true;
-				} else {
-					return false;
-				}
-				
-				var	data = $(form).serialize()
+				var	data = $(form).serialize(),
+					that = this;
 				
 				Client.create(data,
 					function(response) {
-						that.success_registration.call(that, response);
+						that.success_registration(response);
 					}
 				);
 			}

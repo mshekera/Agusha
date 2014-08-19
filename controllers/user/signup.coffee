@@ -165,7 +165,7 @@ exports.success = (req, res) ->
 	if req.params.id?
 		data.invited_by = req.params.id
 	
-	View.renderWithSession req, res, 'user/signup/success/success', data, req.path
+	View.render 'user/signup/success/success', res, data, req.path
 
 exports.activate = (req, res) ->
 	salt = req.params.salt
@@ -180,7 +180,7 @@ exports.activate = (req, res) ->
 		client: (next) ->
 			Model 'Client', 'findByIdAndUpdate', next, id, active: 1
 		salt: (next) ->
-			Model 'Salt', 'findOneAndUpdate', next, {salt: req.params.salt}, {dateUpdated: Date.now()}
+			Model 'Salt', 'findOneAndUpdate', next, salt: salt, {dateUpdated: Date.now()}
 	, (err, results) ->
 		if err
 			error = err.message or err
@@ -188,7 +188,7 @@ exports.activate = (req, res) ->
 		
 		data.client = results.client
 		
-		View.renderWithSession req, res, 'user/signup/activate/activate', data, req.path
+		View.render 'user/signup/activate/activate', res, data, req.path
 
 exports.activatePost = (req, res) ->
 	salt = req.body.salt
@@ -224,7 +224,7 @@ exports.activatePost = (req, res) ->
 			if not doc
 				error = 'Такого пользователя не существует, кто-то пытается жульничать.'
 				Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
-				return res.redirect '/signup'
+				return View.ajaxResponse res, error
 			
 			client = doc
 			
@@ -237,9 +237,11 @@ exports.activatePost = (req, res) ->
 			
 			Client.sendMail res, options, next
 		() ->
-			res.redirect '/signup/success/' + client._id
+			data =
+				id: client._id
+			
+			View.ajaxResponse res, null, data
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
-		req.session.err = error
-		res.redirect '/signup/activate/' + salt
+		View.ajaxResponse res, error
