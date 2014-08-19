@@ -47,22 +47,22 @@ exports.list = list = [
 	}
 	{
 		segment: '/food', 
-		name: 'Каталог', 
+		name: 'Питание', 
 		prefix: 'food_', 
 		prefixKey: 'food' 
 	}
 	{
 		segment: '/news', 
-		name: 'Каталог', 
+		name: 'Новости', 
 		prefix: 'news_', 
 		prefixKey: 'news' 
 	}
-	{
-		segment: '/contacts', 
-		name: 'Каталог', 
-		prefix: 'contacts_', 
-		prefixKey: 'contacts' 
-	}
+	# {
+		# segment: '/contacts', 
+		# name: 'Контакты', 
+		# prefix: 'contacts_', 
+		# prefixKey: 'contacts' 
+	# }
 	{
 		segment: '/feeding_up'
 		name: 'Про питание'
