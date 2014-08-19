@@ -79,9 +79,9 @@ configure = () ->
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams
-	@use passport.initialize()
-	@use passport.session()
 	@use Referrer.isGoodReferrer
+	@use '/admin', passport.initialize()
+	@use '/admin', passport.session()
 	@use '/admin', Auth.isAuth
 	@use methodOverride()
 	@use View.globals
