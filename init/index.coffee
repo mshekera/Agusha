@@ -11,7 +11,6 @@ Product = require '../lib/product'
 Article = require '../lib/article'
 Migrate = require './migrate'
 Application = require './application'
-# Notifier = require '../lib/notifier'
 AuthStartegies = require './auth'
 ModelPreloader = require './mpload'
 
@@ -57,10 +56,6 @@ async.waterfall [
 		AuthStartegies.init next
 	(next) ->
 		Logger.log 'info', 'Auth is initializated'
-		
-		# Notifier.init Application.server, next
-	# (next) ->
-		# Logger.log 'info', 'Notifier is initializated'
 		
 		Application.listen appPort, next
 	(next) ->

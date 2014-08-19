@@ -20,11 +20,17 @@ exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'signup'
 	
-	if req.session.message
-		data.message = true
-		delete req.session.message
+	View.render 'user/signup/signup', res, data, req.path
+
+exports.registered = (req, res) ->
+	if req.cookies.registered
+		return res.redirect '/signup/success/' + req.cookies.registered
 	
-	View.renderWithSession req, res, 'user/signup/signup', data, req.path
+	data =
+		breadcrumbs: tree.findWithParents breadcrumbs, 'signup'
+		message: true
+	
+	View.render 'user/signup/signup', res, data, req.path
 
 exports.register = (req, res) ->
 	data = {}
@@ -38,7 +44,7 @@ exports.register = (req, res) ->
 			Client.signUp res, data, signUpData, next
 		(salt) ->
 			req.session.message = true
-			res.redirect '/signup/registered'
+			View.ajaxResponse res
 	], (err) ->
 		if err.code == 11000
 			error = 'Указанный e-mail уже зарегистрирован'
@@ -46,8 +52,7 @@ exports.register = (req, res) ->
 			error = err.message or err
 		
 		Logger.log 'info', "Error in controllers/user/signup/register: #{error}"
-		req.session.err = error
-		res.redirect '/signup'
+		View.ajaxResponse res, error
 
 exports.invite = (req, res) ->
 	path = '/signup/success'

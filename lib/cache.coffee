@@ -92,6 +92,12 @@ exports.list = list = [
 		prefix: 'specialist_'
 		prefixKey: 'specialist'
 	}
+	{
+		segment: '/signup'
+		name: 'Регистрация'
+		prefix: 'signup_'
+		prefixKey: 'signup'
+	}
 ]
 
 

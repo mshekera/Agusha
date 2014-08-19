@@ -31,11 +31,10 @@ block append header
 			(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=zBPJsZ*g/znMc7JpOXdFA4G8XZBgyCGj9XTdDeMZVyCJmHnEiaINu6kStj6QkDpRMDDRXpdztCyWz8Ez*uodNW203MKaQXAWk9AH2spdoYmjhxbTQeqG4uAU0Q8oYI1NBPzt8rlozmezk61luuQzBtcMI91N1lFpfr0T3q0l44E-';
 
 block append content
+	include ../../helpers/user/message/message
+	
 	#signup.content.force_height
 		include ../../helpers/user/breadcrumbs/breadcrumbs
-		
-		- if (err)
-			include ../../helpers/user/message/message
 		
 		.white
 			.topper.green.adorable_table
@@ -131,6 +130,7 @@ block append content
 							button.white.darkgreen_font.middle_button.uppercase.bold(type="submit") Зарегистрироваться
 
 block append scripts
+	script(src="/js/plugins/can/can.js")
 	script(src="/js/plugins/placeholders/placeholders.min.js")
 	script(src="/js/plugins/modal/jquery.easyModal.js")
 	script(src="/js/plugins/validate/jquery.validate.js")

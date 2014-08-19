@@ -29,7 +29,7 @@ Router.get '/', Main.index
 #
 
 Router.get '/signup', SignUp.index
-Router.get '/signup/registered', SignUp.index
+Router.get '/signup/registered', SignUp.registered
 Router.get '/signup/activate/:salt', SignUp.activate
 
 Router.get '/signup/success', SignUp.success

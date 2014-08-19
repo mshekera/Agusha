@@ -6,7 +6,6 @@ passport = require 'passport'
 roles = require 'roles'
 crypto = require 'crypto'
 _ = require 'underscore'
-# flash = require 'connect-flash'
 
 cookieParser = require 'cookie-parser'
 bodyParser = require 'body-parser'
@@ -32,12 +31,6 @@ jadeOptions =
 
 sessionParams =
 	secret: '4159J3v6V4rX6y1O6BN3ASuG2aDN7q'
-
-abideOption =
-	supported_languages: ['ru']
-	default_lang: 'ru',
-	translation_directory: 'locale'
-	locale_on_url: false
 
 routes = () ->
 	@use user_controller.Router
@@ -79,7 +72,7 @@ configure = () ->
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams
-	# @use Referrer.isGoodReferrer
+	@use Referrer.isGoodReferrer
 	@use '/admin', passport.initialize()
 	@use '/admin', passport.session()
 	@use '/admin', Auth.isAuth
