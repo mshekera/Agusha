@@ -18,11 +18,38 @@ mixin add_client(i)
 						input(type="email", name!="client[#{i}][email]", placeholder="E-mail друга")
 
 block append content
+	#success_message.message.inline_adorable_container
+		.adorable
+			div.message_top.adorable_table(class='green')
+				.adorable_cell
+					.label.novito_nova.white_font Ну вот...
+					.top_label.non_uppercase.dark_font
+						| Вы отписались от новостей сайта 
+						a.message_link(href=base_url) agusha.com.ua.
+			
+			div.message_bottom.adorable_table(class='darkgreen')
+				.adorable_cell
+					button.middle_button.white.uppercase.bold.close(class='darkgreen_font') Вернуться на сайт
+			
+			div.close_button.close(class='darkgreen_font') &times;
+	
+	#error_message.message.inline_adorable_container
+		.adorable
+			div.message_top.adorable_table(class='red')
+				.adorable_cell
+					.label.novito_nova.white_font Ошибка
+					.top_label.non_uppercase.dark_font
+						| Вы отписались от новостей сайта 
+						a.message_link(href=base_url) agusha.com.ua.
+			
+			div.message_bottom.adorable_table(class='darkred')
+				.adorable_cell
+					button.middle_button.white.uppercase.bold.close(class='darkred_font') Вернуться на сайт
+			
+			div.close_button.close(class='darkred_font') &times;
+	
 	#success.content
 		include ../../../helpers/user/breadcrumbs/breadcrumbs
-		
-		- if (err || message)
-			include ../../../helpers/user/message/message
 		
 		.topper.blue.adorable_table
 			.adorable_cell

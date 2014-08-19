@@ -129,19 +129,12 @@ exports.invite = (req, res) ->
 				, next
 			(result) ->
 				err = null
+				data = {}
 				
-				alreadyInvitedLength = already_invited.length
-				if alreadyInvitedLength
-					err = ''
-					
-					while alreadyInvitedLength--
-						client = already_invited[alreadyInvitedLength]
-						req.session.err += '<div>' + client.login + ' уже приглашен. Попробуйте пригласить еще кого-нибудь.</div>'
-				else
-					req.session.message = 'ТЕПЕРЬ ВАШИ ДРУЗЬЯ БУДУТ В КУРСЕ ВСЕГО САМОГО ПОЛЕЗНОГО И ИНТЕРЕСНОГО.'
-					req.session.messageLabel = 'Спасибо!'
+				if already_invited.length
+					data.already_invited = already_invited
 				
-				View.ajaxResponse res, err
+				View.ajaxResponse res, err, data
 		], (err) ->
 			inviteErr err, res
 

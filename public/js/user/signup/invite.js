@@ -57,23 +57,50 @@ var Invite_controller = can.Control.extend(
 			}
 		},
 		
-		success_activation: function(response) {
+		success_invite: function(response) {
 			this.submitted = false;
 			
 			if(response.err) {
-				$('#main_container').find('.message').find('.dark_font').html(response.err);
-				this.show_error();
-				return;
+				$('#error_message').find('.dark_font').html(response.err);
+				return this.show_error();
 			}
 			
 			_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 			_gaq.push(['_trackEvent', 'invite', 'click']);
 			
+			var already_invited = response.data.already_invited;
 			
+			if(already_invited && already_invited.length) {
+				var	msg = '',
+					i, client;
+				
+				for(i = already_invited.length; i--;) {
+					client = already_invited[i];
+					msg += '<div>' + client.login + ' уже приглашен. Попробуйте пригласить еще кого-нибудь.</div>';
+				}
+				
+				$('#error_message').find('.dark_font').html(msg);
+				return this.show_error();
+			}
+			
+			var success_message = $('#success_message');
+			
+			success_message.find('.white_font').html('Спасибо!');
+			success_message.find('.dark_font').html('ТЕПЕРЬ ВАШИ ДРУЗЬЯ БУДУТ В КУРСЕ ВСЕГО САМОГО ПОЛЕЗНОГО И ИНТЕРЕСНОГО.');
+			
+			this.show_success();
+		},
+		
+		show_success: function() {
+			this.show_message($('#success_message'));
 		},
 		
 		show_error: function() {
-			$('.message').easyModal({
+			this.show_message($('#error_message'));
+		},
+		
+		show_message: function(selector) {
+			selector.easyModal({
 				autoOpen: true,
 				overlayOpacity: 0.9,
 				overlayColor: "#ffffff",
