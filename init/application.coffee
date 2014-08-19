@@ -66,6 +66,10 @@ configure = () ->
 		res.set 'Content-Type', 'text/plain'
 		res.send "User-agent: *\nDisallow: /"
 	
+	@use '/loaddy_1357.html', (req, res)->
+		res.set 'Content-Type', 'text/plain'
+		res.send "f69d1b81b9888a5057c327f01ac24ca7a2c80def0c4567c0b40961c2"
+	
 	@use multer {
 		dest: './public/img/uploads/'
 		onFileUploadComplete: Image.doResize
