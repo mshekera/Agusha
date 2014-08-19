@@ -5,6 +5,8 @@ $('.unsubscribe_message').easyModal({
 	onClose: function(myModal) {
 		_gaq.push(['_setReferrerOverride', decodeURI(document.location.href)]);
 		_gaq.push(['_trackEvent', 'closeerror', 'click']);
+		
+		location.href = '/';
 	}
 });
 

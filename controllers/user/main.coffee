@@ -10,7 +10,7 @@ time = require '../../utils/time'
 
 gallery = require '../../meta/gallery'
 
-exports.index = (req, res) ->
+setData = () ->
 	currentDate = moment()
 	endDate = moment '01.10.2014', 'DD/MM/YYYY'
 	diffInDays = endDate.diff currentDate, 'days'
@@ -19,10 +19,9 @@ exports.index = (req, res) ->
 		gallery: gallery
 		daysArray: _.chars diffInDays+''
 		declension: time.declension diffInDays
-	
-	if req.session.unsubscribe
-		data.unsubscribe = true
-		delete req.session.unsubscribe
+
+exports.index = (req, res) ->
+	data = setData()
 	
 	View.render 'user/index', res, data, req.path
 	
@@ -49,6 +48,9 @@ exports.index = (req, res) ->
 		# Logger.log 'info', "Error in controllers/user/main/index: #{error}"
 
 exports.unsubscribe = (req, res) ->
-	req.session.unsubscribe = true
+	data = setData()
+	data.unsubscribe = true
 	
-	res.redirect '/'
+	View.render 'user/index', res, data, req.path
+	
+	# res.redirect '/'
