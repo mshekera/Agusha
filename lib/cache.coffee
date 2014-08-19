@@ -69,6 +69,24 @@ exports.list = list = [
 		prefix: 'feedengup_'
 		prefixKey: 'feeding_up'
 	}
+	{
+		segment: '/product'
+		name: 'Продукт'
+		prefix: 'product_'
+		prefixKey: 'product'
+	}
+	{
+		segment: '/article'
+		name: 'Статья'
+		prefix: 'article_'
+		prefixKey: 'article'
+	}
+	{
+		segment: '/specialist'
+		name: 'Статья'
+		prefix: 'specialist_'
+		prefixKey: 'specialist'
+	}
 ]
 
 
