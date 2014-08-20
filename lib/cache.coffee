@@ -188,33 +188,29 @@ removeExpired = (pathToFile, callback)->
 # 	Check cache file timestamp for putting cache
 # ###
 
-checkExpiredPut = (cachename, cb)->
-	fName = cachename.split('/').pop()
-	time = fName.split('_').pop()
-
+checkExpiredPut = (cachename)->
+	time = cachename.split('_').pop()
+	
 	diff = (new Date().getTime())-time
-
-	if diff > 1800000
-		return cb null, cachename
-
-	cb true
-
+	
+	if diff > 3600000
+		return cachename
+	
+	return false
 
 # ###
 # 	Check cache file timestamp for request cache
 # ###
 
-checkExpiredRequest = (cachename, cb)->
-	fName = cachename.split('/').pop()
-	time = fName.split('_').pop()
+checkExpiredRequest = (cachename)->
+	time = cachename.split('_').pop()
 
 	diff = (new Date().getTime())-time
 
-	if diff < 1800000
-		return cb null, cachename
+	if diff < 3600000
+		return cachename
 
-	cb()
-
+	return false
 
 # ###
 # 	Getting prefix by path(request or view)
@@ -260,20 +256,26 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 		.createHash('md5')
 		.update(reqPath)
 		.digest 'hex'
-
+	
 	async.waterfall [
 		(next)->
 			cacheOptionsByPath reqPath, next
 		(options, next)->
 			data.options = options
 
-			globString = "#{cacheDirectory}/#{options.prefix}_#{cacheRegExp}_*"
+			globString = "#{cacheDirectory}/#{options.prefix}#{cacheRegExp}_*"
 
 			glob globString, next
 		(files, next) ->
-			async.map files, checkExpiredPut, next
-		(expiredFiles, next)->
-			async.each expiredFiles, removeExpired, next
+			expiredFiles = []
+			
+			filesLength = files.length
+			while filesLength--
+				file = files[filesLength]
+				if checkExpiredPut file
+					expiredFiles.push file
+			
+			async.each expiredFiles, fs.unlink, next 
 		(next)->
 			jade.renderFile "#{viewDirectory}/#{viewPath}.jade", viewData, next
 		(html, next)->
@@ -286,11 +288,9 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 			callback()
 	], callback
 
-
 ###
 	Request cachefile
 ###
-
 
 exports.requestCache = (req, res, callback)->
 	path = req.path
@@ -315,23 +315,28 @@ exports.requestCache = (req, res, callback)->
 
 			glob globString, next
 		(files, next)->
-			async.map files, checkExpiredRequest, next
-		(cacheArr, next)->
+			cacheArr = []
+			
+			filesLength = files.length
+			while filesLength--
+				file = files[filesLength]
+				if checkExpiredRequest file
+					cacheArr.push file
+			
 			cacheFileName = cacheArr.pop()
-
+			
 			if not cacheFileName
 				return callback()
-
+			
 			optionsReadFile =
 				encoding: 'utf-8'
-
+			
 			fs.readFile cacheFileName, optionsReadFile, next
 		(html, next)->
 			res.set 'Content-Type', 'text/html'
-
+			
 			res.send html
 	], callback
-
 
 # ###
 # 	Remove cache by id
