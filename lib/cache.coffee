@@ -103,6 +103,12 @@ exports.list = list = [
 		prefix: 'action_'
 		prefixKey: 'action'
 	}
+	{
+		segment: '/testing'
+		name: 'Тестирование jade'
+		prefix: 'testing_'
+		prefixKey: 'testing'
+	}
 ]
 
 

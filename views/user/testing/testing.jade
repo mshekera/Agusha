@@ -1,0 +1,44 @@
+doctype html
+html(lang="ru")
+	head
+		block header
+			meta(charset="UTF-8")
+			title
+				block title
+					| Jade testing
+			link(rel="stylesheet" href="/css/user/testing/testing.css")
+	
+	body
+		.testing_block
+			button#render.testing_button Render
+			span
+		
+		.testing_block
+			button#include.testing_button With include
+			span
+		
+		.testing_block
+			button#block.testing_button With block
+			span
+		
+		.testing_block
+			button#block_append.testing_button With block append
+			span
+		
+		.testing_block
+			button#mixin.testing_button With mixin
+			span
+		
+		.testing_block
+			button#everything.testing_button With everything
+			span
+		
+		.testing_block
+			button#cache_button Cached
+			span
+		
+		block scripts
+			script(src="/js/jquery-1.11.1.min.js")
+			script(src="/js/plugins/can/can.js")
+			script(src="/js/plugins/async/async.js")
+			script(src="/js/user/testing/testing.js")

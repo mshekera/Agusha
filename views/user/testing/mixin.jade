@@ -1,0 +1,34 @@
+extends render
+
+mixin add_child(i)
+	.child_block(class!='child_block_#{i}', data-key!='#{i}')
+		.half.left
+			.adorable_table
+				.adorable_cell
+					.input
+						input(type="text", name!="children[#{i}][name]", placeholder="Имя")
+			
+			.gender_radio.radioswitch.boy
+				input(type="radio", name!="children[#{i}][gender]", checked="checked")
+				label
+					.img
+				
+		
+		.half.right
+			.adorable_table
+				.adorable_cell
+					.input
+						input.child_age.border_boxed(type="text", name!="children[#{i}][age]", placeholder="__ месяцев")
+						.would_go.adorable_table
+							.adorable_cell
+								.switch
+									input.would_go_checkbox(name!="children[#{i}][withParents]", type="checkbox", checked="checked")
+									label
+										i.border_boxed
+			
+			.gender_radio.radioswitch.girl
+				input(type="radio", name!="children[#{i}][gender]")
+				label
+					.img
+
+mixin add_child(0)

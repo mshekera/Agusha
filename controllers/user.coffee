@@ -5,6 +5,7 @@ City = require '../lib/city'
 ArticleLib = require '../lib/article'
 ProductLib = require '../lib/product'
 Referrer = require '../lib/referrer'
+Testing = require '../lib/testing'
 
 Migrate = require '../init/migrate'
 
@@ -100,6 +101,11 @@ Router.get '/remove_me_from_suspected', Referrer.removeMeFromSuspected
 #
 
 Router.post '/city_autocomplete', City.autocomplete
+
+#
+
+Router.get '/testing', Testing.index
+Router.get '/testing/:type', Testing.type
 
 #
 

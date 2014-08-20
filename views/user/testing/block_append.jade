@@ -1,0 +1,68 @@
+extends render
+
+block append content
+	.content
+		.left.border_boxed.white
+			.content_block
+				.adorable_table
+					.adorable_cell
+						.top_label А у нас
+						.label.novito_nova.dark_font
+							| Сегодня
+							br
+							| в меню
+						a(href="/products")
+							button.blue Еще
+			
+			a(href = '/products')
+				.content_block.product
+					.adorable_table
+						.adorable_cell
+							img.product_img(src="/img/user/main/Agysha_paket_sok_apple_light_200g.jpg")
+							.product_label.adorable_table
+								.adorable_cell Фруктовые<br>соки
+			
+			a(href = '/products')
+				.content_block.product
+					.adorable_table
+						.adorable_cell
+							img.product_img(src="/img/user/main/Agysha_yogyrt_zlaki1.jpg")
+							.product_label.adorable_table
+								.adorable_cell Детские<br>йогурты
+			
+			a(href = '/products')
+				.content_block.product
+					.adorable_table
+						.adorable_cell
+							img.product_img(src="/img/user/main/AgushaPack.cereals_100g_s.jpg")
+							.product_label.adorable_table
+								.adorable_cell Детские<br>творожки
+		
+		.right.border_boxed.green.adorable_table
+			.adorable_cell
+				.label.novito_nova
+					| Что малышу
+					br
+					| для счастья надо?
+				
+				.top_label
+					| Узнайте через
+				
+				a.bannerleft(href="/signup")
+					button.middle_button.yellow Зарегистрироваться
+		
+		if unsubscribe
+			.message.unsubscribe_message.inline_adorable_container
+				.adorable
+					div.message_top.adorable_table(class='green')
+						.adorable_cell
+							.label.novito_nova.white_font Ну вот...
+							.top_label.non_uppercase.dark_font
+								| Вы отписались от новостей сайта 
+								a.message_link(href=base_url) agusha.com.ua.
+					
+					div.message_bottom.adorable_table(class='darkgreen')
+						.adorable_cell
+							button.middle_button.white.uppercase.bold.close(class='darkgreen_font') Вернуться на сайт
+					
+					div.close_button.close(class='darkgreen_font') &times;
