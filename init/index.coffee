@@ -1,4 +1,4 @@
-require('look').start 1007, '109.74.0.77'
+# require('look').start 1007, '109.74.0.77'
 async = require 'async'
 _ = require 'underscore'
 _.str = require 'underscore.string'
