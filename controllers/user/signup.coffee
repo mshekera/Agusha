@@ -177,7 +177,7 @@ exports.activate = (req, res) ->
 		
 		data.client = results.client
 		
-		View.render 'user/signup/activate/activate', res, data, req.path
+		View.render 'user/signup/activate/activate', res, data
 
 exports.activatePost = (req, res) ->
 	salt = req.body.salt

@@ -250,8 +250,6 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 
 	data = {}
 
-	console.log reqPath
-
 	cacheRegExp = crypto
 		.createHash('md5')
 		.update(reqPath)
