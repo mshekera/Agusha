@@ -5,14 +5,16 @@ _.str = require 'underscore.string'
 moment = require 'moment'
 
 Database = require './database'
-Logger = require '../lib/logger'
-Image = require '../lib/image'
-Product = require '../lib/product'
-Article = require '../lib/article'
 Migrate = require './migrate'
 Application = require './application'
 AuthStartegies = require './auth'
 ModelPreloader = require './mpload'
+
+Logger = require '../lib/logger'
+Image = require '../lib/image'
+Product = require '../lib/product'
+Article = require '../lib/article'
+Cache = require '../lib/cache'
 
 process.setMaxListeners 0
 
@@ -60,6 +62,10 @@ async.waterfall [
 		Application.listen appPort, next
 	(next) ->
 		Logger.log 'info', "Application is binded to #{appPort}"
+		
+		Cache.cronJob next
+	(next) ->
+		Logger.log 'info', "Cache cronJob is started"
 ], (err) ->
 	error = err.message || err
 	Logger.error 'Init error: ', error

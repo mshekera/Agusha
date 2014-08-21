@@ -7,6 +7,9 @@ glob = require 'glob'
 moment = require 'moment'
 jade = require 'jade'
 _ = require 'underscore'
+cronJob = require('cron').CronJob
+
+Logger = require './logger'
 
 # ###
 # 	List of first segment's which will cached
@@ -342,7 +345,7 @@ exports.requestCache = (req, res, callback)->
 # 	Remove cache by id
 # ###
 
-exports.erease = (id, cb)->
+exports.erease = erase = (id, cb)->
 	async.waterfall [
 		(next)->
 			glob "#{cacheDirectory}/#{id}*", next
@@ -353,3 +356,17 @@ exports.erease = (id, cb)->
 		(next)->
 			cb null
 	], cb
+
+exports.cronJob = (next) ->
+	new cronJob '0 */6 * * * *', ->
+		async.waterfall [
+			(next)->
+				erase 'signup', next
+			() ->
+				Logger.log 'info', "Cache cronJob is done"
+		], (err) ->
+			error = err.message or err
+			Logger.log 'info', "Error in lib/cache/cronJob: #{error}"
+	, null, true, 'Europe/Kiev'
+	
+	next null
