@@ -106,6 +106,7 @@ Router.post '/city_autocomplete', City.autocomplete
 
 Router.get '/testing', Testing.index
 Router.get '/testing/:type', Testing.type
+Router.get '/images', Testing.images
 
 #
 

@@ -112,6 +112,12 @@ exports.list = list = [
 		prefix: 'testing_'
 		prefixKey: 'testing'
 	}
+	{
+		segment: '/images'
+		name: 'Тестирование картинок'
+		prefix: 'images_'
+		prefixKey: 'images'
+	}
 ]
 
 
