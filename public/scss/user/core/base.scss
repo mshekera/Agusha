@@ -51,13 +51,13 @@ h3 {
 			text-align: center;
 			
 			.menu_block {
-				padding: 5px 0 0 17px;
+				padding: 5px 0 0 3%;
 			}
 		}
 	}
 	
 	.menu_block {
-		padding: 5px 6px;
+		padding: 5px 0.5%;
 		height: 100%;
 		position: relative;
 		display: inline-block;
@@ -65,7 +65,7 @@ h3 {
 		
 		span {
 			@include border_radius(100px);
-			padding: 8px 15px;
+			padding: 8px 10px;
 			font-size: 112.5%;
 			
 			&:hover, &.active {
@@ -133,7 +133,7 @@ h3 {
 		}
 		
 		&.contacts {
-			padding-left: 75px !important;
+			padding-left: 7% !important;
 		}
 	}
 	
@@ -151,7 +151,7 @@ h3 {
 	}
 	
 	.before_logo {
-		margin-right: 12px;
+		margin-right: 7%;
 	}
 	
 	.after_logo {
