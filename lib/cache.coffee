@@ -228,7 +228,7 @@ cacheOptionsByPath = (path, cb)->
 
 			return next null, segmentPrefix
 		(segmentPrefix, next)->
-			objCacheOptions = _.findWhere list, { prefixKey: segmentPrefix}
+			objCacheOptions = _.findWhere list, { prefixKey: segmentPrefix }
 
 			if not objCacheOptions
 				return cb new Error 'Options of cache not exist'
@@ -248,9 +248,9 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 
 	viewData = _.extend viewData, globals
 
-	lang = globals.lang
-
 	data = {}
+
+	console.log req.path
 
 	cacheRegExp = crypto
 		.createHash('md5')
@@ -270,8 +270,10 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 			expiredFiles = []
 			
 			filesLength = files.length
+
 			while filesLength--
 				file = files[filesLength]
+
 				if checkExpiredPut file
 					expiredFiles.push file
 			
