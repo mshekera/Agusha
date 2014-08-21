@@ -358,7 +358,7 @@ exports.erease = erase = (id, cb)->
 	], cb
 
 exports.cronJob = (next) ->
-	new cronJob '0 */6 * * * *', ->
+	new cronJob '0 0 */6 * * *', ->
 		async.waterfall [
 			(next)->
 				erase 'signup', next
