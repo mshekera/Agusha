@@ -16,6 +16,7 @@ exports.index = (req, res) ->
 			View.render 'admin/board/tour_records/index', res, {tour_records: docs}
 	], (err) ->
 		Logger.log 'info', "Error in lib/tour_record/index: #{err.message or err}"
+		res.send error
 
 exports.item = (req, res) ->
 	id = req.params.id
@@ -32,3 +33,4 @@ exports.item = (req, res) ->
 			doc.save()
 	], (err) ->
 		Logger.log 'info', "Error in lib/tour_record/item: #{err.message or err}"
+		res.send error

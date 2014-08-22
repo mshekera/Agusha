@@ -17,6 +17,7 @@ exports.index = (req, res) ->
 			View.render 'admin/board/news/index', res, news: docs
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/news/index: %s #{err.message or err}"
+		res.send error
 
 exports.get = (req, res) ->
 	id = req.params.id

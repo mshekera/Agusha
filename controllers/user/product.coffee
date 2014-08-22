@@ -35,3 +35,4 @@ exports.index = (req, res) ->
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/product/index: #{error}"
+		res.send error

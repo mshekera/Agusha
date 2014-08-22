@@ -20,6 +20,7 @@ exports.index = (req, res) ->
 			View.render 'admin/board/products/index', res, products: docs
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/products/index: %s #{err.message or err}"
+		res.send error
 
 preloadData = (product, cb) ->
 	if typeof product is 'function'
@@ -58,6 +59,7 @@ exports.get = (req, res) ->
 			View.render 'admin/board/products/edit', res, results
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/products/get: %s #{err.message or err}"
+		res.send error
 
 exports.create = (req, res) ->
 	async.waterfall [
@@ -66,7 +68,7 @@ exports.create = (req, res) ->
 			View.render 'admin/board/products/edit', res, results
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/products/create: %s #{err.message or err}"
-
+		res.send error
 
 exports.save = (req, res) ->
 	_id = req.body.id

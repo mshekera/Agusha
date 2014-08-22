@@ -34,6 +34,7 @@ exports.index = (req, res) ->
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/products/index: #{error}"
+		res.send error
 
 exports.findAll = (req, res) ->
 	data = {}

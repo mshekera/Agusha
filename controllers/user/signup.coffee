@@ -176,7 +176,8 @@ exports.activate = (req, res) ->
 	, (err, results) ->
 		if err
 			error = err.message or err
-			return Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
+			Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
+			return res.send error
 		
 		data.client = results.client
 		

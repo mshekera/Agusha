@@ -22,6 +22,7 @@ exports.index = (req, res) ->
 			View.render 'admin/board/clients/index', res, {clients: docs}
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/clients/index: #{err.message or err}"
+		res.send error
 
 exports.process = (req, res) ->
 	async.waterfall [
@@ -93,4 +94,3 @@ exports.export = (req, res) ->
 			res.setHeader "Content-Disposition", "attachment; filename=Clients.xlsx"
 			res.end result, 'binary'
 	], (err) ->
-
