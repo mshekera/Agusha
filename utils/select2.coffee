@@ -1,7 +1,13 @@
-exports.convertToSelect2Results = (result, data, callback) ->
-	converted =
-		id: data._id
-		text: data.name
+exports.convertToSelect2Results = (data) ->
+	result = []
 	
-	result.push converted
-	callback()
+	dataLength = data.length
+	while dataLength--
+		item = data[dataLength]
+		converted =
+			id: item._id
+			text: item.name
+		
+		result.push converted
+	
+	return result
