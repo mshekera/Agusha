@@ -17,10 +17,7 @@ exports.autocomplete = (req, res) ->
 			findOptions =
 				name: new RegExp str, 'i'
 			
-			sortOptions =
-				lean: true
-			
-			Model 'City', 'find', next, findOptions, 'name', sortOptions
+			Model 'City', 'find', next, findOptions, 'name'
 		(docs, next) ->
 			docs = select2.convertToSelect2Results docs
 			
