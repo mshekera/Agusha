@@ -46,10 +46,10 @@ configure = () ->
 	@set 'views', "#{__dirname}/../views"
 	@set 'view engine', 'jade'
 	@set 'view options', jadeOptions
-	@use compression
-		threshold: 2048
-	@use gzip.gzip
-		matchType: ///js/image/images/image/img///
+	# @use compression
+		# threshold: 2048
+	# @use gzip.gzip
+		# matchType: ///js/image/images/image/img///
 	@use '/js', express.static "#{__dirname}/../public/js"
 	@use '/img', express.static "#{__dirname}/../public/img"
 	@use '/attachable', express.static "#{__dirname}/../public/img/admin/attachable"
