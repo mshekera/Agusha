@@ -327,6 +327,8 @@ exports.requestCache = (req, res, callback)->
 					cacheArr.push file
 			
 			cacheFileName = cacheArr.pop()
+
+			console.log cacheFileName
 			
 			if not cacheFileName
 				return callback()
