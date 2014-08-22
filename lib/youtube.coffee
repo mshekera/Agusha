@@ -34,3 +34,4 @@ exports.getChannelVideos = (name, callback) ->
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in lib/youtube/getChannelVideos: #{error}"
+		callback error
