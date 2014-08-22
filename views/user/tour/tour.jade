@@ -274,27 +274,80 @@ block append content
 		
 		.tour_reviews.white
 			.top
-				.avatar
-					img(src="/img/user/tour/avatar.jpg")
-					.signature.adorable_table
+				.review_block.review_control.active.review_1
+					.avatar
+						img(src="/img/user/tour/avatar_1.jpg")
+						.signature.adorable_table
+							.adorable_cell
+								.position Мама Марии, 1,9 годика
+								.name Ольга Анисимова
+					
+					.text.adorable_table.border_boxed
 						.adorable_cell
-							.position Мама Саши
-							.name Инна Васильева
+							| «Агушу» кушаем давно. Моя малышка очень любит пюрешки, кефир и йогурты «Агуша». Одобряем «Агушу», особенно после экскурсии по заводу, когда можно своими глазами все увидеть. Летом мы не готовим кисломолочную продукцию дома. Нельзя добиться такой же стерильности, как на производстве детского питания. На «Заводе Агуша» все чисто, аккуратно, стерильно.
 				
-				.text.adorable_table.border_boxed
-					.adorable_cell
-						| Очень понравилось! И судя по рассказам и увиденному - делаю вывод, что Агуша (йогурт и творожок) на сегодняшний день для деток самое лучшее!!! Даже лучше чем домашнее, так как там все стерильно и качество молока проверено.
+				.review_block.review_control.review_2
+					.avatar
+						img(src="/img/user/tour/avatar_2.jpg")
+						.signature.adorable_table
+							.adorable_cell
+								.position Мама Милены, 2 года
+								.name Наталья Марчук
+					
+					.text.adorable_table.border_boxed
+						.adorable_cell
+							| Шикарный завод! Здорово, что само производство находится за стеклом, и никакая инфекция не может проникнуть. После увиденного стали еще больше доверять производственному детскому питанию.
+				
+				.review_block.review_control.review_3
+					.avatar
+						img(src="/img/user/tour/avatar_3.jpg")
+						.signature.adorable_table
+							.adorable_cell
+								.position Мама 2-х детей
+								.name Дарья Бахтала
+					
+					.text.adorable_table.border_boxed
+						.adorable_cell
+							| Не ожидала, что на производстве все продумано до мельчайших подробностей и настолько соблюдена стерильность. На «Заводе Агуша» все внушает доверие. Такого не добиться вне производства. Одобряю детское питание «Агуша», даю его детям в течении 2-х лет. Они у меня любят кисломолочку. Завод меня действительно удивил, и детям было очень интересно.
+				
+				.review_block.review_control.review_4
+					.avatar
+						img(src="/img/user/tour/avatar_4.jpg")
+						.signature.adorable_table
+							.adorable_cell
+								.position Мама 2-х детей
+								.name Ирина Головата
+					
+					.text.adorable_table.border_boxed
+						.adorable_cell
+							| На производстве мне больше всего понравилась стерильность, работа строго по технологиям. Дома не добиться такой же чистоты как на специализированном заводе. Я выбираю производственное питание и не готовлю кисломолочную продукцию дома. «Агушу» даю ребенку с 6 месяцев. Мне «Агуша» очень нравится и по консистенции, и по вкусу.
+				
+				.review_block.review_control.review_5
+					.avatar
+						img(src="/img/user/tour/avatar_5.jpg")
+						.signature.adorable_table
+							.adorable_cell
+								.position Мама 2-х детей
+								.name Валентина Ландарь
+					
+					.text.adorable_table.border_boxed
+						.adorable_cell
+							| Удивило количество различных агрегатов в 2 этажа. После того как увидели все собственными глазами – стали больше доверять производственному детскому питанию. Вряд ли при приготовлении детского питания дома, можно добиться такой же стерильности, как на «Заводе Агуша».
 			
 			.bottom
 				.reviews_navigator.centered
-					.review_button.review_1.rounded.active(data-review="1")
+					.review_button.review_control.review_1.rounded.active(data-review="1")
+					.review_button.review_control.review_2.rounded(data-review="2")
+					.review_button.review_control.review_3.rounded(data-review="3")
+					.review_button.review_control.review_4.rounded(data-review="4")
+					.review_button.review_control.review_5.rounded(data-review="5")
 				
 				.review_arrows
-					.half.left
+					.half.left.prev_review
 						.adorable_table
 							.adorable_cell
 					
-					.half.right
+					.half.right.next_review
 						.adorable_table
 							.adorable_cell
 		
