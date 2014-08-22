@@ -297,6 +297,8 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 
 exports.requestCache = (req, res, callback)->
 	path = req.path
+
+	console.log path
 	
 	if not existSegment path
 		return callback()
