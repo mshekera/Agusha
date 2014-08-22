@@ -6,3 +6,6 @@ exports.title_case = (str) ->
 	rest = (str.substr 1, str.length - 1).toLowerCase()
 	
 	first + rest
+
+exports.escape = (text) ->
+    text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
