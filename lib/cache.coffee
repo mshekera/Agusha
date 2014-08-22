@@ -297,6 +297,8 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 
 exports.requestCache = (req, res, callback)->
 	path = req.path
+
+	console.log path
 	
 	if not existSegment path
 		return callback()
@@ -327,6 +329,8 @@ exports.requestCache = (req, res, callback)->
 					cacheArr.push file
 			
 			cacheFileName = cacheArr.pop()
+
+			console.log cacheFileName
 			
 			if not cacheFileName
 				return callback()
