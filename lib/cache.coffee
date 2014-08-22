@@ -4,6 +4,7 @@ async = require 'async'
 crypto = require 'crypto'
 path = require 'path'
 glob = require 'glob'
+Glob = glob.Glob
 moment = require 'moment'
 jade = require 'jade'
 _ = require 'underscore'
@@ -128,11 +129,10 @@ viewDirectory = "#{__dirname}/../views"
 # ###
 
 exports.cacheCount = (cacheOptions, callback)->
-	glob "#{cacheDirectory}/#{cacheOptions.prefix}*", (err, files)->
+	new Glob "#{cacheDirectory}/#{cacheOptions.prefix}*", cache: false, (err, files)->
 		cacheOptions.count = files.length
-
+		
 		callback (err||null), (cacheOptions||null)
-
 
 # ###
 # 	Size of cache files by list
@@ -142,11 +142,11 @@ exports.cacheSize = (cacheOptions, callback)->
 	async.waterfall [
 		(next)->
 			cacheOptions.sumSize = 0
-
-			glob "#{cacheDirectory}/#{cacheOptions.prefix}*", (err, files)->
+			
+			new Glob "#{cacheDirectory}/#{cacheOptions.prefix}*", cache: false, (err, files)->
 				if err
 					return cb null, cacheOptions
-
+				
 				next null, files
 		(files, next) ->
 			options =
@@ -245,7 +245,7 @@ cacheOptionsByPath = (path, cb)->
 # ###
 
 exports.put = (viewPath, viewData, reqPath, globals, callback)->
-	if typeof globasl is 'function'
+	if typeof globals is 'function'
 		callback = globals
 		globals = {}
 
@@ -265,8 +265,8 @@ exports.put = (viewPath, viewData, reqPath, globals, callback)->
 			data.options = options
 
 			globString = "#{cacheDirectory}/#{options.prefix}#{cacheRegExp}_*"
-
-			glob globString, next
+			
+			new Glob globString, cache: false, next
 		(files, next) ->
 			expiredFiles = []
 			
@@ -318,7 +318,7 @@ exports.requestCache = (req, res, callback)->
 
 			globString = "#{cacheDirectory}/#{options.prefix}#{cacheRegExp}_*"
 			console.time 'test'
-			glob globString, next
+			new Glob globString, cache: false, next
 		(files, next)->
 			console.timeEnd 'test'
 			cacheArr = []
@@ -353,7 +353,7 @@ exports.requestCache = (req, res, callback)->
 exports.erease = erase = (id, cb)->
 	async.waterfall [
 		(next)->
-			glob "#{cacheDirectory}/#{id}*", next
+			new Glob "#{cacheDirectory}/#{id}*", cache: false, next
 		(files, next)->
 			async.each files, (file, next2)->
 				fs.unlink file, next2
