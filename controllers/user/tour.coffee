@@ -37,6 +37,21 @@ exports.index = (req, res) ->
 		Logger.log 'info', "Error in controllers/user/tour/index: #{error}"
 		res.redirect '/'
 
+signUp = (data, callback) ->
+	signUpData =
+		login: data.firstname + ' ' + data.lastname
+		email: data.email
+	
+	async.waterfall [
+		(next) ->
+			Model 'Client', 'findOne', next, email: data.email
+		(doc) ->
+			if !doc?
+				return Client.signUp res, {}, signUpData, callback
+			
+			callback null
+	], callback
+
 exports.add_record = (req, res) ->
 	fields = [
 		'firstname'
@@ -72,19 +87,7 @@ exports.add_record = (req, res) ->
 			next()
 		(next) ->
 			if req.body.signup
-				signUpData =
-					login: data.firstname + ' ' + data.lastname
-					email: data.email
-				
-				return async.waterfall [
-					(next2) ->
-						Model 'Client', 'findOne', next, email: data.email
-					(doc) ->
-						if !doc?
-							return Client.signUp res, {}, signUpData, next
-						
-						next null
-				], next
+				return signUp data, next
 			
 			next null
 		(next) ->
