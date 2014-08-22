@@ -5,14 +5,17 @@ Model = require './model'
 Logger = require './logger'
 
 select2 = require '../utils/select2'
+string = require '../utils/string'
 
 exports.autocomplete = (req, res) ->
 	result = []
 	
 	async.waterfall [
 		(next) ->
+			str = string.escape req.body.term
+			
 			findOptions =
-				name: new RegExp req.body.term, 'i'
+				name: new RegExp str, 'i'
 			
 			Model 'City', 'find', next, findOptions
 		(docs, next) ->
