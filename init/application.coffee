@@ -33,7 +33,6 @@ sessionParams =
 	secret: '4159J3v6V4rX6y1O6BN3ASuG2aDN7q'
 
 routes = () ->
-	@use user_controller.Router
 	@use '/', user_controller.Router
 	@use '/admin', admin_controller.Router
 	@use (err, req, res, next) ->
@@ -46,10 +45,12 @@ configure = () ->
 	@set 'views', "#{__dirname}/../views"
 	@set 'view engine', 'jade'
 	@set 'view options', jadeOptions
+	
 	# @use compression
 		# threshold: 2048
 	# @use gzip.gzip
 		# matchType: ///js/image/images/image/img///
+	
 	@use '/js', express.static "#{__dirname}/../public/js"
 	@use '/img', express.static "#{__dirname}/../public/img"
 	@use '/attachable', express.static "#{__dirname}/../public/img/admin/attachable"
@@ -68,6 +69,7 @@ configure = () ->
 		onFileUploadComplete: Image.doResize
 	}
 	
+	@use Logger.request
 	@use Cache.requestCache
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'

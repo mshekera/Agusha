@@ -13,6 +13,7 @@ exports.index = (req, res) ->
 			View.render 'admin/board/ages/index', res, {ages: docs}
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/ages/index: %s #{err.message or err}"
+		res.send error
 
 exports.get = (req, res) ->
 	_id = req.params.id

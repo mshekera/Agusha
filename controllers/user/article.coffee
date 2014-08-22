@@ -33,6 +33,7 @@ exports.index = (req, res) ->
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/article/index: #{error}"
+		res.send error
 
 exports.specialist = (req, res) ->
 	data =
@@ -58,3 +59,4 @@ exports.specialist = (req, res) ->
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/article/specialist: #{error}"
+		res.send error

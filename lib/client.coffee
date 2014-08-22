@@ -45,7 +45,6 @@ exports.signUp = (res, data, post, callback) ->
 				doc[prop] = val
 			
 			doc.save next
-			#Model 'Client', 'create', next, post
 		(client, affected, next) ->
 			data.client = client
 			

@@ -13,6 +13,7 @@ exports.index = (req, res) ->
 			View.render 'admin/board/certificate/index', res, {certificates: docs}
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/certificate/index: %s #{err.message or err}"
+		res.send error
 
 exports.get = (req, res) ->
 	id = req.params.id

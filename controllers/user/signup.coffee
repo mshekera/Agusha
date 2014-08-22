@@ -54,87 +54,90 @@ exports.register = (req, res) ->
 		Logger.log 'info', "Error in controllers/user/signup/register: #{error}"
 		View.ajaxResponse res, error
 
+inviteMail = (res, client, friendDoc, callback) ->
+	data = {}
+	
+	async.waterfall [
+		(next) ->
+			friend = null
+			
+			options =
+				template: 'invite'
+				client: client
+			
+			if friendDoc
+				options.friend = friend = friendDoc.login								
+			
+			options.subject = 'Ваш друг ' + friend + ' приглашает вас в сообщество Агуша'
+			options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
+			
+			Client.sendMail res, options, (err) ->
+				if err
+					return client.remove callback
+				
+				next null
+		(next) ->
+			saltData =
+				salt: data.salt
+			
+			Model 'Salt', 'create', callback, saltData
+	], callback
+
+inviteMakeClient = (invited_by, already_invited, client, callback) ->
+	async.waterfall [
+		(next) ->
+			client.email = client.email.toLowerCase()
+			client.login = string.title_case client.login
+			
+			Model 'Client', 'findOne', next, email: client.email
+		(doc) ->
+			if doc
+				already_invited.push client
+				return callback null
+			
+			if !(client.login and client.email)
+				return callback null
+			
+			if invited_by?
+				client.invited_by = invited_by
+				client.type = 1
+			
+			doc = new mongoose.models.Client
+			
+			for own prop, val of client
+				doc[prop] = val
+			
+			doc.save callback
+	], callback
+
 exports.invite = (req, res) ->
 	invited_by = req.body.invited_by
 	
 	already_invited = []
 	
 	async.map req.body.client, (client, callback) ->
-		async.waterfall [
-			(next) ->
-				client.email = client.email.toLowerCase()
-				client.login = string.title_case client.login
-				
-				Model 'Client', 'findOne', next, email: client.email
-			(doc) ->
-				if doc
-					already_invited.push client
-					return callback null
-				
-				if client.login and client.email
-					if invited_by?
-						client.invited_by = invited_by
-						client.type = 1
-					
-					doc = new mongoose.models.Client
-					
-					for own prop, val of client
-						doc[prop] = val
-					
-					doc.save callback
-					
-					# Model 'Client', 'create', callback, client
-				else
-					callback null
-		], callback
+		inviteMakeClient invited_by, already_invited, client, callback
 	, (err, clients) ->
 		if err
-			inviteErr err, res
+			return inviteErr err, res
 		
 		async.waterfall [
 			(next) ->
 				Model 'Client', 'findById', next, invited_by
 			(doc, next) ->
 				async.map clients, (client, callback) ->
-					if client
-						data = {}
-						
-						async.waterfall [
-							(next2) ->
-								friend = null
-								
-								options =
-									template: 'invite'
-									client: client
-								
-								if doc
-									options.friend = friend = doc.login								
-								
-								options.subject = 'Ваш друг ' + friend + ' приглашает вас в сообщество Агуша'
-								options.salt = data.salt = new Buffer(client._id.toString()).toString 'base64'
-								
-								Client.sendMail res, options, (err) ->
-									if err
-										client.remove callback
-									else
-										next2 null
-							(next2) ->
-								saltData =
-									salt: data.salt
-								
-								Model 'Salt', 'create', callback, saltData
-						], callback
-					else
-						callback null
+					if !client
+						return callback null
+					
+					inviteMail res, client, doc, callback
 				, next
 			(result) ->
-				err = null
 				data = {}
 				
 				if already_invited.length
 					data.already_invited = already_invited
 				
-				View.ajaxResponse res, err, data
+				View.ajaxResponse res, null, data
 		], (err) ->
 			inviteErr err, res
 
@@ -173,7 +176,8 @@ exports.activate = (req, res) ->
 	, (err, results) ->
 		if err
 			error = err.message or err
-			return Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
+			Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
+			return res.send error
 		
 		data.client = results.client
 		

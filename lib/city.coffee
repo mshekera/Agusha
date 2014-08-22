@@ -17,13 +17,11 @@ exports.autocomplete = (req, res) ->
 			findOptions =
 				name: new RegExp str, 'i'
 			
-			Model 'City', 'find', next, findOptions
+			Model 'City', 'find', next, findOptions, 'name'
 		(docs, next) ->
-			async.each docs, (data, next2) ->
-				select2.convertToSelect2Results result, data, next2
-			, next
-		->
-			res.send result
+			docs = select2.convertToSelect2Results docs
+			
+			res.send docs
 	], (err) ->
 		console.log err
 		res.send err

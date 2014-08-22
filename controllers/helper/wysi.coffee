@@ -10,7 +10,7 @@ exports.get = (req, res) ->
 		if err
 			msg = "Error in wysi get: #{err.message or err}"
 			Logger.log 'error', msg
-			return res.send false
+			return res.send msg
 
 		results = []
 		for f in files

@@ -8,26 +8,29 @@ tree = require '../../utils/tree'
 
 breadcrumbs = require '../../meta/breadcrumbs'
 
+findArticlesAndSpecialist = (callback) ->
+	async.parallel
+		articles: (next) ->
+			findOptions =
+				type: 2
+				active: true
+			
+			Model 'Article', 'find', next, findOptions
+		specialist: (next) ->
+			findOptions =
+				type: 3
+				active: true
+			
+			Model 'Article', 'findOne', next, findOptions
+	, callback
+
 exports.index = (req, res) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'food'
 	
 	async.waterfall [
 		(next) ->
-			async.parallel
-				articles: (next2) ->
-					findOptions =
-						type: 2
-						active: true
-					
-					Model 'Article', 'find', next2, findOptions
-				specialist: (next2) ->
-					findOptions =
-						type: 3
-						active: true
-					
-					Model 'Article', 'findOne', next2, findOptions
-			, next
+			findArticlesAndSpecialist next
 		(results, next) ->
 			data.articles = results.articles
 			data.specialist = results.specialist
@@ -36,3 +39,4 @@ exports.index = (req, res) ->
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/food/index: #{error}"
+		res.send error

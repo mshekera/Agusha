@@ -1,4 +1,3 @@
-
 View = require '../../lib/view'
 
 tree = require '../../utils/tree'

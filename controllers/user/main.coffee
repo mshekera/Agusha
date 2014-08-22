@@ -46,6 +46,7 @@ exports.index = (req, res) ->
 	# ], (err) ->
 		# error = err.message or err
 		# Logger.log 'info', "Error in controllers/user/main/index: #{error}"
+		# res.send error
 
 exports.unsubscribe = (req, res) ->
 	data = setData()

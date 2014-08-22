@@ -19,3 +19,9 @@ exports.log = winston.log
 exports.error = winston.error
 
 exports.info = winston.info
+
+exports.request = (req, res, callback)->
+	msg = 'Request: ' + req.path
+	winston.log 'info', msg
+	
+	callback()

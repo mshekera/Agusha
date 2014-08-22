@@ -28,10 +28,11 @@ exports.index = (req, res) ->
 			data.product = doc
 			
 			data.breadcrumbs.push
-				parent_id: 'product'
+				parent_id: 'products'
 				title: data.product.title
 			
 			View.render 'user/product/product', res, data, req.path
 	], (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/product/index: #{error}"
+		res.send error

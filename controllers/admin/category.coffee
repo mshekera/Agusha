@@ -13,6 +13,7 @@ exports.index = (req, res) ->
 			View.render 'admin/board/category/index', res, {categories: docs}
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/category/index: %s #{err.message or err}"
+		res.send error
 
 exports.get = (req, res) ->
 	id = req.params.id
