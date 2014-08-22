@@ -28,7 +28,7 @@ exports.index = (req, res) ->
 			data.product = doc
 			
 			data.breadcrumbs.push
-				parent_id: 'product'
+				parent_id: 'products'
 				title: data.product.title
 			
 			View.render 'user/product/product', res, data, req.path

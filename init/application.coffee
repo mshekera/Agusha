@@ -68,6 +68,7 @@ configure = () ->
 		onFileUploadComplete: Image.doResize
 	}
 	
+	@use Logger.request
 	@use Cache.requestCache
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
