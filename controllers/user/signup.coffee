@@ -132,13 +132,12 @@ exports.invite = (req, res) ->
 					inviteMail res, client, doc, callback
 				, next
 			(result) ->
-				err = null
 				data = {}
 				
 				if already_invited.length
 					data.already_invited = already_invited
 				
-				View.ajaxResponse res, err, data
+				View.ajaxResponse res, null, data
 		], (err) ->
 			inviteErr err, res
 
