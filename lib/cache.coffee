@@ -317,10 +317,10 @@ exports.requestCache = (req, res, callback)->
 			data.options = options
 
 			globString = "#{cacheDirectory}/#{options.prefix}#{cacheRegExp}_*"
-			console.time 'test'
+			# console.time 'test'
 			new Glob globString, cache: false, next
 		(files, next)->
-			console.timeEnd 'test'
+			# console.timeEnd 'test'
 			cacheArr = []
 			
 			filesLength = files.length
