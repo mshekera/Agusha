@@ -162,7 +162,6 @@
 	}
 	
 	.image {
-		position: absolute;
 		width: 100%;
 		display: none;
 		
@@ -313,10 +312,6 @@
 			.article_date {
 				background: $darkyellow;
 			}
-		}
-		
-		.desc_images {
-			height: 190px;
 		}
 	}
 	
