@@ -142,7 +142,7 @@ body {
 .header .welcome {
 	width: 493px;
 	color: #fff;
-	font-size: 18pt;
+	font-size: 21px;
 	text-align: left;
 	font-weight: lighter;
 }
@@ -158,8 +158,8 @@ body {
 }
 
 .header .welcome .welcome_test {
-	margin-top: -47px;
-	margin-left: 33px;
+	margin-bottom: 47px;
+	padding:  0 33px;
 	line-height: 24pt;
 }
 
