@@ -73,6 +73,10 @@ exports.clientFail = (err, res)->
 
 	res.send data
 
+baseurl = (url)->
+	func = (path)->
+		url+path
+
 exports.globals = (req, res, callback)->
 	res.locals.defLang = 'ru'
 	res.locals.lang = req.lang
@@ -85,8 +89,7 @@ exports.globals = (req, res, callback)->
 	
 	res.locals.base_url = base_url = 'http://' + req.headers.host
 	res.locals.current_url = 'http://' + req.headers.host + req.originalUrl
-	res.locals.url = (path) ->
-		base_url + path
+	res.locals.url = baseurl base_url
 	
 	res.locals.params = req.params
 	

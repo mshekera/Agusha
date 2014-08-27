@@ -18,7 +18,7 @@ Cache = require '../lib/cache'
 
 process.setMaxListeners 0
 
-appPort = 80
+appPort = 8080
 
 _.mixin _.str.exports()
 
