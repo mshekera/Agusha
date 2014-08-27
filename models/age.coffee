@@ -37,6 +37,4 @@ schema = new mongoose.Schema
 ,
 	collection: 'age'
 
-
-
 module.exports = mongoose.model 'Age', schema

@@ -29,7 +29,7 @@ exports.removeMeFromSuspected = removeMeFromSuspected = (req, res)->
 	
 	async.waterfall [
 		(next) ->
-			Model 'Suspected', 'findOne', next, ip_address: ip
+			Model 'Suspected', 'findOne', next, ip_address: ip, '_id'
 		(doc, next) ->
 			if doc
 				return doc.remove next
@@ -50,7 +50,10 @@ exports.isGoodReferrer = (req, res, callback)->
 	
 	async.waterfall [
 		(next) ->
-			Model 'Suspected', 'findOne', next, ip_address: ip
+			sortOptions =
+				lean: true
+			
+			Model 'Suspected', 'findOne', next, ip_address: ip, '_id', sortOptions
 		(doc, next) ->
 			if !doc # client is not suspected yet, check him
 				referrer = req.header 'Referer'

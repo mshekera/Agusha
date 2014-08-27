@@ -8,7 +8,10 @@ mongoose = require 'mongoose'
 exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
-			Model 'Category', 'find', next
+			sortOptions =
+				lean: true
+			
+			Model 'Category', 'find', next, null, null, sortOptions
 		(docs) ->
 			View.render 'admin/board/category/index', res, {categories: docs}
 	], (err) ->
@@ -19,7 +22,10 @@ exports.get = (req, res) ->
 	id = req.params.id
 	async.waterfall [
 		(next) ->
-			Model 'Category', 'findOne', next, _id: id
+			sortOptions =
+				lean: true
+			
+			Model 'Category', 'findOne', next, _id: id, null, sortOptions
 		(doc, next) ->
 			if doc
 				View.render 'admin/board/category/edit', res, category: doc
@@ -83,7 +89,10 @@ exports.position = (req, res) ->
 	c_id = req.params.id
 	async.parallel 
 		category: (next) ->
-			Model 'Category', 'findOne', next, _id: c_id
+			sortOptions =
+				lean: true
+			
+			Model 'Category', 'findOne', next, _id: c_id, null, sortOptions
 		positions: (next) ->
 			async.waterfall [
 				(next2) ->

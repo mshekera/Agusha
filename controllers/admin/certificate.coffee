@@ -8,7 +8,10 @@ mongoose = require 'mongoose'
 exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
-			Model 'Certificate', 'find', next
+			sortOptions =
+				lean: true
+			
+			Model 'Certificate', 'find', next, null, null, sortOptions
 		(docs) ->
 			View.render 'admin/board/certificate/index', res, {certificates: docs}
 	], (err) ->
@@ -19,7 +22,10 @@ exports.get = (req, res) ->
 	id = req.params.id
 	async.waterfall [
 		(next) ->
-			Model 'Certificate', 'findOne', next, _id: id
+			sortOptions =
+				lean: true
+			
+			Model 'Certificate', 'findOne', next, _id: id, null, sortOptions
 		(doc, next) ->
 			if doc
 				View.render 'admin/board/certificate/edit', res, certificate: doc

@@ -13,12 +13,12 @@ exports.makeSearchOptions = makeSearchOptions = (category, age, callback) ->
 	async.parallel
 		category: (next) ->
 			if category
-				return Model 'Category', 'findOne', next, {url_label: category}, ''
+				return Model 'Category', 'findOne', next, {url_label: category}, '_id'
 			
 			next null
 		age: (next) ->
 			if age
-				return Model 'Age', 'findOne', next, {level: age}, ''
+				return Model 'Age', 'findOne', next, {level: age}, '_id'
 			
 			next null
 	, (err, results) ->
@@ -52,10 +52,14 @@ exports.getAgesAndCategories = (callback) ->
 			options =
 				sort:
 					level: 1
+				lean: true
 			
-			Model 'Age', 'find', next, {active: true}, {}, options
+			Model 'Age', 'find', next, {active: true}, null, options
 		categories: (next) ->
-			Model 'Category', 'find', next, {active: true}
+			options =
+				lean: true
+			
+			Model 'Category', 'find', next, {active: true}, null, options
 	}, callback
 
 exports.makeAliases = (callback) ->
