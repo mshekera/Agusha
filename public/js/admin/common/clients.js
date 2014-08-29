@@ -145,7 +145,7 @@ $(function(){
 					'<td>' + u.created_at + '</td>' +
 					'<td>' + u.activated_at + '</td>' +
 					'<td>' + u.type + '</td>' +
-					'<td>' + (u.invited_by?u.invited_ty.login:"-") + '</td>' +
+					'<td>' + (u.invited_by?u.invited_by.login:"-") + '</td>' +
 					'<td>' + (u.active?"Да":"Нет") + '</td>' +
 					'<td>' + '<input class="t-status" type="checkbox" data-id="' +
 					u._id + '"' + (u.status?' checked':'') + '/>' +'</td>' +
