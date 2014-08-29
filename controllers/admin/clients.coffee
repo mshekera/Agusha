@@ -7,22 +7,49 @@ Logger = require '../../lib/logger'
 
 Client = require '../../lib/client'
 
-exports.index = (req, res) ->
+index = (req, res, callback) ->
+	limit = req.body.limit || 100
+	page = req.body.page || 1
+	skip = (page - 1) * limit
+
+	clients = []
+	count = 0
 	async.waterfall [
 		(next) ->
-		# Why sort it if datatable resorting it by login after initialization?
-		#	options =
-		#		sort:
-		#			date: -1
+			options =
+				sort:
+					date: -1
 			
-			Model 'Client', 'find', next#, {}, {}, options
+			Model('Client', 'find', null, {}, {}, options)
+				.skip(skip)
+				.limit(limit)
+				.exec next
 		(docs, next) ->
 			Model 'Client', 'populate', next, docs, 'invited_by city'
-		(docs) ->
-			View.render 'admin/board/clients/index', res, {clients: docs}
+		(docs, next) ->
+			clients = docs
+			Model 'Client', 'count', next
+		(count) ->
+			callback null, [clients, count, page, limit]
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/clients/index: #{err.message or err}"
-		res.send error
+		return err
+
+exports.index = (req, res) ->
+	index req, res, (err, data) ->
+		return View.message false, err.message or err, res if err
+
+		[clients, count, page, limit] = data
+
+		View.render 'admin/board/clients/index', res, {clients, count, page, limit}
+
+exports.reindex = (req, res) ->
+	index req, res, (err, data) ->
+		return View.message false, err.message or err, res if err
+
+		[clients, count, page, limit] = data
+
+		res.send {clients, page, limit}
 
 exports.process = (req, res) ->
 	async.waterfall [
