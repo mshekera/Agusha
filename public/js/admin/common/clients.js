@@ -172,6 +172,7 @@ $(function(){
 			$('#client_list tbody').empty().html(string);
 
 			setPopovered();
+			iCheckAgain();
 		});
 	});
 
