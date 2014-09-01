@@ -57,9 +57,9 @@ exports.signUp = (res, data, post, callback) ->
 			
 			sendMail res, options, (err) ->
 				if err
-					client.remove next
-				else
-					next null
+					return next err
+				
+				next null
 		(next) ->
 			saltData =
 				salt: info.salt
