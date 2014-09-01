@@ -39,8 +39,6 @@ exports.registerGet = (req, res) ->
 	signUpData.ip_address = req.connection.remoteAddress
 	signUpData.login = string.title_case req.params.email
 	
-	console.log signUpData
-	
 	async.waterfall [
 		(next) ->
 			Client.signUp res, data, signUpData, next
