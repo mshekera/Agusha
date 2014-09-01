@@ -35,6 +35,8 @@ Router.get '/signup/activate/:salt', SignUp.activate
 Router.get '/signup/success', SignUp.success
 Router.get '/signup/success/:id', SignUp.success
 
+Router.get '/register/:email', SignUp.registerGet
+
 Router.post '/signup/invite', SignUp.invite
 Router.post '/signup/register', SignUp.register
 Router.post '/signup/activate', SignUp.activatePost

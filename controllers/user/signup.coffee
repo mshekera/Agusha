@@ -32,6 +32,30 @@ exports.registered = (req, res) ->
 	
 	View.render 'user/signup/signup', res, data, req.path
 
+exports.registerGet = (req, res) ->
+	data = {}
+	
+	signUpData = req.params
+	signUpData.ip_address = req.connection.remoteAddress
+	signUpData.login = string.title_case req.params.email
+	
+	console.log signUpData
+	
+	async.waterfall [
+		(next) ->
+			Client.signUp res, data, signUpData, next
+		(salt) ->
+			req.session.message = true
+			View.ajaxResponse res
+	], (err) ->
+		if err.code == 11000
+			error = 'Указанный e-mail уже зарегистрирован'
+		else
+			error = err.message or err
+		
+		Logger.log 'info', "Error in controllers/user/signup/register: #{error}"
+		View.ajaxResponse res, error
+
 exports.register = (req, res) ->
 	data = {}
 	
