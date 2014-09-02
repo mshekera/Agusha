@@ -11,6 +11,7 @@ index = (req, res, callback) ->
 	limit = req.body.limit || 100
 	page = req.body.page || 1
 	skip = (page - 1) * limit
+	searchString = req.body.string
 
 	clients = []
 	count = 0
@@ -19,8 +20,21 @@ index = (req, res, callback) ->
 			options =
 				sort:
 					date: -1
-			
-			Model('Client', 'find', null, {}, {}, options)
+
+			search = {}
+
+			if searchString
+				searchRegExp = new RegExp '.*' + searchString + '.*', 'g'
+				search =
+					$or: [
+						{ firstName: searchRegExp }
+						{ patronymic: searchRegExp }
+						{ lastName: searchRegExp }
+						{ email: searchRegExp }
+						{ login: searchRegExp }
+					]
+
+			Model('Client', 'find', null, search, {}, options)
 				.skip(skip)
 				.limit(limit)
 				.exec next
@@ -49,7 +63,7 @@ exports.reindex = (req, res) ->
 
 		[clients, count, page, limit] = data
 
-		res.send {clients, page, limit}
+		res.send {clients, count, page, limit}
 
 exports.process = (req, res) ->
 	async.waterfall [
