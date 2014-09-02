@@ -11,26 +11,40 @@ index = (req, res, callback) ->
 	limit = req.body.limit || 100
 	page = req.body.page || 1
 	skip = (page - 1) * limit
+	searchString = req.body.string
 
 	clients = []
-	count = 0
 	async.waterfall [
 		(next) ->
 			options =
 				sort:
 					date: -1
-			
-			Model('Client', 'find', null, {}, {}, options)
-				.skip(skip)
-				.limit(limit)
-				.exec next
+
+			search = {}
+
+			if searchString
+				searchRegExp = new RegExp '.*' + searchString + '.*', 'g'
+				search =
+					$or: [
+						{ firstName: searchRegExp }
+						{ patronymic: searchRegExp }
+						{ lastName: searchRegExp }
+						{ email: searchRegExp }
+						{ login: searchRegExp }
+					]
+
+			Model 'Client', 'find', next, search, {}, options
+				#.skip(skip)
+				#.limit(limit)
+				#.exec next
 		(docs, next) ->
 			Model 'Client', 'populate', next, docs, 'invited_by city'
-		(docs, next) ->
-			clients = docs
-			Model 'Client', 'count', next
-		(count) ->
-			callback null, [clients, count, page, limit]
+		(docs) ->
+			start = (page - 1) * limit
+			end = start + limit - 1
+			
+			clients = docs.slice start, end
+			callback null, [clients, docs.length, page, limit]
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/clients/index: #{err.message or err}"
 		return err
@@ -49,7 +63,7 @@ exports.reindex = (req, res) ->
 
 		[clients, count, page, limit] = data
 
-		res.send {clients, page, limit}
+		res.send {clients, count, page, limit}
 
 exports.process = (req, res) ->
 	async.waterfall [

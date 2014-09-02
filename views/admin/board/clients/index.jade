@@ -30,6 +30,12 @@ block append header
 		.overflowed {
 			overflow-y: scroll;
 		}
+		#t-search {
+			width: 30%;
+			text-align: center;
+			margin-bottom: 15px;
+			margin-left: 15px;
+		}
 
 block append scripts
 	script(src="/js/admin/plugins/daterangepicker/daterangepicker.js")
@@ -59,12 +65,15 @@ block content
 	.panel.panel-default
 		.panel-heading
 			| Страницы:
-		.panel-body
+		.panel-body.t-pages-wrap
 			- for(var i = 1; i <= Math.ceil(count / limit); i++)
 				a(data-page="#{i}" href="#" class=(i == 1)?"current-page":"")
 					span.t-page #{i}
 	.panel.panel-default
 		.panel-body.overflowed
+			button.pull-left.btn.btn-default#t-show-all(type="button")= "Показать все"
+			input.pull-right.form-control#t-search(placeholder="Введите часть имени или e-mail")
+			button.pull-right.btn.btn-primary#t-do-search(type="button")= "Искать"
 			table#client_list.table.table-striped.table-bordered.table-hover
 				thead
 					tr
