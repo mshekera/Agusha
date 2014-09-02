@@ -44,7 +44,7 @@ index = (req, res, callback) ->
 			clients = docs
 			Model 'Client', 'count', next
 		(count) ->
-			callback null, [clients, docs.length || count, page, limit]
+			callback null, [clients, count, page, limit]
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/clients/index: #{err.message or err}"
 		return err
