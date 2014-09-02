@@ -166,7 +166,7 @@ $(function () {
 
     var processPostSearch = function (response) {
         var i, len, string, html = '';
-        for (i = 1, len = Math.ceil(response.count / response.limit); i <= len; i++) {
+        for (i = 1, len = Math.ceil(parseInt(response.count, 10) / parseInt(response.limit, 10)); i <= len; i++) {
             string = '<a data-page="' + i + '" href="#"';
             if (i === 1) {
                 string += ' class="current-page"';
