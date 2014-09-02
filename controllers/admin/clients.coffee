@@ -33,13 +33,17 @@ index = (req, res, callback) ->
 						{ login: searchRegExp }
 					]
 
-			Model('Client', 'find', null, search, {}, options)
-				.skip(skip)
-				.exec next
+			Model 'Client', 'find', next, search, {}, options
+				#.skip(skip)
+				#.limit(limit)
+				#.exec next
 		(docs, next) ->
 			Model 'Client', 'populate', next, docs, 'invited_by city'
 		(docs) ->
-			clients = docs.slice 0, limit - 1
+			start = (page - 1) * limit
+			end = start + limit - 1
+			
+			clients = docs.slice start, end
 			callback null, [clients, docs.length, page, limit]
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/clients/index: #{err.message or err}"

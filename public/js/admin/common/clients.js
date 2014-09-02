@@ -1,5 +1,6 @@
 /*globals alert, confirm, moment */
 $(function () {
+    var lastSearchString = '';
     var momentFormat = 'DD/MM/YYYY HH:mm';
     var setPopovered = function () {
         $('.popovered').popover({
@@ -167,7 +168,7 @@ $(function () {
     var processPostSearch = function (response) {
         var i, len, string, html = '';
         for (i = 1, len = Math.ceil(parseInt(response.count, 10) / parseInt(response.limit, 10)); i <= len; i++) {
-            string = '<a data-page="' + i + '" href="#"';
+            string = '<a data-page="' + i + '" data-string="' + lastSearchString + '" href="#"';
             if (i === 1) {
                 string += ' class="current-page"';
             }
@@ -182,9 +183,10 @@ $(function () {
     };
 
     var performSearch = function (empty) {
+        lastSearchString = (empty ? '' : $('#t-search').val() || '');
         var opts = {
             page: 1,
-            string: (empty ? '' : $('#t-search').val() || '')
+            string: lastSearchString
         };
 
         $.post('clients', opts, processPostSearch);
@@ -216,7 +218,8 @@ $(function () {
         $(this).parent().addClass('current-page');
 
         var opts = {
-            page: $(this).parent().data('page')
+            page: $(this).parent().data('page'),
+            string: $(this).parent().data('string')
         };
 
         $.post('clients', opts, processPostResponse);
