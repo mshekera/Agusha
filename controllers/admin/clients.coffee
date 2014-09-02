@@ -13,6 +13,7 @@ index = (req, res, callback) ->
 	skip = (page - 1) * limit
 	searchString = req.body.string
 
+	clients = []
 	count = 0
 	async.waterfall [
 		(next) ->
@@ -39,8 +40,11 @@ index = (req, res, callback) ->
 				.exec next
 		(docs, next) ->
 			Model 'Client', 'populate', next, docs, 'invited_by city'
-		(docs) ->
-			callback null, [docs, docs.length, page, limit]
+		(docs, next) ->
+			clients = docs
+			Model 'Client', 'count', next
+		(count) ->
+			callback null, [clients, docs.length || count, page, limit]
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/clients/index: #{err.message or err}"
 		return err
