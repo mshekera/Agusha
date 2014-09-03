@@ -12,6 +12,4 @@ schema = new mongoose.Schema
 ,
 	collection: 'сertificate'
 
-
-
 module.exports = mongoose.model 'Certificate', schema

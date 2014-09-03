@@ -7,22 +7,63 @@ Logger = require '../../lib/logger'
 
 Client = require '../../lib/client'
 
-exports.index = (req, res) ->
+index = (req, res, callback) ->
+	limit = req.body.limit || 100
+	page = req.body.page || 1
+	skip = (page - 1) * limit
+	searchString = req.body.string
+
+	clients = []
 	async.waterfall [
 		(next) ->
-		# Why sort it if datatable resorting it by login after initialization?
-		#	options =
-		#		sort:
-		#			date: -1
-			
-			Model 'Client', 'find', next#, {}, {}, options
+			options =
+				sort:
+					date: -1
+
+			search = {}
+
+			if searchString
+				searchRegExp = new RegExp '.*' + searchString + '.*', 'g'
+				search =
+					$or: [
+						{ firstName: searchRegExp }
+						{ patronymic: searchRegExp }
+						{ lastName: searchRegExp }
+						{ email: searchRegExp }
+						{ login: searchRegExp }
+					]
+
+			Model 'Client', 'find', next, search, {}, options
+				#.skip(skip)
+				#.limit(limit)
+				#.exec next
 		(docs, next) ->
 			Model 'Client', 'populate', next, docs, 'invited_by city'
 		(docs) ->
-			View.render 'admin/board/clients/index', res, {clients: docs}
+			start = (page - 1) * limit
+			end = start + limit - 1
+			
+			clients = docs.slice start, end
+			callback null, [clients, docs.length, page, limit]
 	], (err) ->
 		Logger.log 'info', "Error in controllers/admin/clients/index: #{err.message or err}"
-		res.send error
+		return err
+
+exports.index = (req, res) ->
+	index req, res, (err, data) ->
+		return View.message false, err.message or err, res if err
+
+		[clients, count, page, limit] = data
+
+		View.render 'admin/board/clients/index', res, {clients, count, page, limit}
+
+exports.reindex = (req, res) ->
+	index req, res, (err, data) ->
+		return View.message false, err.message or err, res if err
+
+		[clients, count, page, limit] = data
+
+		res.send {clients, count, page, limit}
 
 exports.process = (req, res) ->
 	async.waterfall [

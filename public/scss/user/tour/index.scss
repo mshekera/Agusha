@@ -534,6 +534,20 @@ $closest_color: #0d5c92;
 	
 	.top {
 		height: 270px;
+		position: relative;
+	}
+	
+	.review_block {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 270px;
+		width: 100%;
+		display: none;
+		
+		&.active {
+			display: block;
+		}
 	}
 	
 	.avatar {

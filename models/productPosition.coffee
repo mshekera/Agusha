@@ -18,6 +18,4 @@ schema = new mongoose.Schema
 ,
 	collection: 'productPosition'
 
-
-
 module.exports = mongoose.model 'ProductPosition', schema

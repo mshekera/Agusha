@@ -162,7 +162,6 @@
 	}
 	
 	.image {
-		position: absolute;
 		width: 100%;
 		display: none;
 		
@@ -300,10 +299,6 @@
 				background: $darkgreen;
 			}
 		}
-		
-		.desc_images {
-			height: 380px;
-		}
 	}
 	
 	&.type_0 {
@@ -313,10 +308,6 @@
 			.article_date {
 				background: $darkyellow;
 			}
-		}
-		
-		.desc_images {
-			height: 190px;
 		}
 	}
 	

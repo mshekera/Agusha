@@ -17,6 +17,4 @@ schema = new mongoose.Schema
 ,
 	collection: 'category'
 
-
-
 module.exports = mongoose.model 'Category', schema

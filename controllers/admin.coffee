@@ -71,6 +71,7 @@ Router.post '/certificate', Certificate.save
 #----------------#
 Router.get '/clients', Clients.index
 
+Router.post '/clients', Clients.reindex
 Router.post '/clients/process', Clients.process
 Router.post '/clients/remove', Clients.remove
 Router.post '/clients/setStatus', Clients.setStatus

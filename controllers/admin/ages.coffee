@@ -8,7 +8,10 @@ mongoose = require 'mongoose'
 exports.index = (req, res) ->
 	async.waterfall [
 		(next) ->
-			Model 'Age', 'find', next
+			sortOptions =
+				lean: true
+			
+			Model 'Age', 'find', next, null, null, sortOptions
 		(docs) ->
 			View.render 'admin/board/ages/index', res, {ages: docs}
 	], (err) ->
@@ -19,7 +22,10 @@ exports.get = (req, res) ->
 	_id = req.params.id
 	async.waterfall [
 		(next) ->
-			Model 'Age', 'findOne', next, _id: _id
+			sortOptions =
+				lean: true
+			
+			Model 'Age', 'findOne', next, _id: _id, null, sortOptions
 		(doc, next) ->
 			if doc
 				View.render 'admin/board/ages/edit', res, age: doc

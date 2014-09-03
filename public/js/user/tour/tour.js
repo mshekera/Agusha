@@ -51,6 +51,10 @@ var Tour_controller = can.Control.extend(
 			this.step = 1;
 			this.step_clicked = false;
 			
+			this.review = 1;
+			this.review_control = this.element.find('.review_control');
+			this.review_length = this.review_control.length / 2;
+			
 			this.check_arrows();
 
 			this.preformat_tours();
@@ -322,6 +326,39 @@ var Tour_controller = can.Control.extend(
 			
 			this.tour_key++;
 			this.change_tour();
+		},
+		
+		'.review_button click': function(el) {
+			this.review = el.data('review');
+			
+			this.change_review();
+		},
+		
+		change_review: function() {
+			this.review_control.removeClass('active');
+			this.review_control.filter('.review_' + this.review).addClass('active');
+		},
+		
+		'.prev_review click': function(el) {
+			console.log(this.review_length);
+			if(this.review == 1) {
+				this.review = this.review_length;
+			} else {
+				this.review--;
+			}
+			
+			this.change_review();
+		},
+		
+		'.next_review click': function(el) {
+			console.log(this.review_length);
+			if(this.review == this.review_length) {
+				this.review = 1;
+			} else {
+				this.review++;
+			}
+			
+			this.change_review();
 		},
 		
 		check_arrows: function() {

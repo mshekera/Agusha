@@ -12,9 +12,9 @@ Mail = require './mail'
 exports.sendMail = sendMail = (res, data, callback) ->
 	async.waterfall [
 		(next) ->
-			emailExistence.check data.client.email, next
-		(result) ->
-			if result
+			# emailExistence.check data.client.email, next
+		# (result) ->
+			# if result
 				options =
 					subject: data.subject
 					login: data.client.login
@@ -28,8 +28,8 @@ exports.sendMail = sendMail = (res, data, callback) ->
 					options.friend = data.friend
 				
 				Mail.send data.template, options, callback
-			else
-				callback 'There is no such e-mail'
+			# else
+				# callback 'There is no such e-mail'
 	], callback
 
 exports.signUp = (res, data, post, callback) ->
@@ -57,9 +57,9 @@ exports.signUp = (res, data, post, callback) ->
 			
 			sendMail res, options, (err) ->
 				if err
-					client.remove next
-				else
-					next null
+					return next err
+				
+				next null
 		(next) ->
 			saltData =
 				salt: info.salt

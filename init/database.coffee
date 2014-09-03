@@ -3,7 +3,7 @@ autoIncrement = require 'mongoose-auto-increment'
 async = require 'async'
 
 opts =
-	server: { auto_reconnect: true, primary:null, poolSize: 500 },
+	server: { auto_reconnect: true, primary:null, poolSize: 10000 },
 	user: 'admin',
 	pass: 'jHn42K2p1mK',
 	host: 'localhost'
