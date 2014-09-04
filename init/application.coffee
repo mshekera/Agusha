@@ -69,12 +69,12 @@ configure = () ->
 		onFileUploadComplete: Image.doResize
 	}
 	
+	@use Referrer.isGoodReferrer
 	@use Logger.request
 	@use Cache.requestCache
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams
-	@use Referrer.isGoodReferrer
 	@use '/admin', passport.initialize()
 	@use '/admin', passport.session()
 	@use '/admin', Auth.isAuth
