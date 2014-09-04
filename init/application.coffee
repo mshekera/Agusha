@@ -14,6 +14,7 @@ methodOverride = require 'method-override'
 multer = require 'multer'
 compression = require 'compression'
 gzip = require 'connect-gzip'
+ECT = require 'ect'
 
 Auth = require '../lib/auth'
 Cache = require '../lib/cache'
@@ -25,6 +26,13 @@ Referrer = require '../lib/referrer'
 
 admin_controller = require '../controllers/admin'
 user_controller = require '../controllers/user'
+
+exports.ectRenderer = ectRenderer = ECT
+	watch: true
+	root: __dirname + '/../views'
+	ext: '.ect'
+	open: '<?'
+	close: '?>'
 
 jadeOptions =
 	layout: false
@@ -42,9 +50,12 @@ routes = () ->
 		res.send 500, 'Something broke, sorry! :('
 
 configure = () ->
-	@set 'views', "#{__dirname}/../views"
-	@set 'view engine', 'jade'
-	@set 'view options', jadeOptions
+	# @set 'views', "#{__dirname}/../views"
+	# @set 'view engine', 'jade'
+	# @set 'view options', jadeOptions
+	
+	@.set 'view engine', 'ect'
+	@.engine 'ect', ectRenderer.render
 	
 	# @use compression
 		# threshold: 2048

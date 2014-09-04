@@ -29,12 +29,8 @@ html(lang="ru")
 	body
 		include header
 		
-		#module_container
-			#checker
-				block before_main
-				
-				#main_container
-					block content
+		#modules
+			block content
 		
 		include footer
 		
@@ -60,7 +56,7 @@ html(lang="ru")
 			script(src="/js/plugins/selectivizr/selectivizr-min.js")
 			script#route_tmpl(type="text/mustache")
 				| {{#each modules}}
-				| <div class="{{#if active}}active{{/if}}" id="{{id}}"></div>
+				| <div class="module{{#if active}} active{{/if}}" id="{{id}}"></div>
 				| {{/each}}
 			script(src="/js/user/core.js")
 			script(data-main="/js/user/core/core.js" src="/js/plugins/require/require.js")

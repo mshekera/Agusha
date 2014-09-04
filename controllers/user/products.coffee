@@ -10,7 +10,7 @@ tree = require '../../utils/tree'
 
 breadcrumbs = require '../../meta/breadcrumbs'
 
-exports.index = (req, res) ->
+indexDataFunc = (req, res, callback) ->
 	data =
 		breadcrumbs: tree.findWithParents breadcrumbs, 'products'
 	
@@ -30,11 +30,11 @@ exports.index = (req, res) ->
 				list[key] = item.toObject()
 				list[key].volume = volume
 			
-			View.render 'user/products/products', res, data, req.path
-	], (err) ->
-		error = err.message or err
-		Logger.log 'info', "Error in controllers/user/products/index: #{error}"
-		res.send error
+			callback null, data
+	], callback
+
+exports.index = (req, res) ->
+	View.render req, res, 'user/products', indexDataFunc
 
 exports.findAll = (req, res) ->
 	data = {}

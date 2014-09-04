@@ -27,6 +27,14 @@ h3 {
 	margin-top: 0;
 }
 
+.module {
+	display: none;
+	
+	&.active {
+		display: block;
+	}
+}
+
 #header {
 	@include full_width_layout;
 	height: $hfheight;
@@ -187,7 +195,7 @@ h3 {
 	}
 }
 
-#main_container {
+.main_container {
 	width: 100%;
 	text-align: center;
 	
