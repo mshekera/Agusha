@@ -158,8 +158,8 @@ body {
 }
 
 .header .welcome .welcome_test {
-	margin-top: -47px;
-	margin-left: 33px;
+	margin-bottom: 47px;
+	padding: 0 33px;
 	line-height: 17pt;
 	font-size: 14pt;
 }
@@ -287,7 +287,7 @@ a.italic_small_link:hover {
 	text-align: center;
 	width: 100%;
 	font-size: 16pt;
-	padding: 74px 20px 71px;
+	padding: 61px 20px;
 	width: 700px;
 }
 

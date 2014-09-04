@@ -8,4 +8,4 @@ exports.title_case = (str) ->
 	first + rest
 
 exports.escape = (text) ->
-    text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+	text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')

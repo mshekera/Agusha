@@ -29,10 +29,12 @@ html(lang="ru")
 	body
 		include header
 		
-		block before_main
-		
-		#main_container
-			block content
+		#module_container
+			#checker
+				block before_main
+				
+				#main_container
+					block content
 		
 		include footer
 		
@@ -52,9 +54,16 @@ html(lang="ru")
 					img(src='//top-fwz1.mail.ru/counter?id=2554869;js=na', style='border: 0;', height='1', width='1', alt='ђейтинг@Mail.ru')
 			// //Rating@Mail.ru counter
 			script(src="/js/jquery-1.11.1.min.js")
+			script(src="/js/plugins/can/can.js")
+			script(src="/js/plugins/underscore/underscore-min.js")
 			script(src="/js/plugins/corner/jquery.corner.js")
 			script(src="/js/plugins/selectivizr/selectivizr-min.js")
+			script#route_tmpl(type="text/mustache")
+				| {{#each modules}}
+				| <div class="{{#if active}}active{{/if}}" id="{{id}}"></div>
+				| {{/each}}
 			script(src="/js/user/core.js")
+			script(data-main="/js/user/core/core.js" src="/js/plugins/require/require.js")
 			script.
 				<!-- Yandex.Metrika counter -->
 				(function (d, w, c) {
