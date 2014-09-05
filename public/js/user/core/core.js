@@ -84,19 +84,7 @@ require([
 					return console.error(err);
 				}
 				
-				var response = $.ajax({
-					url: 'views/user/' + this.options.module.name + '/content',
-					dataType: "view",
-					async: false
-				});
-				
-				var template = new Function(response.responseText)();
-				
-				// eval(response.responseText);
-				
-				// body.append("<script>" + response.responseText + "<\/script>");
-				
-				var html = template(data.data);
+				var html = jadeTemplate('user/' + this.options.module.name + '/content', data.data);
 				
 				// var html = ectRenderer.render('user/' + this.options.module.name + '/content', data.data);
 				
