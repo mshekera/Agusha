@@ -29,7 +29,7 @@ mixin product(p)
 						.adorable_table
 							.adorable_cell
 								.top=(p ? p.volume.volume + ' ' + p.volume.postfix : '{{volume.volume}} {{volume.postfix}}')
-								.bottom= '{{volume.type}}'
+								.bottom=(p ? p.volume.type : '{{volume.type}}')
 					
 					.half
 						.adorable_table
@@ -54,74 +54,73 @@ mixin products_stache()
 	mixin product()
 	| {{/each}}
 
-#products.module(class = is_ajax_request ? '' : 'server')
-	.main_container
-		.content.force_height(class = is_ajax_request ? '' : 'server')
-			include ../../helpers/user/breadcrumbs/breadcrumbs
+.main_container
+	.content.force_height(class = is_ajax_request ? '' : 'server')
+		include ../../helpers/user/breadcrumbs/breadcrumbs
+		
+		.topper.darkblue.adorable_table
+			.adorable_cell
+				.top_label Cколько лет вашему малышу?
+		
+		.age_filter.darkblue
+			.age_block(class=(params.age ? '' : 'active'))
+				.adorable_table
+					.adorable_cell
+						div.image_container
+							img.norm(src="/img/user/products/products.png")
+							img.hover(src="/img/user/products/products_hover.png")
+						div
+							span Все продукты
 			
-			.topper.darkblue.adorable_table
-				.adorable_cell
-					.top_label Cколько лет вашему малышу?
-			
-			.age_filter.darkblue
-				.age_block(class=(params.age ? '' : 'active'))
+			- each a, key in ages
+				.age_block(data-level=a.level, class=(a.level == params.age ? 'active' : ''))
 					.adorable_table
 						.adorable_cell
 							div.image_container
-								img.norm(src="/img/user/products/products.png")
-								img.hover(src="/img/user/products/products_hover.png")
+								- var src = '/img/uploads/' + a.icon
+								img.norm(src=src)
+								- var src = '/img/uploads/' + a.hoverImage
+								img.hover(src=src)
 							div
-								span Все продукты
-				
-				- each a, key in ages
-					.age_block(data-level=a.level, class=(a.level == params.age ? 'active' : ''))
-						.adorable_table
-							.adorable_cell
-								div.image_container
-									- var src = '/img/uploads/' + a.icon
-									img.norm(src=src)
-									- var src = '/img/uploads/' + a.hoverImage
-									img.hover(src=src)
-								div
-									if a.level < 12
-										- var age = 'мес.'
-										span #{a.title} #{age}
-									else
-										span c #{Math.floor(a.level/12)} лет
+								if a.level < 12
+									- var age = 'мес.'
+									span #{a.title} #{age}
+								else
+									span c #{Math.floor(a.level/12)} лет
 
-			.category_filter
+		.category_filter
+			.category_block
+				.adorable_table
+					.adorable_cell
+						.show.novito_nova Показать:
+			
+			.category_block
+				.adorable_table
+					.adorable_cell
+						span.choose_category.rounded(class=(params.category ? '' : 'active')) Все
+			
+			- each c, key in categories
 				.category_block
 					.adorable_table
 						.adorable_cell
-							.show.novito_nova Показать:
-				
-				.category_block
-					.adorable_table
-						.adorable_cell
-							span.choose_category.rounded(class=(params.category ? '' : 'active')) Все
-				
-				- each c, key in categories
-					.category_block
-						.adorable_table
-							.adorable_cell
-								span.choose_category.rounded(data-category=c.url_label, class=(c.url_label == params.category ? 'active' : '')) #{c.name}
+							span.choose_category.rounded(data-category=c.url_label, class=(c.url_label == params.category ? 'active' : '')) #{c.name}
+		
+		#products_articles.white(class=(params.category ? 'active' : ''))
+			- each a, key in ages
+				.products_article(id = 'age_' + a.level, class=(key == 0 ? 'active' : ''))
+					.half.left
+						.article_image(style = a.desc_image ? 'background-image: url(/img/uploads/' + a.desc_image + ')' : '')
+						.text.border_boxed
+							.desc_subtitle !{a.desc_subtitle}
+							.desc_title.label.novito_nova !{a.desc_title}
+					
+					.half.right
+						.text.border_boxed !{a.desc_text}
 			
-			#products_articles.white(class=(params.category ? 'active' : ''))
-				- each a, key in ages
-					.products_article(id = 'age_' + a.level, class=(key == 0 ? 'active' : ''))
-						.half.left
-							.article_image(style = a.desc_image ? 'background-image: url(/img/uploads/' + a.desc_image + ')' : '')
-							.text.border_boxed
-								.desc_subtitle !{a.desc_subtitle}
-								.desc_title.label.novito_nova !{a.desc_title}
-						
-						.half.right
-							.text.border_boxed !{a.desc_text}
-				
-				.minimize.top_label
-					span.minimize_button.rounded
-					span.minimize_title
-			
-			#products_container.force_height
-				- each p, key in products
-					mixin product(p)
+			.minimize.top_label
+				span.minimize_button.rounded
+				span.minimize_title
+		
+		#products_container.force_height
+			- each p, key in products
+				mixin product(p)

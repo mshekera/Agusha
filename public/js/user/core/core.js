@@ -30,7 +30,7 @@ require([
 	) {
 		var body = $('body');
 		
-		ectRenderer = ECT({ root : '/views', ext : '.ect' });
+		// ectRenderer = ECT({ root : '/views', ext : '.ect' });
 		
 		Controller = can.Control.extend({
 			defaults: {
@@ -84,7 +84,21 @@ require([
 					return console.error(err);
 				}
 				
-				var html = ectRenderer.render('user/' + this.options.module.name + '/content', data.data);
+				var response = $.ajax({
+					url: 'views/user/' + this.options.module.name + '/content',
+					dataType: "view",
+					async: false
+				});
+				
+				var template = new Function(response.responseText)();
+				
+				// eval(response.responseText);
+				
+				// body.append("<script>" + response.responseText + "<\/script>");
+				
+				var html = template(data.data);
+				
+				// var html = ectRenderer.render('user/' + this.options.module.name + '/content', data.data);
 				
 				this.element.html(html);
 				

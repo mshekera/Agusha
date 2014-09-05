@@ -80,7 +80,8 @@ configure = () ->
 		onFileUploadComplete: Image.doResize
 	}
 	
-	@use ectRenderer.compiler {root: '/views', gzip: true}
+	# @use ectRenderer.compiler {root: '/views', gzip: true}
+	@use View.compiler {root: '/views', gzip: true}
 	
 	@use Referrer.isGoodReferrer
 	# @use Logger.request

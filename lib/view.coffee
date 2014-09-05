@@ -3,6 +3,8 @@ _ = require 'underscore'
 moment = require 'moment'
 jade = require 'jade'
 fs = require 'fs'
+zlib = require 'zlib'
+jade = require 'jade'
 
 Logger = require './logger'
 Cache = require './cache'
@@ -38,7 +40,11 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				
 				_.extend data, res.locals
 				
-				html = application.ectRenderer.render path += '/index', data
+				# html = application.ectRenderer.render path += '/index', data
+				
+				fn = jade.compileFile "#{viewDirectory}/#{path}/index.jade"
+				
+				html = fn data
 				
 				# if name
 					# ttl = ttl || 0
@@ -170,3 +176,64 @@ exports.ajaxResponse = ajaxResponse = (res, err, data) ->
 		data: (if data then data else null)
 	
 	res.send data
+
+exports.load = load = (name, client) ->
+	filename = "#{viewDirectory}/#{name}.jade"
+	
+	templateCode = fs.readFileSync filename, "utf-8"
+	
+	options =
+		compileDebug: false
+		filename: filename
+		pretty: false
+	
+	compiled = jade.compileClient templateCode, options
+	
+	if !client
+		return compiled
+	
+	result =
+		source: "return " + compiled.toString(),
+		lastModified: (new Date).toUTCString(),
+		gzip: null
+
+exports.compiler = (options) ->
+	options = options or {}
+	options.root = options.root or "/"
+	options.root = "/" + options.root.replace(/^\//, "")
+	options.root = options.root.replace(/\/$/, "") + "/"
+	rootExp = new RegExp("^" + string.escape(options.root))
+	
+	(req, res, next) ->
+		if req.method isnt "GET" and req.method isnt "HEAD"
+			return next()
+		
+		if not options.root or req.url.substr(0, options.root.length) is options.root
+			template = req.url.replace(rootExp, "")
+			
+			try
+				# context = new TemplateContext
+				# container = context.load(template)
+				
+				container = load template, true
+				
+				res.setHeader "Content-Type", "application/x-javascript; charset=utf-8"
+				res.setHeader "Last-Modified", container.lastModified
+				if options.gzip
+					res.setHeader "Content-Encoding", "gzip"
+					if container.gzip is null
+						zlib.gzip container.source, (err, buffer) ->
+							unless err
+								container.gzip = buffer
+								res.end container.gzip
+							else
+								next err
+					else
+						res.end container.gzip
+				else
+					res.setHeader "Content-Length", (if typeof Buffer isnt "undefined" then Buffer.byteLength(container.source, "utf8") else container.source.length)
+					res.end container.source
+			catch e
+				next e
+		else
+			next()

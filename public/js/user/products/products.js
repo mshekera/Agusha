@@ -77,25 +77,25 @@ define([
 					
 					this.data = new ViewModel();
 					
-					var product_stache = $('#product_stache');
+					// var product_stache = $('#product_stache');
 					
-					if(!product_stache.length) {
-						var html = ectRenderer.render('user/products/product_stache');
+					// if(!product_stache.length) {
+						// var html = ectRenderer.render('user/products/product_stache');
 						
-						can.view.stache('product', html);
-					} else {
-						can.view.stache('product', product_stache.html());
-					}
+						// can.view.stache('product', html);
+					// } else {
+						// can.view.stache('product', product_stache.html());
+					// }
 					
-					$('#products_container').html(can.view('product', this.data, {
-						ageLevel: function(options) {
-							if(options.context.age) {
-								return options.context.age.level < 12 ? options.fn() : options.inverse();
-							}
+					// $('#products_container').html(can.view('product', this.data, {
+						// ageLevel: function(options) {
+							// if(options.context.age) {
+								// return options.context.age.level < 12 ? options.fn() : options.inverse();
+							// }
 							
-							return options.fn();
-						}
-					}));
+							// return options.fn();
+						// }
+					// }));
 					
 					this.first_call = false;
 				},

@@ -1,97 +1,96 @@
-.module#checker(class = is_ajax_request ? '' : 'server')
-	#before_main
-		.layout_inside
-			#slider_container.slider.darkblue
-				.slides(u='slides')
-					- each g, key in gallery
-						div
-							- var src = '/img/user/banner/' + g.img
-							img(src=src)
-							.text
-								.adorable_table
-									.adorable_cell
-										.top_label !{g.top_label}
-										.label.novito_nova !{g.label}
-										a.link.lightblue_font(href=g.link.href, class = (g.link.class ? g.link.class : '')) !{g.link.title}
-				
-				.jssorb12(u='navigator')
-					div(u='prototype', class='prototype rounded ')
-				span(u='arrowleft', class='jssora21l ')
-				span(u='arrowright', class='jssora21r ')
-				
-				include ../../helpers/user/live_program/live_program
-				include ../../helpers/user/join_tour/join_tour
-	
-	.main_container
-		.content
-			.left.border_boxed.white
-				.content_block
+#before_main
+	.layout_inside
+		#slider_container.slider.darkblue
+			.slides(u='slides')
+				- each g, key in gallery
+					div
+						- var src = '/img/user/banner/' + g.img
+						img(src=src)
+						.text
+							.adorable_table
+								.adorable_cell
+									.top_label !{g.top_label}
+									.label.novito_nova !{g.label}
+									a.link.lightblue_font(href=g.link.href, class = (g.link.class ? g.link.class : '')) !{g.link.title}
+			
+			.jssorb12(u='navigator')
+				div(u='prototype', class='prototype rounded ')
+			span(u='arrowleft', class='jssora21l ')
+			span(u='arrowright', class='jssora21r ')
+			
+			include ../../helpers/user/live_program/live_program
+			include ../../helpers/user/join_tour/join_tour
+
+.main_container
+	.content
+		.left.border_boxed.white
+			.content_block
+				.adorable_table
+					.adorable_cell
+						.top_label А у нас
+						.label.novito_nova.dark_font
+							| Сегодня
+							br
+							| в меню
+						a(href="/products")
+							button.blue Еще
+			
+			a(href = '/products')
+				.content_block.product
 					.adorable_table
 						.adorable_cell
-							.top_label А у нас
-							.label.novito_nova.dark_font
-								| Сегодня
-								br
-								| в меню
-							a(href="/products")
-								button.blue Еще
-				
-				a(href = '/products')
-					.content_block.product
-						.adorable_table
-							.adorable_cell
-								img.product_img(src="/img/user/main/Agysha_paket_sok_apple_light_200g.jpg")
-								.product_label.adorable_table
-									.adorable_cell Фруктовые<br>соки
-				
-				a(href = '/products')
-					.content_block.product
-						.adorable_table
-							.adorable_cell
-								img.product_img(src="/img/user/main/Agysha_yogyrt_zlaki1.jpg")
-								.product_label.adorable_table
-									.adorable_cell Детские<br>йогурты
-				
-				a(href = '/products')
-					.content_block.product
-						.adorable_table
-							.adorable_cell
-								img.product_img(src="/img/user/main/AgushaPack.cereals_100g_s.jpg")
-								.product_label.adorable_table
-									.adorable_cell Детские<br>творожки
+							img.product_img(src="/img/user/main/Agysha_paket_sok_apple_light_200g.jpg")
+							.product_label.adorable_table
+								.adorable_cell Фруктовые<br>соки
 			
-			.right.border_boxed.green.adorable_table
-				.adorable_cell
-					.label.novito_nova
-						| Что малышу
-						br
-						| для счастья надо?
-					
-					.top_label
-						| Узнайте через
-					
-					.count
-						- each d, key in daysArray
-							.number
-								span #{d}
-					
-					.top_label #{declension}
-					
-					a.bannerleft(href="/signup")
-						button.middle_button.yellow Зарегистрироваться
+			a(href = '/products')
+				.content_block.product
+					.adorable_table
+						.adorable_cell
+							img.product_img(src="/img/user/main/Agysha_yogyrt_zlaki1.jpg")
+							.product_label.adorable_table
+								.adorable_cell Детские<br>йогурты
 			
-			if unsubscribe
-				.message.unsubscribe_message.inline_adorable_container
-					.adorable
-						div.message_top.adorable_table(class='green')
-							.adorable_cell
-								.label.novito_nova.white_font Ну вот...
-								.top_label.non_uppercase.dark_font
-									| Вы отписались от новостей сайта 
-									a.message_link(href=base_url) agusha.com.ua.
-						
-						div.message_bottom.adorable_table(class='darkgreen')
-							.adorable_cell
-								button.middle_button.white.uppercase.bold.close(class='darkgreen_font') Вернуться на сайт
-						
-						div.close_button.close(class='darkgreen_font') &times;
+			a(href = '/products')
+				.content_block.product
+					.adorable_table
+						.adorable_cell
+							img.product_img(src="/img/user/main/AgushaPack.cereals_100g_s.jpg")
+							.product_label.adorable_table
+								.adorable_cell Детские<br>творожки
+		
+		.right.border_boxed.green.adorable_table
+			.adorable_cell
+				.label.novito_nova
+					| Что малышу
+					br
+					| для счастья надо?
+				
+				.top_label
+					| Узнайте через
+				
+				.count
+					- each d, key in daysArray
+						.number
+							span #{d}
+				
+				.top_label #{declension}
+				
+				a.bannerleft(href="/signup")
+					button.middle_button.yellow Зарегистрироваться
+		
+		if unsubscribe
+			.message.unsubscribe_message.inline_adorable_container
+				.adorable
+					div.message_top.adorable_table(class='green')
+						.adorable_cell
+							.label.novito_nova.white_font Ну вот...
+							.top_label.non_uppercase.dark_font
+								| Вы отписались от новостей сайта 
+								a.message_link(href=base_url) agusha.com.ua.
+					
+					div.message_bottom.adorable_table(class='darkgreen')
+						.adorable_cell
+							button.middle_button.white.uppercase.bold.close(class='darkgreen_font') Вернуться на сайт
+					
+					div.close_button.close(class='darkgreen_font') &times;
