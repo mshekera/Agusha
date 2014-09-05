@@ -11,6 +11,8 @@ block append content
 
 block append scripts
 	script.
-		var products = !{JSON.stringify(products)};
+		var app = {
+			products: !{JSON.stringify(products)}
+		};
 	script#products_tmpl(type="text/mustache")
 		mixin products_stache()

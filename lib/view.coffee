@@ -35,16 +35,20 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				
 				next null, {}
 			(data) ->
+				_.extend data, res.locals
+				
 				if res.locals.is_ajax_request is true
 					return ajaxResponse res, null, data
 				
-				_.extend data, res.locals
-				
 				# html = application.ectRenderer.render path += '/index', data
 				
+				# times = 1000
+				# console.time 'jade.compileFile'
+				# for i in [1...times]
 				fn = jade.compileFile "#{viewDirectory}/#{path}/index.jade"
 				
 				html = fn data
+				# console.timeEnd 'jade.compileFile'
 				
 				# if name
 					# ttl = ttl || 0
@@ -180,6 +184,10 @@ exports.ajaxResponse = ajaxResponse = (res, err, data) ->
 exports.load = load = (name, client) ->
 	filename = "#{viewDirectory}/#{name}.jade"
 	
+	# times = 1000
+	# console.time 'jade.compileClient'
+	# for i in [1...times]
+	
 	templateCode = fs.readFileSync filename, "utf-8"
 	
 	options =
@@ -188,6 +196,8 @@ exports.load = load = (name, client) ->
 		pretty: false
 	
 	compiled = jade.compileClient templateCode, options
+	
+	# console.timeEnd 'jade.compileClient'
 	
 	if !client
 		return compiled
