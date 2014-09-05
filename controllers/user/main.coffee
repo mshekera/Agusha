@@ -44,7 +44,7 @@ indexDataFunc = (req, res, callback) ->
 	], callback
 
 exports.index = (req, res) ->
-	View.render req, res, 'user/index', indexDataFunc
+	View.render req, res, 'user/main', indexDataFunc
 	
 	# async.waterfall [
 		# (next) ->

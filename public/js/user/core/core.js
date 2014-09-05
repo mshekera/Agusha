@@ -38,14 +38,20 @@ require([
 			}
 		}, {
 			init: function () {
-				var server = $('#modules').find('.module.server');
+				var server = $('#modules').find('.module.server'),
+					that = this;
 				
 				if(server.length) {
 					this.element.html(server.html());
 					server.remove();
-					this.after_request();
+					
+					require(['css!../css/user/' + this.options.module.name + '/' + this.options.module.name + '.css'], function () {
+						that.after_request();
+					});
 				} else {
-					this.request();
+					require(['css!../css/user/' + this.options.module.name + '/index.css'], function () {
+						that.request();
+					});
 				}
 			},
 			

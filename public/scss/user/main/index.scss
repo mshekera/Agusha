@@ -1,8 +1,8 @@
-@import 'dynamic/dynamic';
-@import 'helpers/slider';
-@import 'helpers/live_program';
-@import 'helpers/join_tour';
-@import 'helpers/message';
+@import '../dynamic/dynamic';
+@import '../helpers/slider';
+@import '../helpers/live_program';
+@import '../helpers/join_tour';
+@import '../helpers/message';
 
 @mixin number_pseudo {
 	@include pseudo;

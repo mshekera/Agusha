@@ -123,12 +123,7 @@ define([
 				
 				var html = can.view('#route_tmpl', {
 						modules: this.Modules.attr('modules')
-					}),
-					mainModule = $('#module_container').find('#checker.server');;
-				
-				if(mainModule.length) {
-					this.Modules.initModule('checker', 'checker');
-				}
+					});
 				
 				$(options.modulesContainer).prepend(html);
 				

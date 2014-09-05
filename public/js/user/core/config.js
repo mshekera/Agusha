@@ -4,9 +4,9 @@ define({
 		modulesContainer: '#modules',
 		modules: [
 			{
-				name: 'index',
+				name: 'main',
 				path: {
-					client: 'user/index/index',
+					client: 'user/main/main',
 					server: ''
 				}
 			}, {
@@ -17,6 +17,6 @@ define({
 				}
 			}
 		],
-		defaultModule: 'index'
+		defaultModule: 'main'
 	}
 });
