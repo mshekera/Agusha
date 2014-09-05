@@ -1,0 +1,104 @@
+<? @productHelper = (product) -> ?>
+	<a href="/product/<? if product : ?><?- product.alias ?><? else : ?>{{alias}}<? end ?>">
+		<div class="product_block border_boxed">
+			<div class="product_block_inside">
+				<div class="image">
+					<? if product : ?>
+						<? if product.image : ?>
+							<?
+								src = '/img/uploads/x220/' + product.image
+							?>
+						<? else : ?>
+							<?
+								src = '/img/no_photo.png'
+							?>
+						<? end ?>
+						<img src="<?- src ?>" />
+					<? else : ?>
+						{{#if image}}
+							<img src="/img/uploads/x220/{{image}}" />
+						{{else}}
+							<img src="/img/no_photo.png" />
+						{{/if}}
+					<? end ?>
+				</div>
+				
+				<div class="title adorable_table border_boxed">
+					<div class="adorable_cell">
+						<span>
+							<? if product : ?>
+								<?- product.title ?>
+							<? else : ?>
+								{{title}}
+							<? end ?>
+						</span>
+					</div>
+				</div>
+				
+				<div class="desc adorable_table border_boxed">
+					<div class="adorable_cell">
+						<? if product : ?>
+							<?- product.text ?>
+						<? else : ?>
+							{{{text}}}
+						<? end ?>
+					</div>
+				</div>
+				
+				<div class="info">
+					<div class="half">
+						<div class="adorable_table">
+							<div class="adorable_cell">
+								<div class="top">
+									<? if product : ?>
+										<?- product.volume.volume ?> <?- product.volume.postfix ?>
+									<? else : ?>
+										{{volume.volume}} {{volume.postfix}}
+									<? end ?>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="half">
+						<div class="adorable_table">
+							<div class="adorable_cell">
+								<div class="top">
+									<? if product : ?>
+										<?- product.age.title ?>
+									<? else : ?>
+										{{age.title}}
+									<? end ?>
+								</div>
+								
+								<? if product : ?>
+									<? if product.age.level < 12 : ?>
+										<?
+											age = 'месяцев'
+										?>
+									<? else : ?>
+										<?
+											age = 'лет'
+										?>
+									<? end ?>
+									
+									<div class="bottom">
+										<?- age ?>
+									</div>
+								<? else : ?>
+									<div class="bottom">
+										{{#ageLevel}}
+											месяцев
+										{{else}}
+											лет
+										{{/ageLevel}}
+									</div>
+								<? end ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+<? end ?>

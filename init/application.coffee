@@ -17,11 +17,11 @@ gzip = require 'connect-gzip'
 ECT = require 'ect'
 
 Auth = require '../lib/auth'
-Cache = require '../lib/cache'
+# Cache = require '../lib/cache'
 View = require '../lib/view'
 Admin = require '../lib/admin'
 Image = require '../lib/image'
-Logger = require '../lib/logger'
+# Logger = require '../lib/logger'
 Referrer = require '../lib/referrer'
 
 admin_controller = require '../controllers/admin'
@@ -34,8 +34,8 @@ exports.ectRenderer = ectRenderer = ECT
 	open: '<?'
 	close: '?>'
 
-jadeOptions =
-	layout: false
+# jadeOptions =
+	# layout: false
 
 sessionParams =
 	secret: '4159J3v6V4rX6y1O6BN3ASuG2aDN7q'
@@ -54,8 +54,8 @@ configure = () ->
 	# @set 'view engine', 'jade'
 	# @set 'view options', jadeOptions
 	
-	@.set 'view engine', 'ect'
-	@.engine 'ect', ectRenderer.render
+	@set 'view engine', 'ect'
+	@engine 'ect', ectRenderer.render
 	
 	# @use compression
 		# threshold: 2048
@@ -80,9 +80,11 @@ configure = () ->
 		onFileUploadComplete: Image.doResize
 	}
 	
+	@use ectRenderer.compiler {root: '/views', gzip: true}
+	
 	@use Referrer.isGoodReferrer
-	@use Logger.request
-	@use Cache.requestCache
+	# @use Logger.request
+	# @use Cache.requestCache
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams

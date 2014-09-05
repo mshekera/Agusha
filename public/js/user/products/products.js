@@ -35,48 +35,69 @@ define([
 			},
 			
 			{
-				after_init: function () {
-					// var that = this;
+				after_init: function(data) {
+					var that = this,
+						products;
 					
-					// this.first_call = true;
+					this.first_call = true;
 					
-					// var ViewModel = can.Map.extend({
-						// define: {
-							// age: {
-								// value: null
-							// },
+					if(data) {
+						products = data.products;
+					} else {
+						products = app.products;
+					}
+					
+					var ViewModel = can.Map.extend({
+						define: {
+							age: {
+								value: null
+							},
 							
-							// category: {
-								// value: null
-							// },
+							category: {
+								value: null
+							},
 							
-							// products: {
-								// value: new can.List(products),
-								// get: function(currentValue) {
-									// var options = {
-										// age: this.attr('age'),
-										// category: this.attr('category')
-									// };
+							products: {
+								value: new can.List(products),
+								get: function(currentValue) {
+									var options = {
+										age: this.attr('age'),
+										category: this.attr('category')
+									};
 									
-									// if(that.first_call) {
-										// that.first_call = false;
-									// } else {
-										// currentValue.replace(Product.findAll(options));
-									// }
+									if(!that.first_call) {
+										currentValue.replace(Product.findAll(options));
+									}
 									
-									// return currentValue;
-								// }
-							// }
-						// }
-					// });
+									return currentValue;
+								}
+							}
+						}
+					});
 					
-					// this.data = new ViewModel();
+					this.data = new ViewModel();
 					
-					// $('#products_container').html(can.view("#products_tmpl", this.data, {
-						// ageLevel: function(options) {
-							// return options.context.age.level < 12 ? options.fn() : options.inverse();
-						// }
-					// }));
+					var product_stache = $('#product_stache');
+					
+					if(!product_stache.length) {
+						var html = ectRenderer.render('user/products/product_stache');
+						
+						can.view.stache('product', html);
+					} else {
+						can.view.stache('product', product_stache.html());
+					}
+					
+					$('#products_container').html(can.view('product', this.data, {
+						ageLevel: function(options) {
+							if(options.context.age) {
+								return options.context.age.level < 12 ? options.fn() : options.inverse();
+							}
+							
+							return options.fn();
+						}
+					}));
+					
+					this.first_call = false;
 				},
 				
 				'.age_block click': function(el) {

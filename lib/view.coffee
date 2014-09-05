@@ -18,13 +18,6 @@ viewDirectory = "#{__dirname}/../views"
 exports.render = (req, res, path, name, dataFunc, ttl) ->
 	result = false
 	
-	is_ajax_request = res.locals.is_ajax_request
-	
-	if is_ajax_request is true
-		path += '/content'
-	else
-		path += '/index'
-	
 	if(name && typeof(name) == 'function')
 		dataFunc = name
 		name = false
@@ -40,21 +33,17 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				
 				next null, {}
 			(data) ->
-				data = _.extend data, res.locals
+				if res.locals.is_ajax_request is true
+					return ajaxResponse res, null, data
 				
-				html = application.ectRenderer.render path, data
+				_.extend data, res.locals
+				
+				html = application.ectRenderer.render path += '/index', data
 				
 				# if name
 					# ttl = ttl || 0
 					
 					# Cache.save name, html, ttl, true
-				
-				if is_ajax_request is true
-					options =
-						data: data
-						html: html
-					
-					return ajaxResponse res, null, options
 				
 				res.send html
 		], (err) ->

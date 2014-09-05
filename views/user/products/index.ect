@@ -1,3 +1,17 @@
 <? extend 'user/layout.ect' ?>
 
-<? include 'user/products/content.ect' ?>
+<div id="products" class="module server">
+	<? include 'user/products/content.ect' ?>
+</div>
+
+<? block 'scripts' : ?>
+	<script>
+		var app = {
+			products: <?- JSON.stringify @products ?>
+		};
+	</script>
+	
+	<script id="product_stache" type="text/mustache">
+		<? include 'user/products/product_stache.ect' ?>
+	</script>
+<? end ?>

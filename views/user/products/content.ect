@@ -1,7 +1,67 @@
-<div id="products" class="module<? if @is_ajax_request is true : ?><? else : ?> server<? end ?>">
-	<div class="main_container">
-		<div class="content force_height">
-			
+<? include 'user/products/helpers' ?>
+
+<div class="main_container">
+	<div class="content force_height">
+		<div class="topper darkblue adorable_table">
+			<div class="adorable_cell">
+				<div class="top_label">
+					Cколько лет вашему малышу?
+				</div>
+			</div>
+		</div>
+		
+		<div class="age_filter darkblue">
+			<div class="age_block active">
+				<div class="adorable_table">
+					<div class="adorable_cell">
+						<div class="image_container">
+							<img class="norm" src="/img/user/products/products.png" />
+							<img class="hover" src="/img/user/products/products_hover.png" />
+						</div>
+						
+						<div>
+							<span>
+								Все продукты
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<? for age, i in @ages : ?>
+				<div class="age_block" data-level="<?- age.level ?>" >
+					<div class="adorable_table">
+						<div class="adorable_cell">
+							<div class="image_container">
+								<?
+									src = '/img/uploads/' + age.icon
+								?>
+								<img class="norm" src="<?- src ?>" />
+								<?
+									src = '/img/uploads/' + age.icon
+								?>
+								<img class="hover" src="<?- src ?>" />
+							</div>
+							
+							<div>
+								<span>
+									<? if age.level < 12 : ?>
+										<?- age.title?> мес.
+									<? else : ?>
+										c <?- Math.floor(age.level/12) ?> лет
+									<? end?>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			<? end ?>
+		</div>
+		
+		<div id="products_container" class="force_height">
+			<? for product, i in @products : ?>
+				<?- @productHelper product ?>
+			<? end ?>
 		</div>
 	</div>
 </div>

@@ -30,6 +30,8 @@ require([
 	) {
 		var body = $('body');
 		
+		ectRenderer = ECT({ root : '/views', ext : '.ect' });
+		
 		Controller = can.Control.extend({
 			defaults: {
 				
@@ -41,11 +43,10 @@ require([
 				if(server.length) {
 					this.element.html(server.html());
 					server.remove();
+					this.after_init();
 				} else {
 					this.request();
 				}
-				
-				this.after_init();
 				
 				this.variables();
 				this.sizes();
@@ -77,7 +78,15 @@ require([
 			},
 			
 			successRequest: function(data) {
-				console.log(data);
+				if(data.err) {
+					return console.error(err);
+				}
+				
+				var html = ectRenderer.render('user/' + this.options.module.name + '/content', data.data);
+				
+				this.element.html(html);
+				
+				this.after_init(data.data);
 			},
 			
 			variables: function() {
