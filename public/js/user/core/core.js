@@ -43,14 +43,10 @@ require([
 				if(server.length) {
 					this.element.html(server.html());
 					server.remove();
-					this.after_init();
+					this.after_request();
 				} else {
 					this.request();
 				}
-				
-				this.variables();
-				this.sizes();
-				this.plugins();
 			},
 			
 			request: function() {
@@ -86,7 +82,15 @@ require([
 				
 				this.element.html(html);
 				
-				this.after_init(data.data);
+				this.after_request(data.data);
+			},
+			
+			after_request: function(data) {
+				this.variables();
+				this.sizes();
+				this.plugins();
+				
+				this.after_init(data);
 			},
 			
 			variables: function() {
