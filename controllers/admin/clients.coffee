@@ -126,12 +126,14 @@ exports.export = (req, res) ->
 				$gte: from.valueOf()
 				$lt: to.valueOf()
 
-			Model 'Client', 'find', next, where
-		(docs, next) ->
-			Model 'Client', 'populate', next, docs, 'invited_by city'
+			Model('Client', 'find', null, where)
+				.populate('invited_by city')
+				.lean(true)
+				.exec next
 		(docs) ->
 			result = Client.exportDocs docs, res
 			res.setHeader 'Content-Type', 'application/vnd.openxmlformats'
 			res.setHeader "Content-Disposition", "attachment; filename=Clients.xlsx"
 			res.end result, 'binary'
 	], (err) ->
+		Logger.log 'error', 'Error in excel client export: ', err
