@@ -42,7 +42,7 @@ require([
 					that = this;
 				
 				if(server.length) {
-					this.element.html(server.html());
+					server.children().appendTo(this.element);
 					server.remove();
 					
 					require(['css!../css/user/' + this.options.module.name + '/' + this.options.module.name + '.css'], function () {
