@@ -15,4 +15,6 @@ block append scripts
 			products: !{JSON.stringify(products)}
 		};
 	script#product_stache(type="text/mustache")
-		mixin products_stache()
+		| {{#each products}}
+		mixin product()
+		| {{/each}}
