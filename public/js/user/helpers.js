@@ -5,14 +5,21 @@ function strip_tags(str){	// Strip HTML and PHP tags from a string
 	return str.replace(/<\/?[^>]+>/gi, '');
 }
 
-function jadeTemplate(name, data){
-	var response = $.ajax({
-		url: 'views/' + name,
-		dataType: "view",
-		async: false
-	});
+jadeTemplate = {
+	viewPath: 'views/',
+	savedViewFuncs: [],
 	
-	var template = new Function(response.responseText)();
-	
-	return template(data);
+	get: function(name, data) {
+		if(!(typeof(this.savedViewFuncs[name]) != 'undefined' && this.savedViewFuncs[name])) {
+			var response = $.ajax({
+				url: this.viewPath + name,
+				dataType: "view",
+				async: false
+			});
+			
+			this.savedViewFuncs[name] = new Function(response.responseText)();
+		}
+		
+		return this.savedViewFuncs[name](data);
+	}
 }

@@ -84,7 +84,7 @@ require([
 					return console.error(err);
 				}
 				
-				var html = jadeTemplate('user/' + this.options.module.name + '/content', data.data);
+				var html = jadeTemplate.get('user/' + this.options.module.name + '/content', data.data);
 				
 				// var html = ectRenderer.render('user/' + this.options.module.name + '/content', data.data);
 				
