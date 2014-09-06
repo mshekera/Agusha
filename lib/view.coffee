@@ -172,27 +172,20 @@ baseurl = (url)->
 	func = (path)->
 		url+path
 
-exports.globals = (req, res, callback)->
-	res.locals.defLang = 'ru'
-	res.locals.lang = req.lang
-	
+exports.globals = (req, res, callback) ->
 	if req.user
-		res.locals.euser = req.user
 		res.locals.user = req.user
 	
-	res.locals.moment = moment
-	
+	res.locals.defLang = 'ru'
+	res.locals.lang = req.lang
 	res.locals.base_url = base_url = 'http://' + req.headers.host
 	res.locals.current_url = 'http://' + req.headers.host + req.originalUrl
-	res.locals.url = baseurl base_url
-	
 	res.locals.params = req.params
 	
+	res.locals.moment = moment
+	res.locals.url = baseurl base_url
 	res.locals.strip_tags = string.strip_tags
-	
 	res.locals.is_ajax_request = request.is_ajax_request(req.headers)
-	
-	res.locals.basedir = __dirname 
 	
 	callback()
 
