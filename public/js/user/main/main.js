@@ -32,7 +32,7 @@ define([
 					}
 				};
 
-				// var jssor_slider = new $JssorSlider$('slider_container', options);
+				var jssor_slider = new $JssorSlider$('slider_container', options);
 			},
 			
 			sizes: function() {
