@@ -189,7 +189,7 @@ exports.ajaxResponse = ajaxResponse = (res, err, data) ->
 	
 	res.send data
 
-loadClient = (name, client) ->
+loadClient = (name) ->
 	filename = "#{viewDirectory}/#{name}.jade"
 	
 	# times = 1000
@@ -233,7 +233,7 @@ exports.compiler = (options) ->
 				# context = new TemplateContext
 				# container = context.load(template)
 				
-				container = loadClient template, true
+				container = loadClient template
 				
 				res.setHeader "Content-Type", "application/x-javascript; charset=utf-8"
 				res.setHeader "Last-Modified", container.lastModified
