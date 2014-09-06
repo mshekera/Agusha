@@ -14,7 +14,7 @@ block append scripts
 		var app = {
 			products: !{JSON.stringify(products)}
 		};
-	script#product_stache(type="text/mustache")
+	script#product_mustache(type="text/mustache")
 		| {{#each products}}
 		mixin product()
 		| {{/each}}

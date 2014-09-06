@@ -78,13 +78,13 @@ define([
 					
 					this.data = new ViewModel();
 					
-					var product_stache = $('#product_stache');
+					var product_mustache = $('#product_mustache');
 					
-					if(!product_stache.length) {
-						// var html = ectRenderer.render('user/products/product_stache');
-						html = jadeTemplate.get('user/products/product_stache');
+					if(!product_mustache.length) {
+						// var html = ectRenderer.render('user/products/product_mustache');
+						html = jadeTemplate.get('user/products/product_mustache');
 					} else {
-						html = product_stache.html();
+						html = product_mustache.html();
 					}
 					
 					can.view.mustache('product', html);
