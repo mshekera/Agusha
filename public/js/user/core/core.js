@@ -84,11 +84,15 @@ require([
 					return console.error(err);
 				}
 				
+				// console.time('jadeTemplate')
+				
 				var html = jadeTemplate.get('user/' + this.options.module.name + '/content', data.data);
 				
 				// var html = ectRenderer.render('user/' + this.options.module.name + '/content', data.data);
 				
 				this.element.html(html);
+				
+				// console.timeEnd('jadeTemplate')
 				
 				this.after_request(data.data);
 			},

@@ -49,7 +49,11 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				# for i in [1...times]
 				
 				if not memoizedFuncs[path]?
-					func = jade.compileFile "#{viewDirectory}/#{path}/index.jade"
+					options =
+						compileDebug: false
+						pretty: false
+					
+					func = jade.compileFile "#{viewDirectory}/#{path}/index.jade", options
 					
 					memoizedFuncs[path] = _.memoize (data, locals) ->
 						newData = _.clone data
@@ -59,6 +63,12 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 					, (data, locals) -> JSON.stringify data
 				
 				html = memoizedFuncs[path] data, res.locals
+				
+				# val = loadClient "#{path}/index"
+				
+				# func = new Function(val.source)();
+				
+				# html = func data
 				
 				# console.timeEnd 'jade.compileFile'
 				
