@@ -17,6 +17,9 @@ application = require '../init/application'
 
 viewDirectory = "#{__dirname}/../views"
 
+memoizedFuncs = []
+compiledClients = []
+
 exports.render = (req, res, path, name, dataFunc, ttl) ->
 	result = false
 	
@@ -45,9 +48,14 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				# times = 1000
 				# console.time 'jade.compileFile'
 				# for i in [1...times]
-				fn = jade.compileFile "#{viewDirectory}/#{path}/index.jade"
 				
-				html = fn data
+				if not memoizedFuncs[path]?
+					func = jade.compileFile "#{viewDirectory}/#{path}/index.jade"
+					
+					memoizedFuncs[path] = _.memoize func, (data) -> JSON.stringify data
+				
+				html = memoizedFuncs[path] data
+				
 				# console.timeEnd 'jade.compileFile'
 				
 				# if name
@@ -181,31 +189,31 @@ exports.ajaxResponse = ajaxResponse = (res, err, data) ->
 	
 	res.send data
 
-exports.load = load = (name, client) ->
+loadClient = (name, client) ->
 	filename = "#{viewDirectory}/#{name}.jade"
 	
 	# times = 1000
 	# console.time 'jade.compileClient'
 	# for i in [1...times]
 	
-	templateCode = fs.readFileSync filename, "utf-8"
-	
-	options =
-		compileDebug: false
-		filename: filename
-		pretty: false
-	
-	compiled = jade.compileClient templateCode, options
+	if not compiledClients[name]?
+		templateCode = fs.readFileSync filename, "utf-8"
+		
+		options =
+			compileDebug: false
+			filename: filename
+			pretty: false
+		
+		compiled = jade.compileClient(templateCode, options).toString()
+		
+		compiledClients[name] =
+			source: "return " + compiled,
+			lastModified: (new Date).toUTCString(),
+			gzip: null
 	
 	# console.timeEnd 'jade.compileClient'
 	
-	if !client
-		return compiled
-	
-	result =
-		source: "return " + compiled.toString(),
-		lastModified: (new Date).toUTCString(),
-		gzip: null
+	compiledClients[name]
 
 exports.compiler = (options) ->
 	options = options or {}
@@ -225,7 +233,7 @@ exports.compiler = (options) ->
 				# context = new TemplateContext
 				# container = context.load(template)
 				
-				container = load template, true
+				container = loadClient template, true
 				
 				res.setHeader "Content-Type", "application/x-javascript; charset=utf-8"
 				res.setHeader "Last-Modified", container.lastModified
