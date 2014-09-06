@@ -52,9 +52,11 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				if not memoizedFuncs[path]?
 					func = jade.compileFile "#{viewDirectory}/#{path}/index.jade"
 					
-					memoizedFuncs[path] = _.memoize func, (data) -> JSON.stringify data
+					memoizedFuncs[path] = _.memoize (params, data) ->
+						func data
+					, (params, data) -> JSON.stringify params
 				
-				html = memoizedFuncs[path] data
+				html = memoizedFuncs[path] req.params, data
 				
 				# console.timeEnd 'jade.compileFile'
 				
