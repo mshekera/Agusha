@@ -38,9 +38,8 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				
 				next null, {}
 			(data) ->
-				_.extend data, res.locals
-				
 				if res.locals.is_ajax_request is true
+					_.extend data, res.locals
 					return ajaxResponse res, null, data
 				
 				# html = application.ectRenderer.render path += '/index', data
@@ -52,11 +51,14 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				if not memoizedFuncs[path]?
 					func = jade.compileFile "#{viewDirectory}/#{path}/index.jade"
 					
-					memoizedFuncs[path] = _.memoize (params, data) ->
-						func data
-					, (params, data) -> JSON.stringify params
+					memoizedFuncs[path] = _.memoize (data, locals) ->
+						newData = _.clone data
+						_.extend newData, locals
+						
+						func newData
+					, (data, locals) -> JSON.stringify data
 				
-				html = memoizedFuncs[path] req.params, data
+				html = memoizedFuncs[path] data, res.locals
 				
 				# console.timeEnd 'jade.compileFile'
 				
