@@ -221,7 +221,7 @@ loadClient = (name) ->
 		compiled = jade.compileClient(templateCode, options).toString()
 		
 		compiledClients[name] =
-			source: "return " + compiled,
+			source: compiled,
 			lastModified: (new Date).toUTCString(),
 			gzip: null
 	

@@ -13,11 +13,11 @@ jadeTemplate = {
 		if(!(typeof(this.savedViewFuncs[name]) != 'undefined' && this.savedViewFuncs[name])) {
 			var response = $.ajax({
 				url: this.viewPath + name,
-				dataType: "view",
+				dataType: 'view',
 				async: false
 			});
 			
-			this.savedViewFuncs[name] = new Function(response.responseText)();
+			this.savedViewFuncs[name] = new Function('return ' + response.responseText)();
 		}
 		
 		return this.savedViewFuncs[name](data);
