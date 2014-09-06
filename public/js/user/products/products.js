@@ -37,7 +37,8 @@ define([
 			{
 				after_init: function(data) {
 					var that = this,
-						products;
+						products,
+						html;
 					
 					this.first_call = true;
 					
@@ -81,12 +82,12 @@ define([
 					
 					if(!product_stache.length) {
 						// var html = ectRenderer.render('user/products/product_stache');
-						var html = jadeTemplate.get('user/products/product_stache');
-						
-						can.view.stache('product', html);
+						html = jadeTemplate.get('user/products/product_stache');
 					} else {
-						can.view.stache('product', product_stache.html());
+						html = product_stache.html();
 					}
+					
+					can.view.mustache('product', html);
 					
 					$('#products_container').html(can.view('product', this.data, {
 						ageLevel: function(options) {
