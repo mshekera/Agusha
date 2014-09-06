@@ -207,6 +207,7 @@ loadClient = (name) ->
 			compileDebug: false
 			filename: filename
 			pretty: false
+			gzip: true
 		
 		compiled = jade.compileClient(templateCode, options).toString()
 		
