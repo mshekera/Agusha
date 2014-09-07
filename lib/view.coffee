@@ -176,8 +176,6 @@ exports.globals = (req, res, callback) ->
 	if req.user
 		res.locals.user = req.user
 	
-	res.locals.defLang = 'ru'
-	res.locals.lang = req.lang
 	res.locals.base_url = base_url = 'http://' + req.headers.host
 	res.locals.current_url = 'http://' + req.headers.host + req.originalUrl
 	res.locals.params = req.params
