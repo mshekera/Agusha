@@ -54,9 +54,7 @@ var Products_controller = can.Control.extend(
 								category: this.attr('category')
 							};
 							
-							if(that.first_call) {
-								that.first_call = false;
-							} else {
+							if(!that.first_call) {
 								currentValue.replace(Product.findAll(options));
 							}
 							
@@ -73,6 +71,8 @@ var Products_controller = can.Control.extend(
 					return options.context.age.level < 12 ? options.fn() : options.inverse();
 				}
 			}));
+			
+			that.first_call = false;
 		},
 		
 		'.age_block click': function(el) {
