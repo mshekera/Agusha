@@ -1,0 +1,10 @@
+{
+	"framework": "mocha",
+	"test_page": "js/tests/userTest.html",
+	"watch_files": "js/user/**/*.js",
+	"launchers": {
+		"Mocha": {
+			"command": "mocha js/tests/*.js"
+		}
+	}
+}

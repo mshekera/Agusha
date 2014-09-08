@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Agusha user tests</title>		
+	</head>
+	<body>
+		<div id="mocha"></div>
+		
+		<div id="modules"></div>
+		
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/plugins/can/can.js"></script>
+		<script src="/js/plugins/jade/runtime.js"></script>
+		<script src="/js/plugins/mocha/mocha.js"></script>
+		<script src="/js/plugins/should/should.js"></script>
+		<script src="/js/user/helpers.js"></script>
+		<script>
+			mocha.setup('bdd');
+		</script>
+		
+		<script id="route_tmpl" type="text/mustache">
+			{{#each modules}}
+				<div class="module{{#if active}} active{{/if}}" id="{{id}}"></div>
+			{{/each}}
+		</script>
+		
+		<script data-main="/js/tests/specRunner.js" src="/js/plugins/require/require.js"></script>
+	</body>
+</html>
