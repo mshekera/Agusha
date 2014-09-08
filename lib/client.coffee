@@ -127,6 +127,6 @@ exports.exportDocs = (docs, callback) ->
 			item.apartment or 'N/A',
 			item.ip_address or 'N/A'
 		]
-	console.log nodeExcel
-	res = nodeExcel.executeAsync conf, 'STORE', (res) ->
+	
+	nodeExcel.executeAsync conf, 'STORE', (res) ->
 		callback null, res
