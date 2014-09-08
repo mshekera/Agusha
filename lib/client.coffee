@@ -1,7 +1,7 @@
 async = require 'async'
 mongoose = require 'mongoose'
 moment = require 'moment'
-nodeExcel = require 'excel-export'
+nodeExcel = require './excelExportFork'#require 'excel-export'
 emailExistence = require 'email-existence'
 
 View = require './view'
@@ -78,7 +78,7 @@ exports.signUp = (res, data, post, callback) ->
 		
 		callback err
 
-exports.exportDocs = (docs, res) ->
+exports.exportDocs = (docs, callback) ->
 	conf = {}
 
 	conf.stylesXmlFile = "#{process.cwd()}/meta/styles.xml"
@@ -127,5 +127,6 @@ exports.exportDocs = (docs, res) ->
 			item.apartment or 'N/A',
 			item.ip_address or 'N/A'
 		]
-
-	return nodeExcel.execute conf
+	console.log nodeExcel
+	res = nodeExcel.executeAsync conf, 'STORE', (res) ->
+		callback null, res
