@@ -17,7 +17,7 @@ application = require '../init/application'
 
 viewDirectory = "#{__dirname}/../views"
 
-memoizedFuncs = []
+compiledFiles = []
 compiledClients = []
 
 exports.render = (req, res, path, name, dataFunc, ttl) ->
@@ -38,8 +38,9 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				
 				next null, {}
 			(data) ->
+				_.extend data, res.locals
+				
 				if res.locals.is_ajax_request is true
-					_.extend data, res.locals
 					return ajaxResponse res, null, data
 				
 				# html = application.ectRenderer.render path += '/index', data
@@ -47,28 +48,15 @@ exports.render = (req, res, path, name, dataFunc, ttl) ->
 				# times = 1000
 				# console.time 'jade.compileFile'
 				# for i in [1...times]
-				
-				if not memoizedFuncs[path]?
+					
+				if not compiledFiles[path]
 					options =
 						compileDebug: false
 						pretty: false
 					
-					func = jade.compileFile "#{viewDirectory}/#{path}/index.jade", options
-					
-					memoizedFuncs[path] = _.memoize (data, locals) ->
-						newData = _.clone data
-						_.extend newData, locals
-						
-						func newData
-					, (data, locals) -> JSON.stringify data
+					compiledFiles[path] = jade.compileFile "#{viewDirectory}/#{path}/index.jade", options
 				
-				html = memoizedFuncs[path] data, res.locals
-				
-				# val = loadClient "#{path}/index"
-				
-				# func = new Function(val.source)();
-				
-				# html = func data
+				html = compiledFiles[path] data
 				
 				# console.timeEnd 'jade.compileFile'
 				
