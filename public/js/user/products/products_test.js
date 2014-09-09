@@ -3,12 +3,13 @@ define([
 	'user/products/products'
 ],
 	function(Core, Products) {
-		var isReady = can.Deferred(),
+		var name = id = 'products',
+			isReady = can.Deferred(),
 			options = {
 				isReady: isReady,
 				module: {
-					name: 'products',
-					id: 'products',
+					name: name,
+					id: id,
 					path: {
 						client: 'user/products/products',
 						server: 'products'
