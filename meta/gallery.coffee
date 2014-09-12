@@ -6,14 +6,14 @@ module.exports = [
 		# title: 'Вкусное-полезное'
 		# href: '/production'
 # ,
-	img: 'banner_action.png'
-	top_label: '<div class="action_label">Акция!</div>'
-	label: '<div class="action">Регистрируйтесь и<br>выиграйте вкусный и<br>полезный <span class="novito_nova_regular">подарок</span><br>для вашего малыша</div>'
-	link:
-		title: 'Получите свой!'
-		href: '/signup'
-		class: 'bannertop'
-,
+	# img: 'banner_action.png'
+	# top_label: '<div class="action_label">Акция!</div>'
+	# label: '<div class="action">Регистрируйтесь и<br>выиграйте вкусный и<br>полезный <span class="novito_nova_regular">подарок</span><br>для вашего малыша</div>'
+	# link:
+		# title: 'Получите свой!'
+		# href: '/signup'
+		# class: 'bannertop'
+# ,
 	img: 'banner_1_2.png'
 	top_label: 'Заявляем смело:'
 	label: 'Для «Агуши»<br />молоко только<br />екстра-класса'
