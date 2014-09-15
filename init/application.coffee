@@ -64,6 +64,9 @@ configure = () ->
 		res.set 'Content-Type', 'text/plain'
 		res.send "f69d1b81b9888a5057c327f01ac24ca7a2c80def0c4567c0b40961c2"
 	
+	@use '/pervaya1000_all_winners.pdf', (req, res) ->
+		res.sendfile 'pervaya1000_all_winners.pdf', root: "#{__dirname}/../public/doc"
+	
 	@use multer {
 		dest: './public/img/uploads/'
 		onFileUploadComplete: Image.doResize
