@@ -201,9 +201,11 @@ exports.activate = (req, res) ->
 			Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
 			return res.send error
 		
-		data.client = results.client
+		# data.client = results.client
 		
-		View.render 'user/signup/activate/activate', res, data, req.path
+		# View.render 'user/signup/activate/activate', res, data, req.path
+		
+		res.redirect '/signup/success/' + results.client._id
 
 exports.activatePost = (req, res) ->
 	salt = req.body.salt

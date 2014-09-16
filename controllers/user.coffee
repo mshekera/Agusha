@@ -39,7 +39,7 @@ Router.get '/register/:email', SignUp.registerGet
 
 Router.post '/signup/invite', SignUp.invite
 Router.post '/signup/register', SignUp.register
-Router.post '/signup/activate', SignUp.activatePost
+# Router.post '/signup/activate', SignUp.activatePost
 
 #
 

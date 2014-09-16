@@ -1,4 +1,4 @@
-.border
+.border2
 	table.table_wrap
 	table.header
 		tbody
@@ -11,32 +11,24 @@
 						span.pt_italic
 							| Здравствуйте, #{login}!
 							br
-							| Поздравляем, вы зарегистрированы на 
+							| Спасибо, что вы зарегистрировались на 
 							a(href = base_url + '?utm_source=email_main&utm_medium=email&utm_campaign=light_email') agusha.com.ua
-							| !
+							|  - полезном ресурсе для современных родителей!
 	
-	table.posil
 	table.action
 		tbody
 			tr
 				td
-					.about_action
-						| С подробными правилами акции вы можете ознакомиться 
-						- var href = base_url + '/action?utm_source=email_rules&utm_medium=email&utm_campaign=light_email'
-						a(href = href) здесь
-						| .
-			tr
-				td
 					.get_contacts
-						| Пожалуйста, укажите свои контактные данные для завершения
+						| Пожалуйста, пройдите по ссылке, чтобы подтвердить свою
 						br
-						| регистрации.
+						| регистрацию.
 			tr
 				td
 					.action_button
 						- var href = base_url + '/signup/activate/' + salt + '?utm_source=email_activate&utm_medium=email&utm_campaign=light_email'
 						a(href = href)
-							div.abutton.pt_bold хочу подарок
+							div.abutton.pt_bold Подтвердить регистрацию
 	
 	.not_registred_text
 		| Если вы не регистрировались на 
