@@ -18,13 +18,13 @@
 	table.action
 		tbody
 				
-			tr
+			tr.first
 				td
 					.get_contacts
 						| Пожалуйста, пройдите по ссылке, чтобы подтвердить свою
 						br
 						| регистрацию.
-			tr
+			tr.second
 				td
 					.action_button
 						- var href = base_url + '/signup/activate/' + salt + '?utm_source=email_activate&utm_medium=email&utm_campaign=light_email'

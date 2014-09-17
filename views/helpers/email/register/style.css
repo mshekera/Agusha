@@ -200,12 +200,12 @@ body {
 	height: 30px;
 }
 
-.action tr:first-child {
-	margin-top: 30px;
+.action tr.first td {
+	padding-top: 30px;
 }
 
-.action tr:last-child {
-	margin-bottom: 30px;
+.action tr.second td {
+	padding-bottom: 30px;
 }
 
 .action .about_action {
