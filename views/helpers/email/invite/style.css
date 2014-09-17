@@ -200,6 +200,10 @@ body {
 	color: #4c4c4c;
 }
 
+.action .about_action.blue {
+	color: #45b4e8;
+}
+
 a.italic_small_link {
 	color: #45b4e8;
 	font-family: sans-serif;
