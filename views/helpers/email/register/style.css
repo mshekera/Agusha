@@ -200,6 +200,14 @@ body {
 	height: 30px;
 }
 
+.action tr:first-child {
+	margin-top: 30px;
+}
+
+.action tr:last-child {
+	margin-bottom: 30px;
+}
+
 .action .about_action {
 	font-size: 10pt;
 	color: #4c4c4c;
