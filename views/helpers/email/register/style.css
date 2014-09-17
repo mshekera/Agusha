@@ -196,6 +196,14 @@ body {
 	font-weight: lighter;
 } 
 
+.action td:first-child {
+	padding-top: 30px;
+}
+
+.action td:last-child {
+	padding-bottom: 30px;
+}
+
 .action .about_action {
 	font-size: 10pt;
 	color: #4c4c4c;
