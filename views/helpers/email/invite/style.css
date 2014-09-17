@@ -196,7 +196,7 @@ body {
 } 
 
 .action .about_action {
-	font-size: 10pt;
+	font-size: 15pt;
 	color: #4c4c4c;
 	padding-top: 31px;
 }
@@ -213,7 +213,7 @@ a.italic_small_link:hover {
 }
 
 .action .get_contacts {
-	font-size: 16pt;
+	font-size: 15pt;
 	color: #4c4c4c;
 	margin-top: -37px;
 }
