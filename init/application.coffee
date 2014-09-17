@@ -72,7 +72,7 @@ configure = () ->
 		onFileUploadComplete: Image.doResize
 	}
 	
-	@use Referrer.isGoodReferrer
+	# @use Referrer.isGoodReferrer
 	@use Logger.request
 	@use Cache.requestCache
 	@use bodyParser()
