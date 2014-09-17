@@ -142,7 +142,7 @@ body {
 .header .welcome {
 	width: 493px;
 	color: #fff;
-	font-size: 21px;
+	font-size: 20px;
 	text-align: left;
 	font-weight: lighter;
 }
@@ -196,9 +196,12 @@ body {
 } 
 
 .action .about_action {
-	font-size: 10pt;
+	font-size: 15pt;
 	color: #4c4c4c;
-	padding-top: 31px;
+}
+
+.action .about_action.blue {
+	color: #45b4e8;
 }
 
 a.italic_small_link {
@@ -213,7 +216,7 @@ a.italic_small_link:hover {
 }
 
 .action .get_contacts {
-	font-size: 16pt;
+	font-size: 15pt;
 	color: #4c4c4c;
 	margin-top: -37px;
 }

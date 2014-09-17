@@ -1,6 +1,6 @@
 .border2
 	table.table_wrap
-	table.header.green
+	table.header
 		tbody
 			tr
 				th.logo
@@ -20,23 +20,29 @@
 			tr
 				td
 					.about_action
-						| Он появится на свет совсем скоро, и зарегистрироваться вы можете уже сейчас.
+						| Он появится на свет совсем скоро, и зарегистрироваться
 						br
-						| Будьте первооткрывателями и получите 100 баллов, которые вы сможете обменять на подарки
+						| вы можете уже сейчас.
+			tr
+				td
+					.about_action.blue
+						| Будьте первооткрывателями и получите 100 баллов, которые вы
 						br
-						| после открытия сайта.
+						| сможете обменять на подарки после открытия сайта.
 			
 			tr
 				td
 					.get_contacts
-						| Пожалуйста, пройдите по ссылке, чтобы подтвердить свою регистрацию.
+						| Пожалуйста, пройдите по ссылке, чтобы подтвердить свою
+						br
+						| регистрацию.
 			
 			tr
 				td
 					.action_button
 						- var href = base_url + '/signup/activate/' + salt + '?utm_source=email_activate&utm_medium=email&utm_campaign=light_email'
 						a(href=href)
-							div.abutton.green.pt_bold Подтвердить регистрацию
+							div.abutton.pt_bold Подтвердить регистрацию
 	.not_registred_text
 		| Если вы не знакомы с #{friend}, проигнорируйте это письмо. 
 		br

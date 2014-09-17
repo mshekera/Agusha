@@ -196,6 +196,10 @@ body {
 	font-weight: lighter;
 } 
 
+.action .dummy {
+	height: 30px;
+}
+
 .action .about_action {
 	font-size: 10pt;
 	color: #4c4c4c;
@@ -214,9 +218,13 @@ a.italic_small_link:hover {
 }
 
 .action .get_contacts {
-	font-size: 16pt;
+	font-size: 15pt;
 	color: #4c4c4c;
-	margin-top: -37px;
+	margin-top: 30px;
+}
+
+.action .action_button {
+	margin-bottom: 30px;
 }
 
 .action .action_button .abutton {
