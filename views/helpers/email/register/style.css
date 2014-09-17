@@ -196,12 +196,8 @@ body {
 	font-weight: lighter;
 } 
 
-.action td:first-child {
-	padding-top: 30px;
-}
-
-.action td:last-child {
-	padding-bottom: 30px;
+.action .dummy {
+	height: 30px;
 }
 
 .action .about_action {
