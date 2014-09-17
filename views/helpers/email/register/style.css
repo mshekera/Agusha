@@ -200,14 +200,6 @@ body {
 	height: 30px;
 }
 
-.action tr.first td {
-	padding-top: 30px;
-}
-
-.action tr.second td {
-	padding-bottom: 30px;
-}
-
 .action .about_action {
 	font-size: 10pt;
 	color: #4c4c4c;
@@ -228,7 +220,7 @@ a.italic_small_link:hover {
 .action .get_contacts {
 	font-size: 16pt;
 	color: #4c4c4c;
-	margin-top: -37px;
+	padding-top: 30px;
 }
 
 .action .action_button .abutton {
