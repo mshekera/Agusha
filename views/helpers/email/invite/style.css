@@ -98,11 +98,17 @@ body {
 	background: url('http://agusha.com.ua/img/email/bg-border.png') no-repeat;
 }
 
-.border.border2 {
+.border2 {
+	max-width: 740px;
+	width: 760px;
+	padding: 10px;
 	background: url('http://agusha.com.ua/img/email/bg-border-2.png') no-repeat;
 }
 
-.border.border3 {
+.border3 {
+	max-width: 740px;
+	width: 760px;
+	padding: 10px;
 	background: url('http://agusha.com.ua/img/email/bg-border-3.png') no-repeat;
 }
 
