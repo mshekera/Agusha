@@ -52,7 +52,7 @@ exports.save = (req, res) ->
 	async.waterfall [
 		(next) ->
 			if _id
-				async.waterfall [
+				return async.waterfall [
 					(next2) ->
 						Model 'Article', 'findOne', next2, {_id}
 					(doc) ->
@@ -66,8 +66,14 @@ exports.save = (req, res) ->
 						Article.makeAlias doc, next
 				], (err) ->
 					next err
-			else
-				Model 'Article', 'create', next, data
+			
+			async.waterfall [
+				(next2) ->
+					Model 'Article', 'create', next, data
+				(doc) ->
+					Article.makeAlias doc, next
+			], (err) ->
+				next err
 		(doc, next) ->
 			cbArticles = (err, docs)->
 				if err
