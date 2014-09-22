@@ -5,6 +5,7 @@ mongoose = require 'mongoose'
 View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
+Product = require '../../lib/product'
 
 array = require '../../utils/array'
 
@@ -91,7 +92,7 @@ exports.save = (req, res) ->
 	async.waterfall [
 		(next) ->
 			if _id
-				async.waterfall [
+				return async.waterfall [
 					(next2) ->
 						Model 'Product', 'findOne', next2, _id: _id
 					(doc, next2) ->
@@ -100,14 +101,18 @@ exports.save = (req, res) ->
 								doc[prop] = val
 
 						doc.active = data.active or false
-
-						doc.save next
-
+						
+						Product.makeAlias doc, next
 				], (err) ->
 					next err
-			else
-				Model 'Product', 'create', next, data
-
+			
+			async.waterfall [
+				(next2) ->
+					Model 'Product', 'create', next2, data
+				(doc) ->
+					Product.makeAlias doc, next
+			], (err) ->
+				next err
 		(doc, affected, next) ->
 			if typeof affected is 'function'
 				next = affected

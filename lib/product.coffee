@@ -62,19 +62,20 @@ exports.getAgesAndCategories = (callback) ->
 			Model 'Category', 'find', next, {active: true}, null, options
 	}, callback
 
+exports.makeAlias = makeAlias = (item, callback) ->
+	volume = item.getFormattedVolume()
+	string = item.title + ' ' + volume.volume + ' ' + volume.postfix
+	string = string.replace(RegExp(' +(?= )', 'g'), '') # remove double spaces
+	string = string.toLowerCase()
+	
+	item.alias = translit string
+	
+	item.save callback
+
 exports.makeAliases = (callback) ->
 	async.waterfall [
 		(next) ->
 			Model 'Product', 'find', next
 		(docs) ->
-			async.each docs, (item, next2) ->
-				volume = item.getFormattedVolume()
-				string = item.title + ' ' + volume.volume + ' ' + volume.postfix
-				string = string.replace(RegExp(' +(?= )', 'g'), '') # remove double spaces
-				string = string.toLowerCase()
-				
-				item.alias = translit string
-				
-				item.save next2
-			, callback
+			async.each docs, makeAlias, callback
 	], callback
