@@ -48,7 +48,6 @@ schema = new mongoose.Schema
 	alias:
 		type: String
 		index: true
-		unique: true
 ,
 	collection: 'product'
 
