@@ -43,9 +43,9 @@ async.waterfall [
 	(next) ->
 		Logger.log 'info', 'Image directories are checked'
 		
-		Product.makeAliases next
-	(next) ->
-		Logger.log 'info', 'Product aliases are recreated'
+		# Product.makeAliases next
+	# (next) ->
+		# Logger.log 'info', 'Product aliases are recreated'
 		
 		# Article.makeAliases next
 	# (next) ->
