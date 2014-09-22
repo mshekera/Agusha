@@ -69,7 +69,7 @@ exports.save = (req, res) ->
 			
 			async.waterfall [
 				(next2) ->
-					Model 'Article', 'create', next, data
+					Model 'Article', 'create', next2, data
 				(doc) ->
 					Article.makeAlias doc, next
 			], (err) ->
