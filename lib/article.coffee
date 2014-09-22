@@ -66,16 +66,17 @@ exports.findAll = (req, res) ->
 		Logger.log 'info', "Error in lib/article/findAll: #{error}"
 		View.ajaxResponse res, err
 
+exports.makeAlias = makeAlias = (item, callback) ->
+	string = item.desc_title
+	
+	item.alias = translit string
+	
+	item.save callback
+
 exports.makeAliases = (callback) ->
 	async.waterfall [
 		(next) ->
 			Model 'Article', 'find', next
 		(docs) ->
-			async.each docs, (item, next2) ->
-				string = item.desc_title
-				
-				item.alias = translit string
-				
-				item.save next2
-			, callback
+			async.each docs, makeAlias, callback
 	], callback

@@ -5,6 +5,7 @@ View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
 Image = require '../../lib/image'
+Article = require '../../lib/article'
 
 exports.index = (req, res) ->
 	async.waterfall [
@@ -61,8 +62,8 @@ exports.save = (req, res) ->
 									doc[prop] = doc[prop].concat val
 								else
 									doc[prop] = val
-
-						doc.save next
+						
+						Article.makeAlias doc, next
 				], (err) ->
 					next err
 			else
