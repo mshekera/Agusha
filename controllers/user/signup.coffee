@@ -262,3 +262,19 @@ exports.activatePost = (req, res) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
 		View.ajaxResponse res, error
+
+exports.win = (req, res) ->
+	email = req.params.email
+	
+	options =
+		template: 'win'
+		client:
+			login: email
+			email: email
+		subject: "Ваш подарок от Агуши"
+	
+	Client.sendMail res, options, (err) ->
+		if err
+			return res.send err
+		
+		res.send true

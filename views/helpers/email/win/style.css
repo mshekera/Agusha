@@ -2,7 +2,7 @@
 	Reset styles
 */
 
-body, .main_container {
+body, .border_win {
     margin:0;
     padding:0;
 }
@@ -51,14 +51,15 @@ table, td {
 	Background and border
 */
 
-body, .main_container {
+body, .border_win {
 	background: #fff;
 	font-family: sans-serif;
 }
 
-.main_container {
+.border_win {
 	width: 740px;
 	padding: 10px;
+	background: url('http://agusha.com.ua/img/email/bg-border-win.png') no-repeat;
 }
 
 /*
