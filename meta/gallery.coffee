@@ -16,7 +16,7 @@ module.exports = [
 # ,
 	img: 'banner_1_2.png'
 	top_label: 'Заявляем смело:'
-	label: 'Для «Агуши»<br />молоко только<br />екстра-класса'
+	label: 'Для «Агуши»<br />молоко только<br />экстра-класса'
 	link:
 		title: 'Что это значит?'
 		href: '/production'
