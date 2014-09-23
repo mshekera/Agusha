@@ -39,11 +39,11 @@ table, td {
 	Font-face
 */
 
-.italic {
+.pt_italic {
 	font-style: italic;
 }
 
-.bold {
+.pt_bold {
 	font-weight: bold;
 }
 
@@ -69,7 +69,7 @@ body, .border_win {
 .header {
 	width: 100%;
 	height: 250px;
-	background: url('http://agusha.com.ua/img/email/header-bg_03.png') no-repeat;
+	background: url('http://agusha.com.ua/img/email/header_bg_04.png') no-repeat;
 }
 
 .header.green {
@@ -98,9 +98,10 @@ body, .border_win {
 .header .welcome {
 	width: 493px;
 	color: #fff;
-	font-size: 18pt;
+	font-size: 21.33px;
 	text-align: left;
 	font-weight: lighter;
+	line-height: 25px;
 }
 
 .header .welcome a {
@@ -116,7 +117,6 @@ body, .border_win {
 .header .welcome .welcome_test {
 	margin-bottom: 47px;
 	padding: 0 33px;
-	line-height: 17pt;
 	font-size: 14pt;
 }
 
@@ -209,13 +209,15 @@ a.italic_small_link:hover {
 */
 
 .not_registred_text {
-	height: 63px;
+	height: 125px;
 	width: 100%;
-	font-size: 10pt;
+	font-size: 13.33px;
 	font-weight: normal;
 	background: #f1eee5;
 	text-align: center;
 	padding-top: 27px;
+	vertical-align: middle;
+	line-height: 20px;
 }
 
 
@@ -228,7 +230,7 @@ a.italic_small_link:hover {
 	width: auto;
 	height: 33px;
 	font-size: 10pt;
-	padding-top: 24px;
+	padding-top: 20px;
 	padding-left: 25px;
 	padding-right: 25px;
 	color: #fff;
