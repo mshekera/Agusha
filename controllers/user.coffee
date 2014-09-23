@@ -104,7 +104,7 @@ Router.post '/city_autocomplete', City.autocomplete
 
 #
 
-Router.get '/email123', Main.email123
+Router.get '/win', SignUp.win
 Router.get '/win/:email', SignUp.win
 
 #

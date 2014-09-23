@@ -12,6 +12,7 @@ tree = require '../../utils/tree'
 string = require '../../utils/string'
 
 breadcrumbs = require '../../meta/breadcrumbs'
+winners = require '../../meta/winners'
 
 exports.index = (req, res) ->
 	if req.cookies.registered
@@ -265,6 +266,10 @@ exports.activatePost = (req, res) ->
 
 exports.win = (req, res) ->
 	email = req.params.email
+	
+	if !email?
+		console.log winners.length
+		return res.send winners.length
 	
 	options =
 		template: 'win'
