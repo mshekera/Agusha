@@ -8,6 +8,7 @@ View = require '../../lib/view'
 Model = require '../../lib/model'
 Logger = require '../../lib/logger'
 Image = require '../../lib/image'
+Article = require '../../lib/article'
 
 exports.index = (req, res) ->
 	async.waterfall [
@@ -53,7 +54,7 @@ exports.save = (req, res) ->
 	async.waterfall [
 		(next) ->
 			if _id
-				async.waterfall [
+				return async.waterfall [
 					(next2) ->
 						Model 'Article', 'findOne', next2, {_id}
 					(doc) ->
@@ -64,11 +65,17 @@ exports.save = (req, res) ->
 								else
 									doc[prop] = val
 
-						doc.save next
+						Article.makeAlias doc, next
 				], (err) ->
 					next err
-			else
-				Model 'Article', 'create', next, data
+			
+			async.waterfall [
+				(next2) ->
+					Model 'Article', 'create', next2, data
+				(doc) ->
+					Article.makeAlias doc, next
+			], (err) ->
+				next err
 		(doc, next) ->
 			if not doc
 				return next "Произошла неизвестная ошибка."
