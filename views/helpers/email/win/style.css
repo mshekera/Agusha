@@ -230,7 +230,7 @@ a.italic_small_link:hover {
 	width: auto;
 	height: 33px;
 	font-size: 10pt;
-	padding-top: 15px;
+	padding-top: 19px;
 	padding-left: 25px;
 	padding-right: 25px;
 	color: #fff;
@@ -252,7 +252,6 @@ a.italic_small_link:hover {
 	text-align: center;
 	width: 100%;
 	font-size: 16pt;
-	padding: 20px;
 	width: 700px;
 }
 
