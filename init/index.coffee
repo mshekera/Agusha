@@ -47,9 +47,9 @@ async.waterfall [
 	# (next) ->
 		# Logger.log 'info', 'Product aliases are recreated'
 		
-		# Article.makeAliases next
-	# (next) ->
-		# Logger.log 'info', 'Article aliases are recreated'
+		Article.makeAliases next
+	(next) ->
+		Logger.log 'info', 'Article aliases are recreated'
 		
 		Application.init next
 	(next) ->
