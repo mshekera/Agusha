@@ -26,9 +26,10 @@ exports.send = (name, data, cb) ->
 				subject: data.subject
 				text: text
 				html: html
-			
+			console.log 36
 			transport.sendMail mailOptions, next
 		->
+			console.log 37
 			cb null
 	], (err) ->
 		cb err
