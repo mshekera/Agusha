@@ -55,3 +55,6 @@ exports.unsubscribe = (req, res) ->
 	View.render 'user/index', res, data, req.path
 	
 	# res.redirect '/'
+
+exports.email123 = (req, res) ->
+	View.render 'helpers/email/win/html', res, null
