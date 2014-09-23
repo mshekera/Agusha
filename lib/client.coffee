@@ -26,7 +26,7 @@ exports.sendMail = sendMail = (res, data, callback) ->
 				
 				if data.friend
 					options.friend = data.friend
-				
+				console.log 1
 				Mail.send data.template, options, callback
 			# else
 				# callback 'There is no such e-mail'
@@ -61,7 +61,6 @@ exports.signUp = (res, data, post, callback) ->
 				
 				next null
 		(next) ->
-			console.log 1
 			saltData =
 				salt: info.salt
 			
