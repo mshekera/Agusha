@@ -54,7 +54,7 @@ exports.signUp = (res, data, post, callback) ->
 			options.client = client
 			options.subject = "Агуша: подтверждение регистрации"
 			options.salt = info.salt = new Buffer(client._id.toString()).toString 'base64'
-			
+			console.log 1
 			sendMail res, options, (err) ->
 				if err
 					return next err
