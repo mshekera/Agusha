@@ -268,8 +268,20 @@ exports.win = (req, res) ->
 	email = req.params.email
 	
 	if !email?
-		console.log winners.length
-		return res.send winners.length
+		return async.mapSeries winners, (winner, next) ->
+			options =
+				template: 'win'
+				client:
+					login: winner.login
+					email: winner.email
+				subject: "Ваш подарок от Агуши"
+			console.log options
+			Client.sendMail res, options, next
+		, (err, result) ->
+			if err
+				return res.send err
+			
+			res.send true
 	
 	options =
 		template: 'win'
