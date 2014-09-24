@@ -268,12 +268,13 @@ exports.win = (req, res) ->
 	email = req.params.email
 	
 	if !email?
-		return async.mapSeries winners, (winner, next) ->
+		return async.mapSeries winners.slice(323, 372), (winner, next) ->
 			options =
 				template: 'win'
 				client:
 					login: winner.login
 					email: winner.email
+					number: winner.number
 				subject: "Ваш подарок от Агуши"
 			console.log options
 			Client.sendMail res, options, next
