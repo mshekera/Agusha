@@ -1,6 +1,7 @@
 async = require 'async'
 _ = require 'underscore'
 moment = require 'moment'
+jade = require 'jade'
 
 Logger = require './logger'
 Cache = require './cache'
@@ -8,21 +9,46 @@ Model = require './model'
 
 string = require '../utils/string'
 
-exports.render = render = (name, res, data, cacheId) ->
-	data or= {}
+viewDirectory = "#{__dirname}/../views"
 
-	async.parallel [
-		(next) -> # cache
-			if not cacheId
-				return next()
+compiledFiles = []
 
-			Cache.put name, data, cacheId, res.locals, next
-		(next) -> # view
-			res.render name, data
-			next()
-	], (err, results)->
-		if err
-			Logger.log 'error', 'Error in View.render:', err + ''
+exports.render = render = (path, res, data) ->
+	data = data || {}
+	
+	_.extend data, res.locals
+	
+	# if res.locals.is_ajax_request is true
+		# return ajaxResponse res, null, data
+	
+	# html = application.ectRenderer.render path += '/index', data
+		
+	if not compiledFiles[path]
+		options =
+			compileDebug: false
+			pretty: false
+		
+		compiledFiles[path] = jade.compileFile "#{viewDirectory}/#{path}.jade", options
+	
+	html = compiledFiles[path] data
+	
+	res.send html
+
+# exports.render = render = (name, res, data, cacheId) ->
+	# data or= {}
+
+	# async.parallel [
+		# (next) -> # cache
+			# if not cacheId
+				# return next()
+
+			# Cache.put name, data, cacheId, res.locals, next
+		# (next) -> # view
+			# res.render name, data
+			# next()
+	# ], (err, results)->
+		# if err
+			# Logger.log 'error', 'Error in View.render:', err + ''
 
 exports.renderWithSession = (req, res, path, data) ->
 	data = data || {}

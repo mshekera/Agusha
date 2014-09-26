@@ -12,15 +12,13 @@ bodyParser = require 'body-parser'
 session = require 'express-session'
 methodOverride = require 'method-override' 
 multer = require 'multer'
-compression = require 'compression'
-gzip = require 'connect-gzip'
 
 Auth = require '../lib/auth'
-Cache = require '../lib/cache'
+# Cache = require '../lib/cache'
 View = require '../lib/view'
 Admin = require '../lib/admin'
 Image = require '../lib/image'
-Logger = require '../lib/logger'
+# Logger = require '../lib/logger'
 Referrer = require '../lib/referrer'
 
 admin_controller = require '../controllers/admin'
@@ -46,11 +44,6 @@ configure = () ->
 	@set 'view engine', 'jade'
 	@set 'view options', jadeOptions
 	
-	# @use compression
-		# threshold: 2048
-	# @use gzip.gzip
-		# matchType: ///js/image/images/image/img///
-	
 	@use '/js', express.static "#{__dirname}/../public/js"
 	@use '/img', express.static "#{__dirname}/../public/img"
 	@use '/attachable', express.static "#{__dirname}/../public/img/admin/attachable"
@@ -73,8 +66,8 @@ configure = () ->
 	}
 	
 	# @use Referrer.isGoodReferrer
-	@use Logger.request
-	@use Cache.requestCache
+	# @use Logger.request
+	# @use Cache.requestCache
 	@use bodyParser()
 	@use cookieParser 'LmAK3VNuA6'
 	@use session sessionParams
