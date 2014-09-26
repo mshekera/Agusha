@@ -268,7 +268,7 @@ exports.win = (req, res) ->
 	email = req.params.email
 	
 	if !email?
-		return async.mapSeries winners.slice(651, 652), (winner, next) ->
+		return async.mapSeries winners.slice(999, 1000), (winner, next) ->
 			options =
 				template: 'win'
 				client:
