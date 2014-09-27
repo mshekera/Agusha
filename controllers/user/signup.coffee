@@ -264,35 +264,35 @@ exports.activatePost = (req, res) ->
 		Logger.log 'info', "Error in controllers/user/signup/activate: #{error}"
 		View.ajaxResponse res, error
 
-exports.win = (req, res) ->
-	email = req.params.email
+# exports.win = (req, res) ->
+	# email = req.params.email
 	
-	if !email?
-		return async.mapSeries winners.slice(999, 1000), (winner, next) ->
-			options =
-				template: 'win'
-				client:
-					login: winner.login
-					email: winner.email
-					number: winner.number
-				subject: "Ваш подарок от Агуши"
-			console.log options
-			Client.sendMail res, options, next
-		, (err, result) ->
-			if err
-				return res.send err
+	# if !email?
+		# return async.mapSeries winners.slice(480, 501), (winner, next) ->
+			# options =
+				# template: 'win'
+				# client:
+					# login: winner.login
+					# email: winner.email
+					# number: winner.number
+				# subject: "Ваш подарок от Агуши"
+			# console.log options
+			# Client.sendMail res, options, next
+		# , (err, result) ->
+			# if err
+				# return res.send err
 			
-			res.send true
+			# res.send true
 	
-	options =
-		template: 'win'
-		client:
-			login: email
-			email: email
-		subject: "Ваш подарок от Агуши"
+	# options =
+		# template: 'win'
+		# client:
+			# login: email
+			# email: email
+		# subject: "Ваш подарок от Агуши"
 	
-	Client.sendMail res, options, (err) ->
-		if err
-			return res.send err
+	# Client.sendMail res, options, (err) ->
+		# if err
+			# return res.send err
 		
-		res.send true
+		# res.send true
