@@ -4,6 +4,7 @@ Model = require '../lib/model'
 
 metaMigrate = require '../meta/migrate'
 cities = require '../meta/cities'
+clients = require '../meta/clients'
 
 checkMigration = (migrate, callback) ->
 	async.each migrate.data, (data, next) ->
@@ -12,6 +13,9 @@ checkMigration = (migrate, callback) ->
 
 addCity = (data, callback) ->
 	Model 'City', 'update', callback, data, data, upsert: true
+
+addClient = (data, callback) ->
+	Model 'Client', 'update', callback, _id: data._id, data, upsert: true
 
 exports.init = (callback) ->
 	async.each metaMigrate, checkMigration, callback
@@ -23,6 +27,8 @@ exports.init = (callback)->
 			async.each metaMigrate, checkMigration, next
 		cities: (next) ->
 			async.each cities, addCity, next
+		clients: (next) ->
+			async.each clients, addClient, next
 	, (err, results) ->
 		console.timeEnd 'Info: Migration took'
 		

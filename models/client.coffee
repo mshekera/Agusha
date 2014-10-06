@@ -77,11 +77,4 @@ schema = new mongoose.Schema
 schema.methods.fullName = () ->
 	[@lastName, @firstName, @patronymic].join ' '
 
-opts =
-	model: 'Client'
-	field: 'id'
-	startAt: 1
-
-schema.plugin autoIncrement.plugin, opts
-
 module.exports = mongoose.model 'Client', schema
