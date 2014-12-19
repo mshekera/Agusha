@@ -8,9 +8,9 @@ templatesDir = "#{__dirname}/../views/helpers/email"
 transportOptions =
 	host: '0.0.0.0'
 	port: '25'
-	auth:
-		user: 'root'
-		pass: ''
+	# auth:
+		# user: 'root'
+		# pass: ''
 
 # transportOptions =
 	# host: 's02.atomsmtp.com'
