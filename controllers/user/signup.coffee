@@ -305,7 +305,7 @@ exports.letter_so_zlakami = (req, res) ->
 		
 		sortOptions =
 			lean: true
-			skip: 1158
+			skip: 1258
 			limit: limit
 		
 		return async.waterfall [
