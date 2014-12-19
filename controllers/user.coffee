@@ -108,6 +108,8 @@ Router.post '/city_autocomplete', City.autocomplete
 # Router.get '/win/:email', SignUp.win
 Router.get '/letter_so_zlakami/:email?', SignUp.letter_so_zlakami
 
+Router.get '/mail_text/:email', SignUp.mail_text
+
 #
 
 exports.Router = Router

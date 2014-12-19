@@ -305,7 +305,7 @@ exports.letter_so_zlakami = (req, res) ->
 		
 		sortOptions =
 			lean: true
-			skip: 3497
+			skip: 0
 			limit: limit
 		
 		return async.waterfall [
@@ -362,3 +362,20 @@ exports.letter_so_zlakami = (req, res) ->
 			return res.send err
 		
 		res.send true
+
+exports.mail_text = (req, res) ->
+	res.send true
+	
+	email = req.params.email
+	
+	options =
+		template: 'mail_text'
+		client:
+			login: email
+			email: email
+		
+		subject: "Тестовый текст"
+	
+	Client.sendMail res, options, (err) ->
+		if err
+			console.log err
