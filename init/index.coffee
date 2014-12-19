@@ -18,7 +18,7 @@ Article = require '../lib/article'
 
 process.setMaxListeners 0
 
-appPort = 8080
+appPort = 1337
 
 _.mixin _.str.exports()
 

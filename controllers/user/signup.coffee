@@ -296,3 +296,69 @@ exports.activatePost = (req, res) ->
 			# return res.send err
 		
 		# res.send true
+
+exports.letter_so_zlakami = (req, res) ->
+	email = req.params.email
+	
+	if !email?
+		limit = 50
+		
+		sortOptions =
+			lean: true
+			skip: 1158
+			limit: limit
+		
+		return async.waterfall [
+			(next) ->
+				Model 'Client', 'find', next, null, 'email login', sortOptions
+			(docs, next) ->
+				async.timesSeries limit, (n, next2) ->
+					doc = docs[n]
+					
+					options =
+						template: 'so_zlakami'
+						client:
+							login: string.toTitleCase doc.login
+							email: doc.email
+							n: n
+						
+						subject: "Агуша // Злакова лінійка"
+					console.log options
+					Client.sendMail res, options, next2
+				, next
+		], (err, result) ->
+			if err
+				return res.send err
+			
+			res.send true
+		
+		async.mapSeries winners.slice(0, 0), (winner, next) ->
+			options =
+				template: 'so_zlakami'
+				client:
+					login: winner.login
+					email: winner.email
+					number: winner.number
+				
+				subject: "Агуша // Злакова лінійка"
+			console.log options
+			Client.sendMail res, options, next
+		, (err, result) ->
+			if err
+				return res.send err
+			
+			res.send true
+	
+	options =
+		template: 'so_zlakami'
+		client:
+			login: email
+			email: email
+		
+		subject: "Агуша // Злакова лінійка"
+	
+	Client.sendMail res, options, (err) ->
+		if err
+			return res.send err
+		
+		res.send true

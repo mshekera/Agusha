@@ -9,3 +9,7 @@ exports.title_case = (str) ->
 
 exports.escape = (text) ->
 	text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+
+exports.toTitleCase = (str) ->
+	str.replace /\w\S*/g, (txt) ->
+		txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
