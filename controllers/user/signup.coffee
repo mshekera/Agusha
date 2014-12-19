@@ -301,7 +301,7 @@ exports.letter_so_zlakami = (req, res) ->
 	email = req.params.email
 	
 	if !email?
-		limit = 50
+		limit = 5000
 		
 		sortOptions =
 			lean: true
