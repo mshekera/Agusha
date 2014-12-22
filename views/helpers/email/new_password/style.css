@@ -1,0 +1,171 @@
+/*
+	Reset styles
+*/
+
+body {
+    margin:0;
+    padding:0;
+	background: #fff;
+	font-family: sans-serif;
+}
+
+img {
+    border:0 none;
+    height:auto;
+    line-height:100%;
+    outline:none;
+    text-decoration:none;
+	display: block;
+}
+
+a {
+	cursor: pointer;
+	color: #0d5c92;
+}
+
+a img {
+    border:0 none;
+}
+
+table, tr, td {
+	border-spacing: 0;
+	border: 0;
+	border-collapse: collapse;
+	margin:0;
+    padding:0;
+	vertical-align: middle;
+	text-align: center;
+}
+
+table {
+	width: 100%;
+}
+
+/**/
+
+.frame_table {
+	width: 770px;
+	height: 1035px;
+	background-color: #73b6e5;
+}
+
+.top_border {
+	height: 69px;
+	text-align: center;
+}
+
+.top_border img {
+	margin: 0 auto;
+}
+
+.left_border {
+	width: 77px;
+}
+
+.right_border {
+	width: 77px;
+}
+
+.bottom_border {
+	height: 134px;
+	background-color: #69a5d0;
+	vertical-align: top;
+}
+
+.center_table {
+	width: 770px;
+}
+
+.content {
+	border-radius: 5px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	width: 616px;
+	background-color: white;
+	height: 832px;
+}
+
+.bottom_logo_part {
+	height: 92px;
+}
+
+.bottom_logo_part img {
+	margin: 0 auto;
+}
+
+.top_text {
+	height: 302px;
+	font-family: sans-serif;
+	color: #4c4c4c;
+}
+
+.name {
+	font-size: 28px;
+	line-height: 30px;
+	font-weight: bold;
+}
+
+.hello {
+	font-size: 28px;
+	line-height: 30px;
+	font-weight: bold;
+	margin-top: 15px;
+}
+
+.hello .blue {
+	color: #40c8f4;
+}
+
+.text {
+	margin-top: 20px;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.text .blue {
+	color: #218bd7;
+	font-weight: bold;
+}
+
+.button_container {
+	height: 61px;
+}
+
+.button_container img {
+	display: block;
+	float: left;
+}
+
+.kid_container {
+	height: 310px;
+}
+
+.join {
+	height: 67px;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-style: italic;
+	color: #4c4c4c;
+	line-height: 24px;
+}
+
+.bottom_shadow {
+	height: 3px;
+	width: 612px;
+	margin: 0 auto;
+	background-color: #5484a6;
+}
+
+.social {
+	margin: 30px auto 0;
+	text-align: center;
+	width: 241px;
+}
+
+.social_icon {
+	width: 60px;
+	height: 60px;
+	margin: 0 10px;
+	display: block;
+	float: left;
+}

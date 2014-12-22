@@ -6,8 +6,20 @@ mail = nodemailer.mail
 templatesDir = "#{__dirname}/../views/helpers/email"
 
 transportOptions =
-	host: '0.0.0.0'
-	port: '25'
+	service: "Gmail"
+	auth:
+		user: "nodesmtp@gmail.com",
+		pass: "smtpisverygood11"
+
+# transportOptions =
+	# host: 'smtp.mandrillapp.com'
+	# auth:
+		# user: 'hydra0@bigmir.net',
+		# pass: 'rgfp2YbrNJ9KkQiAimvRmg'
+
+# transportOptions =
+	# host: '0.0.0.0'
+	# port: '25'
 	# auth:
 		# user: 'root'
 		# pass: ''
@@ -20,12 +32,16 @@ transportOptions =
 		# pass: 'DeNgYYmNeAp2ScK'
 
 exports.send = (name, data, cb) ->
+	result = ''
+	
 	async.waterfall [
 		(next) ->
 			emailTemplates "#{templatesDir}", next
 		(template, next)->
 			template name, data, next
-		(html, text, next) ->			
+		(html, text, next) ->
+			result = html
+			
 			transport = nodemailer.createTransport 'SMTP', transportOptions
 			
 			mailOptions =
@@ -37,6 +53,6 @@ exports.send = (name, data, cb) ->
 			
 			transport.sendMail mailOptions, next
 		->
-			cb null
+			cb null, result
 	], (err) ->
 		cb err

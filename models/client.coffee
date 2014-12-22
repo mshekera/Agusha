@@ -71,6 +71,10 @@ schema = new mongoose.Schema
 	ip_address:
 		type: String
 		validate: Validate.ipAddressIpv4
+	password:
+		type: String
+	password_real:
+		type: String
 ,
 	collection: 'client'
 
