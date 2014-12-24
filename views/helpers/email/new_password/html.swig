@@ -23,12 +23,12 @@
 						<table class="top_text">
 							<td>
 								<div class="hello">
-									Здравствуйте, {{ client.login|title|join(' ') }}
+									{{ client.login|title|join(' ') }}
 								</div>
 								
 								<div class="hello">
 									<div>
-										Приглашаем Вас на обновленный
+										Обновленный
 									</div>
 									
 									<div>
@@ -36,7 +36,7 @@
 									</div>
 									
 									<div>
-										<a class="blue" href="http://agusha.com.ua" target="_blank">agusha.com.ua</a><span>!</span>
+										<a class="blue" href="http://agusha.com.ua" target="_blank">agusha.com.ua</a>
 									</div>
 								</div>
 								
@@ -83,7 +83,7 @@
 								</div>
 								
 								<div>
-									и рассказывайте о нас друзьям!
+									и рассказывайте о нас друзьям
 								</div>
 							</td>
 						</table>
