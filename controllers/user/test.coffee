@@ -50,9 +50,12 @@ exports.email = (req, res) ->
 	async.eachSeries emails, (email, callback) ->
 		sendTestEmail res, email, callback
 	, (err) ->
-		error = err.message or err
-		Logger.log 'info', "Error in controllers/user/test/sendTestEmail: #{error}"
-		res.send error
+		if err
+			error = err.message or err
+			Logger.log 'info', "Error in controllers/user/test/sendTestEmail: #{error}"
+			return res.send error
+		
+		res.send true
 
 make_passwords = (doc, callback) ->
 	randomstring = Math.random().toString(36).slice(-8)
