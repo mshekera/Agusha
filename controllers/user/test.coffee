@@ -38,17 +38,19 @@ sendTestEmail = (res, email, callback) ->
 exports.email = (req, res) ->
 	# email = 'hydraorc@gmail.com'
 	emails = [
-		'dkirpa@gmail.com'
-		'zmorbohdan@gmail.com'
-		'andrew.sygyda@gmail.com'
-		'yuriy.kabay@outlook.com'
-		'max.shekera@gmail.com'
-		'kasyanov.mark@gmail.com'
+		# 'dkirpa@gmail.com'
+		# 'zmorbohdan@gmail.com'
+		# 'andrew.sygyda@gmail.com'
+		# 'yuriy.kabay@outlook.com'
+		# 'max.shekera@gmail.com'
+		# 'kasyanov.mark@gmail.com'
 		'hydraorc@gmail.com'
 		'hydra0@bigmir.net'
-		'v.nechayenko@peppermint.com.ua'
-		't.shvydenko@peppermint.com.ua'
-		'i.kozh@peppermint.com.ua'
+		# 'v.nechayenko@peppermint.com.ua'
+		# 't.shvydenko@peppermint.com.ua'
+		# 'i.kozh@peppermint.com.ua'
+		'n.ponich@gmail.com'
+		'n.ponich@yandex.ru'
 	]
 	
 	async.eachSeries emails, (email, callback) ->
