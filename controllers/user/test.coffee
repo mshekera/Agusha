@@ -49,7 +49,7 @@ exports.email = (req, res) ->
 		# 'v.nechayenko@peppermint.com.ua'
 		# 't.shvydenko@peppermint.com.ua'
 		# 'i.kozh@peppermint.com.ua'
-		'n.ponich@gmail.com'
+		'remzonasender@gmail.com'
 		# 'n.ponich@yandex.ru'
 	]
 	
