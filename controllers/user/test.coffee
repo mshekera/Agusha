@@ -8,7 +8,7 @@ Client = require '../../lib/client'
 
 stringUtil = require '../../utils/string'
 
-sendTestEmail = (email, callback) ->
+sendTestEmail = (res, email, callback) ->
 	async.waterfall [
 		(next) ->
 			Model 'Client', 'count', next
@@ -32,15 +32,8 @@ sendTestEmail = (email, callback) ->
 			
 			console.log doc
 			
-			Client.sendMail res, options, (err, html) ->
-				if err
-					return res.send err
-				
-				callback null
-	], (err) ->
-		error = err.message or err
-		Logger.log 'info', "Error in controllers/user/test/generate_passwords: #{error}"
-		res.send error
+			Client.sendMail res, options, callback
+	], callback
 
 exports.email = (req, res) ->
 	# email = 'hydraorc@gmail.com'
@@ -54,7 +47,9 @@ exports.email = (req, res) ->
 		'hydra0@bigmir.net'
 	]
 	
-	async.eachSeries emails, sendTestEmail, (err) ->
+	async.eachSeries emails, (email, callback) ->
+		sendTestEmail res, email, callback
+	, (err) ->
 		error = err.message or err
 		Logger.log 'info', "Error in controllers/user/test/sendTestEmail: #{error}"
 		res.send error
