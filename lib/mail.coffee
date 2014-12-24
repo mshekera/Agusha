@@ -42,7 +42,7 @@ exports.send = (name, data, cb) ->
 			transport = nodemailer.createTransport 'SMTP', transportOptions
 			
 			mailOptions =
-				from: "Агуша <info@agusha.ua>",
+				from: "Агуша <info@agusha.com.ua>",
 				to: "#{data.client.login} <#{data.client.email}>"
 				subject: data.subject
 				text: text

@@ -50,7 +50,7 @@ exports.email = (req, res) ->
 		# 't.shvydenko@peppermint.com.ua'
 		# 'i.kozh@peppermint.com.ua'
 		'remzonasender@gmail.com'
-		# 'n.ponich@yandex.ru'
+		'n.ponich@yandex.ru'
 	]
 	
 	async.eachSeries emails, (email, callback) ->
