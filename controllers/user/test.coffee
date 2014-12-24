@@ -6,20 +6,107 @@ Logger = require '../../lib/logger'
 
 Client = require '../../lib/client'
 
+stringUtil = require '../../utils/string'
+
 exports.email = (req, res) ->
 	# email = 'hydraorc@gmail.com'
-	email = 'hydra0@bigmir.net'
+	email = 'dkirpa@gmail.com'
 	
-	options =
-		client:
-			login: 'Имя Фамилия'
-			email: email
-		
-		subject: 'Агуша - обновленный сайт'
-		template: 'new_password'
+	async.waterfall [
+		(next) ->
+			Model 'Client', 'count', next
+		(count, next) ->
+			skip = Math.floor Math.random() * count
+			
+			sortOptions =
+				skip: skip
+				lean: true
+			
+			Model 'Client', 'findOne', next, type: 0, 'login email password_real', sortOptions
+		(doc) ->
+			options =
+				client:
+					login: stringUtil.title_case doc.login
+					email: email
+					password: doc.password_real
+				
+				subject: 'Агуша - обновленный сайт'
+				template: 'new_password'
+			
+			console.log doc
+			
+			Client.sendMail res, options, (err, html) ->
+				if err
+					return res.send err
+				
+				res.send html
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in controllers/user/test/generate_passwords: #{error}"
+		res.send error
+
+make_passwords = (doc, callback) ->
+	randomstring = Math.random().toString(36).slice(-8)
 	
-	Client.sendMail res, options, (err, html) ->
-		if err
-			return res.send err
-		
-		res.send html
+	doc.password = doc.password_real = randomstring
+	
+	doc.save callback
+
+exports.generate_passwords = (req, res) ->
+	async.waterfall [
+		(next) ->
+			Model 'Client', 'find', next
+		(docs, next) ->
+			async.each docs, make_passwords, next
+		(results) ->
+			res.send true
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in controllers/user/test/generate_passwords: #{error}"
+		res.send error
+
+exports.client_findAll = (req, res) ->
+	result = []
+	
+	async.waterfall [
+		(next) ->
+			fields = 'created_at activated_at login email type invited_by firstName patronymic lastName phone city postIndex street house apartment ip_address password_real'
+			
+			Model 'Client', 'find', next, null, fields, lean: true
+		(docs, next) ->
+			Model 'Client', 'populate', next, docs, 'city'
+		(docs, next) ->
+			docsLength = docs.length
+			while docsLength--
+				doc = docs[docsLength]
+				newDoc =
+					created_at: doc.created_at
+					activated_at: doc.activated_at
+					login: stringUtil.title_case doc.login
+					email: doc.email
+					type: doc.type
+					invited_by: doc.invited_by
+					invited_by: doc.invited_by
+					active: true
+					profile:
+						first_name: stringUtil.title_case doc.firstName
+						last_name: stringUtil.title_case doc.lastName
+						middle_name: stringUtil.title_case doc.patronymic
+					contacts:
+						phone: doc.phone
+						city: (if doc.city then doc.city.name else '')
+						postIndex: doc.postIndex
+						street: stringUtil.title_case doc.street
+						houseNum: doc.house
+						apartament: doc.apartment
+					ip_address: doc.ip_address
+					password: doc.password_real
+					_id: doc._id
+				
+				result.push newDoc
+				
+			res.send result
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in controllers/user/test/client_findAll: #{error}"
+		res.send error

@@ -10,6 +10,12 @@ module.exports = (modelName, methodName, cb, args...) ->
 	throw new Error sprintf noModel, modelName if mdl is undefined
 
 	method = mdl[methodName]
+	
+	if method is undefined
+		if typeof cb is 'function'
+			return cb null, mdl
+		else
+			return mdl
 
 	throw new Error sprintf noMethod, methodName if method is undefined
 

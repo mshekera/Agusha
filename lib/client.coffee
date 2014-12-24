@@ -17,8 +17,7 @@ exports.sendMail = sendMail = (res, data, callback) ->
 			# if result
 				options =
 					subject: data.subject
-					login: data.client.login
-					email: data.client.email
+					client: data.client
 				
 				if data.salt
 					options.salt = data.salt

@@ -23,7 +23,7 @@
 						<table class="top_text">
 							<td>
 								<div class="hello">
-									Здравствуйте, Ольга Степановна!
+									Здравствуйте, {{ client.login|title|join(' ') }}
 								</div>
 								
 								<div class="hello">
@@ -41,9 +41,7 @@
 								</div>
 								
 								<div class="text">
-									<div>
-										Ваш пароль: 00000000
-									</div>
+									<div>Ваш пароль: {{ client.password }}</div>
 									
 									<div>
 										Для того, чтобы изменить пароль, получить доступ ко всем полезностям и

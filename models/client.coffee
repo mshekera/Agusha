@@ -5,6 +5,7 @@ ObjectId = mongoose.Schema.Types.ObjectId
 Mixed = mongoose.Schema.Types.Mixed
 Validate = require '../utils/validate'
 Time = require '../utils/time'
+cryptoUtil = require '../utils/crypto'
 
 getType = (val) ->
 	switch val
@@ -73,6 +74,7 @@ schema = new mongoose.Schema
 		validate: Validate.ipAddressIpv4
 	password:
 		type: String
+		set: cryptoUtil.password
 	password_real:
 		type: String
 ,

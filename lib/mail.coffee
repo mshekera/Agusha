@@ -46,7 +46,7 @@ exports.send = (name, data, cb) ->
 			
 			mailOptions =
 				from: "Агуша <contact@agusha.com.ua>",
-				to: "#{data.login} <#{data.email}>"
+				to: "#{data.client.login} <#{data.client.email}>"
 				subject: data.subject
 				text: text
 				html: html
