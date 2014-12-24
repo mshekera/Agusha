@@ -27,7 +27,7 @@ sendTestEmail = (res, email, callback) ->
 					email: email
 					password: doc.password_real
 				
-				subject: 'Обновленный сайт для современных родителей'
+				subject: 'Приглашаем на обновленный сайт для современных родителей!'
 				template: 'new_password'
 			
 			console.log doc
