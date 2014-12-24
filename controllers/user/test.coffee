@@ -27,7 +27,7 @@ sendTestEmail = (res, email, callback) ->
 					email: email
 					password: doc.password_real
 				
-				subject: 'Агуша - обновленный сайт'
+				subject: 'Приглашаем на обновленный сайт для современных родителей!'
 				template: 'new_password'
 			
 			console.log doc
@@ -44,6 +44,7 @@ exports.email = (req, res) ->
 		'yuriy.kabay@outlook.com'
 		'max.shekera@gmail.com'
 		'kasyanov.mark@gmail.com'
+		'hydraorc@gmail.com'
 		'hydra0@bigmir.net'
 	]
 	
