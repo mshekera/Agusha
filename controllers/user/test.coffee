@@ -8,7 +8,7 @@ Client = require '../../lib/client'
 
 stringUtil = require '../../utils/string'
 
-make_passwords = (email, callback) ->
+sendTestEmail = (email, callback) ->
 	async.waterfall [
 		(next) ->
 			Model 'Client', 'count', next
