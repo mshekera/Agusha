@@ -5,11 +5,11 @@ mail = nodemailer.mail
 
 templatesDir = "#{__dirname}/../views/helpers/email"
 
-transportOptions =
-	service: "Gmail"
-	auth:
-		user: "nodesmtp@gmail.com",
-		pass: "smtpisverygood11"
+# transportOptions =
+	# service: "Gmail"
+	# auth:
+		# user: "nodesmtp@gmail.com",
+		# pass: "smtpisverygood11"
 
 # transportOptions =
 	# host: 'smtp.mandrillapp.com'
@@ -17,12 +17,9 @@ transportOptions =
 		# user: 'hydra0@bigmir.net',
 		# pass: 'rgfp2YbrNJ9KkQiAimvRmg'
 
-# transportOptions =
-	# host: '0.0.0.0'
-	# port: '25'
-	# auth:
-		# user: 'root'
-		# pass: ''
+transportOptions =
+	host: '0.0.0.0'
+	port: '25'
 
 # transportOptions =
 	# host: 's02.atomsmtp.com'
