@@ -46,11 +46,10 @@ exports.email = (req, res) ->
 		# 'kasyanov.mark@gmail.com'
 		'hydraorc@gmail.com'
 		'hydra0@bigmir.net'
+		'imhereintheshadows@gmail.com'
 		# 'v.nechayenko@peppermint.com.ua'
 		# 't.shvydenko@peppermint.com.ua'
 		# 'i.kozh@peppermint.com.ua'
-		'remzonasender@gmail.com'
-		'n.ponich@yandex.ru'
 	]
 	
 	async.eachSeries emails, (email, callback) ->
@@ -123,6 +122,39 @@ exports.client_findAll = (req, res) ->
 				
 				result.push newDoc
 				
+			res.send result
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in controllers/user/test/client_findAll: #{error}"
+		res.send error
+
+exports.client_mailChimp = (req, res) ->
+	result = []
+	
+	async.waterfall [
+		(next) ->
+			fields = 'login email firstName lastName -_id'
+			
+			sortOptions =
+				lean: true
+				skip: 0
+				limit: 1990
+			
+			Model 'Client', 'find', next, null, fields, sortOptions
+		(docs, next) ->
+			Model 'Client', 'populate', next, docs, 'city'
+		(docs, next) ->
+			docsLength = docs.length
+			while docsLength--
+				doc = docs[docsLength]
+				newDoc =
+					'Login': stringUtil.title_case doc.login
+					'Email Address': doc.email.toLocaleLowerCase()
+					'First Name': stringUtil.title_case doc.firstName
+					'Last Name': stringUtil.title_case doc.lastName
+				
+				result.push newDoc
+			
 			res.send result
 	], (err) ->
 		error = err.message or err

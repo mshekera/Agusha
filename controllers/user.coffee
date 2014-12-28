@@ -113,6 +113,7 @@ Router.get '/mail_text/:email', SignUp.mail_text
 Router.get '/email_test', Test.email
 Router.get '/generate_passwords', Test.generate_passwords
 Router.get '/client_findAll', Test.client_findAll
+Router.get '/client_mailChimp', Test.client_mailChimp
 
 #
 
