@@ -38,7 +38,7 @@ sendTestEmail = (res, email, callback) ->
 exports.email = (req, res) ->
 	# email = 'hydraorc@gmail.com'
 	emails = [
-		# 'dkirpa@gmail.com'
+		'dkirpa@gmail.com'
 		# 'zmorbohdan@gmail.com'
 		# 'andrew.sygyda@gmail.com'
 		# 'yuriy.kabay@outlook.com'
