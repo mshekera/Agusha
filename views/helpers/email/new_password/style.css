@@ -93,6 +93,10 @@ table {
 	margin: 0 auto;
 }
 
+.logo_part {
+	width: 158px;
+}
+
 .top_text {
 	height: 302px;
 	font-family: sans-serif;
