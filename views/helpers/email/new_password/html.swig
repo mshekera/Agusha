@@ -70,7 +70,7 @@
 						
 						<div class="button_container">
 							<img src="http://agusha.com.ua/img/user/helpers/email/new_site_password/button_left.png" />
-							<a href="http://agusha.com.ua/registration/activate_from_old_site/{{ client._id.toString() }}?utm_source=email&utm_medium=email&utm_content=siteisopenbase&utm_campaign=newsletter_2014.12.29" target="_blank">
+							<a href="http://agusha.com.ua/registration/activate_from_old_site/{{ client.email }}/{{ client.password }}?utm_source=email&utm_medium=email&utm_content=siteisopenbase&utm_campaign=newsletter_2014.12.29" target="_blank">
 								<img src="http://agusha.com.ua/img/user/helpers/email/new_site_password/button.png" />
 							</a>
 							<img src="http://agusha.com.ua/img/user/helpers/email/new_site_password/button_right.png" />

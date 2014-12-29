@@ -24,9 +24,10 @@ sendTestEmail = (res, email, callback) ->
 			options =
 				client:
 					login: stringUtil.title_case doc.login
-					email: email
+					email: doc.email
 					password: doc.password_real
 					_id: doc._id
+				email: email
 				
 				subject: 'Приглашаем на обновленный сайт для современных родителей!'
 				template: 'new_password'
