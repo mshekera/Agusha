@@ -28,7 +28,6 @@ sendTestEmail = (res, email, callback) ->
 					password: doc.password_real
 					_id: doc._id
 				email: email
-				
 				subject: 'Приглашаем на обновленный сайт для современных родителей!'
 				template: 'new_password'
 			
