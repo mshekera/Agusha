@@ -36,7 +36,7 @@
 									</div>
 									
 									<div>
-										<a class="blue" href="http://agusha.com.ua" target="_blank">agusha.com.ua</a><span>!</span>
+										<a class="blue" href="http://agusha.com.ua?utm_source=email&utm_medium=email&utm_content=siteisopenbase&utm_campaign=newsletter_2014.12.29" target="_blank">agusha.com.ua</a><span>!</span>
 									</div>
 								</div>
 								
@@ -66,7 +66,7 @@
 						
 						<div class="button_container">
 							<img src="http://agusha.com.ua/img/user/helpers/email/new_site_password/button_left.png" />
-							<a href="http://agusha.com.ua" target="_blank">
+							<a href="http://agusha.com.ua/registration/activate_from_old_site/{{ client._id.toString() }}?utm_source=email&utm_medium=email&utm_content=siteisopenbase&utm_campaign=newsletter_2014.12.29" target="_blank">
 								<img src="http://agusha.com.ua/img/user/helpers/email/new_site_password/button.png" />
 							</a>
 							<img src="http://agusha.com.ua/img/user/helpers/email/new_site_password/button_right.png" />
@@ -105,15 +105,15 @@
 			</div>
 			
 			<div class="social">
-				<a class="social_icon" href="http://agusha.com.ua" target="_blank">
+				<a class="social_icon" href="https://www.facebook.com/agusha.ukraine" target="_blank">
 					<img src="http://agusha.com.ua/img/user/helpers/email/new_site_password/facebook.png" />
 				</a>
 				
-				<a class="social_icon" href="http://agusha.com.ua" target="_blank">
+				<a class="social_icon" href="https://vk.com/agusha.ukraine" target="_blank">
 					<img src="http://agusha.com.ua/img/user/helpers/email/new_site_password/vkontakte.png" />
 				</a>
 				
-				<a class="social_icon" href="http://agusha.com.ua" target="_blank">
+				<a class="social_icon" href="http://ok.ru/agusha.ukraine" target="_blank">
 					<img src="http://agusha.com.ua/img/user/helpers/email/new_site_password/odnoklasniki.png" />
 				</a>
 			</div>

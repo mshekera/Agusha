@@ -26,6 +26,7 @@ sendTestEmail = (res, email, callback) ->
 					login: stringUtil.title_case doc.login
 					email: email
 					password: doc.password_real
+					_id: doc._id
 				
 				subject: 'Приглашаем на обновленный сайт для современных родителей!'
 				template: 'new_password'
@@ -40,16 +41,16 @@ exports.email = (req, res) ->
 	emails = [
 		'dkirpa@gmail.com'
 		'zmorbohdan@gmail.com'
-		'andrew.sygyda@gmail.com'
-		'yuriy.kabay@outlook.com'
-		'max.shekera@gmail.com'
-		'kasyanov.mark@gmail.com'
+		# 'andrew.sygyda@gmail.com'
+		# 'yuriy.kabay@outlook.com'
+		# 'max.shekera@gmail.com'
+		# 'kasyanov.mark@gmail.com'
 		'hydraorc@gmail.com'
 		'hydra0@bigmir.net'
-		'imhereintheshadows@gmail.com'
-		'v.nechayenko@peppermint.com.ua'
-		't.shvydenko@peppermint.com.ua'
-		'i.kozh@peppermint.com.ua'
+		# 'imhereintheshadows@gmail.com'
+		# 'v.nechayenko@peppermint.com.ua'
+		# 't.shvydenko@peppermint.com.ua'
+		# 'i.kozh@peppermint.com.ua'
 	]
 	
 	async.eachSeries emails, (email, callback) ->
