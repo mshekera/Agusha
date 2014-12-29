@@ -1,7 +1,7 @@
 <table class="frame_table">
 	<tr class="top_border">
 		<td class="top_border">
-			<a class="blue" href="http://agusha.com.ua?utm_source=email&utm_medium=email&utm_content=siteisopenbase&utm_campaign=newsletter_2014.12.29" target="_blank">
+			<a class="logo_part" href="http://agusha.com.ua?utm_source=email&utm_medium=email&utm_content=siteisopenbase&utm_campaign=newsletter_2014.12.29" target="_blank">
 				<img class="logo_part" src="http://agusha.com.ua/img/user/helpers/email/new_site_password/top_logo_part.png" />
 			</a>
 		</td>
@@ -19,7 +19,7 @@
 					<td class="content">
 						
 						<div class="bottom_logo_part">
-							<a class="blue" href="http://agusha.com.ua?utm_source=email&utm_medium=email&utm_content=siteisopenbase&utm_campaign=newsletter_2014.12.29" target="_blank">
+							<a class="logo_part" href="http://agusha.com.ua?utm_source=email&utm_medium=email&utm_content=siteisopenbase&utm_campaign=newsletter_2014.12.29" target="_blank">
 								<img class="logo_part" src="http://agusha.com.ua/img/user/helpers/email/new_site_password/bottom_logo_part.png" />
 							</a>
 						</div>
