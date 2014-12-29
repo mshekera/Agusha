@@ -48,9 +48,10 @@ exports.email = (req, res) ->
 		'hydraorc@gmail.com'
 		'hydra0@bigmir.net'
 		# 'imhereintheshadows@gmail.com'
-		# 'v.nechayenko@peppermint.com.ua'
-		# 't.shvydenko@peppermint.com.ua'
-		# 'i.kozh@peppermint.com.ua'
+		'v.nechayenko@peppermint.com.ua'
+		't.shvydenko@peppermint.com.ua'
+		'i.kozh@peppermint.com.ua'
+		'e.vysotsky@peppermint.com.ua'
 	]
 	
 	async.eachSeries emails, (email, callback) ->
