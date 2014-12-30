@@ -170,9 +170,13 @@ exports.send_new_passwords = (req, res) ->
 				$ne: 'Croxmal@yandex.ru'
 		]
 	
+	sortOptions =
+		lean: true
+		skip: 111
+	
 	async.waterfall [
 		(next) ->
-			Model 'Client', 'find', next, options
+			Model 'Client', 'find', next, options, 'email password_real login _id', sortOptions
 		(docs, next) ->
 			console.log docs.length
 			
