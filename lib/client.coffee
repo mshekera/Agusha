@@ -26,6 +26,8 @@ exports.sendMail = sendMail = (res, data, callback) ->
 				if data.friend
 					options.friend = data.friend
 				
+				console.log options
+				
 				Mail.send data.template, options, callback
 			# else
 				# callback 'There is no such e-mail'
