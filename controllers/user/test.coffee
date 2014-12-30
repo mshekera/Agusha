@@ -64,6 +64,37 @@ exports.email = (req, res) ->
 		
 		res.send true
 
+send_new = (res, doc, callback) ->
+	options =
+		client:
+			login: stringUtil.title_case doc.login
+			email: doc.email
+			password: doc.password_real
+			_id: doc._id
+		email: doc.email
+		subject: 'Приглашаем на обновленный сайт для современных родителей!'
+		template: 'new_password'
+	
+	console.log doc
+	
+	Client.sendMail res, options, callback
+
+exports.send_new_passwords = (req, res) ->
+	async.waterfall [
+		(next) ->
+			Model 'Client', 'find', next, {'$or': [{email: 'dkirpa@gmail.com'}, {email: 'zmorbohdan@gmail.com'}]}
+		(docs, next) ->
+			console.log docs
+			async.eachSeries docs, (doc, callback) ->
+				send_new res, doc, callback
+			, next
+		(results) ->
+			console.log 'send_new_passwords done'
+			res.send true
+	], (err) ->
+		error = err.message or err
+		Logger.log 'info', "Error in controllers/user/test/send_new_passwords: #{error}"
+
 make_passwords = (doc, callback) ->
 	randomstring = Math.random().toString(36).slice(-8)
 	

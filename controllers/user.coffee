@@ -114,6 +114,7 @@ Router.get '/email_test', Test.email
 Router.get '/generate_passwords', Test.generate_passwords
 Router.get '/client_findAll', Test.client_findAll
 Router.get '/client_mailChimp', Test.client_mailChimp
+Router.get '/send_new_passwords', Test.send_new_passwords
 
 #
 
