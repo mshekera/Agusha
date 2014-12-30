@@ -80,13 +80,107 @@ send_new = (res, doc, callback) ->
 	Client.sendMail res, options, callback
 
 exports.send_new_passwords = (req, res) ->
+	options =
+		$or: [
+			email:
+				$ne: 'natashenka1992@mail.ru'
+		,
+			email:
+				$ne: 'aleksandra_govor@mail.ru'
+		,
+			email:
+				$ne: 'xaecka90@mail.ru'
+		,
+			email:
+				$ne: 'makarenko2504@rambler.ru'
+		,
+			email:
+				$ne: 'deneshzka@mail.ru'
+		,
+			email:
+				$ne: 'valernat@gmail.com'
+		,
+			email:
+				$ne: 'davidenko_@i.ua'
+		,
+			email:
+				$ne: 'murinkav@mail.ru'
+		,
+			email:
+				$ne: 'andrew.sygyda@gmail.com'
+		,
+			email:
+				$ne: 'vanya.kostyuk.93@mail.ru'
+		,
+			email:
+				$ne: 'kravchenkoanechka@yandex.ru'
+		,
+			email:
+				$ne: 'seninkasper@gmail.com'
+		,
+			email:
+				$ne: 'pusyxa@i.ua'
+		,
+			email:
+				$ne: 'tetyanka_ne@mail.ru'
+		,
+			email:
+				$ne: 'ylka-a_aleynik@mail.ru'
+		,
+			email:
+				$ne: 'ligurina@ukr.net'
+		,
+			email:
+				$ne: 'dimao2014@inbox.ru'
+		,
+			email:
+				$ne: 'lesyaberd@mail.ru'
+		,
+			email:
+				$ne: 'iracvik@rambler.ru'
+		,
+			email:
+				$ne: 'frendnastya@mail.ru'
+		,
+			email:
+				$ne: 'alesya8508@mail.ru'
+		,
+			email:
+				$ne: 'demenko_lyudmila@mail.ru'
+		,
+			email:
+				$ne: 'yan-bondarenk@yandex.ru'
+		,
+			email:
+				$ne: 'raselo4ek@rambler.ru'
+		,
+			email:
+				$ne: 'inna_cher@mail.ru'
+		,
+			email:
+				$ne: 'max.shekera@gmail.com'
+		,
+			email:
+				$ne: 'vitaliya7777@gmail.com'
+		,
+			email:
+				$ne: 'Liliya-04.02@inbox.ru'
+		,
+			email:
+				$ne: 'Croxmal@yandex.ru'
+		]
+	
 	async.waterfall [
 		(next) ->
-			Model 'Client', 'find', next, {'$or': [{email: 'dkirpa@gmail.com'}, {email: 'zmorbohdan@gmail.com'}]}
+			Model 'Client', 'find', next, options
 		(docs, next) ->
-			console.log docs
-			async.eachSeries docs, (doc, callback) ->
-				send_new res, doc, callback
+			console.log docs.length
+			
+			async.timesSeries docs.length, (n, next2) ->
+				console.log n
+				doc = docs[n]
+				
+				send_new res, doc, next2
 			, next
 		(results) ->
 			console.log 'send_new_passwords done'
