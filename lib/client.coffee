@@ -31,7 +31,9 @@ exports.sendMail = sendMail = (res, data, callback) ->
 				Mail.send data.template, options, callback
 			# else
 				# callback 'There is no such e-mail'
-	], callback
+	], (err) ->
+		console.log 'err - ' + err
+		callback null
 
 exports.signUp = (res, data, post, callback) ->
 	info = {}
